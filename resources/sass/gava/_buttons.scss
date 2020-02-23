@@ -1,0 +1,12 @@
+.btn {
+    &.btn-primary {
+        color: white;
+        border: 0px;
+        background-image: $gradient-primary;
+        text-transform: uppercase;
+        font-weight: bold;
+        border-radius: 0;
+        padding: 8px 15px;
+        letter-spacing: 1px;
+    }
+}
