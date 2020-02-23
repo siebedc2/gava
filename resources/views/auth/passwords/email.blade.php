@@ -5,7 +5,7 @@
     <div class="row vh-100 justify-content-center align-items-center">
         <div class="col-md-8">
             <div class="bg-transparent border-0 card">
-                <div class="d-none card-header">{{ __('Reset Password') }}</div>
+                <div class="text-white font-weight-bold offset-3 font-size-30 card-header">{{ __('Reset Password') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -18,7 +18,7 @@
                         @csrf
 
                         <div class="form-group row justify-content-center">
-                            <label for="email" class="d-none col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
                                 <input placeholder="email" id="email" type="email" class="rounded-pill form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
