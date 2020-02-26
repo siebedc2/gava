@@ -1,9 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
-.btn.btn-primary {
+.btn {
   color: white;
-  border: 0px;
-  background-image: linear-gradient(to top right, #4951CF, #3AD7F0);
+  border: 0px !important;
   text-transform: uppercase;
   font-weight: bold;
   border-radius: 0;
@@ -11,8 +10,24 @@
   letter-spacing: 1px;
 }
 
-body {
+.btn.btn-primary {
+  background-image: linear-gradient(to top right, #4951CF, #3AD7F0);
+}
+
+.btn.btn-secondary {
+  background-image: linear-gradient(to top right, #6E27D4, #D01CE2);
+}
+
+.gava {
   background-color: #050547;
+}
+
+.gava .what-to-learn-wrapper {
+  background-image: linear-gradient(to top right, #6E27D4, #D01CE2);
+}
+
+.gava .footer-wrapper {
+  background-image: linear-gradient(to top right, #4951CF, #3AD7F0);
 }
 
 .font-size-30 {

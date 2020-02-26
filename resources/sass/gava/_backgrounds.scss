@@ -1,3 +1,11 @@
-body {
+.gava {
     background-color: $body-bg;
+}
+
+.gava .what-to-learn-wrapper {
+    background-image: $gradient-secondary;
+}
+
+.gava .footer-wrapper {
+    background-image: $gradient-primary;
 }
