@@ -1,0 +1,11 @@
+.link {
+    padding: 10px 15px;
+
+    &.link-primary {
+        border: 1px solid #4951cf;
+    }
+
+    &.link-secondary {
+        background: $gradient-primary;
+    }
+}

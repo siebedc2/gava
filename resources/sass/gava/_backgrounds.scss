@@ -4,6 +4,7 @@
 
 .gava .what-to-learn-wrapper {
     background-image: $gradient-secondary;
+    clip-path: polygon(0 5%, 100% 0%, 100% 95%, 0 100%);
 }
 
 .gava .footer-wrapper {

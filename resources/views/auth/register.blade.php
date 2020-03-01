@@ -1,11 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+@include('components.menu')
 <div class="container">
     <div class="row vh-100 justify-content-center align-items-center">
         <div class="col-md-8">
             <div class="bg-transparent border-0 card">
-                <div class="text-white font-weight-bold offset-3 font-size-30 card-header">{{ __('Register') }}</div>
+                <div class="text-white font-weight-bold offset-3 card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">

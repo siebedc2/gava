@@ -37,11 +37,16 @@
     
     <title>Gava - Learn, teach, innovate</title>
 
-    <link rel="stylesheet" href="css/app.css">
+    <!-- Google fonts -->
+
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
     @yield('extra-css')
     
-    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-    <link rel="icon" href="img/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="images/favicon.png" type="image/x-icon">
     
     <!-- Canonical tag -->
     <link rel="canonical" href="https://gava-learning.be/">
