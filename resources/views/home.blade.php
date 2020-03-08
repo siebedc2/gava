@@ -236,10 +236,12 @@
                         <select class="mt-3 form-control">
                             <option>recommended</option>
                         </select>
-                        <div class="mt-3 mb-3 form-group">
-                            <label for="formControlRange">minimum rating</label>
-                            <input type="range" class="form-control-range" id="formControlRange">
+
+                        <div class="mt-3 mb-3">
+                            <label for="customRange2">minimum rating</label>
+                            <input type="range" class="custom-range" min="0" max="5" id="customRange2">
                         </div>
+                        
                         <button type="submit" class="w-100 text-center rounded-pill btn btn-primary mb-2">filter</button>
                     </form>
                 </div>

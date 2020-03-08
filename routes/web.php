@@ -24,6 +24,11 @@ Route::get('course/{course_id}/video/{id}/edit', 'VideoController@edit');
 Route::get('/course/add', 'CourseController@add');
 Route::get('/course/{id}/edit', 'CourseController@edit');
 
+// Profile
+Route::get('/profile', function () {
+    return view('general.profile.index');
+});
+
 // Authentication
 Auth::routes();
 
