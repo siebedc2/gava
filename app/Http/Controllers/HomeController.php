@@ -16,13 +16,18 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+    public function landing() 
+    {
+        return view('general.index');
+    }
+
     public function index()
     {
         return view('home');
+    }
+
+    public function profile()
+    {
+        return view('general.profile.index');
     }
 }

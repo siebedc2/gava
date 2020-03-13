@@ -11,25 +11,51 @@
 |
 */
 
-Route::get('/', function () {
-    return view('general.index');
-})->name('landing');
+// Landingspagina
+Route::get('/', [
+    'as'   => 'landing',
+    'uses' => 'HomeController@landing'
+]);
+
+Route::get('/home', [
+    'as'   => 'home',
+    'uses' => 'HomeController@index'
+]);
 
 // Video
-Route::get('course/{course_id}/video/add', 'VideoController@add');
-Route::get('course/{course_id}/video/{video_id}', 'VideoController@details');
-Route::get('course/{course_id}/video/{id}/edit', 'VideoController@edit');
+Route::get('/course/{course_id}/video/add', [
+    'as'   => 'addVideo',
+    'uses' => 'VideoController@add'
+]);
+
+Route::get('/course/{course_id}/video/{video_id}', [
+    'as'   => 'detailsVideo',
+    'uses' => 'VideoController@details'
+]);
+
+Route::get('/course/{course_id}/video/{id}/edit', [
+    'as'   => 'editVideo',
+    'uses' => 'VideoController@edit'
+]);
 
 // Course
-Route::get('/course/add', 'CourseController@add');
-Route::get('/course/{id}/edit', 'CourseController@edit');
+Route::get('/course/add', [
+    'as'   => 'addCourse',
+    'uses' => 'CourseController@add'
+]);
+
+Route::get('/course/{id}/edit', [
+    'as'   => 'editCourse',
+    'uses' => 'CourseController@edit'
+]);
+
 
 // Profile
-Route::get('/profile', function () {
-    return view('general.profile.index');
-});
+Route::get('/profile', [
+    'as'   => 'profile',
+    'uses' => 'HomeController@profile'
+]);
+
 
 // Authentication
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
