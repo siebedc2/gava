@@ -10,9 +10,25 @@ class Video {
         return Validator::make($data, [
             'title' => 'required',
             'description' => 'required',
-            'video' => 'required',
-            'course_id' => 'required',
-            'exclusive' => 'required'
+            'video' => 'required'
         ]);
+    }
+
+    public function create($request, $courseId) {
+        if(empty($request['exclusive'])) {
+            $request['exclusive'] = 'n';
+        }
+
+        $videoInput = $request['video'];
+        $videoName = $videoInput->getClientOriginalName();
+        $videoInput->move('images/uploads', $videoName);
+
+        $video = new VideoModel();
+        $video->title = $request['title'];
+        $video->description = $request['description'];
+        $video->video = $videoName;
+        $video->course_id = $courseId;
+        $video->exclusive = $request['exclusive'];
+        $video->save();
     }
 }

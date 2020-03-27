@@ -28,6 +28,11 @@ Route::get('/course/{course_id}/video/add', [
     'uses' => 'VideoController@add'
 ]);
 
+Route::post('/course/{course_id}/video/add', [
+    'as'   => 'addVideo',
+    'uses' => 'VideoController@handleAdd'
+]);
+
 Route::get('/course/{course_id}/video/{video_id}', [
     'as'   => 'detailsVideo',
     'uses' => 'VideoController@details'
@@ -42,6 +47,11 @@ Route::get('/course/{course_id}/video/{id}/edit', [
 Route::get('/course/add', [
     'as'   => 'addCourse',
     'uses' => 'CourseController@add'
+]);
+
+Route::post('/course/add', [
+    'as'   => 'addCourse',
+    'uses' => 'CourseController@handleAdd'
 ]);
 
 Route::get('/course/{id}/edit', [

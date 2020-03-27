@@ -17,15 +17,17 @@
 
     <div class="row">
         <div class="col-12 col-md-5">
-            <form>
+            <form method="post">
+                {{csrf_field()}}
                 <div class="form-group">
-                    <label class="d-none" for="exampleFormControlInput1">Email address</label>
-                    <input type="email" class="rounded-pill form-control" id="exampleFormControlInput1" placeholder="course title">
+                    <label for="title">Email address</label>
+                    <input name="title" type="text" class="rounded-pill form-control" id="title" placeholder="course title">
                 </div>
                 <div class="form-group">
-                    <label class="d-none" for="exampleFormControlTextarea1">Example textarea</label>
-                    <textarea class=" form-control" id="exampleFormControlTextarea1" rows="3" placeholder="course description"></textarea>
+                    <label for="description">Example textarea</label>
+                    <textarea name="description" class="form-control" id="description" rows="3" placeholder="course description"></textarea>
                 </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
 
