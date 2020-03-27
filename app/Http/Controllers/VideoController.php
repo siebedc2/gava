@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Services\Video as VideoService;
+use App\Services\Comment as CommentService;
 
 class VideoController extends Controller
 {
@@ -14,8 +15,10 @@ class VideoController extends Controller
         $this->_request = $request;
     }
 
-    public function details() {
-        return view('general/video/details');
+    public function details(VideoService $video, CommentService $comment, $courseId, $videoId) {
+        $data['video'] = $video->getById($videoId);
+        $data['comments'] = $comment->getAll($videoId);
+        return view('general/video/details', $data);
     }
 
     public function add() {
@@ -23,8 +26,6 @@ class VideoController extends Controller
     }
 
     public function handleAdd(VideoService $video, $courseId) {
-        //dd($this->_request->all());
-
         if ($video->validator($this->_request->all())->fails()) {
             $errors = $video->validator($this->_request->all())->errors();
             return redirect('/course/' . $courseId . '/video/add')->with('errors', $errors);
@@ -33,12 +34,23 @@ class VideoController extends Controller
         else {
             $video->create($this->_request->all(), $courseId);
             return redirect('/course/' . $courseId . '/video/add')->with('status', 'Video toegevoegd!');
-        }
-
-        
+        }   
     }
 
-    public function edit() {
-        return view('general/video/edit');
+    public function edit(VideoService $video, $courseId, $videoId) {
+        $data['video'] = $video->getById($videoId);
+        return view('general/video/edit', $data);
+    }
+
+    public function handleEdit(VideoService $video, $courseId, $videoId) {
+        if ($video->validator($this->_request->all())->fails()) {
+            $errors = $video->validator($this->_request->all())->errors();
+            return redirect('/course/' . $courseId . '/video/edit/' . $videoId)->with('errors', $errors);
+        } 
+        
+        else {
+            $video->edit($this->_request->all(), $courseId, $videoId);
+            return redirect('/course/' . $courseId . '/video/edit/' . $videoId)->with('status', 'Video aangepast!');
+        }
     }
 }

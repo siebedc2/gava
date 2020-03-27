@@ -16,9 +16,9 @@
   background-image: linear-gradient(to top right, #6E27D4, #D01CE2);
 }
 
-.gava {
-  background-color: #050547;
-}
+/*.gava {
+    background-color: $body-bg;
+}*/
 
 .gava .what-to-learn-wrapper {
   background-image: linear-gradient(to top right, #6E27D4, #D01CE2);

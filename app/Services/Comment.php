@@ -12,4 +12,8 @@ class Comment {
             'user_id' => 'required'
         ]);
     }
+
+    public function getAll($videoId) {
+        return CommentModel::where('video_id', $videoId)->get();
+    }
 }

@@ -14,7 +14,7 @@ class Comment extends Model
 
     // Relation between Comment and User
     public function user() {
-        return $this->hasOne('App\Models\User');
+        return $this->belongsTo('App\Models\User');
     }
 
     public function video() {

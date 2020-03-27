@@ -19,7 +19,7 @@
         <div class="col-12 col-md-6">
             <div class="row">
                 <div class="col-12">
-                    <iframe width="100%" src="https://www.youtube.com/embed/YOdzjHDtPjQ" frameborder="0"
+                    <iframe width="100%" src="/images/uploads/{{ $video->video }}" frameborder="0"
                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
                 </div>
@@ -32,7 +32,12 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <p>Dit is een beschrijving</p>
+                        <p>{{ $video->title }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <p>{{ $video->description }}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -56,19 +61,20 @@
 
             <div class="row text-white">
                 <div class="col-12">
+                    @foreach($comments as $comment)
                     <div class="row">
                         <div class="col-12">
-                            <p>Username</p>
+                            <p>{{ $comment->user->name }}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <p>Comment</p>
+                            <p>{{ $comment->comment }}</p>
                         </div>
                     </div>
+                    @endforeach
                 </div>
             </div>
-
         </div>
 
         <div class="col-12 col-md-5 offset-md-1">

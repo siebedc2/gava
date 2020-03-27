@@ -16,8 +16,28 @@
     </div>
 
     <div class="row">
+        <div class="col-12">
+            @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-12 col-md-5">
             <form method="post">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 {{csrf_field()}}
                 <div class="form-group">
                     <label for="title">Email address</label>

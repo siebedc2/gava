@@ -38,9 +38,14 @@ Route::get('/course/{course_id}/video/{video_id}', [
     'uses' => 'VideoController@details'
 ]);
 
-Route::get('/course/{course_id}/video/{id}/edit', [
+Route::get('/course/{course_id}/video/edit/{id}', [
     'as'   => 'editVideo',
     'uses' => 'VideoController@edit'
+]);
+
+Route::post('/course/{course_id}/video/edit/{id}', [
+    'as'   => 'editVideo',
+    'uses' => 'VideoController@handleEdit'
 ]);
 
 // Course
@@ -54,11 +59,15 @@ Route::post('/course/add', [
     'uses' => 'CourseController@handleAdd'
 ]);
 
-Route::get('/course/{id}/edit', [
+Route::get('/course/edit/{id}', [
     'as'   => 'editCourse',
     'uses' => 'CourseController@edit'
 ]);
 
+Route::post('/course/edit/{id}', [
+    'as'   => 'editCourse',
+    'uses' => 'CourseController@handleEdit'
+]);
 
 // Profile
 Route::get('/profile', [

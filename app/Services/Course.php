@@ -14,13 +14,25 @@ class Course {
         ]);
     }
 
+    public function getById($courseId) {
+        return CourseModel::find($courseId);
+    }
+
     public function create($request) {
-        //dd(Auth::user()->id);
         $course = new CourseModel();
         $course->title = $request['title'];
         $course->description = $request['description'];
         $course->user_id = Auth::user()->id;
         $course->save();
+    }
+
+    public function edit($request, $courseId) {
+        CourseModel::where('id', $courseId)
+                    ->update(
+                        [
+                        'title' => $request['title'], 
+                        'description' => $request['description'] 
+                        ]);
     }
 
 }

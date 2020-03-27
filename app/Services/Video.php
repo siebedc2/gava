@@ -14,6 +14,10 @@ class Video {
         ]);
     }
 
+    public function getById($videoId) {
+        return VideoModel::find($videoId);
+    }
+
     public function create($request, $courseId) {
         if(empty($request['exclusive'])) {
             $request['exclusive'] = 'n';
@@ -31,4 +35,20 @@ class Video {
         $video->exclusive = $request['exclusive'];
         $video->save();
     }
+
+    public function edit($request, $courseId, $videoId) {
+        if(empty($request['exclusive'])) {
+            $request['exclusive'] = 'n';
+        }
+
+        VideoModel::where('id', $videoId)
+                    ->update(
+                        [
+                        'title' => $request['title'], 
+                        'description' => $request['description'],
+                        'video' => $request['video'],
+                        'exclusive' => $request['exclusive']
+                        ]);
+    }
+
 }
