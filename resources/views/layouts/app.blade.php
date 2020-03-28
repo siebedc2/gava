@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    @if(View::hasSection('meta'))
+        @yield('meta')
+    @else
+    <title>@lang('meta.'.Route::current()->getName())</title>
+    @endif
+
     <!-- OG - tags facebook -->
     <meta property="og:url" content="http://gava-learning.be/" />
     <meta property="og:type" content="article" />

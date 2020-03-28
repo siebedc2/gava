@@ -18,6 +18,10 @@ class Video {
         return VideoModel::find($videoId);
     }
 
+    public function getAllCourseVideos($courseId) {
+        return VideoModel::where('course_id', $courseId)->get();
+    }
+
     public function create($request, $courseId) {
         if(empty($request['exclusive'])) {
             $request['exclusive'] = 'n';

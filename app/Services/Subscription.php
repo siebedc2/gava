@@ -12,4 +12,12 @@ class Subscription {
             'user_id' => 'required'
         ]);
     }
+
+    public function getAllUserSubscribers($userId) {
+        return SubscriptionModel::where('creator_id', $userId)->get();
+    }
+
+    public function getAmountOfSubscribers($userId) {
+        return SubscriptionModel::where('creator_id', $userId)->get()->count();
+    }
 }

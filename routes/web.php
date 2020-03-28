@@ -22,6 +22,32 @@ Route::get('/home', [
     'uses' => 'HomeController@index'
 ]);
 
+// Course
+Route::get('/course/add', [
+    'as'   => 'addCourse',
+    'uses' => 'CourseController@add'
+]);
+
+Route::post('/course/add', [
+    'as'   => 'addCourse',
+    'uses' => 'CourseController@handleAdd'
+]);
+
+Route::get('/course/edit/{id}', [
+    'as'   => 'editCourse',
+    'uses' => 'CourseController@edit'
+]);
+
+Route::post('/course/edit/{id}', [
+    'as'   => 'editCourse',
+    'uses' => 'CourseController@handleEdit'
+]);
+
+Route::get('/course/{id}', [
+    'as'   => 'detailsCourse',
+    'uses' => 'CourseController@details'
+]);
+
 // Video
 Route::get('/course/{course_id}/video/add', [
     'as'   => 'addVideo',
@@ -48,25 +74,14 @@ Route::post('/course/{course_id}/video/edit/{id}', [
     'uses' => 'VideoController@handleEdit'
 ]);
 
-// Course
-Route::get('/course/add', [
-    'as'   => 'addCourse',
-    'uses' => 'CourseController@add'
+Route::get('/subscriptions', [
+    'as'   => 'subscriptions',
+    'uses' => 'HomeController@subscriptions'
 ]);
 
-Route::post('/course/add', [
-    'as'   => 'addCourse',
-    'uses' => 'CourseController@handleAdd'
-]);
-
-Route::get('/course/edit/{id}', [
-    'as'   => 'editCourse',
-    'uses' => 'CourseController@edit'
-]);
-
-Route::post('/course/edit/{id}', [
-    'as'   => 'editCourse',
-    'uses' => 'CourseController@handleEdit'
+Route::get('/dashboard', [
+    'as'   => 'dashboard',
+    'uses' => 'HomeController@dashboard'
 ]);
 
 // Profile
@@ -75,6 +90,10 @@ Route::get('/profile', [
     'uses' => 'HomeController@profile'
 ]);
 
+Route::get('/profile/{id}', [
+    'as'   => 'userProfile',
+    'uses' => 'HomeController@userProfile'
+]);
 
 // Authentication
 Auth::routes();

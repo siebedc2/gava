@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Services\Course as CourseService;
+use App\Services\Video as VideoService;
 
 class CourseController extends Controller
 {
@@ -14,8 +15,14 @@ class CourseController extends Controller
         $this->_request = $request;
     }
 
+    public function details(CourseService $course, VideoService $video, $courseId) {
+        $data['course'] = $course->getById($courseId);
+        $data['videos'] = $video->getAllCourseVideos($courseId);
+        return view('general/course/details', $data);
+    }
+
     public function add() {
-        return view('general/course/add');
+        return view('general.course.add');
     }
 
     public function handleAdd(CourseService $course) {
@@ -30,8 +37,10 @@ class CourseController extends Controller
         }
     }
 
-    public function edit(CourseService $course, $courseId) {
+    public function edit(CourseService $course, VideoService $video, $courseId) {
+        $data['courseId'] = $courseId;
         $data['course'] = $course->getById($courseId);
+        $data['videos'] = $video->getAllCourseVideos($courseId);
         return view('general/course/edit', $data);
     }
 

@@ -1,6 +1,6 @@
-/*.gava {
-    background-color: $body-bg;
-}*/
+.gava {
+    background-color: white;
+}
 
 .gava .what-to-learn-wrapper {
     background-image: $gradient-secondary;
@@ -9,4 +9,13 @@
 
 .gava .footer-wrapper {
     background-image: $gradient-primary;
+}
+
+.gava .menu {
+    background-color: $menu-bg;
+}
+
+.profile-bg {
+    background-color: #291875;
+    height: 220px;
 }

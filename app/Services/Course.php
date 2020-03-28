@@ -18,6 +18,10 @@ class Course {
         return CourseModel::find($courseId);
     }
 
+    public function getAllUserCourses($userId) {
+        return CourseModel::where('user_id', $userId)->get();
+    }
+
     public function create($request) {
         $course = new CourseModel();
         $course->title = $request['title'];

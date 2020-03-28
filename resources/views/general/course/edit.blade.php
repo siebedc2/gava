@@ -8,7 +8,7 @@
 
         </div>
         <div class="col-4">
-            <p>Add video</p>
+            <p>Edit course</p>
         </div>
         <div class="col-4">
 
@@ -49,6 +49,16 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
+        </div>
+
+        <div class="col-12 col-md-5 offset-md-1">
+            <a href="/course/{{ $courseId }}/video/add">Video toevoegen</a>
+            @foreach($videos as $video)
+            <div class="row">
+                <p>{{ $video->title }}</p>
+                <a href="/course/{{ $video->course_id }}/video/edit/{{ $video->id }}">Video editen</a>
+            </div>
+            @endforeach
         </div>
     </div>
 </div>

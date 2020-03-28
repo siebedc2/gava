@@ -41,4 +41,8 @@ class User extends Authenticatable
     public function comments() {
         return $this->hasOne('App\Models\Comment');
     }
+
+    public function subscriptions() {
+        return $this->hasOne('App\Models\Subscription');
+    }
 }

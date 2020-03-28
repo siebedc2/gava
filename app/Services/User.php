@@ -13,4 +13,8 @@ class User {
             'password' => 'required'
         ]);
     }
+
+    public function getById($userId) {
+        return UserModel::find($userId);
+    }
 }
