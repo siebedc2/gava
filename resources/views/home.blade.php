@@ -7,12 +7,12 @@
         <div class="col-12 order-1">
             <div class="row d-flex justify-content-center">
                 <div class="col-md-4">
-                    <div class="row">
+                    <div class="row mt-4">
                         <div class="col-6">
-                            <a href="">courses</a>
+                            <a class="border rounded-pill btn btn-primary active"  href="">courses</a>
                         </div>
                         <div class="col-6">
-                            <a href="">subscriptions</a>
+                            <a class="border rounded-pill btn btn-primary non-active" href="">subscriptions</a>
                         </div>
                     </div>
                 </div>
@@ -21,13 +21,14 @@
 
         <div class="col-12 col-md-9">
             <div class="row">
-                <a href="course/1/video/1" class="col-12 col-md-4 rounded bg-white">
+                @foreach($courses as $course)
+                <a href="/course/{{ $course->id }}" class="col-12 col-md-4 rounded bg-white">
                     <div class="row">
                         <div class="rounded col-12 video-image"></div>
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <h2>Dit is een titel</h2>
+                            <h2>{{ $course->title }}</h2>
                         </div>
                     </div>
                     <div class="row">
@@ -46,136 +47,7 @@
                         </div>
                     </div>
                 </a>
-
-                <a href="course/1/video/1" class="col-12 col-md-4 rounded bg-white">
-                    <div class="row">
-                        <div class="rounded col-12 video-image"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <h2>Dit is een titel</h2>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <p>Dit is een creator</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <p>Dit is een omschrijving</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <p>Dit zijn tags</p>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="course/1/video/1" class="col-12 col-md-4 rounded bg-white">
-                    <div class="row">
-                        <div class="rounded col-12 video-image"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <h2>Dit is een titel</h2>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <p>Dit is een creator</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <p>Dit is een omschrijving</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <p>Dit zijn tags</p>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="course/1/video/1" class="col-12 col-md-4 rounded bg-white">
-                    <div class="row">
-                        <div class="rounded col-12 video-image"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <h2>Dit is een titel</h2>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <p>Dit is een creator</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <p>Dit is een omschrijving</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <p>Dit zijn tags</p>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="course/1/video/1" class="col-12 col-md-4 rounded bg-white">
-                    <div class="row">
-                        <div class="rounded col-12 video-image"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <h2>Dit is een titel</h2>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <p>Dit is een creator</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <p>Dit is een omschrijving</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <p>Dit zijn tags</p>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="course/1/video/1" class="col-12 col-md-4 rounded bg-white">
-                    <div class="row">
-                        <div class="rounded col-12 video-image"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <h2>Dit is een titel</h2>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <p>Dit is een creator</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <p>Dit is een omschrijving</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <p>Dit zijn tags</p>
-                        </div>
-                    </div>
-                </a>
+                @endforeach
             </div>
         </div>
 

@@ -15,7 +15,11 @@
 <div class="container-fluid profile-bg">
     <div class="row">
         <div class="col-10 col-md-4">
-            
+            @if(empty($user))
+            <a href="/profile/edit">
+                <img src="/images/settings.png" alt="Settings icon">
+            </a>
+            @endif
         </div>
     </div>
 </div>

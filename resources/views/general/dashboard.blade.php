@@ -7,15 +7,15 @@
         <div class="col-12 order-1">
             <div class="row d-flex justify-content-center">
                 <div class="col-md-4">
-                    <div class="row">
+                    <div class="row mt-4">
                         <div class="col-4">
-                            <a class="border rounded-pill" href="">my courses</a>
+                            <a class="border rounded-pill btn btn-primary active" href="">my courses</a>
                         </div>
                         <div class="col-4">
-                            <a class="border rounded-pill" href="">my statistics</a>
+                            <a class="border rounded-pill btn btn-primary non-active" href="">my statistics</a>
                         </div>
                         <div class="col-4">
-                            <a class="border rounded-pill" href="/course/add">add course</a>
+                            <a class="border rounded-pill btn btn-primary" href="/course/add">add course</a>
                         </div>
                     </div>
                 </div>

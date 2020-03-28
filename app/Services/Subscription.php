@@ -13,11 +13,19 @@ class Subscription {
         ]);
     }
 
+    public function getSubscriptions($userId) {
+        return SubscriptionModel::where('user_id',$userId)->get();
+    }
+
     public function getAllUserSubscribers($userId) {
         return SubscriptionModel::where('creator_id', $userId)->get();
     }
 
     public function getAmountOfSubscribers($userId) {
         return SubscriptionModel::where('creator_id', $userId)->get()->count();
+    }
+
+    public function getSubscriberId($userId) {
+        return SubscriptionModel::where('user_id', $userId)->pluck('creator_id')->toArray();;
     }
 }

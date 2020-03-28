@@ -55,8 +55,10 @@
             <a href="/course/{{ $courseId }}/video/add">Video toevoegen</a>
             @foreach($videos as $video)
             <div class="row">
-                <p>{{ $video->title }}</p>
-                <a href="/course/{{ $video->course_id }}/video/edit/{{ $video->id }}">Video editen</a>
+                <div class="col-12">
+                    <p>{{ $video->title }}</p>
+                    <a href="/course/{{ $video->course_id }}/video/edit/{{ $video->id }}">Video editen</a>
+                </div>
             </div>
             @endforeach
         </div>

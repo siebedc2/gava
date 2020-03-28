@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 
-use App\Services\User as UserService;
 use App\Services\Course as CourseService;
 use App\Services\Subscription as SubscriptionService;
 
@@ -24,33 +23,22 @@ class HomeController extends Controller
         return view('general.index');
     }
 
-    public function index() {
-        return view('home');
+    public function index(CourseService $course) {
+        $data['courses'] = $course->getAll();
+        return view('home', $data);
     }
 
-    public function subscriptions() {
-        return view('general.subscriptions');
+    public function subscriptions(SubscriptionService $subscription, CourseService $course) {
+        $userId = Auth::user()->id;
+        $data['subscribersIds'] = $subscription->getSubscriberId($userId);
+        $data['courses'] = $course->getAll();
+        $data['creators'] = $subscription->getSubscriptions($userId);
+        return view('general.subscriptions', $data);
     }
 
     public function dashboard(CourseService $course) {
         $userId = Auth::user()->id;
         $data['courses'] = $course->getAllUserCourses($userId);
         return view('general.dashboard', $data);
-    }
-
-    public function profile(CourseService $course, SubscriptionService $subscription) {
-        $userId = Auth::user()->id;
-        $data['courses'] = $course->getAllUserCourses($userId);
-        $data['subscribersAmount'] = $subscription->getAmountOfSubscribers($userId);
-        $data['subscriptions'] = $subscription->getAllUserSubscribers($userId);
-        return view('general.profile.index', $data);
-    }
-
-    public function userProfile(CourseService $course, UserService $user, SubscriptionService $subscription, $userId) {
-        $data['user'] = $user->getById($userId);
-        $data['courses'] = $course->getAllUserCourses($userId);
-        $data['subscribersAmount'] = $subscription->getAmountOfSubscribers($userId);
-        $data['subscriptions'] = $subscription->getAllUserSubscribers($userId);
-        return view('general.profile.index', $data);
     }
 }

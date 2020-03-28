@@ -9,7 +9,19 @@
 }
 
 .btn.btn-primary {
-  background-image: linear-gradient(to top right, #4951CF, #3AD7F0);
+  background-color: #050547;
+  border: #050547;
+}
+
+.btn.active {
+  background-color: #050547 !important;
+  border: 2px solid #050547 !important;
+}
+
+.btn.non-active {
+  background-color: transparent;
+  border: 1px solid #050547 !important;
+  color: #050547 !important;
 }
 
 .btn.btn-secondary {

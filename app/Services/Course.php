@@ -14,6 +14,10 @@ class Course {
         ]);
     }
 
+    public function getAll() {
+        return CourseModel::all();
+    }
+
     public function getById($courseId) {
         return CourseModel::find($courseId);
     }

@@ -87,12 +87,22 @@ Route::get('/dashboard', [
 // Profile
 Route::get('/profile', [
     'as'   => 'profile',
-    'uses' => 'HomeController@profile'
+    'uses' => 'UserController@profile'
+]);
+
+Route::get('/profile/edit', [
+    'as'   => 'editProfile',
+    'uses' => 'UserController@edit'
+]);
+
+Route::post('/profile/edit', [
+    'as'   => 'editProfile',
+    'uses' => 'UserController@handleEdit'
 ]);
 
 Route::get('/profile/{id}', [
     'as'   => 'userProfile',
-    'uses' => 'HomeController@userProfile'
+    'uses' => 'UserController@userProfile'
 ]);
 
 // Authentication
