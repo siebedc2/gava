@@ -11,4 +11,8 @@ class Tag {
             'name' => 'required'
         ]);
     }
+
+    public function getAll() {
+        return TagModel::all();
+    }
 }

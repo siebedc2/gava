@@ -45,4 +45,8 @@ class User extends Authenticatable
     public function subscriptions() {
         return $this->hasOne('App\Models\Subscription');
     }
+
+    public function courses() {
+        return $this->hasOne('App\Models\Course');
+    }
 }

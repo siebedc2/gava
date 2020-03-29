@@ -12,4 +12,8 @@ class CourseTag {
             'course_id' => 'required'
         ]);
     }
+
+    public function getCourseTags($courseId) {
+        return CourseTagModel::where('course_id', $courseId)->get();
+    }
 }

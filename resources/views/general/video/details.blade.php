@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('meta')
+    <title>Gava - {{ $video->title }}</title>
+    <meta name="og:title" content="Gava - {{ $video->name }}">
+@endsection
+
 @section('content')
 @include('components.menu')
 <div class="container">

@@ -2,11 +2,11 @@
 
 @section('content')
 @include('components.menu')
-<div class="container">
-    <div class="row vh-100 justify-content-center align-items-center">
+<div class="container vh-100">
+    <div class="row h-75 justify-content-center align-items-center">
         <div class="col-md-8">
             <div class="bg-transparent border-0 card">
-                <div class="text-white font-weight-bold offset-3 card-header">{{ __('Register') }}</div>
+                <div class="font-weight-bold bg-transparent border-0 offset-3 card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
@@ -67,6 +67,12 @@
                                 <button type="submit" class="w-100 rounded-pill btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col text-center">
+                                <p>Already have an account? <a href="/login">Sign in</a></p>
                             </div>
                         </div>
                     </form>

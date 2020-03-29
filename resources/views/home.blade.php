@@ -4,119 +4,65 @@
 @include('components.menu')
 <div class="container">
     <div class="row d-flex flex-wrap-reverse">
-        <div class="col-12 order-1">
-            <div class="row d-flex justify-content-center">
-                <div class="col-md-4">
-                    <div class="row mt-4">
-                        <div class="col-6">
-                            <a class="border rounded-pill btn btn-primary active"  href="">courses</a>
+        <div class="col-12">
+            <div class="row my-5">
+                <div class="col-12">
+                    <form>
+                        <div class="form-row">
+                            <div class="col-12 col-md-3">
+                                <input type="text" class="rounded-pill border-0 bg-light form-control" placeholder="Search">
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <select class="rounded-pill border-0 bg-light custom-select" id="validationCustom04">
+                                    <option>Filter on technologies</option>
+                                    @foreach($tags as $tag)
+                                    <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <select class="rounded-pill border-0 bg-light custom-select" id="validationCustom04">
+                                    <option value="new">New</option>
+                                    <option value="old">Old</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <input type="text" class="rounded-pill border-0 bg-light form-control" placeholder="Minimum rating">
+                            </div>
                         </div>
-                        <div class="col-6">
-                            <a class="border rounded-pill btn btn-primary non-active" href="">subscriptions</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-md-9">
-            <div class="row">
-                @foreach($courses as $course)
-                <a href="/course/{{ $course->id }}" class="col-12 col-md-4 rounded bg-white">
-                    <div class="row">
-                        <div class="rounded col-12 video-image"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <h2>{{ $course->title }}</h2>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <p>Dit is een creator</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <p>Dit is een omschrijving</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <p>Dit zijn tags</p>
-                        </div>
-                    </div>
-                </a>
-                @endforeach
-            </div>
-        </div>
-
-        <div class="col-12 col-md-3 pl-md-5">
-            <div class="row">
-                <div class="col-12 rounded bg-white">
-                    <form action="">
-                        <input class="mt-3 mb-3 rounded-pill form-control" type="text" placeholder="search">
-                        
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label" for="defaultCheck1">Default checkbox</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label" for="defaultCheck1">Default checkbox</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label" for="defaultCheck1">Default checkbox</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label" for="defaultCheck1">Default checkbox</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label" for="defaultCheck1">Default checkbox</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label" for="defaultCheck1">Default checkbox</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label" for="defaultCheck1">Default checkbox</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label" for="defaultCheck1">Default checkbox</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label" for="defaultCheck1">Default checkbox</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label" for="defaultCheck1">Default checkbox</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label" for="defaultCheck1">Default checkbox</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label" for="defaultCheck1">Default checkbox</label>
-                        </div>
-                        <select class="mt-3 form-control">
-                            <option>recommended</option>
-                        </select>
-
-                        <div class="mt-3 mb-3">
-                            <label for="customRange2">minimum rating</label>
-                            <input type="range" class="custom-range" min="0" max="5" id="customRange2">
-                        </div>
-                        
-                        <button type="submit" class="w-100 text-center rounded-pill btn btn-primary mb-2">filter</button>
                     </form>
                 </div>
+            </div>
+
+            <div class="row">
+                @foreach($courses as $course)
+                    @if($course->user_id != Auth::user()->id)
+                        <a href="/course/{{ $course->id }}" class="col-12 col-md-6 rounded bg-white my-2">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="rounded col-12 video-image"></div>
+                                </div>
+                                <div class="col-8">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <p>{{ $course->title }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <p>{{ $course->user->name }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    @endif
+                @endforeach
             </div>
         </div>
     </div>

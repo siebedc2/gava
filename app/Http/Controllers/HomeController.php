@@ -7,6 +7,7 @@ use Auth;
 
 use App\Services\Course as CourseService;
 use App\Services\Subscription as SubscriptionService;
+use App\Services\Tag as TagService;
 
 class HomeController extends Controller
 {
@@ -23,8 +24,9 @@ class HomeController extends Controller
         return view('general.index');
     }
 
-    public function index(CourseService $course) {
+    public function index(CourseService $course, TagService $tag) {
         $data['courses'] = $course->getAll();
+        $data['tags'] = $tag->getAll();
         return view('home', $data);
     }
 

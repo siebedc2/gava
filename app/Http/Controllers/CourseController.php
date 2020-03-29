@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Services\User as UserService;
 use App\Services\Course as CourseService;
 use App\Services\Video as VideoService;
+use App\Services\Subscription as SubscriptionService;
+use App\Services\CourseTag as CourseTagService;
 
 class CourseController extends Controller
 {
@@ -15,9 +18,12 @@ class CourseController extends Controller
         $this->_request = $request;
     }
 
-    public function details(CourseService $course, VideoService $video, $courseId) {
+    public function details(CourseService $course, VideoService $video, SubscriptionService $subscription, UserService $user, CourseTagService $courseTag, $courseId) {
         $data['course'] = $course->getById($courseId);
+        $data['user'] = $user->getById($data['course']['user_id']);
         $data['videos'] = $video->getAllCourseVideos($courseId);
+        //$data['courseTags'] = $courseTag->getCourseTags($courseId);
+        $data['subscribersAmount'] = $subscription->getAmountOfSubscribers($data['course']['user_id']);
         return view('general/course/details', $data);
     }
 

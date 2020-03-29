@@ -40,11 +40,6 @@
     <meta name="Description" content="Gava is focusing on the technology sectors. These have been in strong growth for some time and don't immediately think about a coffee break. It is therefore important for people in this sector or with interest to stay informed as much as possible.">
     
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
-    <title>Gava - Learn, teach, innovate</title>
-
-    <!-- Google fonts -->
-
 
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">

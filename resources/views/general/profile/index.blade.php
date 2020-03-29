@@ -86,7 +86,7 @@
             
             @if(!empty($subscriptions))
             @foreach($subscriptions as $subscription)
-            <a href="/profile/{{ $subscription->id }}">
+            <a href="/profile/{{ $subscription->user_id }}">
                 <div class="row">
                     <div class="col-4">
                         <img src="" alt="">

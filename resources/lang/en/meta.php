@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'login'         => 'Gava - Login',
+    'register'      => 'Gava - Register',
     'home'          => 'Gava',
     'profile'       => 'Gava - Profile',
     'editProfile'   => 'Gava - Edit profile',
