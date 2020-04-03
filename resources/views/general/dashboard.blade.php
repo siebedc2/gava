@@ -30,7 +30,10 @@
                 </div>
                 <div class="col-4 offset-4">
                     <a href="/course/edit/{{ $course->id }}">Edit</a>
-                    <a href="">Delete</a>
+                    <form action="/course/delete/{{ $course->id }}" method="post">
+                        {{csrf_field()}}
+                        <button type="submit">Delete</button>
+                    </form>
                 </div>
             </div>
             @endforeach

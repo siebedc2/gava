@@ -52,7 +52,7 @@
     <!-- Canonical tag -->
     <link rel="canonical" href="https://gava-learning.be/">
 </head>
-<body class="gava">
+<body class="gava min-vh-100">
     @yield('content')
 
     @yield('extra-js')

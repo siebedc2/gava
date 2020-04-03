@@ -19,7 +19,7 @@ Route::get('/', [
 
 Route::get('/home', [
     'as'   => 'home',
-    'uses' => 'HomeController@index'
+    'uses' => 'CourseController@index'
 ]);
 
 // Course
@@ -41,6 +41,11 @@ Route::get('/course/edit/{id}', [
 Route::post('/course/edit/{id}', [
     'as'   => 'editCourse',
     'uses' => 'CourseController@handleEdit'
+]);
+
+Route::post('/course/delete/{id}', [
+    'as'   => 'deleteCourse',
+    'uses' => 'CourseController@handleDelete'
 ]);
 
 Route::get('/course/{id}', [
@@ -74,6 +79,11 @@ Route::post('/course/{course_id}/video/edit/{id}', [
     'uses' => 'VideoController@handleEdit'
 ]);
 
+Route::post('/course/{course_id}/video/delete/{id}', [
+    'as'   => 'deleteVideo',
+    'uses' => 'VideoController@handleDelete'
+]);
+
 Route::get('/subscriptions', [
     'as'   => 'subscriptions',
     'uses' => 'HomeController@subscriptions'
@@ -87,7 +97,7 @@ Route::get('/dashboard', [
 // Profile
 Route::get('/profile', [
     'as'   => 'profile',
-    'uses' => 'UserController@profile'
+    'uses' => 'HomeController@profile'
 ]);
 
 Route::get('/profile/edit', [
@@ -103,7 +113,7 @@ Route::post('/profile/edit', [
 Route::get('/profile/{id}', [
     'as'   => 'userProfile',
     'uses' => 'UserController@userProfile'
-]);
+])->middleware('auth');
 
 // Authentication
 Auth::routes();

@@ -14,7 +14,7 @@ class UpdateCoursesTable extends Migration
     public function up()
     {
         Schema::table('courses', function (Blueprint $table) {
-            $table->dropColumn('profilepicture');
+            $table->enum('status', ['online', 'offline'])->default('online')->after('user_id');
         });
     }
 
@@ -26,7 +26,7 @@ class UpdateCoursesTable extends Migration
     public function down()
     {
         Schema::table('courses', function (Blueprint $table) {
-            //
+            $table->dropColumn('status');
         });
     }
 }

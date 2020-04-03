@@ -58,6 +58,10 @@
                 <div class="col-12">
                     <p>{{ $video->title }}</p>
                     <a href="/course/{{ $video->course_id }}/video/edit/{{ $video->id }}">Video editen</a>
+                    <form action="/course/{{ $course->id }}/video/delete/{{ $video->id }}" method="post">
+                        {{csrf_field()}}
+                        <button type="submit">Delete</button>
+                    </form>
                 </div>
             </div>
             @endforeach

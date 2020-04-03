@@ -15,14 +15,6 @@ class UserController extends Controller
         $this->_request = $request;
     }
 
-    public function profile(CourseService $course, SubscriptionService $subscription) {
-        $userId = Auth::user()->id;
-        $data['courses'] = $course->getAllUserCourses($userId);
-        $data['subscribersAmount'] = $subscription->getAmountOfSubscribers($userId);
-        $data['subscriptions'] = $subscription->getAllUserSubscribers($userId);
-        return view('general.profile.index', $data);
-    }
-
     public function userProfile(CourseService $course, UserService $user, SubscriptionService $subscription, $userId) {
         $data['user'] = $user->getById($userId);
         $data['courses'] = $course->getAllUserCourses($userId);

@@ -6,19 +6,31 @@
     letter-spacing: 1px;
 
     &.btn-primary {
-        background-color: #050547;
-        border: #050547;
+        background-color: $btn-color;
+        border: $btn-color;
+
+        &:focus {
+            background-color: $btn-color !important;
+        }
+
+        &:active {
+            background-color: $btn-color !important;
+        }
+
+        &:hover {
+            background-color: $btn-hover-color;
+        }
     }
 
     &.active {
-        background-color: #050547 !important;
-        border: 2px solid #050547 !important;
+        background-color: $btn-color !important;
+        border: 2px solid $btn-color !important;
     }
 
     &.non-active {
         background-color: transparent;
-        border: 1px solid #050547 !important;
-        color: #050547 !important;
+        border: 1px solid $btn-color !important;
+        color: $btn-color !important;
     }
 
     &.btn-secondary {

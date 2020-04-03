@@ -2,13 +2,13 @@
 
 @section('content')
 @include('components.menu')
-<div class="container vh-100">
-    <div class="row h-75 justify-content-center align-items-center">
+<div class="container vh-90">
+    <div class="row h-100 justify-content-center align-items-center">
         <div class="col-md-8">
             <div class="bg-transparent border-0 card">
-                <div class="font-weight-bold bg-transparent border-0 offset-3 col-6 card-header">{{ __('Login') }}</div>
+                <div class="font-weight-bold text-center bg-transparent border-0 col-12 card-header">{{ __('Login') }}</div>
 
-                <div class="card-body">
+                <div class="card-body mt-5">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
@@ -60,17 +60,17 @@
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
+                        <div class="form-group row mb-0 mt-2">
                             <div class="col text-center">
-                                <p>Don't have an account? <a href="/register">Register</a></p>
+                                <p>Don't have an account? <strong><a class="auth-link" href="/register">Register</a></strong></p>
                             </div>
                         </div>
                         
                         <div class="form-group row mb-0">
                             <div class="col text-center">
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
+                                    <a class="auth-link" href="{{ route('password.request') }}">
+                                        {{ __('Forgot your password?') }}
                                     </a>
                                 @endif
                             </div>

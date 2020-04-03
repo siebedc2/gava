@@ -53,4 +53,9 @@ class VideoController extends Controller
             return redirect('/course/' . $courseId . '/video/edit/' . $videoId)->with('status', 'Video aangepast!');
         }
     }
+
+    public function handleDelete(VideoService $video, $courseId, $videoId) {
+        $video->delete($videoId);
+        return redirect('/course/edit/' . $videoId)->with('status', 'Video is verwijderd!');
+    }
 }

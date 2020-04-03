@@ -9,19 +9,31 @@
 }
 
 .btn.btn-primary {
-  background-color: #050547;
-  border: #050547;
+  background-color: #291875;
+  border: #291875;
+}
+
+.btn.btn-primary:focus {
+  background-color: #291875 !important;
+}
+
+.btn.btn-primary:active {
+  background-color: #291875 !important;
+}
+
+.btn.btn-primary:hover {
+  background-color: #1f1259;
 }
 
 .btn.active {
-  background-color: #050547 !important;
-  border: 2px solid #050547 !important;
+  background-color: #291875 !important;
+  border: 2px solid #291875 !important;
 }
 
 .btn.non-active {
   background-color: transparent;
-  border: 1px solid #050547 !important;
-  color: #050547 !important;
+  border: 1px solid #291875 !important;
+  color: #291875 !important;
 }
 
 .btn.btn-secondary {
@@ -79,6 +91,14 @@
   background: linear-gradient(to top right, #4951CF, #3AD7F0);
 }
 
+.auth-link {
+  color: #291875;
+}
+
+.auth-link:hover {
+  color: #291875;
+}
+
 * {
   color: #291875;
 }
@@ -89,6 +109,10 @@
 
 ::selection {
   background: #D01CE2;
+}
+
+.vh-90 {
+  height: 90vh;
 }
 
 /*!

@@ -12,11 +12,34 @@
         <div class="col-12">
             <div class="row">
                 <div class="col-6">
-
+                    <div class="row d-flex align-items-center">
+                        <div class="col-3">
+                            <div style="background-color:black; height:100px; width: 100px;" class="rounded-circle"></div>
+                        </div>
+                        <div class="col-9">
+                            <div class="row">
+                                <div class="col-12">
+                                    
+                                </div>
+                                <div class="col-12">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-6">
-                    <a href="">subscribe</a>
-                </div>
+                @auth
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-6">
+                                <span>Report</span>
+                            </div>
+                            <div class="col-6">
+                                <span>Subscribe</span>
+                            </div>
+                        </div>
+                    </div>
+                @endauth
             </div>
         </div>
     </div>
@@ -52,17 +75,21 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-12">
-                    <form action="">
-                        <div class="form-group">
-                            <label class="d-none" for="exampleFormControlInput1">Comment</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="add comment">
-                        </div>
-                        <button type="submit" class="rounded-pill btn btn-primary mb-2">verzenden</button>
-                    </form>
+            @auth
+                <div class="row">
+                    <div class="col-12">
+                        <form action="">
+                            <div class="form-group">
+                                <label class="d-none" for="exampleFormControlInput1">Comment</label>
+                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="add comment">
+                            </div>
+                            <button type="submit" class="rounded-pill btn btn-primary mb-2">verzenden</button>
+                        </form>
+
+                        <a href="">video ratings</a>
+                    </div>
                 </div>
-            </div>
+            @endauth
 
             <div class="row text-white">
                 <div class="col-12">
@@ -77,6 +104,23 @@
                             <p>{{ $comment->comment }}</p>
                         </div>
                     </div>
+                    
+                        @auth
+                            <div class="row">
+                                <div class="col-3">
+                                    <span>Like</span>
+                                </div>
+                                <div class="col-3">
+                                    <span>Upvote</span>
+                                </div>
+                                <div class="col-3">
+                                    <span>Reply</span>
+                                </div>
+                                <div class="col-3">
+                                    <span>Report</span>
+                                </div>
+                            </div>
+                        @endauth
                     @endforeach
                 </div>
             </div>

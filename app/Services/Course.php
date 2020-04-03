@@ -43,4 +43,14 @@ class Course {
                         ]);
     }
 
+    public function delete($courseId) {
+        CourseModel::where('id', $courseId)
+                    ->update(
+                        [
+                            'status' => 'offline'
+                        ]
+                    );
+
+    }
+
 }

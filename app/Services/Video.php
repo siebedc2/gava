@@ -55,4 +55,13 @@ class Video {
                         ]);
     }
 
+    public function delete($videoId) {
+        VideoModel::where('id', $videoId)
+                    ->update(
+                        [
+                            'status' => 'offline'
+                        ]
+                    );
+    }
+
 }

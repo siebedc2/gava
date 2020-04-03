@@ -7,7 +7,6 @@ use Auth;
 
 use App\Services\Course as CourseService;
 use App\Services\Subscription as SubscriptionService;
-use App\Services\Tag as TagService;
 
 class HomeController extends Controller
 {
@@ -24,12 +23,6 @@ class HomeController extends Controller
         return view('general.index');
     }
 
-    public function index(CourseService $course, TagService $tag) {
-        $data['courses'] = $course->getAll();
-        $data['tags'] = $tag->getAll();
-        return view('home', $data);
-    }
-
     public function subscriptions(SubscriptionService $subscription, CourseService $course) {
         $userId = Auth::user()->id;
         $data['subscribersIds'] = $subscription->getSubscriberId($userId);
@@ -42,5 +35,13 @@ class HomeController extends Controller
         $userId = Auth::user()->id;
         $data['courses'] = $course->getAllUserCourses($userId);
         return view('general.dashboard', $data);
+    }
+
+    public function profile(CourseService $course, SubscriptionService $subscription) {
+        $userId = Auth::user()->id;
+        $data['courses'] = $course->getAllUserCourses($userId);
+        $data['subscribersAmount'] = $subscription->getAmountOfSubscribers($userId);
+        $data['subscriptions'] = $subscription->getAllUserSubscribers($userId);
+        return view('general.profile.index', $data);
     }
 }

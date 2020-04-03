@@ -33,7 +33,7 @@
             </form>
         </div>
     </div>
-    <div class="row">
+    <div class="row d-flex justify-content-center">
         <div class="col-10">
             <div class="row">
                 <div class="col-12">
@@ -56,8 +56,8 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12">
-                    <a class="font-weight-bold" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Logout</a>
+                <div class="col-12 text-center">
+                    <a class="text-danger" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">logout</a>
                     <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display:none;">{{ csrf_field() }}</form>
                 </div>
             </div>

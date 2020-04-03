@@ -2,13 +2,13 @@
 
 @section('content')
 @include('components.menu')
-<div class="container vh-100">
-    <div class="row h-75 justify-content-center align-items-center">
+<div class="container vh-90">
+    <div class="row h-100 justify-content-center align-items-center">
         <div class="col-md-8">
             <div class="bg-transparent border-0 card">
-                <div class="font-weight-bold bg-transparent border-0 offset-3 card-header">{{ __('Register') }}</div>
+                <div class="font-weight-bold text-center bg-transparent border-0 col-12 card-header">{{ __('Register') }}</div>
 
-                <div class="card-body">
+                <div class="card-body mt-5">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
@@ -70,9 +70,9 @@
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
+                        <div class="form-group row mb-0 mt-2">
                             <div class="col text-center">
-                                <p>Already have an account? <a href="/login">Sign in</a></p>
+                                <p>Already have an account? <strong><a class="auth-link" href="/login">Sign in</a></strong></p>
                             </div>
                         </div>
                     </form>

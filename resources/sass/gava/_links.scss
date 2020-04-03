@@ -9,3 +9,11 @@
         background: $gradient-primary;
     }
 }
+
+.auth-link {
+    color: $btn-color;
+
+    &:hover {
+        color: $btn-color;
+    }
+}

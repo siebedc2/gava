@@ -9,6 +9,7 @@ use App\Services\Course as CourseService;
 use App\Services\Video as VideoService;
 use App\Services\Subscription as SubscriptionService;
 use App\Services\CourseTag as CourseTagService;
+use App\Services\Tag as TagService;
 
 class CourseController extends Controller
 {
@@ -16,6 +17,12 @@ class CourseController extends Controller
 
     function __construct(Request $request) {
         $this->_request = $request;
+    }
+
+    public function index(CourseService $course, TagService $tag) {
+        $data['courses'] = $course->getAll();
+        $data['tags'] = $tag->getAll();
+        return view('home', $data);
     }
 
     public function details(CourseService $course, VideoService $video, SubscriptionService $subscription, UserService $user, CourseTagService $courseTag, $courseId) {
@@ -60,5 +67,10 @@ class CourseController extends Controller
             $course->edit($this->_request->input(), $courseId);
             return redirect('/course/edit/' . $courseId)->with('status', 'Course gewijzigd!');
         }
+    }
+
+    public function handleDelete(CourseService $course, $courseId) {
+        $course->delete($courseId);
+        return redirect('/dashboard')->with('status', 'Course verwijderd!');
     }
 }
