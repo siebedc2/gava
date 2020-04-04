@@ -17,4 +17,23 @@ class User {
     public function getById($userId) {
         return UserModel::find($userId);
     }
+
+    public function edit($request, $userId) {
+        UserModel::where('id', $userId)
+                    ->update(
+                        [
+                            'name'  => $request['name'],
+                            'email' => $request['email']
+                        ]
+                        );
+    }
+
+    public function changePassword($request, $userId) {
+        UserModel::where('id', $userId)
+                    ->update(
+                        [
+                            'password'  => bcrypt($request['newPassword'])
+                        ]
+                        );
+    }
 }

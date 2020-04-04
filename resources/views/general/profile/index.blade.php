@@ -51,7 +51,7 @@
                 </div>
                 <div class="col-6">
                     @if(!empty($user))
-                    <span>Subscribe</span>
+                        <span class="rounded-pill px-5 btn btn-secondary">subscribe</span>
                     @endif
                 </div>
             </div>

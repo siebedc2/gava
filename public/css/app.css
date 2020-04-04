@@ -25,6 +25,23 @@
   background-color: #1f1259;
 }
 
+.btn.btn-secondary {
+  background-color: #3AD7F0;
+  border: #3AD7F0;
+}
+
+.btn.btn-secondary:focus {
+  background-color: #3AD7F0 !important;
+}
+
+.btn.btn-secondary:active {
+  background-color: #3AD7F0 !important;
+}
+
+.btn.btn-secondary:hover {
+  background-color: #1ad1ee;
+}
+
 .btn.active {
   background-color: #291875 !important;
   border: 2px solid #291875 !important;
@@ -34,10 +51,6 @@
   background-color: transparent;
   border: 1px solid #291875 !important;
   color: #291875 !important;
-}
-
-.btn.btn-secondary {
-  background-image: linear-gradient(to top right, #6E27D4, #D01CE2);
 }
 
 .gava {

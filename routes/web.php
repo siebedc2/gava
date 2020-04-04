@@ -95,25 +95,57 @@ Route::get('/dashboard', [
 ]);
 
 // Profile
-Route::get('/profile', [
-    'as'   => 'profile',
-    'uses' => 'HomeController@profile'
-]);
+Route::prefix('/profile')->middleware('auth')->group(function() {
+    Route::get('/', [
+        'as'   => 'profile',
+        'uses' => 'HomeController@profile'
+    ]);
+    
+    Route::get('/edit', [
+        'as'   => 'editProfile',
+        'uses' => 'UserController@edit'
+    ]);
+    
+    Route::post('/edit', [
+        'as'   => 'editProfile',
+        'uses' => 'UserController@handleEdit'
+    ]);
+    
+    Route::get('/edit/change-password', [
+        'as'   => 'changePassword',
+        'uses' => 'UserController@changePassword'
+    ]);
+    
+    Route::post('/edit/change-password', [
+        'as'   => 'changePassword',
+        'uses' => 'UserController@handleChangePassword'
+    ]);
+    
+    Route::get('/edit/payment-methods', [
+        'as'   => 'paymentMethods',
+        'uses' => 'UserController@paymentMethods'
+    ]);
+    
+    Route::post('/edit/payment-methods', [
+        'as'   => 'paymentMethods',
+        'uses' => 'UserController@handlePaymentMethods'
+    ]);
 
-Route::get('/profile/edit', [
-    'as'   => 'editProfile',
-    'uses' => 'UserController@edit'
-]);
+    Route::get('/edit/purchase-history', [
+        'as'   => 'purchaseHistory',
+        'uses' => 'UserController@purchaseHistory'
+    ]);
 
-Route::post('/profile/edit', [
-    'as'   => 'editProfile',
-    'uses' => 'UserController@handleEdit'
-]);
-
-Route::get('/profile/{id}', [
-    'as'   => 'userProfile',
-    'uses' => 'UserController@userProfile'
-])->middleware('auth');
+    Route::get('/edit/purchase-history/{id}', [
+        'as'   => 'purchaseHistoryDetail',
+        'uses' => 'UserController@purchaseHistoryDetail'
+    ]);
+    
+    Route::get('/{id}', [
+        'as'   => 'userProfile',
+        'uses' => 'UserController@userProfile'
+    ]);
+});
 
 // Authentication
 Auth::routes();

@@ -48,8 +48,12 @@
                     <textarea name="description"  class="form-control" id="description" rows="3"></textarea>
                 </div>
                 <div class="form-group">
+                    <label for="tumbnail">Example file input</label>
+                    <input name="tumbnail" type="file" class="form-control-file" id="tumbnail">
+                </div>
+                <div class="form-group">
                     <label for="video">Example file input</label>
-                    <input name="video" type="file" class="form-control-file" id="exampleFormControlFile1">
+                    <input name="video" type="file" class="form-control-file" id="video">
                 </div>
                 <div class="form-group form-check">
                     <input name="exclusive" type="checkbox" class="form-check-input" id="exclusive" value="y">

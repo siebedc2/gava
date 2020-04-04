@@ -8,7 +8,7 @@
 @section('content')
 @include('components.menu')
 <div class="container">
-    <div class="row">
+    <div class="row mt-4">
         <div class="col-12">
             <div class="row">
                 <div class="col-6">
@@ -32,10 +32,12 @@
                     <div class="col-6">
                         <div class="row">
                             <div class="col-6">
-                                <span>Report</span>
+                                <a href="">
+                                    <img src="/images/report.png" alt="Report">
+                                </a>
                             </div>
-                            <div class="col-6">
-                                <span>Subscribe</span>
+                            <div class="col-6 text-right">
+                                <a href="" class="rounded-pill px-5 btn btn-secondary">subscribe</a>
                             </div>
                         </div>
                     </div>

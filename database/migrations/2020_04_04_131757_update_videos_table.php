@@ -14,7 +14,7 @@ class UpdateVideosTable extends Migration
     public function up()
     {
         Schema::table('videos', function (Blueprint $table) {
-            $table->enum('status', ['online', 'offline'])->default('online')->after('exclusive');
+            $table->string('tumbnail')->nullable()->after('video');
         });
     }
 
@@ -26,7 +26,7 @@ class UpdateVideosTable extends Migration
     public function down()
     {
         Schema::table('videos', function (Blueprint $table) {
-            $table->dropColumn('status');
+            $table->dropColumn('tumbnail');
         });
     }
 }

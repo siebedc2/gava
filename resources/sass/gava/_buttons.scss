@@ -6,34 +6,47 @@
     letter-spacing: 1px;
 
     &.btn-primary {
-        background-color: $btn-color;
-        border: $btn-color;
+        background-color: $btn-primary-color;
+        border: $btn-primary-color;
 
         &:focus {
-            background-color: $btn-color !important;
+            background-color: $btn-primary-color !important;
         }
 
         &:active {
-            background-color: $btn-color !important;
+            background-color: $btn-primary-color !important;
         }
 
         &:hover {
-            background-color: $btn-hover-color;
+            background-color: $btn-primary-hover-color;
+        }
+    }
+
+    &.btn-secondary {
+        background-color: $color-primary;
+        border: $color-primary;
+
+        &:focus {
+            background-color: $color-primary !important;
+        }
+
+        &:active {
+            background-color: $color-primary !important;
+        }
+
+        &:hover {
+            background-color: $btn-secondary-hover-color;
         }
     }
 
     &.active {
-        background-color: $btn-color !important;
-        border: 2px solid $btn-color !important;
+        background-color: $btn-primary-color !important;
+        border: 2px solid $btn-primary-color !important;
     }
 
     &.non-active {
         background-color: transparent;
-        border: 1px solid $btn-color !important;
-        color: $btn-color !important;
-    }
-
-    &.btn-secondary {
-        background-image: $gradient-secondary;
+        border: 1px solid $btn-primary-color !important;
+        color: $btn-primary-color !important;
     }
 }
