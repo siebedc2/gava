@@ -46,7 +46,7 @@
                             </a>
                         </div>
                         <div class="col-6 text-right">
-                            <a href="" class="rounded-pill px-5 btn btn-secondary">subscribe</a>
+                            <a href="/subscribe/{{ $user->id }}" class="rounded-pill px-5 btn btn-secondary">subscribe</a>
                         </div>
                     </div>
                 </div>

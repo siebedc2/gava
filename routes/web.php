@@ -94,6 +94,11 @@ Route::get('/dashboard', [
     'uses' => 'HomeController@dashboard'
 ]);
 
+Route::get('/subscribe/{id}', [
+    'as'   => 'subscribe',
+    'uses' => 'HomeController@subscribe'
+]);
+
 // Profile
 Route::prefix('/profile')->middleware('auth')->group(function() {
     Route::get('/', [

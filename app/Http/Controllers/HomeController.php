@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 
 use App\Services\Course as CourseService;
+use App\Services\User as UserService;
 use App\Services\Subscription as SubscriptionService;
 
 class HomeController extends Controller
@@ -43,5 +44,10 @@ class HomeController extends Controller
         $data['subscribersAmount'] = $subscription->getAmountOfSubscribers($userId);
         $data['subscriptions'] = $subscription->getAllUserSubscribers($userId);
         return view('general.profile.index', $data);
+    }
+
+    public function subscribe(UserService $user, $userId) {
+        $data['user'] = $user->getById($userId);
+        return view('general.subscribe', $data);
     }
 }

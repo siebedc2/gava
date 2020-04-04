@@ -22,6 +22,7 @@
 }
 
 .btn.btn-primary:hover {
+  color: white !important;
   background-color: #1f1259;
 }
 
@@ -122,6 +123,10 @@
 
 ::selection {
   background: #D01CE2;
+}
+
+.username {
+  color: #3AD7F0;
 }
 
 .vh-90 {

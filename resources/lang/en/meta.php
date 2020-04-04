@@ -14,5 +14,6 @@ return [
     'addVideo'          => 'Gava - Add video',
     'changePassword'    => 'Gava - Change password',
     'paymentMethods'    => 'Gava - Payment methods',
-    'purchaseHistory'   => 'Gava - Purchase history'
+    'purchaseHistory'   => 'Gava - Purchase history',
+    'subscribe'         => 'Gava - Subscribe'
 ];

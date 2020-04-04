@@ -51,7 +51,7 @@
                 </div>
                 <div class="col-6">
                     @if(!empty($user))
-                        <span class="rounded-pill px-5 btn btn-secondary">subscribe</span>
+                        <a href="/subscribe/{{ $user->id }}" class="rounded-pill px-5 btn btn-secondary">subscribe</a>
                     @endif
                 </div>
             </div>
