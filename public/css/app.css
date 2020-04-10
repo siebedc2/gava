@@ -54,6 +54,10 @@
   color: #291875 !important;
 }
 
+.add-btn {
+  border: 1px dotted black;
+}
+
 .gava {
   background-color: white;
 }
@@ -127,6 +131,10 @@
 
 .username {
   color: #3AD7F0;
+}
+
+.pageNotFoundTitle {
+  font-size: 100px;
 }
 
 .vh-90 {

@@ -23,7 +23,10 @@ class Course {
     }
 
     public function getAllUserCourses($userId) {
-        return CourseModel::where('user_id', $userId)->get();
+        return CourseModel::where([
+            [ 'user_id', $userId ],
+            [ 'status', 'online']
+        ])->get();
     }
 
     public function create($request) {

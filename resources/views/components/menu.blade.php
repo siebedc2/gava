@@ -8,6 +8,7 @@
                     </a>
                 </div>
 
+                @auth
                 <div class="col-6">
                     <div class="row d-flex justify-content-end">
                         <div class="col-10">
@@ -24,6 +25,7 @@
                         </div>
                     </div>
                 </div>
+                @endauth
             </div>
         </div>
     </div>

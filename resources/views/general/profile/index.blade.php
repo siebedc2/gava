@@ -14,7 +14,7 @@
 @include('components.menu')
 <div class="container-fluid profile-bg">
     <div class="row">
-        <div class="col-10 col-md-4">
+        <div class="col-11 mt-4 d-flex justify-content-end">
             @if(empty($user))
             <a href="/profile/edit">
                 <img src="/images/settings.png" alt="Settings icon">

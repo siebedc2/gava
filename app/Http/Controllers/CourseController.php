@@ -34,8 +34,9 @@ class CourseController extends Controller
         return view('general/course/details', $data);
     }
 
-    public function add() {
-        return view('general.course.add');
+    public function add(TagService $tag) {
+        $data['tags'] = $tag->getAll();
+        return view('general.course.add', $data);
     }
 
     public function handleAdd(CourseService $course) {
@@ -46,7 +47,7 @@ class CourseController extends Controller
         
         else {
             $course->create($this->_request->input());
-            return redirect('/course/add')->with('status', 'Product toegevoegd!');
+            return redirect('/dashboard')->with('status', 'Added course!');
         }
     }
 
@@ -65,7 +66,7 @@ class CourseController extends Controller
         
         else {
             $course->edit($this->_request->input(), $courseId);
-            return redirect('/course/edit/' . $courseId)->with('status', 'Course gewijzigd!');
+            return redirect('/dashboard')->with('status', 'Course gewijzigd!');
         }
     }
 

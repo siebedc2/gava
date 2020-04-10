@@ -32,9 +32,12 @@ class HomeController extends Controller
         return view('general.subscriptions', $data);
     }
 
-    public function dashboard(CourseService $course) {
+    public function dashboard(CourseService $course, SubscriptionService $subscription) {
         $userId = Auth::user()->id;
+        $data['subscribersAmount'] = $subscription->getAmountOfSubscribers($userId);
+        $data['coursesAmount'] = count($course->getAllUserCourses($userId));
         $data['courses'] = $course->getAllUserCourses($userId);
+        $data['subscriptions'] = $subscription->getAllUserSubscribers($userId);
         return view('general.dashboard', $data);
     }
 
