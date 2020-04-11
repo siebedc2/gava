@@ -31,7 +31,11 @@
                 <div class="col-6">
                     <div class="row d-flex align-items-center">
                         <div class="col-3">
-                            <div style="background-color:black; height:100px; width: 100px;" class="rounded-circle"></div>
+                            @if(!empty($user))
+                            <img class="w-100 rounded-circle" src="/images/uploads/{{$user->profile_picture}}" alt="Profile picture">
+                            @else
+                            <img class="w-100 rounded-circle" src="/images/uploads/{{Auth::user()->profile_picture}}" alt="Profile picture">
+                            @endif
                         </div>
                         <div class="col-9">
                             <div class="row">
@@ -68,7 +72,7 @@
             <a href="/course/{{ $course->id }}">
                 <div class="row my-2">
                     <div class="col-3">
-                        <img class="w-100" src="/images/uploads/course.png" alt="">
+                        <img class="w-100" src="/images/uploads/{{$course->tumbnail}}" alt="Course tumbnail">
                     </div>
                     <div class="col-9">
                         <p>{{ $course->title }}</p>
@@ -87,9 +91,9 @@
             @if(!empty($subscriptions))
             @foreach($subscriptions as $subscription)
             <a href="/profile/{{ $subscription->user_id }}">
-                <div class="row">
-                    <div class="col-4">
-                        <img src="" alt="">
+                <div class="row my-3 d-flex align-items-center">
+                    <div class="col-3">
+                        <img class="w-100 rounded-circle" src="/images/uploads/{{$subscription->user->profile_picture}}" alt="Profile picture">
                     </div>
                     <div class="col-8">
                         <p>{{ $subscription->user['name'] }}</p>

@@ -54,12 +54,22 @@ Route::get('/course/{id}', [
 ]);
 
 // Video
-Route::get('/course/{course_id}/video/add', [
+Route::get('/course/{course_id?}/video/add', [
     'as'   => 'addVideo',
     'uses' => 'VideoController@add'
 ]);
 
-Route::post('/course/{course_id}/video/add', [
+Route::post('/course/{course_id?}/video/add', [
+    'as'   => 'addVideo',
+    'uses' => 'VideoController@handleAdd'
+]);
+
+Route::get('/course/video/add', [
+    'as'   => 'addVideo',
+    'uses' => 'VideoController@add'
+]);
+
+Route::post('/course/video/add', [
     'as'   => 'addVideo',
     'uses' => 'VideoController@handleAdd'
 ]);
@@ -97,6 +107,11 @@ Route::get('/dashboard', [
 Route::get('/subscribe/{id}', [
     'as'   => 'subscribe',
     'uses' => 'HomeController@subscribe'
+]);
+
+Route::post('/subscribe/{id}', [
+    'as'   => 'subscribe',
+    'uses' => 'HomeController@handleSubscription'
 ]);
 
 // Profile
@@ -142,7 +157,7 @@ Route::prefix('/profile')->middleware('auth')->group(function() {
     ]);
 
     Route::get('/edit/purchase-history/{id}', [
-        'as'   => 'purchaseHistoryDetail',
+        'as'   => 'purchaseHistory',
         'uses' => 'UserController@purchaseHistoryDetail'
     ]);
     

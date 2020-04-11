@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <form action="/profile/edit/change-password" method="post">
+            <form method="post">
                 {{csrf_field()}}
                 <div class="row mt-4">
                     <div class="col-4">

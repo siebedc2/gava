@@ -37126,6 +37126,7 @@ $('#my-statistics').click(function () {
   $('#myStatisticsContainer').addClass('d-block');
   $('#myCoursesContainer').addClass('d-none');
   $('#myCoursesContainer').removeClass('d-block');
+  $('#add-course').addClass('d-none');
 });
 $('#my-courses').click(function () {
   $('#my-statistics').removeClass('active');
@@ -37136,6 +37137,7 @@ $('#my-courses').click(function () {
   $('#myCoursesContainer').addClass('d-block');
   $('#myStatisticsContainer').addClass('d-none');
   $('#myStatisticsContainer').removeClass('d-block');
+  $('#add-course').removeClass('d-none');
 });
 
 /***/ }),

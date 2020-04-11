@@ -40,7 +40,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="tumbnail" class="d-none">Email address</label>
+                            <label for="tumbnail">upload custom thumbnail</label>
                             <input name="tumbnail" type="file" class="form-control" id="title" placeholder="Course title">
                         </div>
                     </div>
@@ -50,14 +50,32 @@
                             <div class="col-12">
                                 <p>Upload video</p>
                             </div>
-                        </div>    
-                        <div class="row ">
-                            <a class="" href="">
+                        </div>  
+                        <div class="row">
+                            <div class="col-12">
+                                @if (session('status'))
+                                    <div class="alert alert-success">
+                                        {{ session('status') }}
+                                    </div>
+                                @endif
+                            </div>
+                        </div>  
+                        <div class="row">
+                            <a class="" href="/course/video/add">
                                 <div class="col-12 add-btn">
                                     <p>+</p>
                                 </div>
                             </a>
-                        </div>                    
+                        </div>
+                        <div class="row">
+                            @if(!empty($videos ?? ''))
+                                @foreach($videos as $video)
+                                    <div class="col-12">
+                                        <p>{{ $video['title'] }}</p>
+                                    </div>
+                                @endforeach
+                            @endif
+                        </div>
                     </div>
                 </div>
 

@@ -45,13 +45,13 @@ class UserController extends Controller
 
             else {
                 $errors = "Oops! Your passwords do not match.";
-                return redirect('/profile/edit/change-password')->with('errors', $errors);
+                return redirect('/profile/edit/change-password')->withInput($this->_request->input())->with('errors', $errors);
             }
         }  
         
         else {
             $errors = "Oops! Your passwords do not match.";
-            return redirect('/profile/edit/change-password')->with('errors', $errors);
+            return redirect('/profile/edit/change-password')->withInput($this->_request->input())->with('errors', $errors);
         }
     }
 
@@ -63,11 +63,14 @@ class UserController extends Controller
 
     }
 
-    public function purchaseHistory() {
-        return view('general.profile.purchase.index');
+    public function purchaseHistory(SubscriptionService $subscription) {
+        $userId = Auth::user()->id;
+        $data['subscriptions'] = $subscription->getAllUserSubscribers($userId);
+        return view('general.profile.purchase.index', $data);
     }
 
-    public function purchaseHistoryDetail() {
-        return view('general.profile.purchase.details');
+    public function purchaseHistoryDetail(SubscriptionService $subscription, $creatorId) {
+        $data['subscription'] = $subscription->getSubscriptionById($creatorId);
+        return view('general.profile.purchase.details', $data);
     }
 }

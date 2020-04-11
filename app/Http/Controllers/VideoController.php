@@ -25,15 +25,22 @@ class VideoController extends Controller
         return view('general/video/add');
     }
 
-    public function handleAdd(VideoService $video, $courseId) {
+    public function handleAdd(VideoService $video, $courseId = null) {
         if ($video->validator($this->_request->all())->fails()) {
             $errors = $video->validator($this->_request->all())->errors();
-            return redirect('/course/' . $courseId . '/video/add')->with('errors', $errors);
+            return redirect('/course/video/add')->withInput($this->_request->input())->with('errors', $errors);
         } 
         
         else {
-            $video->create($this->_request->all(), $courseId);
-            return redirect('/course/' . $courseId . '/video/add')->with('status', 'Video toegevoegd!');
+            if(empty($courseId)) {
+                $video->addToSession($this->_request->all());
+                return redirect('/course/add')->with('status', 'Video toegevoegd!');
+            }
+
+            else {
+                $video->singleCreate($this->_request->all(), $courseId);
+                return redirect('/course/edit/' . $courseId)->with('status', 'Video toegevoegd!');
+            } 
         }   
     }
 
@@ -50,12 +57,12 @@ class VideoController extends Controller
         
         else {
             $video->edit($this->_request->all(), $courseId, $videoId);
-            return redirect('/course/' . $courseId . '/video/edit/' . $videoId)->with('status', 'Video aangepast!');
+            return redirect('/course/edit/' . $courseId)->with('status', 'Video aangepast!');
         }
     }
 
     public function handleDelete(VideoService $video, $courseId, $videoId) {
         $video->delete($videoId);
-        return redirect('/course/edit/' . $videoId)->with('status', 'Video is verwijderd!');
+        return redirect('/course/edit/' . $courseId)->with('status', 'Video is verwijderd!');
     }
 }

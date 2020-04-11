@@ -1,23 +1,19 @@
-    @extends('layouts.app')
+<?php $videoService = new App\Services\Video(); ?>
+
+@extends('layouts.app')
 
 @section('content')
 @include('components.menu')
 <div class="container">
     <div class="row d-flex flex-wrap-reverse">
         <div class="col-12 order-1">
-            <div class="row d-flex justify-content-center">
-                <div class="col-md-8">
-                    <div class="row mt-4">
-                        <div class="col-4">
-                            <span id="my-courses" class="border rounded-pill btn btn-primary active">my courses</span>
-                        </div>
-                        <div class="col-4">
-                            <span id="my-statistics" class="border rounded-pill btn btn-primary non-active">my statistics</span>
-                        </div>
-                        <div class="col-4">
-                            <a class="border rounded-pill btn btn-primary" href="/course/add">create new course</a>
-                        </div>
-                    </div>
+            <div class="row my-4">
+                <div class="col-5 offset-4">
+                    <span id="my-courses" class="ml-5 border rounded-pill btn btn-primary active">my courses</span>
+                    <span id="my-statistics" class="ml-1 border rounded-pill btn btn-primary non-active">my statistics</span>
+                </div>
+                <div class="col-3 text-right">
+                    <a id="add-course" class="border rounded-pill btn btn-primary" href="/course/add">create new course</a>
                 </div>
             </div>
         </div>
@@ -37,16 +33,34 @@
     <div class="row">
         <div class="col-12">
             @foreach($courses as $course)
-                <div class="row">
-                    <div class="col-4">
-                        <p>{{ $course->title }}</p>
+                <div class="row my-3">
+                    <div class="col-2">
+                        <img class="rounded col-12" src="/images/uploads/{{ $course->tumbnail }}" alt="Course tumbnail">
                     </div>
-                    <div class="col-4 offset-4">
-                        <a class="rounded-pill px-5 btn btn-primary" href="/course/edit/{{ $course->id }}">Edit</a>
-                        <form action="/course/delete/{{ $course->id }}" method="post">
-                            {{csrf_field()}}
-                            <button class="rounded-pill px-5 btn btn-primary" type="submit">Delete</button>
-                        </form>
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-12">
+                                <p>{{ $course->title }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <p>{{ count($videoService->getAllCourseVideos($course->id)) }} video's</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a class="rounded-pill px-5 btn btn-primary" href="/course/edit/{{ $course->id }}">edit</a> 
+                            </div>
+                            <div class="col-md-6">
+                                <form action="/course/delete/{{ $course->id }}" method="post">
+                                    {{csrf_field()}}
+                                    <button class="rounded-pill px-5 btn btn-primary" type="submit">delete</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             @endforeach

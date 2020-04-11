@@ -10,17 +10,17 @@
     <div class="pageWrapper">
         <div class="row">
             <div class="col-12 text-center">
-                <h1 class="pageNotFoundTitle font-weight-bold">404</h1>
+                <h1 class="page-not-found-title font-weight-bold">404</h1>
             </div>
         </div>
         <div class="row">
             <div class="col-12 text-center">
-                <p>Can't find this page.</p>
+                <p class="page-not-found-description font-weight-bold">Sorry! This page could not be found.</p>
             </div>
         </div>
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-12 text-center">
-                <a href="/" class="rounded-pill btn btn-primary">Back to home</a>
+                <a href="/" class="rounded-pill px-4 btn btn-primary">return home</a>
             </div>
         </div>
     </div>

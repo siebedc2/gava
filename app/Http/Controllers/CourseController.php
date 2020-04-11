@@ -34,19 +34,21 @@ class CourseController extends Controller
         return view('general/course/details', $data);
     }
 
-    public function add(TagService $tag) {
+    public function add(TagService $tag, VideoService $video) {
         $data['tags'] = $tag->getAll();
+        $data['videos'] = $video->getSessionVideos();
         return view('general.course.add', $data);
     }
 
-    public function handleAdd(CourseService $course) {
+    public function handleAdd(CourseService $course, VideoService $video) {
         if ($course->validator($this->_request->input())->fails()) {
             $errors = $course->validator($this->_request->input())->errors();
             return redirect('/course/add')->with('errors', $errors);
         } 
         
         else {
-            $course->create($this->_request->input());
+            $savedCourse = $course->create($this->_request->all());
+            $video->create($savedCourse->id);
             return redirect('/dashboard')->with('status', 'Added course!');
         }
     }
@@ -65,7 +67,7 @@ class CourseController extends Controller
         } 
         
         else {
-            $course->edit($this->_request->input(), $courseId);
+            $course->edit($this->_request->all(), $courseId);
             return redirect('/dashboard')->with('status', 'Course gewijzigd!');
         }
     }

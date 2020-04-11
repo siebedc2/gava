@@ -33,6 +33,10 @@
                             <textarea name="description" class="border-0 bg-light form-control" id="description"
                                 rows="3">{{ $course->description }}</textarea>
                         </div>
+                        <div class="form-group">
+                            <label for="tumbnail">change custom thumbnail</label>
+                            <input name="tumbnail" type="file" class="border-0 bg-light rounded-pill form-control" id="tumbnail">
+                        </div>
                     </div>
                     <div class="col-12 col-md-5 offset-md-1">
                         <a href="/course/{{ $courseId }}/video/add">Video toevoegen</a>

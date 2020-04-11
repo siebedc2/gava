@@ -24,7 +24,7 @@
                 <div class="row d-flex justify-content-center">
                     <div class="col-12 col-md-4">
                         <div class="form-group d-flex justify-content-center my-4">
-                            <img class="w-25" src="/images/big_circle.svg" alt="Profile image">
+                            <img class="w-25 rounded-circle" src="/images/uploads/{{Auth::user()->profile_picture}}" alt="Profile image">
                         </div>
                         <div class="form-group">
                             <label class="d-none" for="name">Name</label>

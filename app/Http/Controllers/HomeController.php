@@ -11,13 +11,17 @@ use App\Services\Subscription as SubscriptionService;
 
 class HomeController extends Controller
 {
+    protected $_request;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct() {
+
+    function __construct(Request $request) {
         $this->middleware('auth');
+        $this->_request = $request;
     }
 
     public function landing() {
@@ -52,5 +56,10 @@ class HomeController extends Controller
     public function subscribe(UserService $user, $userId) {
         $data['user'] = $user->getById($userId);
         return view('general.subscribe', $data);
+    }
+
+    public function handleSubscription(SubscriptionService $subscription, $creatorId) {
+        $subscription->create($this->_request->input(), $creatorId);
+        return redirect('/dashboard')->with('status', 'Subscribed!');
     }
 }

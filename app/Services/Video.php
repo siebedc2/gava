@@ -19,25 +19,73 @@ class Video {
     }
 
     public function getAllCourseVideos($courseId) {
-        return VideoModel::where('course_id', $courseId)->get();
+        return VideoModel::where([
+            ['course_id', $courseId],
+            ['status', 'online']
+        ])->get();
     }
 
-    public function create($request, $courseId) {
+    public function getSessionVideos() {
+        return session('videos');
+    }
+
+    public function create($courseId) {
+        $videos = session('videos');
+        foreach($videos as $video) {
+
+            if(empty($video['exclusive'])) {
+                $video['exclusive'] = 'n';
+            }
+
+            $tumbnail = $request['tumbnail'];
+            $tumbnailName = $tumbnail->getClientOriginalName();
+            $tumbnail->move('images/uploads', $tumbnailName);
+
+            $newVideo = new VideoModel();
+            $newVideo->title        = $video['title'];
+            $newVideo->description  = $video['description'];
+            $newVideo->video        = $video['video'];
+            $newVideo->course_id    = $courseId;
+            $video->tumbnail        = $tumbnailName;
+            $newVideo->exclusive    = $video['exclusive'];
+            $newVideo->save();
+        }
+        session()->forget('videos');
+    }
+
+    public function singleCreate($request, $courseId) {
         if(empty($request['exclusive'])) {
             $request['exclusive'] = 'n';
         }
 
+        $tumbnail = $request['tumbnail'];
+        $tumbnailName = $tumbnail->getClientOriginalName();
+        $tumbnail->move('images/uploads', $tumbnailName);
+
+        $video = new VideoModel();
+        $video->title        = $request['title'];
+        $video->description  = $request['description'];
+        $video->video        = $request['video'];
+        $video->course_id    = $courseId;
+        $video->tumbnail     = $tumbnailName;
+        $video->exclusive    = $request['exclusive'];
+        $video->save();
+    }
+
+    public function addToSession($request) {
         $videoInput = $request['video'];
         $videoName = $videoInput->getClientOriginalName();
         $videoInput->move('images/uploads', $videoName);
+        $request['video'] = $videoName;
 
-        $video = new VideoModel();
-        $video->title = $request['title'];
-        $video->description = $request['description'];
-        $video->video = $videoName;
-        $video->course_id = $courseId;
-        $video->exclusive = $request['exclusive'];
-        $video->save();
+        $tumbnailInput = $request['tumbnail'];
+        $tumbnailName = $tumbnailInput->getClientOriginalName();
+        $tumbnail->move('images/uploads', $tumbnailName);
+        $request['tumbnail'] = $tumbnailName;
+
+        $videos = session('videos');
+        $videos[$request['title']] = $request;
+        session(['videos' => $videos]);
     }
 
     public function edit($request, $courseId, $videoId) {

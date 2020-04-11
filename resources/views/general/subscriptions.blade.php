@@ -5,16 +5,10 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <div class="row my-4 d-flex justify-content-center">
-                <div class="col-md-4">
-                    <div class="row">
-                        <div class="col-6">
-                            <span id="courses" class="border rounded-pill btn btn-primary active">courses</span>
-                        </div>
-                        <div class="col-6">
-                            <span id="creators" class="border rounded-pill btn btn-primary non-active">creators</span>
-                        </div>
-                    </div>
+            <div class="row my-4">
+                <div class="col-12 d-flex justify-content-center">
+                    <span id="courses" class="border rounded-pill btn btn-primary active">courses</span>
+                    <span id="creators" class="ml-2 border rounded-pill btn btn-primary non-active">creators</span>
                 </div>
             </div>
         </div>
@@ -30,7 +24,7 @@
                 <a href="/course/{{ $course->id }}" class="col-12 col-md-6 rounded bg-white my-2">
                     <div class="row">
                         <div class="col-4">
-                            <div class="rounded col-12 video-image"></div>
+                            <img src="/images/uploads/{{$course->tumbnail}}" alt="Tumbnail">
                         </div>
                         <div class="col-8">
                             <div class="row">
@@ -64,7 +58,7 @@
         <div class="col-12 col-md-6">
             <div class="row d-flex align-items-center">
                 <div class="col-2">
-
+                    <img class="w-100 rounded-circle" src="images/uploads/{{$creator->creator->profile_picture}}" alt="">
                 </div>
                 <div class="col-5">
                     <p>{{ $creator->creator->name }}</p>

@@ -30,19 +30,30 @@ class Course {
     }
 
     public function create($request) {
+        $tumbnail = $request['tumbnail'];
+        $tumbnailName = $tumbnail->getClientOriginalName();
+        $tumbnail->move('images/uploads', $tumbnailName);
+
         $course = new CourseModel();
         $course->title = $request['title'];
         $course->description = $request['description'];
         $course->user_id = Auth::user()->id;
+        $course->tumbnail = $tumbnailName;
         $course->save();
+        return $course;
     }
 
     public function edit($request, $courseId) {
+        $tumbnail = $request['tumbnail'];
+        $tumbnailName = $tumbnail->getClientOriginalName();
+        $tumbnail->move('images/uploads', $tumbnailName);
+        
         CourseModel::where('id', $courseId)
                     ->update(
                         [
                         'title' => $request['title'], 
-                        'description' => $request['description'] 
+                        'description' => $request['description'],
+                        'tumbnail' => $tumbnailName
                         ]);
     }
 

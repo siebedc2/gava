@@ -133,8 +133,12 @@
   color: #3AD7F0;
 }
 
-.pageNotFoundTitle {
-  font-size: 100px;
+.page-not-found-title {
+  font-size: 200px;
+}
+
+.page-not-found-description {
+  font-size: 25px;
 }
 
 .vh-90 {
