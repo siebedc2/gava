@@ -29,7 +29,6 @@ class CourseController extends Controller
         $data['course'] = $course->getById($courseId);
         $data['user'] = $user->getById($data['course']['user_id']);
         $data['videos'] = $video->getAllCourseVideos($courseId);
-        //$data['courseTags'] = $courseTag->getCourseTags($courseId);
         $data['subscribersAmount'] = $subscription->getAmountOfSubscribers($data['course']['user_id']);
         return view('general/course/details', $data);
     }

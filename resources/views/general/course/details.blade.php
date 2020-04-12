@@ -15,7 +15,11 @@
                     <a href="/profile/{{ $user->id }}">
                         <div class="row d-flex align-items-center">
                             <div class="col-3">
-                                <div style="background-color:black; height:100px; width: 100px;" class="rounded-circle"></div>
+                                @if(!empty($user))
+                                <img class="w-100 rounded-circle" src="/images/uploads/{{$user->profile_picture}}" alt="Profile picture">
+                                @else
+                                <img class="w-100 rounded-circle" src="/images/uploads/{{Auth::user()->profile_picture}}" alt="Profile picture">
+                                @endif
                             </div>
                             <div class="col-9">
                                 <div class="row">
@@ -84,7 +88,7 @@
             <a href="/course/{{ $course->id }}/video/{{ $video->id }}" class="col-12 col-md-6 rounded bg-white my-2">
                 <div class="row">
                     <div class="col-4">
-                        <div class="rounded col-12 video-image"></div>
+                        <img class="w-100 rounded" src="/images/uploads/{{$video->tumbnail}}" alt="Tumbnail">
                     </div>
                     <div class="col-8">
                         <div class="row">

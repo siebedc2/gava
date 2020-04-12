@@ -19,4 +19,8 @@ class Course extends Model
     public function tags() {
         return $this->belongsToMany('App\Models\Tag')->using('App\Models\CourseTag');
     }
+
+    public function videos() {
+        return $this->hasOne('App\Models\Course');
+    }
 }

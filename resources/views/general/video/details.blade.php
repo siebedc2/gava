@@ -14,15 +14,19 @@
                 <div class="col-6">
                     <div class="row d-flex align-items-center">
                         <div class="col-3">
-                            <div style="background-color:black; height:100px; width: 100px;" class="rounded-circle"></div>
+                            <img class="w-100 rounded-circle" src="/images/uploads/{{$video->course->user->profile_picture}}" alt="">
                         </div>
                         <div class="col-9">
                             <div class="row">
                                 <div class="col-12">
-                                    
+                                    <p>{{ $video->course->user->name }}</p>
                                 </div>
                                 <div class="col-12">
-                                    
+                                    @if($subscribersAmount == 1)
+                                        <p>{{ $subscribersAmount }} subscriber</p>
+                                    @else
+                                        <p>{{ $subscribersAmount }} subscribers</p>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -49,7 +53,7 @@
         <div class="col-12 col-md-6">
             <div class="row">
                 <div class="col-12">
-                    <iframe width="100%" src="/images/uploads/{{ $video->video }}" frameborder="0"
+                    <iframe height="300px" width="100%" src="/images/uploads/{{ $video->video }}" frameborder="0"
                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
                 </div>
@@ -78,12 +82,12 @@
             </div>
 
             @auth
-                <div class="row">
+                <div class="row mt-3">
                     <div class="col-12">
                         <form action="">
                             <div class="form-group">
-                                <label class="d-none" for="exampleFormControlInput1">Comment</label>
-                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="add comment">
+                                <label class="d-none" for="comment">Comment</label>
+                                <input type="email" class="bg-light border-0 rounded-pill form-control" id="comment" placeholder="add comment">
                             </div>
                             <button type="submit" class="rounded-pill btn btn-primary mb-2">verzenden</button>
                         </form>
@@ -129,16 +133,16 @@
         </div>
 
         <div class="col-12 col-md-5 offset-md-1">
-            <a href="" class="row rounded bg-white">
+            @foreach($courseVideos as $courseVideo)
+            @if($courseVideo->id != $video->id)
+            <a href="/course/{{$courseVideo->course_id}}/video/{{$courseVideo->id}}" class="row rounded bg-white">
                 <div class="col-4">
-                    <div class="row">
-                        <div class="rounded col-12 video-image"></div>
-                    </div>
+                    <img src="/images/uploads/{{$courseVideo->tumbnail}}" alt="Tumbnail" class="w-100 rounded">
                 </div>
                 <div class="col-8">
                     <div class="row">
                         <div class="col-12">
-                            <h3>Dit is een titel</h3>
+                            <h3>{{$courseVideo->title}}</h3>
                         </div>
                     </div>
                     <div class="row">
@@ -158,6 +162,8 @@
                     </div>
                 </div>
             </a>
+            @endif
+            @endforeach
         </div>
     </div>
 </div>

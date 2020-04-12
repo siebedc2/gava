@@ -1,3 +1,5 @@
+<?php $videoService = new App\Services\Video(); ?>
+
 @extends('layouts.app')
 
 @section('meta')
@@ -75,7 +77,16 @@
                         <img class="w-100" src="/images/uploads/{{$course->tumbnail}}" alt="Course tumbnail">
                     </div>
                     <div class="col-9">
-                        <p>{{ $course->title }}</p>
+                        <div class="row">
+                            <div class="col-12">
+                                <p>{{ $course->title }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <p>{{ count($videoService->getAllCourseVideos($course->id)) }} video's</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </a>

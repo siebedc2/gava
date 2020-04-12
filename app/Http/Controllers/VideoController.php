@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Services\Video as VideoService;
 use App\Services\Comment as CommentService;
+use App\Services\Course as CourseService;
+use App\Services\Subscription as SubscriptionService;
 
 class VideoController extends Controller
 {
@@ -15,9 +17,12 @@ class VideoController extends Controller
         $this->_request = $request;
     }
 
-    public function details(VideoService $video, CommentService $comment, $courseId, $videoId) {
+    public function details(CourseService $course, VideoService $video, CommentService $comment, SubscriptionService $subscription, $courseId, $videoId) {
+        $data['course'] = $course->getById($courseId);
         $data['video'] = $video->getById($videoId);
+        $data['courseVideos'] = $video->getAllCourseVideos($courseId);
         $data['comments'] = $comment->getAll($videoId);
+        $data['subscribersAmount'] = $subscription->getAmountOfSubscribers($data['course']['user_id']);
         return view('general/video/details', $data);
     }
 

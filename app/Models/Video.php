@@ -11,4 +11,8 @@ class Video extends Model
     protected $fillable = [
         'id', 'title', 'description', 'video', 'tumbnail', 'course_id', 'exclusive'
     ];
+
+    public function course() {
+        return $this->belongsTo('App\Models\Course');
+    }
 }

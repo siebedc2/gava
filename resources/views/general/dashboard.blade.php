@@ -161,11 +161,11 @@
                 @foreach($subscriptions as $subscription)
                 <div class="col-12 col-md-6">
                     <a href="/profile/{{ $subscription->user_id }}">
-                        <div class="row">
-                            <div class="col-4">
-                                <img src="" alt="">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-2">
+                                <img class="w-100 rounded-circle" src="/images/uploads/{{$subscription->user['profile_picture']}}" alt="Profile picture">
                             </div>
-                            <div class="col-8">
+                            <div class="col-10">
                                 <p>{{ $subscription->user['name'] }}</p>
                             </div>
                         </div>
