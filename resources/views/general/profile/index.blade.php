@@ -49,7 +49,13 @@
                                     @endif
                                 </div>
                                 <div class="col-12">
+                                    @if($subscribersAmount == 1)
+                                    <p>{{ $subscribersAmount }} subscriber</p>
+                                    @elseif($subscribersAmount == 0)
+                                    <p>{{ $subscribersAmount }} subscribers yet</p>
+                                    @else
                                     <p>{{ $subscribersAmount }} subscribers</p>
+                                    @endif
                                 </div>
                             </div>
                         </div>

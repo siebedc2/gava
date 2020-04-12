@@ -48,7 +48,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-
+                            <p>active subscription</p>
                         </div>
                     </div>
                 </div>
@@ -82,7 +82,48 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-2">
+                    <p class="text-black-50">date</p>
+                </div>
+                <div class="col-md-3">
+                    <p class="text-black-50">method</p>
+                </div>
+                <div class="col-md-2">
+                    <p class="text-black-50">receiver</p>
+                </div>
+                <div class="col-md-2">
+                    <p class="text-black-50">VAT number</p>
+                </div>
+                <div class="col-md-2">
+                    <p class="text-black-50">VAT</p>
+                </div>
+                <div class="col-md-1">
+                    <p class="text-black-50">total</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <p>{{ date('Y-m-d', strtotime($subscription->created_at)) }}</p>
+                </div>
+                <div class="col-md-3">
+                    <p>method</p>
+                </div>
+                <div class="col-md-2">
+                    <p>Gava</p>
+                </div>
+                <div class="col-md-2">
+                    <p>VAT number</p>
+                </div>
+                <div class="col-md-2">
+                    <p>VAT</p>
+                </div>
+                <div class="col-md-1">
+                    <p>&euro;8</p>
+                </div>
+            </div>
+        </div>
     </div>
-
 </div>
 @endsection

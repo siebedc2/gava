@@ -15,7 +15,7 @@ class Course {
     }
 
     public function getAll() {
-        return CourseModel::all();
+        return CourseModel::where('status', 'online')->get();
     }
 
     public function getById($courseId) {

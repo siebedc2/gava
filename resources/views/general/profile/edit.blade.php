@@ -52,7 +52,7 @@
             </div>
             <div class="row mt-3">
                 <div class="col-12">
-                    <a class="w-100 rounded-pill btn btn-primary" href="/profile/edit/payment-methods">payement methods</a>
+                    <a class="w-100 rounded-pill btn btn-primary" href="/profile/edit/payment-methods">payment methods</a>
                 </div>
             </div>
             <div class="row mt-3">

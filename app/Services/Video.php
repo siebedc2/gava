@@ -37,16 +37,16 @@ class Video {
                 $video['exclusive'] = 'n';
             }
 
-            $tumbnail = $request['tumbnail'];
+            /*$tumbnail = 
             $tumbnailName = $tumbnail->getClientOriginalName();
-            $tumbnail->move('images/uploads', $tumbnailName);
+            $tumbnail->move('images/uploads', $tumbnailName);*/
 
             $newVideo = new VideoModel();
             $newVideo->title        = $video['title'];
             $newVideo->description  = $video['description'];
             $newVideo->video        = $video['video'];
             $newVideo->course_id    = $courseId;
-            $video->tumbnail        = $tumbnailName;
+            $newVideo->tumbnail        = $video['tumbnail'];
             $newVideo->exclusive    = $video['exclusive'];
             $newVideo->save();
         }
@@ -80,7 +80,7 @@ class Video {
 
         $tumbnailInput = $request['tumbnail'];
         $tumbnailName = $tumbnailInput->getClientOriginalName();
-        $tumbnail->move('images/uploads', $tumbnailName);
+        $tumbnailInput->move('images/uploads', $tumbnailName);
         $request['tumbnail'] = $tumbnailName;
 
         $videos = session('videos');

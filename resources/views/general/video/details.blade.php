@@ -147,12 +147,12 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <p>Dit is een creator</p>
+                            <p>{{$courseVideo->course->user->name}}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <p>Dit is een beschrijving</p>
+                            <p>{{$courseVideo->description}}</p>
                         </div>
                     </div>
                     <div class="row">
