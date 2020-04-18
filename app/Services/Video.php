@@ -8,9 +8,9 @@ use Validator;
 class Video {
     public function validator(array $data) {
         return Validator::make($data, [
-            'title' => 'required',
-            'description' => 'required',
-            'video' => 'required'
+            'title'         => 'required',
+            'description'   => 'required',
+            'video'         => 'nullable'
         ]);
     }
 
@@ -46,7 +46,7 @@ class Video {
             $newVideo->description  = $video['description'];
             $newVideo->video        = $video['video'];
             $newVideo->course_id    = $courseId;
-            $newVideo->tumbnail        = $video['tumbnail'];
+            $newVideo->tumbnail     = $video['tumbnail'];
             $newVideo->exclusive    = $video['exclusive'];
             $newVideo->save();
         }
@@ -91,6 +91,11 @@ class Video {
     public function edit($request, $courseId, $videoId) {
         if(empty($request['exclusive'])) {
             $request['exclusive'] = 'n';
+        }
+
+        if(empty($request['video'])) {
+            $video = $this->getById($videoId);
+            $request['video'] = $video['video'];
         }
 
         VideoModel::where('id', $videoId)

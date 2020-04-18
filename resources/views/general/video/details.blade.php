@@ -12,44 +12,41 @@
         <div class="col-12">
             <div class="row">
                 <div class="col-6">
-                    <div class="row d-flex align-items-center">
-                        <div class="col-3">
-                            <img class="w-100 rounded-circle" src="/images/uploads/{{$video->course->user->profile_picture}}" alt="">
-                        </div>
-                        <div class="col-9">
-                            <div class="row">
-                                <div class="col-12">
-                                    <p>{{ $video->course->user->name }}</p>
-                                </div>
-                                <div class="col-12">
-                                    @if($subscribersAmount == 1)
-                                        <p>{{ $subscribersAmount }} subscriber</p>
-                                    @else
-                                        <p>{{ $subscribersAmount }} subscribers</p>
-                                    @endif
+                    <a class="text-decoration-none" href="/profile/{{ $video->course->user->id }}">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-2">
+                                <img class="w-100 rounded-circle" src="/images/uploads/{{$video->course->user->profile_picture}}" alt="">
+                            </div>
+                            <div class="col-10">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h4 class="mb-1">{{ $video->course->user->name }}</h4>
+                                    </div>
+                                    <div class="col-12">
+                                        @if($subscribersAmount == 1)
+                                            <p class="mb-0">{{ $subscribersAmount }} subscriber</p>
+                                        @else
+                                            <p class="mb-0">{{ $subscribersAmount }} subscribers</p>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
-                @auth
-                    <div class="col-6">
-                        <div class="row">
-                            <div class="col-6">
-                                <a href="">
-                                    <img src="/images/report.png" alt="Report">
-                                </a>
-                            </div>
-                            <div class="col-6 text-right">
-                                <a href="" class="rounded-pill px-5 btn btn-secondary">subscribe</a>
-                            </div>
-                        </div>
-                    </div>
-                @endauth
+                @if(Auth::user())
+                    @if(Auth::id() != $course->user_id)
+                    <div class="col-6 d-flex justify-content-end align-items-center">
+                        <span class="mr-5"><img src="/images/report.png" alt="Report"></span>
+                        <a href="/subscribe/{{ $user->id }}" class="rounded-pill px-5 btn btn-secondary">subscribe</a>
+                    </div>  
+                    @endif
+                @endif
             </div>
         </div>
     </div>
-    <div class="row">
+
+    <div class="row mt-4">
         <div class="col-12 col-md-6">
             <div class="row">
                 <div class="col-12">
@@ -64,19 +61,14 @@
 
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mt-3">
                     <div class="col-12">
-                        <p>{{ $video->title }}</p>
+                        <h3>{{ $video->title }}</h3>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
                         <p>{{ $video->description }}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <p>Dit zijn tags</p>
                     </div>
                 </div>
             </div>
@@ -87,12 +79,20 @@
                         <form action="">
                             <div class="form-group">
                                 <label class="d-none" for="comment">Comment</label>
-                                <input type="email" class="bg-light border-0 rounded-pill form-control" id="comment" placeholder="add comment">
+                                <input type="email" class="bg-light border-0 rounded-pill form-control" id="comment" placeholder="write a comment">
                             </div>
-                            <button type="submit" class="rounded-pill btn btn-primary mb-2">verzenden</button>
+                            <!--<button type="submit" class="rounded-pill btn btn-primary mb-2">verzenden</button>-->
                         </form>
+                        <div class="row">
+                            <div class="col-6 text-center">
+                                <a class="rounded-pill w-100 btn btn-primary" href="">post video comment</a>
+                            </div>
+                            <div class="col-6 text-center">
+                                <a class="rounded-pill w-100 btn btn-primary" href="">video ratings</a>
+                            </div>
+                        </div>
 
-                        <a href="">video ratings</a>
+                        
                     </div>
                 </div>
             @endauth
@@ -133,31 +133,27 @@
         </div>
 
         <div class="col-12 col-md-5 offset-md-1">
+            <p>Next video's:</p>
             @foreach($courseVideos as $courseVideo)
             @if($courseVideo->id != $video->id)
-            <a href="/course/{{$courseVideo->course_id}}/video/{{$courseVideo->id}}" class="row rounded bg-white">
-                <div class="col-4">
+            <a href="/course/{{$courseVideo->course_id}}/video/{{$courseVideo->id}}" class="text-decoration-none row rounded bg-white my-3">
+                <div class="col-5">
                     <img src="/images/uploads/{{$courseVideo->tumbnail}}" alt="Tumbnail" class="w-100 rounded">
                 </div>
-                <div class="col-8">
+                <div class="col-7">
                     <div class="row">
                         <div class="col-12">
-                            <h3>{{$courseVideo->title}}</h3>
+                            <p class="mb-1">{{ $courseVideo->title }}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <p>{{$courseVideo->course->user->name}}</p>
+                            <p class="course-username">{{$courseVideo->course->user->name}}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <p>{{$courseVideo->description}}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <p>Dit zijn tags</p>
+                            
                         </div>
                     </div>
                 </div>

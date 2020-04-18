@@ -64,7 +64,7 @@
 }
 
 .gava .bg-landing {
-  background-color: #050547;
+  background-color: #050547 !important;
 }
 
 .gava .menu,
@@ -103,8 +103,8 @@
 
 @media (min-width: 768px) {
   .description {
-    height: 470px;
-    width: 400px;
+    height: 520px;
+    width: 460px;
   }
 }
 
@@ -122,6 +122,10 @@
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
+}
+
+.gava .description img {
+  max-width: 70px;
 }
 
 .link {
@@ -182,6 +186,10 @@
 
 .vh-90 {
   height: 90vh;
+}
+
+#mc_embed_signup .mc-field-group {
+  min-height: 0px !important;
 }
 
 /*!

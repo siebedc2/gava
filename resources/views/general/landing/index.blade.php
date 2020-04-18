@@ -3,7 +3,7 @@
 @section('content')
 @include('components.landing-menu')
 <div class="bg-landing">
-    <div class="container vh-100 d-flex align-items-center text-white pb-5">
+    <div class="container min-vh-100 d-flex align-items-center text-white pb-5">
         <div class="row d-flex align-items-center flex-wrap-reverse">
             <div class="col-12 div col-md-6">
                 <div class="row mb-4">
@@ -34,7 +34,7 @@
     </div>
 
     <div class="what-to-learn-wrapper">
-        <div class="container vh-100 d-flex align-items-center text-white" id="what-to-learn">
+        <div class="container min-vh-100 d-flex align-items-center text-white" id="what-to-learn">
             <div class="row">
                 <div class="col-12 col-md-4 p-4">
                     <div class="row">
@@ -88,13 +88,13 @@
     <div class="about container text-white mt-5" id="about">
         <div class="row">
             <div class="col-12 text-center">
-                <h2 class="text-white">our community loves talking about ...</h2>
+                <h2 class="font-weight-normal text-white">our community loves talking about ...</h2>
             </div>
         </div>
 
-        <div class="description bg-white position-fixed d-none flex-wrap justify-content-center">
+        <div class="description bg-white position-fixed d-none flex-wrap justify-content-center bg-landing">
             <img class="w-25" src="" alt="Icon image">
-            <p></p>
+            <p class="mt-2 text-white"></p>
             <span class="rounded-pill btn btn-primary align-self-end">close</span>
         </div>
 
