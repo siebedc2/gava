@@ -36,14 +36,14 @@
                             <label for="exclusive" class="form-check-label">make this video exclusive to my subscribers</label>
                         </div>
                         <div class="form-group">
-                            <label class="d-none" for="tumbnail">Example file input</label>
+                            <label for="tumbnail">upload costum tumbnail</label>
                             <input name="tumbnail" type="file" class="form-control-file" id="tumbnail">
                         </div>
                     </div>
 
                     <div class="col-12 col-md-5 offset-md-1">
                         <div class="form-group">
-                            <label class="d-none" for="video">Example file input</label>
+                            <label for="video">Select file</label>
                             <input name="video" type="file" class="form-control-file" id="video">
                         </div>
                     </div>

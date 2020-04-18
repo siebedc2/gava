@@ -15,5 +15,6 @@ return [
     'changePassword'    => 'Gava - Change password',
     'paymentMethods'    => 'Gava - Payment methods',
     'purchaseHistory'   => 'Gava - Purchase history',
-    'subscribe'         => 'Gava - Subscribe'
+    'subscribe'         => 'Gava - Subscribe',
+    'landing'           => 'Gava - Learn, teach, innovate'
 ];

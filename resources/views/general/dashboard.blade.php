@@ -33,19 +33,19 @@
     <div class="row">
         <div class="col-12">
             @foreach($courses as $course)
-                <div class="row my-3">
+                <div class="row my-3 d-flex align-items-center">
                     <div class="col-2">
                         <img class="rounded col-12" src="/images/uploads/{{ $course->tumbnail }}" alt="Course tumbnail">
                     </div>
                     <div class="col-6">
                         <div class="row">
                             <div class="col-12">
-                                <p>{{ $course->title }}</p>
+                                <p class="mb-1">{{ $course->title }}</p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <p>{{ count($videoService->getAllCourseVideos($course->id)) }} video's</p>
+                                <p class="course-video-amount text-black-50">{{ count($videoService->getAllCourseVideos($course->id)) }} video's</p>
                             </div>
                         </div>
                     </div>
@@ -176,4 +176,5 @@
         </div>
     </div>
 </div>
+@include('components.mobile-menu')
 @endsection

@@ -6,5 +6,6 @@
 
 require('./gava/dashboard-tab');
 require('./gava/subscriptions-tab');
+require('./gava/tech-popup');
 
 require('./bootstrap');

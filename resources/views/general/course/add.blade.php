@@ -41,7 +41,7 @@
                         </div>
                         <div class="form-group">
                             <label for="tumbnail">upload custom thumbnail</label>
-                            <input name="tumbnail" type="file" class="form-control" id="title" placeholder="Course title">
+                            <input name="tumbnail" type="file" class="form-control-file" id="tumbnail">
                         </div>
                     </div>
 

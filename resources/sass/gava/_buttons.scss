@@ -26,6 +26,7 @@
     &.btn-secondary {
         background-color: $color-primary;
         border: $color-primary;
+        height: 38px;
 
         &:focus {
             background-color: $color-primary !important;

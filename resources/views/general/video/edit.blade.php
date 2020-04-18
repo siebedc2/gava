@@ -36,15 +36,23 @@
                             <label for="exclusive" class="form-check-label">make this video exclusive to my subscribers</label>
                         </div>
                         <div class="form-group">
-                            <label for="video">Example file input</label>
-                            <input name="video" type="file" class="form-control-file" id="video" value="/images/uploads/{{ $video->video }}">
+                            <label for="tumbnail">upload costum tumbnail</label>
+                            <input name="tumbnail" type="file" class="form-control-file" id="tumbnail" value="/images/uploads/{{ $video->video }}">
+                        </div>
+                        <div class="tumbnail-preview">
+                            <img src="{{asset('images/uploads/' . $video->tumbnail)}}" alt="Tumbnail preview">
                         </div>
                     </div>
 
                     <div class="col-12 col-md-5 offset-md-1">
                         <div class="form-group">
-                            <label class="d-none" for="video">Example file input</label>
+                            <label for="video">Select file</label>
                             <input name="video" type="file" class="form-control-file" id="video">
+                        </div>
+                        <div class="video-preview">
+                            <iframe height="280px" width="100%" src="/images/uploads/{{ $video->video }}" frameborder="0"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>

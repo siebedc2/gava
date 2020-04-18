@@ -20,6 +20,7 @@ class UserController extends Controller
         $data['courses'] = $course->getAllUserCourses($userId);
         $data['subscribersAmount'] = $subscription->getAmountOfSubscribers($userId);
         $data['subscriptions'] = $subscription->getAllUserSubscribers($userId);
+        $data['subscribersIds'] = $subscription->getSubscriberId(Auth::id());
         return view('general.profile.index', $data);
     }
 

@@ -29,6 +29,7 @@
 .btn.btn-secondary {
   background-color: #3AD7F0;
   border: #3AD7F0;
+  height: 38px;
 }
 
 .btn.btn-secondary:focus {
@@ -62,23 +63,49 @@
   background-color: white;
 }
 
-.gava .what-to-learn-wrapper {
-  background-image: linear-gradient(to top right, #6E27D4, #D01CE2);
-  -webkit-clip-path: polygon(0 5%, 100% 0%, 100% 95%, 0 100%);
-          clip-path: polygon(0 5%, 100% 0%, 100% 95%, 0 100%);
-}
-
-.gava .footer-wrapper {
-  background-image: linear-gradient(to top right, #4951CF, #3AD7F0);
-}
-
-.gava .menu {
+.gava .bg-landing {
   background-color: #050547;
+}
+
+.gava .menu,
+.gava .mobile-menu {
+  background-color: #050547;
+}
+
+.gava .descriptionBackground {
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 4;
+  background-color: black;
+  opacity: 0.5;
+}
+
+.gava .description {
+  z-index: 5;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #050547;
+  color: white;
+  border-radius: 10px;
+  padding: 40px;
 }
 
 .profile-bg {
   background-color: #291875;
   height: 220px;
+}
+
+@media (min-width: 768px) {
+  .description {
+    height: 470px;
+    width: 400px;
+  }
 }
 
 .card-header {
@@ -102,7 +129,7 @@
 }
 
 .link.link-primary {
-  border: 1px solid #4951cf;
+  border: 1px solid #fff;
 }
 
 .link.link-secondary {
@@ -139,6 +166,18 @@
 
 .page-not-found-description {
   font-size: 25px;
+}
+
+.course-username {
+  font-size: 12px;
+}
+
+.course-video-amount {
+  font-size: 12px;
+}
+
+.subject {
+  cursor: pointer;
 }
 
 .vh-90 {
@@ -11027,5 +11066,9 @@ a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
+}
+
+html {
+  scroll-behavior: smooth;
 }
 

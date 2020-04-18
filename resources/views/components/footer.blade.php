@@ -7,17 +7,21 @@
 
                 <div id="mc_embed_signup">
                     <form action="https://thomasmore.us20.list-manage.com/subscribe/post?u=3b548efea3d3b4632e73d89fd&amp;id=69946914f5" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" rel="noopener" novalidate>                     <div id="mc_embed_signup_scroll">
-                            <h2>Follow our news and updates. It’s free!</h2>
+                            <h2 class="font-weight-normal text-white">Follow our news and updates. It’s free!</h2>
                             <!-- <div class="indicates-required"><span class="asterisk">*</span> indicates required</div> -->
-                            <div class="mc-field-group">
-                                <!--<label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label>-->
-                                <input placeholder="email" type="email" value="" name="EMAIL" class="rounded-pill required email" id="mce-EMAIL">
+                            <div class="row d-flex align-items-center">
+                                <div class="col-6">
+                                    <div class="mc-field-group">
+                                        <input placeholder="email" type="email" value="" name="EMAIL" class="rounded-pill required email" id="mce-EMAIL">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                                    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_3b548efea3d3b4632e73d89fd_69946914f5" tabindex="-1" value=""></div>
+                                    <div class="submitbutton clear"><input type="submit" value="subscribe" name="subscribe" id="mc-embedded-subscribe" class="rounded-pill btn btn-primary"></div>
+                                </div>
                             </div>
-
-                            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_3b548efea3d3b4632e73d89fd_69946914f5" tabindex="-1" value=""></div>
-                            <div class="submitbutton clear"><input type="submit" value="subscribe" name="subscribe" id="mc-embedded-subscribe" class="rounded-pill btn btn-secondary"></div>
-
+                            
                             <div id="mce-responses" class="clear">
                                 <div class="response" id="mce-error-response" style="display:none"></div>
                                 <div class="response" id="mce-success-response" style="display:none"></div>

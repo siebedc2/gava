@@ -20,12 +20,16 @@ class HomeController extends Controller
      */
 
     function __construct(Request $request) {
-        $this->middleware('auth');
+        //$this->middleware('auth');
         $this->_request = $request;
     }
 
     public function landing() {
-        return view('general.index');
+        return view('general.landing.index');
+    }
+
+    public function premium() {
+        return view('general.landing.premium');
     }
 
     public function subscriptions(SubscriptionService $subscription, CourseService $course) {

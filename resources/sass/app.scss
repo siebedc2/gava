@@ -13,3 +13,7 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+html {
+    scroll-behavior: smooth;
+}

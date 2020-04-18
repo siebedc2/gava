@@ -17,6 +17,11 @@ Route::get('/', [
     'uses' => 'HomeController@landing'
 ]);
 
+Route::get('/premium', [
+    'as'   => 'premium',
+    'uses' => 'HomeController@premium'
+]);
+
 Route::get('/home', [
     'as'   => 'home',
     'uses' => 'CourseController@index'

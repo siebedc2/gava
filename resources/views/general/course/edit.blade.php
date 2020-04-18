@@ -37,6 +37,9 @@
                             <label for="tumbnail">change custom thumbnail</label>
                             <input name="tumbnail" type="file" class="border-0 bg-light rounded-pill form-control" id="tumbnail">
                         </div>
+                        <div class="tumbnail-preview">
+                            <img src="{{asset('images/uploads/' . $course->tumbnail)}}" alt="Tumbnail preview">
+                        </div>
                     </div>
                     <div class="col-12 col-md-5 offset-md-1">
                         <a href="/course/{{ $courseId }}/video/add">Video toevoegen</a>

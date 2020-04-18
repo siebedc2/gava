@@ -53,6 +53,7 @@
     <link rel="canonical" href="https://gava-learning.be/">
 </head>
 <body class="gava min-vh-100">
+
     @yield('content')
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
