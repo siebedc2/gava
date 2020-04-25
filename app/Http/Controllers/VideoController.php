@@ -39,12 +39,12 @@ class VideoController extends Controller
         else {
             if(empty($courseId)) {
                 $video->addToSession($this->_request->all());
-                return redirect('/course/add')->with('status', 'Video toegevoegd!');
+                return redirect('/course/add')->with('status', 'Added video!');
             }
 
             else {
                 $video->singleCreate($this->_request->all(), $courseId);
-                return redirect('/course/edit/' . $courseId)->with('status', 'Video toegevoegd!');
+                return redirect('/course/edit/' . $courseId)->with('status', 'Added video!');
             } 
         }   
     }

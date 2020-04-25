@@ -4,8 +4,13 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+// Landingpagina
+require('./gava/tech-popup');
+
+// Platform
 require('./gava/dashboard-tab');
 require('./gava/subscriptions-tab');
-require('./gava/tech-popup');
+require('./gava/delete-course-popup');
+require('./gava/cancel-subscription-popup');
 
 require('./bootstrap');

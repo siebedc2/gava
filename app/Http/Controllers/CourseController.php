@@ -67,12 +67,12 @@ class CourseController extends Controller
         
         else {
             $course->edit($this->_request->all(), $courseId);
-            return redirect('/dashboard')->with('status', 'Course gewijzigd!');
+            return redirect('/dashboard')->with('status', 'Edited course!');
         }
     }
 
     public function handleDelete(CourseService $course, $courseId) {
         $course->delete($courseId);
-        return redirect('/dashboard')->with('status', 'Course verwijderd!');
+        return redirect('/dashboard')->with('status', 'Deleted course!');
     }
 }

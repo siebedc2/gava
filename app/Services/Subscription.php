@@ -14,7 +14,10 @@ class Subscription {
     }
 
     public function getSubscriptions($userId) {
-        return SubscriptionModel::where('user_id',$userId)->get();
+        return SubscriptionModel::where([
+            [ 'user_id', $userId ],
+            [ 'status', 'online']
+        ] )->get();
     }
 
     public function getAllUserSubscribers($userId) {
@@ -38,6 +41,17 @@ class Subscription {
         $subscription->creator_id = $creatorId;
         $subscription->user_id = Auth::id();
         $subscription->save();
+    }
+
+    public function cancel($creatorId) {
+        SubscriptionModel::where([
+            [ 'user_id', Auth::id() ],
+            [ 'creator_id', $creatorId]
+        ])->update(
+            [
+                'status' => 'offline'
+            ]
+        );
     }
 
 }

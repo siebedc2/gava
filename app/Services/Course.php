@@ -9,8 +9,9 @@ use Auth;
 class Course {
     public function validator(array $data) {
         return Validator::make($data, [
-            'title' => 'required',
-            'description' => 'required'
+            'title'         => 'required',
+            'description'   => 'required',
+            'tumbnail'      => 'mimes:jpeg,png,jpg'
         ]);
     }
 
@@ -44,17 +45,18 @@ class Course {
     }
 
     public function edit($request, $courseId) {
-        $tumbnail = $request['tumbnail'];
-        $tumbnailName = $tumbnail->getClientOriginalName();
-        $tumbnail->move('images/uploads', $tumbnailName);
-        
-        CourseModel::where('id', $courseId)
-                    ->update(
-                        [
-                        'title' => $request['title'], 
-                        'description' => $request['description'],
-                        'tumbnail' => $tumbnailName
-                        ]);
+        $course = CourseModel::find($courseId);
+        $course->title          = $request['title'];
+        $course->description    = $request['description'];
+
+        if(!empty($request['tumbnail'])) {
+            $tumbnail       = $request['tumbnail'];
+            $tumbnailName   = $tumbnail->getClientOriginalName();
+            $tumbnail->move('images/uploads', $tumbnailName);
+            $course->tumbnail       = $tumbnailName;
+        }
+
+        $course->save();
     }
 
     public function delete($courseId) {

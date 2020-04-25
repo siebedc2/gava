@@ -20,6 +20,16 @@
 <div id="coursesContainer" class="container">
     <div class="row">
         <div class="col-12">
+            @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+            @endif
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
             <div class="row">
                 @foreach($courses as $course)
                 @if(in_array($course->user_id, $subscribersIds))
@@ -36,12 +46,16 @@
                             </div>
                             <div class="row">
                                 <div class="col-12">
-                                    <p class="course-username mb-1">{{ $course->user->name }}</p>
+                                    <p class="mb-1"><span class="course-username">{{ $course->user->name }}</span><span class="course-date-dot text-black-50">{{ date_format($course->created_at, "F d Y")  }}</span></p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12">
-                                    <p class="course-video-amount text-black-50">{{ count($videoService->getAllCourseVideos($course->id)) }} video's</p>
+                                    @if(count($videoService->getAllCourseVideos($course->id)) == 1)
+                                        <p class="course-video-amount text-black-50">{{ count($videoService->getAllCourseVideos($course->id)) }} video</p>
+                                     @else
+                                        <p class="course-video-amount text-black-50">{{ count($videoService->getAllCourseVideos($course->id)) }} video's</p>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -55,18 +69,23 @@
 </div>
 
 <div id="creatorsContainer" class="d-none container">
+    @include('components.cancel-subscription-popup')
     <div class="row">
         @foreach($creators as $creator)
         <div class="col-12 col-md-6">
             <div class="row d-flex align-items-center">
                 <div class="col-2">
-                    <img class="w-100 rounded-circle" src="images/uploads/{{$creator->creator->profile_picture}}" alt="">
+                    <div style="background-image: url(images/uploads/{{$creator->creator->profile_picture}});" class="subscriber-image rounded-circle"></div>
                 </div>
                 <div class="col-5">
-                    <p>{{ $creator->creator->name }}</p>
+                    <p class="mb-0">{{ $creator->creator->name }}</p>
                 </div>
                 <div class="col-5">
-                    <span class="btn btn-primary rounded-pill">cancel subsription</span>
+                    <!--<span class="cancel-subscription btn btn-primary rounded-pill">cancel subsription</span>-->
+                    <form action="/subscribe/cancel/{{$creator->creator->id}}" method="post">
+                        {{csrf_field()}}
+                        <button class="cancel-subscription rounded-pill px-3 btn btn-primary" type="submit">cancel subsription</button>
+                    </form>
                 </div>
             </div>
             

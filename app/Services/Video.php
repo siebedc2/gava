@@ -10,7 +10,7 @@ class Video {
         return Validator::make($data, [
             'title'         => 'required',
             'description'   => 'required',
-            'video'         => 'nullable'
+            'video'         => 'nullable|mimes:mp4'
         ]);
     }
 
@@ -31,24 +31,23 @@ class Video {
 
     public function create($courseId) {
         $videos = session('videos');
-        foreach($videos as $video) {
 
-            if(empty($video['exclusive'])) {
-                $video['exclusive'] = 'n';
+        if(!empty($videos)) {
+            foreach($videos as $video) {
+
+                if(empty($video['exclusive'])) {
+                    $video['exclusive'] = 'n';
+                }
+
+                $newVideo = new VideoModel();
+                $newVideo->title        = $video['title'];
+                $newVideo->description  = $video['description'];
+                $newVideo->video        = $video['video'];
+                $newVideo->course_id    = $courseId;
+                $newVideo->tumbnail     = $video['tumbnail'];
+                $newVideo->exclusive    = $video['exclusive'];
+                $newVideo->save();
             }
-
-            /*$tumbnail = 
-            $tumbnailName = $tumbnail->getClientOriginalName();
-            $tumbnail->move('images/uploads', $tumbnailName);*/
-
-            $newVideo = new VideoModel();
-            $newVideo->title        = $video['title'];
-            $newVideo->description  = $video['description'];
-            $newVideo->video        = $video['video'];
-            $newVideo->course_id    = $courseId;
-            $newVideo->tumbnail     = $video['tumbnail'];
-            $newVideo->exclusive    = $video['exclusive'];
-            $newVideo->save();
         }
         session()->forget('videos');
     }

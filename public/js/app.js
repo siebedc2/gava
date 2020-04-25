@@ -37057,11 +37057,17 @@ module.exports = function(module) {
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+// Landingpagina
+__webpack_require__(/*! ./gava/tech-popup */ "./resources/js/gava/tech-popup.js"); // Platform
+
+
 __webpack_require__(/*! ./gava/dashboard-tab */ "./resources/js/gava/dashboard-tab.js");
 
 __webpack_require__(/*! ./gava/subscriptions-tab */ "./resources/js/gava/subscriptions-tab.js");
 
-__webpack_require__(/*! ./gava/tech-popup */ "./resources/js/gava/tech-popup.js");
+__webpack_require__(/*! ./gava/delete-course-popup */ "./resources/js/gava/delete-course-popup.js");
+
+__webpack_require__(/*! ./gava/cancel-subscription-popup */ "./resources/js/gava/cancel-subscription-popup.js");
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
@@ -37112,6 +37118,26 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/gava/cancel-subscription-popup.js":
+/*!********************************************************!*\
+  !*** ./resources/js/gava/cancel-subscription-popup.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$('.cancel-subscription').click(function (e) {
+  e.preventDefault();
+  var form = $(this.parentElement);
+  $('#confirm').modal({
+    backdrop: 'static',
+    keyboard: false
+  }).on('click', '#delete-btn', function () {
+    form.submit();
+  });
+});
+
+/***/ }),
+
 /***/ "./resources/js/gava/dashboard-tab.js":
 /*!********************************************!*\
   !*** ./resources/js/gava/dashboard-tab.js ***!
@@ -37140,6 +37166,26 @@ $('#my-courses').click(function () {
   $('#myStatisticsContainer').addClass('d-none');
   $('#myStatisticsContainer').removeClass('d-block');
   $('#add-course').removeClass('d-none');
+});
+
+/***/ }),
+
+/***/ "./resources/js/gava/delete-course-popup.js":
+/*!**************************************************!*\
+  !*** ./resources/js/gava/delete-course-popup.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$('.delete-btn').click(function (e) {
+  e.preventDefault();
+  var form = $(this.parentElement);
+  $('#confirm').modal({
+    backdrop: 'static',
+    keyboard: false
+  }).on('click', '#delete-btn', function () {
+    form.submit();
+  });
 });
 
 /***/ }),

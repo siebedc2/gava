@@ -53,12 +53,16 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-12">
-                                                <p class="course-username mb-1">{{ $course->user->name }}</p>
+                                                <p class="mb-1"><span class="course-username">{{ $course->user->name }}</span><span class="course-date-dot text-black-50">{{ date_format($course->created_at, "F d Y")  }}</span></p>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-12">
-                                                <p class="course-video-amount text-black-50">{{ count($videoService->getAllCourseVideos($course->id)) }} video's</p>
+                                                @if(count($videoService->getAllCourseVideos($course->id)) == 1)
+                                                    <p class="course-video-amount text-black-50">{{ count($videoService->getAllCourseVideos($course->id)) }} video</p>
+                                                @else
+                                                    <p class="course-video-amount text-black-50">{{ count($videoService->getAllCourseVideos($course->id)) }} video's</p>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -68,7 +72,7 @@
                     @endauth
 
                     @guest
-                        <a href="/course/{{ $course->id }}" class="col-12 col-md-6 rounded bg-white my-2">
+                        <a href="/course/{{ $course->id }}" class="col-12 col-md-6 text-decoration-none rounded bg-white my-2">
                             <div class="row">
                                 <div class="col-4">
                                     <img class="w-100 rounded" src="/images/uploads/{{$course->tumbnail}}" alt="Tumbnail">
@@ -81,12 +85,16 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
-                                            <p class="course-username mb-1">{{ $course->user->name }}</p>
+                                            <p class="mb-1"><span class="course-username">{{ $course->user->name }}</span><span class="course-date-dot text-black-50">{{ date_format($course->created_at, "F d Y")  }}</span></p>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
-                                            <p class="course-video-amount text-black-50">{{ count($videoService->getAllCourseVideos($course->id)) }} video's</p>
+                                            @if(count($videoService->getAllCourseVideos($course->id)) == 1)
+                                                <p class="course-video-amount text-black-50">{{ count($videoService->getAllCourseVideos($course->id)) }} video</p>
+                                            @else
+                                                <p class="course-video-amount text-black-50">{{ count($videoService->getAllCourseVideos($course->id)) }} video's</p>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

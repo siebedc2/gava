@@ -102,12 +102,12 @@ Route::post('/course/{course_id}/video/delete/{id}', [
 Route::get('/subscriptions', [
     'as'   => 'subscriptions',
     'uses' => 'HomeController@subscriptions'
-]);
+])->middleware('auth');
 
 Route::get('/dashboard', [
     'as'   => 'dashboard',
     'uses' => 'HomeController@dashboard'
-]);
+])->middleware('auth');
 
 Route::get('/subscribe/{id}', [
     'as'   => 'subscribe',
@@ -117,6 +117,11 @@ Route::get('/subscribe/{id}', [
 Route::post('/subscribe/{id}', [
     'as'   => 'subscribe',
     'uses' => 'HomeController@handleSubscription'
+]);
+
+Route::post('/subscribe/cancel/{id}', [
+    'as'   => 'subscribe',
+    'uses' => 'HomeController@handleCancelSubscription'
 ]);
 
 // Profile

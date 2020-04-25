@@ -64,7 +64,11 @@
 
                 </div>
             </div>
-
+            <div class="row">
+                <div class="col-12">
+                    <p class="mb-1"><span class="course-date text-black-50">{{ date_format($course->created_at, "F d Y")  }}</span></p>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-12">
                     <p>{{ $course->description }}</p>
@@ -94,7 +98,7 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <p class="course-username">{{ $course->user->name }}</p>
+                                <p class="mb-1"><span class="course-username">{{ $course->user->name }}</span><span class="video-date-dot text-black-50">{{ date_format($course->created_at, "F d Y")  }}</span></p>
                             </div>
                         </div>
                         <div class="row">

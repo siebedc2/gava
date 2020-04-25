@@ -3,7 +3,7 @@
 return [
     'login'             => 'Gava - Login',
     'register'          => 'Gava - Register',
-    'home'              => 'Gava',
+    'home'              => 'Gava - Courses',
     'profile'           => 'Gava - Profile',
     'editProfile'       => 'Gava - Edit profile',
     'subscriptions'     => 'Gava - Subscriptions',

@@ -51,7 +51,7 @@ class UserController extends Controller
         }  
         
         else {
-            $errors = "Oops! Your passwords do not match.";
+            $errors = "Oops! Your password do not match.";
             return redirect('/profile/edit/change-password')->withInput($this->_request->input())->with('errors', $errors);
         }
     }

@@ -26,7 +26,7 @@
     &.btn-secondary {
         background-color: $color-primary;
         border: $color-primary;
-        height: 38px;
+        //height: 38px;
 
         &:focus {
             background-color: $color-primary !important;
@@ -50,6 +50,26 @@
         background-color: transparent;
         border: 1px solid $btn-primary-color !important;
         color: $btn-primary-color !important;
+    }
+
+    &.btn-default {
+        color: #fff;
+        background-color: #6c757d;
+
+        &:focus {
+            background-color: #545b62 !important;
+        }
+
+        &:active {
+            background-color: #545b62 !important;
+        }
+
+        &:hover {
+            color: #fff !important;
+            background-color: #545b62;
+        }
+
+
     }
 }
 

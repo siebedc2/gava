@@ -38,7 +38,7 @@
                     @if(Auth::id() != $course->user_id)
                     <div class="col-6 d-flex justify-content-end align-items-center">
                         <span class="mr-5"><img src="/images/report.png" alt="Report"></span>
-                        <a href="/subscribe/{{ $user->id }}" class="rounded-pill px-5 btn btn-secondary">subscribe</a>
+                        <a href="/subscribe/{{ $course->user_id }}" class="rounded-pill px-5 btn btn-secondary">subscribe</a>
                     </div>  
                     @endif
                 @endif
@@ -64,6 +64,11 @@
                 <div class="row mt-3">
                     <div class="col-12">
                         <h3>{{ $video->title }}</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <p class="mb-1"><span class="video-date text-black-50">{{ date_format($video->created_at, "F d Y")  }}</span></p>
                     </div>
                 </div>
                 <div class="row">

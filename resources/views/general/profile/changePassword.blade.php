@@ -39,10 +39,8 @@
 
                     @if(session('errors'))
                         <div class="col-12">
-                            <div class="alert alert-danger text-center">
-                                <ul>
-                                    <li>{{session('errors')}}</li>
-                                </ul>
+                            <div class="alert text-center">
+                                <p class="text-danger">{{session('errors')}}</p>
                             </div>
                         </div>
                     @endif

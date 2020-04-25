@@ -22,6 +22,15 @@
     font-size: 12px;
 }
 
+.course-date, .video-date, .course-date-dot, .video-date-dot {
+    font-size: 12px;
+}
+
+.course-date-dot::before, .video-date-dot::before {
+    content: "•";
+    margin: 0 4px;
+}
+
 .course-video-amount {
     font-size: 12px;
 }

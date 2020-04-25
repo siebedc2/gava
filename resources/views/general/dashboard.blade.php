@@ -21,6 +21,8 @@
 </div>   
 
 <div class="container" id="myCoursesContainer">
+    @include('components.delete-course-popup')
+
     <div class="row">
         <div class="col-12">
             @if (session('status'))
@@ -35,7 +37,7 @@
             @foreach($courses as $course)
                 <div class="row my-3 d-flex align-items-center">
                     <div class="col-2">
-                        <img class="rounded col-12" src="/images/uploads/{{ $course->tumbnail }}" alt="Course tumbnail">
+                        <img class="w-100 rounded" src="/images/uploads/{{ $course->tumbnail }}" alt="Course tumbnail">
                     </div>
                     <div class="col-6">
                         <div class="row">
@@ -49,18 +51,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-4">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <a class="rounded-pill px-5 btn btn-primary" href="/course/edit/{{ $course->id }}">edit</a> 
-                            </div>
-                            <div class="col-md-6">
-                                <form action="/course/delete/{{ $course->id }}" method="post">
-                                    {{csrf_field()}}
-                                    <button class="rounded-pill px-5 btn btn-primary" type="submit">delete</button>
-                                </form>
-                            </div>
-                        </div>
+                    <div class="col-4 d-flex justify-content-end">
+                        <a class="rounded-pill px-3 mr-5 btn btn-primary" href="/course/edit/{{ $course->id }}"><i class="text-white mr-2 fa fa-pencil" aria-hidden="true"></i>edit</a> 
+                        <form action="/course/delete/{{ $course->id }}" method="post">
+                            {{csrf_field()}}
+                            <button class="delete-btn rounded-pill px-3 btn btn-primary" type="submit"><i class="text-white mr-2 fa fa-trash" aria-hidden="true"></i>delete</button>
+                        </form>
                     </div>
                 </div>
             @endforeach

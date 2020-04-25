@@ -29,7 +29,6 @@
 .btn.btn-secondary {
   background-color: #3AD7F0;
   border: #3AD7F0;
-  height: 38px;
 }
 
 .btn.btn-secondary:focus {
@@ -53,6 +52,24 @@
   background-color: transparent;
   border: 1px solid #291875 !important;
   color: #291875 !important;
+}
+
+.btn.btn-default {
+  color: #fff;
+  background-color: #6c757d;
+}
+
+.btn.btn-default:focus {
+  background-color: #545b62 !important;
+}
+
+.btn.btn-default:active {
+  background-color: #545b62 !important;
+}
+
+.btn.btn-default:hover {
+  color: #fff !important;
+  background-color: #545b62;
 }
 
 .add-btn {
@@ -128,6 +145,14 @@
   max-width: 70px;
 }
 
+.subscriber-image {
+  width: 60px;
+  height: 60px;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .link {
   padding: 10px 15px;
 }
@@ -146,6 +171,10 @@
 
 .auth-link:hover {
   color: #291875;
+}
+
+span {
+  cursor: pointer;
 }
 
 * {
@@ -176,6 +205,19 @@
   font-size: 12px;
 }
 
+.course-date,
+.video-date,
+.course-date-dot,
+.video-date-dot {
+  font-size: 12px;
+}
+
+.course-date-dot::before,
+.video-date-dot::before {
+  content: "\2022";
+  margin: 0 4px;
+}
+
 .course-video-amount {
   font-size: 12px;
 }
@@ -190,6 +232,10 @@
 
 #mc_embed_signup .mc-field-group {
   min-height: 0px !important;
+}
+
+.modal-content {
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.16);
 }
 
 /*!
