@@ -24,23 +24,53 @@
                 <div class="row d-flex justify-content-center">
                     <div class="col-12 col-md-4 mt-4">
                         <div class="form-group">
-                            <label class="d-none" for="currentPassword">Name</label>
-                            <input name="currentPassword" type="password" class="w-100 rounded-pill border-0 bg-light form-control" id="currentPassword" placeholder="current password" required>
+                            <input name="currentPassword" type="password" class="
+                                @if(session('errors'))
+                                    @if(session('errors.type') == '1')
+                                        border border-danger
+                                    @else
+                                        border-0
+                                    @endif
+                                @else
+                                    border-0
+                                @endif
+                            
+                             w-100 rounded-pill bg-light form-control" id="currentPassword" placeholder="current password" required>
                         </div>
                         <div class="form-group">
-                            <label class="d-none" for="newPassword">Email address</label>
-                            <input name="newPassword" type="password" class="w-100 rounded-pill border-0 bg-light form-control" id="newPassword" placeholder="new password" required>
+                            <input name="newPassword" type="password" class="
+                                @if(session('errors'))
+                                    @if(session('errors.type') == '2')
+                                        border border-danger
+                                    @else
+                                        border-0
+                                    @endif
+                                @else
+                                    border-0
+                                @endif
+
+                            w-100 rounded-pill bg-light form-control" id="newPassword" placeholder="new password" required>
                         </div>
                         <div class="form-group">
-                            <label class="d-none" for="repeatNewPassword">Email address</label>
-                            <input name="repeatNewPassword" type="password" class="w-100 rounded-pill border-0 bg-light form-control" id="repeatNewPassword" placeholder="repeat new password" required>
+                            <input name="repeatNewPassword" type="password" class=" 
+                                @if(session('errors'))
+                                    @if(session('errors.type') == '2')
+                                        border border-danger
+                                    @else
+                                        border-0
+                                    @endif
+                                @else
+                                    border-0
+                                @endif
+                            
+                            w-100 rounded-pill bg-light form-control" id="repeatNewPassword" placeholder="repeat new password" required>
                         </div>
                     </div>
 
                     @if(session('errors'))
                         <div class="col-12">
                             <div class="alert text-center">
-                                <p class="text-danger">{{session('errors')}}</p>
+                                <p class="text-danger">{{session('errors.message')}}</p>
                             </div>
                         </div>
                     @endif

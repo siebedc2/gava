@@ -35,7 +35,10 @@ class Subscription {
     }
 
     public function getSubscriberId($userId) {
-        return SubscriptionModel::where('user_id', $userId)->pluck('creator_id')->toArray();
+        return SubscriptionModel::where([
+            ['user_id', $userId],
+            ['status', 'online']
+            ])->pluck('creator_id')->toArray();
     }
 
     public function getSubscriptionById($creatorId) {

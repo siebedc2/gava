@@ -123,20 +123,27 @@ Route::prefix('/dashboard')->middleware('auth')->group(function() {
     ]);
 });
 
-Route::get('/subscribe/{id}', [
-    'as'   => 'subscribe',
-    'uses' => 'HomeController@subscribe'
-]);
-
-Route::post('/subscribe/{id}', [
-    'as'   => 'subscribe',
-    'uses' => 'HomeController@handleSubscription'
-]);
-
-Route::post('/subscribe/cancel/{id}', [
-    'as'   => 'subscribe',
-    'uses' => 'HomeController@handleCancelSubscription'
-]);
+Route::prefix('/subscribe')->middleware('auth')->group(function() {
+    Route::get('/confirmation', [
+        'as'   => 'subscribeConfirmation',
+        'uses' => 'HomeController@subscriptionConfirmation'
+    ]);
+    
+    Route::get('/{id}', [
+        'as'   => 'subscribe',
+        'uses' => 'HomeController@subscribe'
+    ]);
+    
+    Route::post('/{id}', [
+        'as'   => 'subscribe',
+        'uses' => 'HomeController@handleSubscription'
+    ]);
+    
+    Route::post('/cancel/{id}', [
+        'as'   => 'subscribe',
+        'uses' => 'HomeController@handleCancelSubscription'
+    ]);
+});
 
 // Profile
 Route::prefix('/profile')->middleware('auth')->group(function() {

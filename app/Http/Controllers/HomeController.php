@@ -82,7 +82,12 @@ class HomeController extends Controller
 
     public function handleSubscription(SubscriptionService $subscription, $creatorId) {
         $subscription->create($this->_request->input(), $creatorId);
-        return redirect('/subscriptions')->with('status', 'Subscribed!');
+        return redirect('/subscribe/confirmation');
+        //->with('status', 'Subscribed!')
+    }
+
+    public function subscriptionConfirmation() {
+        return view('general.subscribe.confirmation');
     }
 
     public function handleCancelSubscription(SubscriptionService $subscription, $creatorId) {
