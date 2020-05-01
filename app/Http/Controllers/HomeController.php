@@ -49,12 +49,30 @@ class HomeController extends Controller
         return view('general.dashboard', $data);
     }
 
+    public function getCourse(CourseService $course) {
+        $course = $course->getById($this->_request->input('courseId'));
+        
+        return response()->json([
+            'message'   => 'success',
+            'course'    => $course
+        ]);
+    }
+
     public function profile(CourseService $course, SubscriptionService $subscription) {
         $userId = Auth::user()->id;
         $data['courses'] = $course->getAllUserCourses($userId);
         $data['subscribersAmount'] = $subscription->getAmountOfSubscribers($userId);
         $data['subscriptions'] = $subscription->getAllUserSubscribers($userId);
         return view('general.profile.index', $data);
+    }
+
+    public function getCreator(UserService $user) {
+        $creator = $user->getCreator($this->_request->input('creatorId'));
+        
+        return response()->json([
+            'message'   => 'success',
+            'creator'    => $creator
+        ]);
     }
 
     public function subscribe(UserService $user, $userId) {

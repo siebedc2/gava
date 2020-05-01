@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-6">
                     <a href="/home">
-                        <img class="mt-1" src="/images/logo.png" alt="Logo Gava">
+                        <img class="logo-gava mt-1" src="/images/logo.svg" alt="Logo Gava">
                     </a>
                 </div>
 

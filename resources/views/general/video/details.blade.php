@@ -15,7 +15,7 @@
                     <a class="text-decoration-none" href="/profile/{{ $video->course->user->id }}">
                         <div class="row d-flex align-items-center">
                             <div class="col-2">
-                                <img class="w-100 rounded-circle" src="/images/uploads/{{$video->course->user->profile_picture}}" alt="">
+                                <div style="background-image: url(/images/uploads/{{$video->course->user->profile_picture}});" class="subscriber-image rounded-circle"></div>
                             </div>
                             <div class="col-10">
                                 <div class="row">

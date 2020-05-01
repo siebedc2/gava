@@ -99,15 +99,29 @@ Route::post('/course/{course_id}/video/delete/{id}', [
     'uses' => 'VideoController@handleDelete'
 ]);
 
-Route::get('/subscriptions', [
-    'as'   => 'subscriptions',
-    'uses' => 'HomeController@subscriptions'
-])->middleware('auth');
+Route::prefix('/subscriptions')->middleware('auth')->group(function() {
+    Route::get('/', [
+        'as'   => 'subscriptions',
+        'uses' => 'HomeController@subscriptions'
+    ]);
+    
+    Route::post('/getCreator', [
+        'as'   => 'subscriptions',
+        'uses' => 'HomeController@getCreator'
+    ]);
+});
 
-Route::get('/dashboard', [
-    'as'   => 'dashboard',
-    'uses' => 'HomeController@dashboard'
-])->middleware('auth');
+Route::prefix('/dashboard')->middleware('auth')->group(function() {
+    Route::get('/', [
+        'as'   => 'dashboard',
+        'uses' => 'HomeController@dashboard'
+    ]);
+
+    Route::post('/getCourse', [
+        'as'   => 'dashboard',
+        'uses' => 'HomeController@getCourse'
+    ]);
+});
 
 Route::get('/subscribe/{id}', [
     'as'   => 'subscribe',

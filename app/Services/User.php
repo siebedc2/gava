@@ -18,6 +18,10 @@ class User {
         return UserModel::find($userId);
     }
 
+    public function getCreator($creatorId) {
+        return UserModel::find($creatorId);
+    }
+
     public function edit($request, $userId) {
         UserModel::where('id', $userId)
                     ->update(

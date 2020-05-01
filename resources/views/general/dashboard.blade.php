@@ -55,6 +55,7 @@
                         <a class="rounded-pill px-3 mr-5 btn btn-primary" href="/course/edit/{{ $course->id }}"><i class="text-white mr-2 fa fa-pencil" aria-hidden="true"></i>edit</a> 
                         <form action="/course/delete/{{ $course->id }}" method="post">
                             {{csrf_field()}}
+                            <input type="hidden" id="courseId" name="courseId" value="{{$course->id}}">
                             <button class="delete-btn rounded-pill px-3 btn btn-primary" type="submit"><i class="text-white mr-2 fa fa-trash" aria-hidden="true"></i>delete</button>
                         </form>
                     </div>
@@ -156,13 +157,13 @@
             <div class="row">
                 @foreach($subscriptions as $subscription)
                 <div class="col-12 col-md-6">
-                    <a href="/profile/{{ $subscription->user_id }}">
+                    <a class="text-decoration-none" href="/profile/{{ $subscription->user_id }}">
                         <div class="row d-flex align-items-center">
                             <div class="col-2">
-                                <img class="w-100 rounded-circle" src="/images/uploads/{{$subscription->user['profile_picture']}}" alt="Profile picture">
+                                <div style="background-image: url(/images/uploads/{{$subscription->user['profile_picture']}});" class="subscriber-image rounded-circle"></div>
                             </div>
                             <div class="col-10">
-                                <p>{{ $subscription->user['name'] }}</p>
+                                <p class="mb-0">{{ $subscription->user['name'] }}</p>
                             </div>
                         </div>
                     </a>

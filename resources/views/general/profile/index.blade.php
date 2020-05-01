@@ -34,9 +34,9 @@
                     <div class="row d-flex align-items-center">
                         <div class="col-3">
                             @if(!empty($user))
-                            <img class="w-100 rounded-circle" src="/images/uploads/{{$user->profile_picture}}" alt="Profile picture">
+                            <div style="background-image: url(/images/uploads/{{$user->profile_picture}});" class="profile-image rounded-circle"></div>
                             @else
-                            <img class="w-100 rounded-circle" src="/images/uploads/{{Auth::user()->profile_picture}}" alt="Profile picture">
+                            <div style="background-image: url(/images/uploads/{{Auth::user()->profile_picture}});" class="profile-image rounded-circle"></div>
                             @endif
                         </div>
                         <div class="col-9">
@@ -119,7 +119,7 @@
                 <a href="/profile/{{ $subscription->user_id }}" class="text-decoration-none">
                     <div class="row my-3 d-flex align-items-center">
                         <div class="col-3">
-                            <img class="w-100 rounded-circle" src="/images/uploads/{{$subscription->user->profile_picture}}" alt="Profile picture">
+                            <div style="background-image: url(/images/uploads/{{$subscription->user->profile_picture}});" class="subscriber-image rounded-circle"></div>
                         </div>
                         <div class="col-8">
                             <p class="mb-0">{{ $subscription->user['name'] }}</p>

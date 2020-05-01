@@ -37128,11 +37128,30 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 $('.cancel-subscription').click(function (e) {
   e.preventDefault();
   var form = $(this.parentElement);
-  $('#confirm').modal({
-    backdrop: 'static',
-    keyboard: false
-  }).on('click', '#delete-btn', function () {
-    form.submit();
+  var creatorId = $(this).prev().attr('value');
+  console.log(creatorId);
+  $.ajax({
+    method: "POST",
+    url: '/subscriptions/getCreator',
+    data: {
+      creatorId: creatorId
+    },
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  }).done(function (response) {
+    console.log(response.creator);
+
+    if (response.message == "success") {
+      $('.popup-subscriber-name').html(response.creator.name);
+      $('.popup-subscriber-picture').css('background-image', 'url(/images/uploads/' + response.creator.profile_picture + ')');
+      $('#confirm').modal({
+        backdrop: 'static',
+        keyboard: false
+      }).on('click', '#delete-btn', function () {
+        form.submit();
+      });
+    }
   });
 });
 
@@ -37180,11 +37199,30 @@ $('#my-courses').click(function () {
 $('.delete-btn').click(function (e) {
   e.preventDefault();
   var form = $(this.parentElement);
-  $('#confirm').modal({
-    backdrop: 'static',
-    keyboard: false
-  }).on('click', '#delete-btn', function () {
-    form.submit();
+  var courseId = $(this).prev().attr('value');
+  console.log(courseId);
+  $.ajax({
+    method: "POST",
+    url: '/dashboard/getCourse',
+    data: {
+      courseId: courseId
+    },
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  }).done(function (response) {
+    console.log(response.course);
+
+    if (response.message == "success") {
+      $('.popup-course-title').html(response.course.title);
+      $('.popup-course-picture').css('background-image', 'url(/images/uploads/' + response.course.tumbnail + ')');
+      $('#confirm').modal({
+        backdrop: 'static',
+        keyboard: false
+      }).on('click', '#delete-btn', function () {
+        form.submit();
+      });
+    }
   });
 });
 

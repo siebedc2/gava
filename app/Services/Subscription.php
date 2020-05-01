@@ -21,11 +21,17 @@ class Subscription {
     }
 
     public function getAllUserSubscribers($userId) {
-        return SubscriptionModel::where('creator_id', $userId)->get();
+        return SubscriptionModel::where([
+            ['creator_id', $userId], 
+            ['status', 'online']
+        ])->get();
     }
 
     public function getAmountOfSubscribers($userId) {
-        return SubscriptionModel::where('creator_id', $userId)->get()->count();
+        return SubscriptionModel::where([
+            ['creator_id', $userId], 
+            ['status', 'online']
+        ])->get()->count();
     }
 
     public function getSubscriberId($userId) {

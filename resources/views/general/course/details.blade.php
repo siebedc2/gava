@@ -15,10 +15,12 @@
                     <a class="text-decoration-none" href="/profile/{{ $user->id }}">
                         <div class="row d-flex align-items-center">
                             <div class="col-2">
+                                
+
                                 @if(!empty($user))
-                                <img class="w-100 rounded-circle" src="/images/uploads/{{$user->profile_picture}}" alt="Profile picture">
+                                <div style="background-image: url(/images/uploads/{{$user->profile_picture}});" class="subscriber-image rounded-circle"></div>
                                 @else
-                                <img class="w-100 rounded-circle" src="/images/uploads/{{Auth::user()->profile_picture}}" alt="Profile picture">
+                                <div style="background-image: url(/images/uploads/{{Auth::user()->profile_picture}});" class="subscriber-image rounded-circle"></div>
                                 @endif
                             </div>
                             <div class="col-10">

@@ -22,7 +22,7 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <a class="rounded-pill btn btn-primary" href="">try 1 month for free</a>
+                        <a class="rounded-pill btn btn-primary" href="">get started with Gava</a>
                     </div>
                 </div>
             </div>
