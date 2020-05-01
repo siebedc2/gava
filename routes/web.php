@@ -79,6 +79,11 @@ Route::post('/course/video/add', [
     'uses' => 'VideoController@handleAdd'
 ]);
 
+Route::post('/course/video/report', [
+    'as'   => 'addVideo',
+    'uses' => 'VideoController@handleReportVideo'
+]);
+
 Route::get('/course/{course_id}/video/{video_id}', [
     'as'   => 'detailsVideo',
     'uses' => 'VideoController@details'
@@ -195,6 +200,11 @@ Route::prefix('/profile')->middleware('auth')->group(function() {
     Route::get('/{id}', [
         'as'   => 'userProfile',
         'uses' => 'UserController@userProfile'
+    ]);
+
+    Route::post('/user/report', [
+        'as'   => 'reportUser',
+        'uses' => 'UserController@handleReportUser'
     ]);
 });
 

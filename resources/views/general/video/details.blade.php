@@ -37,7 +37,10 @@
                 @if(Auth::user())
                     @if(Auth::id() != $course->user_id)
                     <div class="col-6 d-flex justify-content-end align-items-center">
-                        <span class="mr-5"><img src="/images/report.png" alt="Report"></span>
+                        <span class="report-video mr-5">
+                            <input type="hidden" class="videoId" name="videoId" value="{{$video->id}}">
+                            <img src="/images/report.png" alt="Report">
+                        </span>
                         <a href="/subscribe/{{ $course->user_id }}" class="rounded-pill px-5 btn btn-secondary">subscribe</a>
                     </div>  
                     @endif

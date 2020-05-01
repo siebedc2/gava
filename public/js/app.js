@@ -37069,6 +37069,10 @@ __webpack_require__(/*! ./gava/delete-course-popup */ "./resources/js/gava/delet
 
 __webpack_require__(/*! ./gava/cancel-subscription-popup */ "./resources/js/gava/cancel-subscription-popup.js");
 
+__webpack_require__(/*! ./gava/report-user */ "./resources/js/gava/report-user.js");
+
+__webpack_require__(/*! ./gava/report-video */ "./resources/js/gava/report-video.js");
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 /***/ }),
@@ -37223,6 +37227,62 @@ $('.delete-btn').click(function (e) {
         form.submit();
       });
     }
+  });
+});
+
+/***/ }),
+
+/***/ "./resources/js/gava/report-user.js":
+/*!******************************************!*\
+  !*** ./resources/js/gava/report-user.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$('.report-user').click(function () {
+  var userId = $(this).find('.userId').attr('value');
+  console.log(userId);
+  $.ajax({
+    method: "POST",
+    url: '/profile/user/report',
+    data: {
+      userId: userId
+    },
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  }).done(function (response) {
+    console.log(response);
+
+    if (response.message == "success") {}
+  });
+});
+
+/***/ }),
+
+/***/ "./resources/js/gava/report-video.js":
+/*!*******************************************!*\
+  !*** ./resources/js/gava/report-video.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$('.report-video').click(function () {
+  var videoId = $(this).find('.videoId').attr('value');
+  console.log(videoId);
+  $.ajax({
+    method: "POST",
+    url: '/course/video/report',
+    data: {
+      videoId: videoId
+    },
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  }).done(function (response) {
+    console.log(response);
+
+    if (response.message == "success") {}
   });
 });
 

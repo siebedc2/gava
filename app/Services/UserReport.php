@@ -12,4 +12,12 @@ class UserReport {
             'user_id' => 'required'
         ]);
     }
+
+    public function create($userId) {
+        $userReport = new UserReportModel();
+        $userReport->report     = "1";
+        $userReport->user_id    = $userId;
+        $userReport->save();
+        return $userReport;
+    }
 }

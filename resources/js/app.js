@@ -12,5 +12,7 @@ require('./gava/dashboard-tab');
 require('./gava/subscriptions-tab');
 require('./gava/delete-course-popup');
 require('./gava/cancel-subscription-popup');
+require('./gava/report-user');
+require('./gava/report-video');
 
 require('./bootstrap');

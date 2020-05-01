@@ -14,6 +14,7 @@
 
 @section('content')
 @include('components.menu')
+@include('components.cancel-subscription-popup')
 <div class="container-fluid profile-bg">
     <div class="row">
         <div class="col-11 mt-4 d-flex justify-content-end">
@@ -21,6 +22,11 @@
             <a href="/profile/edit">
                 <img src="/images/settings.png" alt="Settings icon">
             </a>
+            @else
+            <span class="report-user">
+                <input type="hidden" value="{{$user->id}}" class="userId" name="userId">
+                <img class="w-75" src="/images/report_white.png" alt="Report icon">
+            </span>
             @endif
         </div>
     </div>
@@ -64,7 +70,11 @@
                 <div class="col-6 d-flex justify-content-end">
                     @if(!empty($user))
                         @if(in_array($user->id, $subscribersIds))
-                        <a href="/subscribe/{{ $user->id }}" class="rounded-pill px-5 btn btn-secondary">cancel subscription</a>
+                        <form action="/subscribe/cancel/{{$user->id}}" method="post">
+                            {{csrf_field()}}
+                            <input type="hidden" id="creatorId" name="creatorId" value="{{$user->id}}">
+                            <button class="cancel-subscription rounded-pill px-5 btn btn-secondary" type="submit">cancel subscription</button>
+                        </form>
                         @else
                         <a href="/subscribe/{{ $user->id }}" class="rounded-pill px-5 btn btn-secondary">subscribe</a>
                         @endif

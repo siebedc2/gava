@@ -8,6 +8,7 @@ use App\Services\Video as VideoService;
 use App\Services\Comment as CommentService;
 use App\Services\Course as CourseService;
 use App\Services\Subscription as SubscriptionService;
+use App\Services\VideoReport as VideoReportService;
 
 class VideoController extends Controller
 {
@@ -69,5 +70,19 @@ class VideoController extends Controller
     public function handleDelete(VideoService $video, $courseId, $videoId) {
         $video->delete($videoId);
         return redirect('/course/edit/' . $courseId)->with('status', 'Video is verwijderd!');
+    }
+
+    public function handleReportVideo(VideoReportService $videoReport) {
+        if($videoReport->create($this->_request->input('videoId'))) {
+            $msg = "success";
+        }
+
+        else {
+            $msg = "error";
+        }
+
+        return response()->json([
+            'message'   => $msg
+        ]);
     }
 }

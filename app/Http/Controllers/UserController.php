@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 
 use App\Services\User as UserService;
+use App\Services\UserReport as UserReportService;
 use App\Services\Course as CourseService;
 use App\Services\Subscription as SubscriptionService;
 
@@ -58,7 +59,6 @@ class UserController extends Controller
                 "message"   => "Oops! Your password do not match.",
                 "type"      => "1"
             ];
-            //$errors = "Oops! Your password do not match.";
             return redirect('/profile/edit/change-password')->withInput($this->_request->input())->with('errors', $errors);
         }
     }
@@ -80,5 +80,19 @@ class UserController extends Controller
     public function purchaseHistoryDetail(SubscriptionService $subscription, $creatorId) {
         $data['subscription'] = $subscription->getSubscriptionById($creatorId);
         return view('general.profile.purchase.details', $data);
+    }
+
+    public function handleReportUser(UserReportService $userReport) {
+        if($userReport->create($this->_request->input('userId'))) {
+            $msg = "success";
+        }
+
+        else {
+            $msg = "error";
+        }
+
+        return response()->json([
+            'message'   => $msg
+        ]);
     }
 }
