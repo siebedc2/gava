@@ -13,4 +13,8 @@ class Rating {
             'video_id' => 'required'
         ]);
     }
+
+    public function getAll() {
+        return RatingModel::all();
+    }
 }

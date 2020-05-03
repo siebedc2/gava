@@ -24,7 +24,8 @@
                 <div class="row d-flex justify-content-center">
                     <div class="col-12 col-md-4">
                         <div class="form-group d-flex justify-content-center my-4">
-                            <img class="w-25 rounded-circle" src="/images/uploads/{{Auth::user()->profile_picture}}" alt="Profile image">
+                            <label id="profile_picture_label" class="text-center" for="profile_picture"><img class="w-25 rounded-circle" src="/images/uploads/{{Auth::user()->profile_picture}}" alt="Profile image"></label>
+                            <input name="profile_picture" type="file" class="w-100 rounded-pill border-0 bg-light form-control" id="profile_picture" required>
                         </div>
                         <div class="form-group">
                             <label class="d-none" for="name">Name</label>

@@ -33,7 +33,7 @@
                             <textarea name="description" class="border-0 bg-light form-control" id="description"
                                 rows="3">{{ $course->description }}</textarea>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mt-5">
                             <label for="tumbnail">change custom thumbnail</label>
                             <input name="tumbnail" type="file" class="border-0 bg-light rounded-pill form-control" id="tumbnail">
                         </div>

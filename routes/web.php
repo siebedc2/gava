@@ -59,50 +59,62 @@ Route::get('/course/{id}', [
 ]);
 
 // Video
-Route::get('/course/{course_id?}/video/add', [
-    'as'   => 'addVideo',
-    'uses' => 'VideoController@add'
-]);
+Route::prefix('/course')->middleware('auth')->group(function() {
+    Route::get('/{course_id?}/video/add', [
+        'as'   => 'addVideo',
+        'uses' => 'VideoController@add'
+    ]);
+    
+    Route::post('/{course_id?}/video/add', [
+        'as'   => 'addVideo',
+        'uses' => 'VideoController@handleAdd'
+    ]);
+    
+    Route::get('/video/add', [
+        'as'   => 'addVideo',
+        'uses' => 'VideoController@add'
+    ]);
+    
+    Route::post('/video/add', [
+        'as'   => 'addVideo',
+        'uses' => 'VideoController@handleAdd'
+    ]);
+    
+    Route::post('/video/report', [
+        'as'   => 'addVideo',
+        'uses' => 'VideoController@handleReportVideo'
+    ]);
+    
+    Route::get('/{course_id}/video/{video_id}', [
+        'as'   => 'detailsVideo',
+        'uses' => 'VideoController@details'
+    ]);
 
-Route::post('/course/{course_id?}/video/add', [
-    'as'   => 'addVideo',
-    'uses' => 'VideoController@handleAdd'
-]);
+    Route::get('/{course_id}/video/{video_id}/ratings', [
+        'as'   => 'ratingsVideo',
+        'uses' => 'VideoController@ratings'
+    ]);
 
-Route::get('/course/video/add', [
-    'as'   => 'addVideo',
-    'uses' => 'VideoController@add'
-]);
-
-Route::post('/course/video/add', [
-    'as'   => 'addVideo',
-    'uses' => 'VideoController@handleAdd'
-]);
-
-Route::post('/course/video/report', [
-    'as'   => 'addVideo',
-    'uses' => 'VideoController@handleReportVideo'
-]);
-
-Route::get('/course/{course_id}/video/{video_id}', [
-    'as'   => 'detailsVideo',
-    'uses' => 'VideoController@details'
-]);
-
-Route::get('/course/{course_id}/video/edit/{id}', [
-    'as'   => 'editVideo',
-    'uses' => 'VideoController@edit'
-]);
-
-Route::post('/course/{course_id}/video/edit/{id}', [
-    'as'   => 'editVideo',
-    'uses' => 'VideoController@handleEdit'
-]);
-
-Route::post('/course/{course_id}/video/delete/{id}', [
-    'as'   => 'deleteVideo',
-    'uses' => 'VideoController@handleDelete'
-]);
+    Route::get('/{course_id}/video/{video_id}/ratings/add', [
+        'as'   => 'addVideoRating',
+        'uses' => 'VideoController@addRating'
+    ]);
+    
+    Route::get('/{course_id}/video/edit/{id}', [
+        'as'   => 'editVideo',
+        'uses' => 'VideoController@edit'
+    ]);
+    
+    Route::post('/{course_id}/video/edit/{id}', [
+        'as'   => 'editVideo',
+        'uses' => 'VideoController@handleEdit'
+    ]);
+    
+    Route::post('/{course_id}/video/delete/{id}', [
+        'as'   => 'deleteVideo',
+        'uses' => 'VideoController@handleDelete'
+    ]);
+});
 
 Route::prefix('/subscriptions')->middleware('auth')->group(function() {
     Route::get('/', [

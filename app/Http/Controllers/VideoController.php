@@ -9,6 +9,7 @@ use App\Services\Comment as CommentService;
 use App\Services\Course as CourseService;
 use App\Services\Subscription as SubscriptionService;
 use App\Services\VideoReport as VideoReportService;
+use App\Services\Rating as RatingService;
 
 class VideoController extends Controller
 {
@@ -25,6 +26,15 @@ class VideoController extends Controller
         $data['comments'] = $comment->getAll($videoId);
         $data['subscribersAmount'] = $subscription->getAmountOfSubscribers($data['course']['user_id']);
         return view('general/video/details', $data);
+    }
+
+    public function ratings(RatingService $rating) {
+        $data['ratings'] = $rating->getAll();
+        return view('general.video.rating.index', $data);
+    }
+
+    public function addRating() {
+        return view('general.video.rating.add');
     }
 
     public function add() {

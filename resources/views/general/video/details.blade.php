@@ -96,7 +96,7 @@
                                 <a class="rounded-pill w-100 btn btn-primary" href="">post video comment</a>
                             </div>
                             <div class="col-6 text-center">
-                                <a class="rounded-pill w-100 btn btn-primary" href="">video ratings</a>
+                                <a class="rounded-pill w-100 btn btn-primary" href="/course/{{$video->course_id}}/video/{{$video->id}}/ratings">video ratings</a>
                             </div>
                         </div>
 

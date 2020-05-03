@@ -17,6 +17,8 @@ return [
     'purchaseHistory'       => 'Gava - Purchase history',
     'subscribe'             => 'Gava - Subscribe',
     'subscribeConfirmation' => 'Gava - Subscription confirmation',
+    'ratingsVideo'          => 'Gava - Video ratings',
+    'addVideoRating'        => 'Gava - Add video rating',
     'landing'               => 'Gava - Learn, teach, innovate',
     
 ];

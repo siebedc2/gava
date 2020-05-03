@@ -73,7 +73,14 @@
 }
 
 .add-btn {
-  border: 1px dotted black;
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='5' ry='5' stroke='%23291875' stroke-width='2' stroke-dasharray='6%2c 14' stroke-dashoffset='4' stroke-linecap='square'/%3e%3c/svg%3e");
+  border-radius: 5px;
+  height: 130px;
+  cursor: pointer;
+}
+
+.add-btn p {
+  font-size: 40px;
 }
 
 .gava {
@@ -123,6 +130,10 @@
     height: 520px;
     width: 460px;
   }
+}
+
+h2 {
+  font-size: 28px !important;
 }
 
 .card-header {
@@ -261,6 +272,33 @@ span {
 #mc_embed_signup .mc-field-group {
   min-height: 0px !important;
 }
+
+#tumbnail,
+#video,
+#profile_picture {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.rating .star i {
+  color: #DADADA;
+}
+
+/*#profile_picture_label {
+    position: relative;
+}
+
+#profile_picture_label img::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+}*/
 
 .modal-content {
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.16);

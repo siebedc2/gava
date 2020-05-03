@@ -25,22 +25,26 @@
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label for="title" class="d-none">Email address</label>
-                            <input name="title" type="text" class="border-0 bg-light rounded-pill form-control" id="title" placeholder="Course title">
+                            <input name="title" type="text" class="border-0 bg-light rounded-pill form-control" id="title" placeholder="Course title" required>
                         </div>
                         <div class="form-group">
                             <label for="description" class="d-none">Example textarea</label>
-                            <textarea name="description" class="border-0 bg-light form-control" id="description" rows="3" placeholder="What is this course about?"></textarea>
+                            <textarea name="description" class="border-0 bg-light form-control" id="description" rows="3" placeholder="What is this course about?" required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="tags" class="d-none">Example select</label>
-                            <select name="tags" class="border-0 bg-light rounded-pill form-control" id="exampleFormControlSelect1">
+                            <select name="tags" class="border-0 bg-light rounded-pill form-control" id="tags" required>
+                                <option disabled selected>What technologies is this about?</option>
                                 @foreach($tags as $tag)
                                 <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="tumbnail">upload custom thumbnail</label>
+                        <div class="form-group mt-5">
+                            <label for="tumbnail">Upload custom thumbnail</label>
+                            <label class="d-block w-50 add-btn d-flex justify-content-center align-items-center" for="tumbnail">
+                                <img src="/images/add.svg" alt="Add icon">
+                            </label>
                             <input name="tumbnail" type="file" class="form-control-file" id="tumbnail">
                         </div>
                     </div>
@@ -61,9 +65,10 @@
                             </div>
                         </div>  
                         <div class="row">
-                            <a class="" href="/course/video/add">
-                                <div class="col-12 add-btn">
-                                    <p>+</p>
+                            <a class="col-12 text-decoration-none" href="/course/video/add">
+                                <div class="add-btn d-flex align-items-center justify-content-center">
+                                    <!--<p class="mb-0">+</p>-->
+                                    <img src="/images/add.svg" alt="Add icon">
                                 </div>
                             </a>
                         </div>

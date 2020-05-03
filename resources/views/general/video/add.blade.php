@@ -17,7 +17,7 @@
                         <h2>Add video</h2>
                     </div>
                     <div class="col-4 text-right">
-                        <button type="submit" class="rounded-pill px-5 btn btn-primary">publish</button>
+                        <button type="submit" class="rounded-pill px-5 btn btn-primary">upload</button>
                     </div>
                 </div>
 
@@ -35,15 +35,21 @@
                             <input name="exclusive" type="checkbox" class="form-check-input" id="exclusive" value="y">
                             <label for="exclusive" class="form-check-label">make this video exclusive to my subscribers</label>
                         </div>
-                        <div class="form-group">
-                            <label for="tumbnail">upload costum tumbnail</label>
+                        <div class="form-group mt-4">
+                            <label for="tumbnail">Upload custom thumbnail</label>
+                            <label class="d-block w-50 add-btn d-flex justify-content-center align-items-center" for="tumbnail">
+                                <img src="/images/add.svg" alt="Add icon">
+                            </label>
                             <input name="tumbnail" type="file" class="form-control-file" id="tumbnail">
                         </div>
                     </div>
 
                     <div class="col-12 col-md-5 offset-md-1">
-                        <div class="form-group">
+                        <div class="form-group">                            
                             <label for="video">Select file</label>
+                            <label class="d-block w-100 add-btn d-flex justify-content-center align-items-center" for="video">
+                                <img src="/images/add.svg" alt="Add icon">
+                            </label>
                             <input name="video" type="file" class="form-control-file" id="video">
                         </div>
                     </div>
