@@ -13,7 +13,7 @@ class CourseTag {
         ]);
     }
 
-    public function getCourseTags($courseId) {
+    public function getAllCourseTags($courseId) {
         return CourseTagModel::where('course_id', $courseId)->get();
     }
 }

@@ -5,3 +5,21 @@
 .false {
     width: 15px;
 }
+
+
+.star {
+    pointer-events: none !important;
+
+    & i {
+        color: #DADADA;
+    }
+}
+
+.star-checked {
+    pointer-events: none !important;
+    
+    & i {
+        color: $btn-primary-color;
+    }
+
+} 

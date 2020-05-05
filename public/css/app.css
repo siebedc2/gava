@@ -265,6 +265,14 @@ span {
   cursor: pointer;
 }
 
+.tag {
+  border: 1px solid #291875;
+}
+
+.tag:nth-child(1) {
+  margin-left: 0px !important;
+}
+
 .vh-90 {
   height: 90vh;
 }
@@ -279,10 +287,6 @@ span {
   opacity: 0;
   position: absolute;
   z-index: -1;
-}
-
-.rating .star i {
-  color: #DADADA;
 }
 
 /*#profile_picture_label {
@@ -319,6 +323,28 @@ span {
 
 .false {
   width: 15px;
+}
+
+.star {
+  pointer-events: none !important;
+}
+
+.star i {
+  color: #DADADA;
+}
+
+.star-checked {
+  pointer-events: none !important;
+}
+
+.star-checked i {
+  color: #291875;
+}
+
+#player {
+  --plyr-color-main: #1ac266;
+  --plyr-badge-background: red;
+  --plyr-badge-text-color: red;
 }
 
 /*!

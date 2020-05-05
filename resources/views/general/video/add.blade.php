@@ -52,22 +52,19 @@
                             </label>
                             <input name="video" type="file" class="form-control-file" id="video">
                         </div>
+                        @if ($errors->any())
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="alert text-center">
+                                        @foreach ($errors->all() as $error)
+                                        <p class="text-danger">{{ $error }}</p>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
-
-                @if ($errors->any())
-                <div class="row">
-                    <div class="col-12">
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                @endif
             </form>
         </div>
     </div>

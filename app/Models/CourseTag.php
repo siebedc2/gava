@@ -3,9 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class CourseTag extends Pivot
+class CourseTag extends Model
 {
     protected $table = 'courses_tags';
 
@@ -13,5 +12,12 @@ class CourseTag extends Pivot
         'id', 'tag_id', 'course_id'
     ];
 
+    public function course() {
+        return $this->belongsTo('App\Models\Course');
+    }
+
+    public function tag() {
+        return $this->belongsTo('App\Models\Tag');
+    }
 
 }

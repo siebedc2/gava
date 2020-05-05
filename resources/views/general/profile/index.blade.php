@@ -87,7 +87,7 @@
         <div class="col-12 col-md-8">
             <div class="row">
                 <div class="col-12">
-                    <h3>Courses</h3>
+                    <h3 class="font-weight-normal">Courses</h3>
                 </div>
             </div>
             @foreach($courses as $course)
@@ -119,7 +119,7 @@
         <div class="col-12 col-md-4">
             <div class="row">
                 <div class="col-12">
-                    <h3>Subscribers</h3>
+                    <h3 class="font-weight-normal">Subscribers</h3>
                 </div>
             </div>
             

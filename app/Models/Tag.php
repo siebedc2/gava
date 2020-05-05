@@ -12,7 +12,7 @@ class Tag extends Model
         'id', 'name'
     ];
 
-    public function courses() {
-        return $this->belongsToMany('App\Models\Course')->using('App\Models\CourseTag');
+    public function courseTags() {
+        return $this->belongsTo('App\Models\CourseTag');
     }
 }

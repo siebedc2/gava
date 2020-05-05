@@ -10,6 +10,8 @@ use App\Services\Video as VideoService;
 use App\Services\Subscription as SubscriptionService;
 use App\Services\CourseTag as CourseTagService;
 use App\Services\Tag as TagService;
+use App\Services\Rating as RatingService;
+use Auth;
 
 class CourseController extends Controller
 {
@@ -29,7 +31,9 @@ class CourseController extends Controller
         $data['course'] = $course->getById($courseId);
         $data['user'] = $user->getById($data['course']['user_id']);
         $data['videos'] = $video->getAllCourseVideos($courseId);
+        $data['courseTags'] = $courseTag->getAllCourseTags($courseId);
         $data['subscribersAmount'] = $subscription->getAmountOfSubscribers($data['course']['user_id']);
+        $data['subscribersIds'] = $subscription->getSubscriberId(Auth::id());
         return view('general/course/details', $data);
     }
 

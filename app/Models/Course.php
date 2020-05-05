@@ -16,8 +16,8 @@ class Course extends Model
         return $this->belongsTo('App\Models\User');
     }
 
-    public function tags() {
-        return $this->belongsToMany('App\Models\Tag')->using('App\Models\CourseTag');
+    public function courseTags() {
+        return $this->hasOne('App\Models\CourseTag');
     }
 
     public function videos() {

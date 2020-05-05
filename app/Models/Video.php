@@ -15,4 +15,8 @@ class Video extends Model
     public function course() {
         return $this->belongsTo('App\Models\Course');
     }
+
+    public function ratings() {
+        return $this->hasOne('App\Models\Rating');
+    }
 }

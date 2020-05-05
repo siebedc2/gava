@@ -11,4 +11,8 @@ class Rating extends Model
     protected $fillable = [
         'id', 'stars', 'user_id', 'video_id'
     ];
+
+    public function video() {
+        return $this->belongsTo('App\Models\Video');
+    }
 }
