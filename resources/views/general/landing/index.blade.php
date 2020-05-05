@@ -22,7 +22,7 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <a class="rounded-pill btn btn-primary" href="">get started with Gava</a>
+                        <a class="rounded-pill btn btn-primary" href="/home">get started with Gava</a>
                     </div>
                 </div>
             </div>
@@ -33,8 +33,8 @@
         </div>
     </div>
 
-    <div class="what-to-learn-wrapper">
-        <div class="container min-vh-100 d-flex align-items-center text-white" id="what-to-learn">
+    <div class="what-to-learn-wrapper mb-5 pb-5">
+        <div class="container text-white" id="what-to-learn">
             <div class="row">
                 <div class="col-12 col-md-4 p-4">
                     <div class="row">
@@ -83,9 +83,123 @@
         </div>
     </div>
 
+    <div class="container mb-5 pb-5">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h2 class="font-weight-normal text-white">benefits for premium users</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="offset-8 offset-md-10 col-1">
+                        <p class="text-white">free</p>
+                    </div>
+                    <div class="col-1">
+                        <p class="text-white">premium</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8 col-md-10">
+                        <p class="text-white">watch videos</p>
+                    </div>
+                    <div class="col-1">
+                        <img class="check" src="/images/true.svg" alt="true">
+                    </div>
+                    <div class="col-1">
+                        <img class="check" src="/images/true.svg" alt="true">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8 col-md-10">
+                        <p class="text-white">participate in discussions</p>
+                    </div>
+                    <div class="col-1">
+                        <img class="check" src="/images/true.svg" alt="true">
+                    </div>
+                    <div class="col-1">
+                        <img class="check" src="/images/true.svg" alt="true">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8 col-md-10">
+                        <p class="text-white">'cheer' on videos and discussions</p>
+                    </div>
+                    <div class="col-1">
+                        <img class="check" src="/images/true.svg" alt="true">
+                    </div>
+                    <div class="col-1">
+                        <img class="check" src="/images/true.svg" alt="true">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8 col-md-10">
+                        <p class="text-white">list with personal subscriptions</p>
+                    </div>
+                    <div class="col-1">
+                        <img class="false" src="/images/false.svg" alt="false">
+                    </div>
+                    <div class="col-1">
+                        <img class="check" src="/images/true.svg" alt="true">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8 col-md-10">
+                        <p class="text-white">access to exclusive videos</p>
+                    </div>
+                    <div class="col-1">
+                        <img class="false" src="/images/false.svg" alt="false">
+                    </div>
+                    <div class="col-1">
+                        <img class="check" src="/images/true.svg" alt="true">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8 col-md-10">
+                        <p class="text-white">visual attribute for better recognition</p>
+                    </div>
+                    <div class="col-1">
+                        <img class="false" src="/images/false.svg" alt="false">
+                    </div>
+                    <div class="col-1">
+                        <img class="check" src="/images/true.svg" alt="true">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8 col-md-10">
+                        <p class="text-white">comments pushed to the top of discussions</p>
+                    </div>
+                    <div class="col-1">
+                        <img class="false" src="/images/false.svg" alt="false">
+                    </div>
+                    <div class="col-1">
+                        <img class="check" src="/images/true.svg" alt="true">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8 col-md-10">
+                        <p class="text-white">receive notifications when new content gets published</p>
+                    </div>
+                    <div class="col-1">
+                        <img class="false" src="/images/false.svg" alt="false">
+                    </div>
+                    <div class="col-1">
+                        <img class="check" src="/images/true.svg" alt="true">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <a class="mt-2 rounded-pill btn btn-primary" href="/login">try 1 month for free</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="descriptionBackground position-fixed d-none"></div>
 
-    <div class="about container text-white mt-5" id="about">
+    <div class="about container text-white mt-5 pt-5" id="about">
         <div class="row">
             <div class="col-12 text-center">
                 <h2 class="font-weight-normal text-white">our community loves talking about ...</h2>

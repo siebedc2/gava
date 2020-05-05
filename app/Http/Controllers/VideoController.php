@@ -9,6 +9,8 @@ use App\Services\Comment as CommentService;
 use App\Services\Course as CourseService;
 use App\Services\Subscription as SubscriptionService;
 use App\Services\VideoReport as VideoReportService;
+use App\Services\CommentReport as CommentReportService;
+use App\Services\Like as LikeService;
 use App\Services\Rating as RatingService;
 
 class VideoController extends Controller
@@ -84,6 +86,34 @@ class VideoController extends Controller
 
     public function handleReportVideo(VideoReportService $videoReport) {
         if($videoReport->create($this->_request->input('videoId'))) {
+            $msg = "success";
+        }
+
+        else {
+            $msg = "error";
+        }
+
+        return response()->json([
+            'message'   => $msg
+        ]);
+    }
+
+    public function handleReportComment(CommentReportService $commentReport) {
+        if($commentReport->create($this->_request->input('commentId'))) {
+            $msg = "success";
+        }
+
+        else {
+            $msg = "error";
+        }
+
+        return response()->json([
+            'message'   => $msg
+        ]);
+    }
+
+    public function handleLikeComment(LikeService $like) {
+        if($like->create($this->_request->input('commentId'))) {
             $msg = "success";
         }
 

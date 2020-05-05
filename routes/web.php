@@ -116,6 +116,16 @@ Route::prefix('/course')->middleware('auth')->group(function() {
     ]);
 });
 
+Route::post('/comment/report', [
+    'as'   => 'reportComment',
+    'uses' => 'VideoController@handleReportComment'
+]);
+
+Route::post('/comment/like', [
+    'as'   => 'likeComment',
+    'uses' => 'VideoController@handleLikeComment'
+]);
+
 Route::prefix('/subscriptions')->middleware('auth')->group(function() {
     Route::get('/', [
         'as'   => 'subscriptions',

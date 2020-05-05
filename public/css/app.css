@@ -313,6 +313,14 @@ span {
   }*/
 }
 
+.check {
+  width: 20px;
+}
+
+.false {
+  width: 15px;
+}
+
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors

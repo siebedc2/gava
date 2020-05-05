@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CommentReport extends Model
 {
-    protected $table = 'comments';
+    protected $table = 'comment_reports';
 
     protected $fillable = [
 

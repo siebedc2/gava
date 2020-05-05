@@ -12,4 +12,12 @@ class CommentReport {
             'comment_id' => 'required'
         ]);
     }
+
+    public function create($commentId) {
+        $commentReport              = new CommenReportModel();
+        $commentReport->report      = "1";
+        $commentReport->comment_id  = $commentId;
+        $commentReport->save();
+        return $commentReport;
+    }
 }

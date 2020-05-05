@@ -105,24 +105,25 @@
                 </div>
             @endauth
 
-            <div class="row text-white">
+            <div class="row text-white mt-4 mb-5">
                 <div class="col-12">
                     @foreach($comments as $comment)
                     <div class="row">
                         <div class="col-12">
-                            <p>{{ $comment->user->name }}</p>
+                            <p class="mb-0">{{ $comment->user->name }}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <p>{{ $comment->comment }}</p>
+                            <p class="mb-0">{{ $comment->comment }}</p>
                         </div>
                     </div>
                     
                         @auth
                             <div class="row">
+                                <p class="commentId" hidden>{{$comment->id}}</p>
                                 <div class="col-3">
-                                    <span>Like</span>
+                                    <span class="like-comment">Like</span>
                                 </div>
                                 <div class="col-3">
                                     <span>Upvote</span>
@@ -131,7 +132,7 @@
                                     <span>Reply</span>
                                 </div>
                                 <div class="col-3">
-                                    <span>Report</span>
+                                    <span class="report-comment">Report</span>
                                 </div>
                             </div>
                         @endauth
