@@ -21,6 +21,6 @@ class Course extends Model
     }
 
     public function videos() {
-        return $this->hasOne('App\Models\Course');
+        return $this->hasOne('App\Models\Video');
     }
 }

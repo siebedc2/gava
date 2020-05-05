@@ -70,14 +70,15 @@
     <div class="row mt-4 mb-5">
         <div class="col-12">
             <div class="row">
-                <div class="col-3">
+                <div class="col-12 d-flex">
                     <h2 class="font-weight-normal mb-0">{{ $course->title }}</h2>
-                </div>
-                <div class="col-6">
+
+                    @if($videos->count() >= 1)
                     @foreach($videos as $video)
                         <?php $Coursestars = round($video->ratings->avg('stars'),0); ?>
                     @endforeach
-                    <div class="rating mt-2">
+                    
+                    <div class="rating ml-4 mt-2">
                     @for ($i = $Coursestars; $i >= 1; $i--)
                         <span class="star star-checked"><i class="fa fa-star"></i></span>
                     @endfor
@@ -86,6 +87,11 @@
                         <span class="star"><i class="fa fa-star"></i></span>
                     @endfor
                     </div>
+                    @endif
+                </div>
+                <div class="col-6">
+                
+                
                 </div>
             </div>
             <div class="row">
