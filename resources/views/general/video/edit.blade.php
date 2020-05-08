@@ -14,7 +14,7 @@
                         </a>
                     </div>
                     <div class="col-4 text-center">
-                        <h2>Edit video</h2>
+                        <h2 class="font-weight-normal">Edit video</h2>
                     </div>
                     <div class="col-4 text-right">
                         <button type="submit" class="rounded-pill px-5 btn btn-primary">save</button>
@@ -32,15 +32,17 @@
                             <textarea name="description"  class="bg-light border-0 form-control" id="description" rows="3">{{ $video->description }}</textarea>
                         </div>
                         <div class="form-group form-check">
-                            <input name="exclusive" type="checkbox" class="form-check-input" id="exclusive" value="{{ $video->exclusive }}">
+                            <input name="exclusive" type="checkbox" class="form-check-input" id="exclusive" value="{{$video->exclusive}}" @if($video->exclusive == "y") checked @endif>
                             <label for="exclusive" class="form-check-label">make this video exclusive to my subscribers</label>
                         </div>
                         <div class="form-group">
-                            <label for="tumbnail">upload costum tumbnail</label>
-                            <input name="tumbnail" type="file" class="form-control-file" id="tumbnail" value="/images/uploads/{{ $video->video }}">
-                        </div>
-                        <div class="tumbnail-preview">
-                            <img src="{{asset('images/uploads/' . $video->tumbnail)}}" alt="Tumbnail preview">
+                        <label for="tumbnail">Change custom thumbnail</label>
+                            <label class="d-block w-50" for="tumbnail">
+                                <div class="d-flex justify-content-center align-items-center w-100 rounded tumbnail edit-tumbnail" style="background-image: url(/images/uploads/{{$video->tumbnail}});">
+                                    <i class="text-white fa fa-pencil" aria-hidden="true"></i>
+                                </div>
+                            </label>
+                            <input name="tumbnail" type="file" class="form-control-file" id="tumbnail">
                         </div>
                     </div>
 

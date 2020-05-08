@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <form action="/profile/edit" method="post">
+            <form enctype="multipart/form-data" action="/profile/edit" method="post">
                 {{csrf_field()}}
                 <div class="row mt-4">               
                     <div class="col-4">
@@ -19,13 +19,16 @@
                     <div class="col-4 text-right">
                         <button type="submit" class="rounded-pill px-5 btn btn-primary">save</button>
                     </div>
-                </div>
-                
+                </div>                
                 <div class="row d-flex justify-content-center">
                     <div class="col-12 col-md-4">
                         <div class="form-group d-flex justify-content-center my-4">
-                            <label id="profile_picture_label" class="text-center" for="profile_picture"><img class="w-25 rounded-circle" src="/images/uploads/{{Auth::user()->profile_picture}}" alt="Profile image"></label>
-                            <input name="profile_picture" type="file" class="w-100 rounded-pill border-0 bg-light form-control" id="profile_picture" required>
+                            <label for="profile_picture" id="profile_picture_label" class="text-center">
+                                <div class="rounded-circle edit-profile-image d-flex justify-content-center align-items-center" style="background-image: url(/images/uploads/{{Auth::user()->profile_picture}});">
+                                    <i class="text-white fa fa-pencil" aria-hidden="true"></i>
+                                </div>
+                            </label>
+                            <input name="profile_picture" type="file" class="form-control-file" id="profile_picture">
                         </div>
                         <div class="form-group">
                             <label class="d-none" for="name">Name</label>

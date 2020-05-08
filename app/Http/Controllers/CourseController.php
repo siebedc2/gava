@@ -53,24 +53,29 @@ class CourseController extends Controller
             $savedCourse = $course->create($this->_request->all());
             $video->create($savedCourse->id);
             $courseTag->create($savedCourse->id, $this->_request->input('tags'));
+            session()->forget(['videos']);
             return redirect('/dashboard')->with('status', 'Added course!');
         }
     }
 
-    public function edit(CourseService $course, VideoService $video, $courseId) {
+    public function edit(CourseService $course, VideoService $video, TagService $tag, CourseTagService $courseTag, $courseId) {
         $data['courseId'] = $courseId;
         $data['course'] = $course->getById($courseId);
         $data['videos'] = $video->getAllCourseVideos($courseId);
+        $data['tags'] = $tag->getAll();
+        $data['courseTagIds'] = $courseTag->getCourseTagIds($courseId);
         return view('general/course/edit', $data);
     }
 
-    public function handleEdit(CourseService $course, $courseId) {
+    public function handleEdit(CourseService $course, CourseTagService $courseTag, $courseId) {
         if ($course->validator($this->_request->input())->fails()) {
             $errors = $course->validator($this->_request->input())->errors();
             return redirect('/course/edit')->with('errors', $errors);
         } 
         
         else {
+            $courseTag->deleteCourseTags($courseId);
+            $courseTag->create($courseId, $this->_request->input('tags'));
             $course->edit($this->_request->all(), $courseId);
             return redirect('/dashboard')->with('status', 'Edited course!');
         }

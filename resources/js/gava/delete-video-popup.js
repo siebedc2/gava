@@ -1,10 +1,10 @@
-$('.cancel-subscription').click(function(e){
+$('.delete-video').click(function(e){
     e.preventDefault();
-    var form = $(this.parentElement);
-    var creatorId = $(this).prev().attr('value');
-    console.log(creatorId);
+    //var form = $(this.parentElement);
+    var videoId = $(this).prev().attr('value');
+    console.log(videoId);
 
-    $.ajax({
+    /*$.ajax({
         method: "POST",
         url: '/subscriptions/getCreator',
         data: {
@@ -29,5 +29,5 @@ $('.cancel-subscription').click(function(e){
                 form.submit();
             });
         }
-    });
+    });*/
 });

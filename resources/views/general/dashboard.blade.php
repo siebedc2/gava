@@ -40,7 +40,7 @@
             @foreach($courses as $course)
                 <div class="row my-3 d-flex align-items-center">
                     <div class="col-2">
-                        <img class="w-100 rounded" src="/images/uploads/{{ $course->tumbnail }}" alt="Course tumbnail">
+                        <div class="d-flex justify-content-center align-items-center w-100 rounded tumbnail" style="background-image: url(/images/uploads/{{$course->tumbnail}});"></div>
                     </div>
                     <div class="col-5">
                         <div class="row">

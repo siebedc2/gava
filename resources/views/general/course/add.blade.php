@@ -18,7 +18,7 @@
                         </a>
                     </div>
                     <div class="col-4 text-center">
-                        <h2>Add course</h2>
+                        <h2 class="font-weight-normal">Add course</h2>
                     </div>
                     <div class="col-4 text-right">
                         <button type="submit" class="rounded-pill px-5 btn btn-primary">publish</button>
@@ -38,7 +38,6 @@
                         <div class="form-group">
                             <label for="tags" class="d-none">Example select</label>
                             <select name="tags[]" data-placeholder="What technologies is this about?" class="border-0 bg-light rounded-pill form-control" id="tags" multiple="multiple" required>
-                                <!--<option disabled selected>What technologies is this about?</option>-->
                                 @foreach($tags as $tag)
                                 <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                                 @endforeach
@@ -49,7 +48,7 @@
                             <label class="d-block w-50 add-btn d-flex justify-content-center align-items-center" for="tumbnail">
                                 <img src="/images/add.svg" alt="Add icon">
                             </label>
-                            <input name="tumbnail" type="file" class="form-control-file" id="tumbnail">
+                            <input name="tumbnail" type="file" class="form-control-file" id="tumbnail" required>
                         </div>
                     </div>
 
@@ -71,7 +70,6 @@
                         <div class="row">
                             <a class="col-12 text-decoration-none" href="/course/video/add">
                                 <div class="add-btn d-flex align-items-center justify-content-center">
-                                    <!--<p class="mb-0">+</p>-->
                                     <img src="/images/add.svg" alt="Add icon">
                                 </div>
                             </a>

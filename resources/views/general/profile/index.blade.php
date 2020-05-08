@@ -1,37 +1,40 @@
-<?php $videoService = new App\Services\Video(); ?>
+<?php 
+    $videoService = new App\Services\Video(); 
+    $ratingService = new App\Services\Rating();
+?>
 
 @extends('layouts.app')
 
 @section('meta')
-    @if(!empty($user))
-    <title>Gava - {{ $user->name }}</title>
-    <meta name="og:title" content="Gava - {{ $user->name }}">
-    @else
-    <title>Gava - Profile</title>
-    <meta name="og:title" content="Gava - {{ Auth::user()->name }}">
-    @endif
+@if(!empty($user))
+<title>Gava - {{ $user->name }}</title>
+<meta name="og:title" content="Gava - {{ $user->name }}">
+@else
+<title>Gava - Profile</title>
+<meta name="og:title" content="Gava - {{ Auth::user()->name }}">
+@endif
 @endsection
 
 @section('content')
 @include('components.menu')
 @include('components.cancel-subscription-popup')
 <div class="profile-bg">
-<div class="container">
-    <div class="row">
-        <div class="col-12 mt-4 d-flex justify-content-end">
-            @if(empty($user))
-            <a href="/profile/edit">
-                <img class="mr-3" src="/images/settings.png" alt="Settings icon">
-            </a>
-            @else
-            <span class="report-user">
-                <input type="hidden" value="{{$user->id}}" class="userId" name="userId">
-                <img class="w-75" src="/images/report_white.png" alt="Report icon">
-            </span>
-            @endif
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mt-4 d-flex justify-content-end">
+                @if(empty($user))
+                <a href="/profile/edit">
+                    <img class="mr-3" src="/images/settings.png" alt="Settings icon">
+                </a>
+                @else
+                <span class="report-user">
+                    <input type="hidden" value="{{$user->id}}" class="userId" name="userId">
+                    <img class="w-75" src="/images/report_white.png" alt="Report icon">
+                </span>
+                @endif
+            </div>
         </div>
     </div>
-</div>
 </div>
 
 <div class="container">
@@ -42,9 +45,11 @@
                     <div class="row d-flex align-items-center">
                         <div class="col-3">
                             @if(!empty($user))
-                            <div style="background-image: url(/images/uploads/{{$user->profile_picture}});" class="profile-image rounded-circle"></div>
+                            <div style="background-image: url(/images/uploads/{{$user->profile_picture}});"
+                                class="profile-image rounded-circle"></div>
                             @else
-                            <div style="background-image: url(/images/uploads/{{Auth::user()->profile_picture}});" class="profile-image rounded-circle"></div>
+                            <div style="background-image: url(/images/uploads/{{Auth::user()->profile_picture}});"
+                                class="profile-image rounded-circle"></div>
                             @endif
                         </div>
                         <div class="col-9">
@@ -71,15 +76,16 @@
                 </div>
                 <div class="col-6 d-flex justify-content-end">
                     @if(!empty($user))
-                        @if(in_array($user->id, $subscribersIds))
-                        <form action="/subscribe/cancel/{{$user->id}}" method="post">
-                            {{csrf_field()}}
-                            <input type="hidden" id="creatorId" name="creatorId" value="{{$user->id}}">
-                            <button class="cancel-subscription rounded-pill px-5 btn btn-secondary" type="submit">cancel subscription</button>
-                        </form>
-                        @else
-                        <a href="/subscribe/{{ $user->id }}" class="rounded-pill px-5 btn btn-secondary">subscribe</a>
-                        @endif
+                    @if(in_array($user->id, $subscribersIds))
+                    <form action="/subscribe/cancel/{{$user->id}}" method="post">
+                        {{csrf_field()}}
+                        <input type="hidden" id="creatorId" name="creatorId" value="{{$user->id}}">
+                        <button class="cancel-subscription rounded-pill px-5 btn btn-secondary" type="submit">cancel
+                            subscription</button>
+                    </form>
+                    @else
+                    <a href="/subscribe/{{ $user->id }}" class="rounded-pill px-5 btn btn-secondary">subscribe</a>
+                    @endif
                     @endif
                 </div>
             </div>
@@ -96,7 +102,7 @@
             <a href="/course/{{ $course->id }}" class="text-decoration-none">
                 <div class="row my-2">
                     <div class="col-3">
-                        <img class="w-100" src="/images/uploads/{{$course->tumbnail}}" alt="Course tumbnail">
+                        <div class="d-flex justify-content-center align-items-center w-100 rounded tumbnail" style="background-image: url(/images/uploads/{{$course->tumbnail}});"></div>
                     </div>
                     <div class="col-9">
                         <div class="row">
@@ -107,9 +113,43 @@
                         <div class="row">
                             <div class="col-12">
                                 @if(count($videoService->getAllCourseVideos($course->id)) == 1)
-                                <p class="course-video-amount text-black-50">{{ count($videoService->getAllCourseVideos($course->id)) }} video</p>
+                                <p class="mb-0 course-video-amount text-black-50">
+                                    {{ count($videoService->getAllCourseVideos($course->id)) }} video</p>
                                 @else
-                                <p class="course-video-amount text-black-50">{{ count($videoService->getAllCourseVideos($course->id)) }} video's</p>
+                                <p class="mb-0 course-video-amount text-black-50">
+                                    {{ count($videoService->getAllCourseVideos($course->id)) }} video's</p>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <?php 
+                                    $videos = $videoService->getAllCourseVideos($course->id); 
+                                    $rating = 0;    
+                                ?>
+                                @foreach($videos as $video)
+                                <?php 
+                                       $rating += $ratingService->getAVG($video['id']);
+                                                ?>
+                                @endforeach
+
+                                @if($rating != null)
+                                <?php $Coursestars = round(($rating / $videos->count()),0); ?>
+                                <div class="rating">
+                                    @for ($i = $Coursestars; $i >= 1; $i--)
+                                    <span class="star star-checked"><i class="fa fa-star"></i></span>
+                                    @endfor
+
+                                    @for ($i = $Coursestars; $i <= 4; $i++) <span class="star"><i
+                                            class="fa fa-star"></i></span>
+                                        @endfor
+                                </div>
+                                @else
+                                <div class="rating">
+                                    @for ($i = 5; $i >= 1; $i--)
+                                    <span class="star"><i class="fa fa-star"></i></span>
+                                    @endfor
+                                </div>
                                 @endif
                             </div>
                         </div>
@@ -124,32 +164,34 @@
                     <h3 class="font-weight-normal">Subscribers</h3>
                 </div>
             </div>
-            
+
             @if(!empty($subscriptions))
             @foreach($subscriptions as $subscription)
-                @if($subscription->user_id != Auth::id())
-                <a href="/profile/{{ $subscription->user_id }}" class="text-decoration-none">
-                    <div class="row my-3 d-flex align-items-center">
-                        <div class="col-3">
-                            <div style="background-image: url(/images/uploads/{{$subscription->user->profile_picture}});" class="subscriber-image rounded-circle"></div>
-                        </div>
-                        <div class="col-8">
-                            <p class="mb-0">{{ $subscription->user['name'] }}</p>
-                        </div>
+            @if($subscription->user_id != Auth::id())
+            <a href="/profile/{{ $subscription->user_id }}" class="text-decoration-none">
+                <div class="row my-3 d-flex align-items-center">
+                    <div class="col-3">
+                        <div style="background-image: url(/images/uploads/{{$subscription->user->profile_picture}});"
+                            class="subscriber-image rounded-circle"></div>
                     </div>
-                </a>
-                @else
-                <div>
-                    <div class="row my-3 d-flex align-items-center">
-                        <div class="col-3">
-                            <img class="w-100 rounded-circle" src="/images/uploads/{{$subscription->user->profile_picture}}" alt="Profile picture">
-                        </div>
-                        <div class="col-8">
-                            <p class="mb-0">{{ $subscription->user['name'] }}</p>
-                        </div>
+                    <div class="col-8">
+                        <p class="mb-0">{{ $subscription->user['name'] }}</p>
                     </div>
                 </div>
-                @endif
+            </a>
+            @else
+            <div>
+                <div class="row my-3 d-flex align-items-center">
+                    <div class="col-3">
+                        <img class="w-100 rounded-circle" src="/images/uploads/{{$subscription->user->profile_picture}}"
+                            alt="Profile picture">
+                    </div>
+                    <div class="col-8">
+                        <p class="mb-0">{{ $subscription->user['name'] }}</p>
+                    </div>
+                </div>
+            </div>
+            @endif
             @endforeach
             @else
             <p class="text-black-50">No subscribers yet</p>

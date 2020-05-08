@@ -11,6 +11,7 @@ require('./gava/tech-popup');
 require('./gava/dashboard-tab');
 require('./gava/subscriptions-tab');
 require('./gava/delete-course-popup');
+require('./gava/delete-video-popup');
 require('./gava/cancel-subscription-popup');
 require('./gava/report-user');
 require('./gava/report-video');
@@ -18,5 +19,6 @@ require('./gava/report-comment');
 require('./gava/like-comment');
 require('./gava/landing-mobile-menu');
 require('./gava/multiselect');
+require('./gava/preview-image');
 
 require('./bootstrap');

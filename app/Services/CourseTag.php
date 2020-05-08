@@ -17,6 +17,14 @@ class CourseTag {
         return CourseTagModel::where('course_id', $courseId)->get();
     }
 
+    public function getCourseTagIds($courseId) {
+        return CourseTagModel::where('course_id', $courseId)->pluck('tag_id')->toArray();
+    }
+
+    public function deleteCourseTags($courseId) {
+        CourseTagModel::where('course_id', $courseId)->delete();
+    }
+
     public function create($courseId, $tags) {
         foreach($tags as $tag) {
             $courseTag = new CourseTagModel();

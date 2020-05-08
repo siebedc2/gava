@@ -14,7 +14,7 @@
                         </a>
                     </div>
                     <div class="col-4 text-center">
-                        <h2>Add video</h2>
+                        <h2 class="font-weight-normal">Add video</h2>
                     </div>
                     <div class="col-4 text-right">
                         <button type="submit" class="rounded-pill px-5 btn btn-primary">upload</button>

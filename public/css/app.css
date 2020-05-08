@@ -177,6 +177,33 @@ h2 {
   background-repeat: no-repeat;
 }
 
+.edit-profile-image {
+  width: 72.5px;
+  height: 72.5px;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.edit-profile-image i {
+  z-index: 99;
+  font-size: 25px;
+  opacity: 0.7;
+}
+
+.edit-profile-image::before {
+  background-color: #000;
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.2;
+  border-radius: 50%;
+}
+
 .popup-subscriber-picture {
   width: 50px;
   height: 50px;
@@ -198,10 +225,11 @@ h2 {
 }
 
 .tumbnail {
-  height: 85px;
+  height: 95px;
+  max-width: 160px;
   background-position: center center;
   background-size: cover;
-  border-radius: 5px;
+  border-radius: 0.25rem;
 }
 
 .tumbnail.exclusive-tumbnail {
@@ -219,6 +247,29 @@ h2 {
   height: 100%;
   opacity: 0.5;
   border-radius: 5px;
+}
+
+.tumbnail.edit-tumbnail {
+  position: relative;
+  z-index: 0;
+}
+
+.tumbnail.edit-tumbnail::after {
+  background-color: #000;
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.2;
+  border-radius: 5px;
+}
+
+.tumbnail.edit-tumbnail i {
+  z-index: 99;
+  font-size: 40px;
+  opacity: 0.7;
 }
 
 .link {

@@ -23,13 +23,27 @@ class User {
     }
 
     public function edit($request, $userId) {
-        UserModel::where('id', $userId)
+        $user = UserModel::find($userId);
+        $user->name          = $request['name'];
+        $user->email    = $request['email'];
+
+        if(!empty($request['profile_picture'])) {
+            $profilePicture       = $request['profile_picture'];
+            $profilePictureName   = $profilePicture->getClientOriginalName();
+            $profilePicture->move('images/uploads', $profilePictureName);
+            $user->profile_picture       = $profilePictureName;
+        }
+
+        $user->save();
+
+        /*UserModel::where('id', $userId)
                     ->update(
                         [
                             'name'  => $request['name'],
-                            'email' => $request['email']
+                            'email' => $request['email'],
+                            'profile_picture' => $request['profile_picture']
                         ]
-                        );
+                        );*/
     }
 
     public function changePassword($request, $userId) {

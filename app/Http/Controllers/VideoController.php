@@ -12,6 +12,7 @@ use App\Services\VideoReport as VideoReportService;
 use App\Services\CommentReport as CommentReportService;
 use App\Services\Like as LikeService;
 use App\Services\Rating as RatingService;
+use Auth;
 
 class VideoController extends Controller
 {
@@ -27,6 +28,7 @@ class VideoController extends Controller
         $data['courseVideos'] = $video->getAllCourseVideos($courseId);
         $data['comments'] = $comment->getAll($videoId);
         $data['subscribersAmount'] = $subscription->getAmountOfSubscribers($data['course']['user_id']);
+        $data['subscribersIds'] = $subscription->getSubscriberId(Auth::id());
         return view('general/video/details', $data);
     }
 
@@ -74,6 +76,7 @@ class VideoController extends Controller
         } 
         
         else {
+            //dd($this->_request->all());
             $video->edit($this->_request->all(), $courseId, $videoId);
             return redirect('/course/edit/' . $courseId)->with('status', 'Video aangepast!');
         }

@@ -1,3 +1,7 @@
+<?php 
+    $ratingService = new App\Services\Rating();
+?>
+
 @extends('layouts.app')
 
 @section('meta')
@@ -7,6 +11,7 @@
 
 @section('content')
 @include('components.menu')
+@include('components.cancel-subscription-popup')
 <div class="container">
     <div class="row mt-4">
         <div class="col-12">
@@ -41,7 +46,15 @@
                             <input type="hidden" class="videoId" name="videoId" value="{{$video->id}}">
                             <img src="/images/report.png" alt="Report">
                         </span>
-                        <a href="/subscribe/{{ $course->user_id }}" class="rounded-pill px-5 btn btn-secondary">subscribe</a>
+                        @if(in_array($video->course->user->id, $subscribersIds))
+                        <form action="/subscribe/cancel/{{$video->course->user->id}}" method="post">
+                            {{csrf_field()}}
+                            <input type="hidden" id="creatorId" name="creatorId" value="{{$video->course->user->id}}">
+                            <button class="cancel-subscription rounded-pill px-4 btn btn-secondary" type="submit">cancel subscription</button>
+                        </form>
+                        @else
+                        <a href="/subscribe/{{ $video->course->user->id }}" class="rounded-pill px-4 btn btn-secondary">subscribe</a>
+                        @endif
                     </div>  
                     @endif
                 @endif
@@ -65,8 +78,28 @@
                     </div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-12">
+                    <div class="col-8">
                         <h3>{{ $video->title }}</h3>
+                    </div>
+                    <div class="col-4 d-flex justify-content-end">
+                        @if(!empty($video->ratings))
+                            <?php $stars = $ratingService->getAVG($video->id); ?>
+                            <div class="rating mt-2">
+                                @for ($i = $stars; $i >= 1; $i--)
+                                    <span class="star star-checked"><i class="fa fa-star"></i></span>
+                                @endfor
+
+                                @for ($i = $stars; $i <= 4; $i++)
+                                    <span class="star"><i class="fa fa-star"></i></span>
+                                @endfor
+                            </div>
+                        @else
+                            <div class="rating mt-2">
+                                @for ($i = 5; $i >= 1; $i--)
+                                    <span class="star"><i class="fa fa-star"></i></span>
+                                @endfor
+                            </div>
+                        @endif
                     </div>
                 </div>
                 <div class="row">
