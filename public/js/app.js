@@ -37079,6 +37079,8 @@ __webpack_require__(/*! ./gava/like-comment */ "./resources/js/gava/like-comment
 
 __webpack_require__(/*! ./gava/landing-mobile-menu */ "./resources/js/gava/landing-mobile-menu.js");
 
+__webpack_require__(/*! ./gava/multiselect */ "./resources/js/gava/multiselect.js");
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 /***/ }),
@@ -37313,6 +37315,19 @@ $('.like-comment').click(function () {
 
     if (response.message == "success") {}
   });
+});
+
+/***/ }),
+
+/***/ "./resources/js/gava/multiselect.js":
+/*!******************************************!*\
+  !*** ./resources/js/gava/multiselect.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(function () {
+  $('#tags').multipleSelect();
 });
 
 /***/ }),

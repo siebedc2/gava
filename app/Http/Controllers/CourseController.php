@@ -43,7 +43,7 @@ class CourseController extends Controller
         return view('general.course.add', $data);
     }
 
-    public function handleAdd(CourseService $course, VideoService $video) {
+    public function handleAdd(CourseService $course, VideoService $video, CourseTagService $courseTag) {
         if ($course->validator($this->_request->input())->fails()) {
             $errors = $course->validator($this->_request->input())->errors();
             return redirect('/course/add')->with('errors', $errors);
@@ -52,6 +52,7 @@ class CourseController extends Controller
         else {
             $savedCourse = $course->create($this->_request->all());
             $video->create($savedCourse->id);
+            $courseTag->create($savedCourse->id, $this->_request->input('tags'));
             return redirect('/dashboard')->with('status', 'Added course!');
         }
     }

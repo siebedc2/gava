@@ -1,4 +1,7 @@
-<?php $videoService = new App\Services\Video(); ?>
+<?php 
+    $videoService = new App\Services\Video(); 
+    $ratingService = new App\Services\Rating();
+?>
 
 @extends('layouts.app')
 
@@ -39,7 +42,7 @@
                     <div class="col-2">
                         <img class="w-100 rounded" src="/images/uploads/{{ $course->tumbnail }}" alt="Course tumbnail">
                     </div>
-                    <div class="col-6">
+                    <div class="col-5">
                         <div class="row">
                             <div class="col-12">
                                 <p class="mb-1">{{ $course->title }}</p>
@@ -51,7 +54,34 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-4 d-flex justify-content-end">
+                    <div class="col-5 d-flex justify-content-end">
+                        <?php 
+                            $videos = $videoService->getAllCourseVideos($course->id); 
+                            $rating = 0;    
+                        ?>
+                        @foreach($videos as $video)
+                            <?php 
+                                $rating += $ratingService->getAVG($video['id']);
+                            ?>  
+                        @endforeach
+
+                        @if($rating != null)
+                            <?php $Coursestars = round(($rating / $videos->count()),0); ?>
+                            <div class="rating mt-2 mr-5">
+                                @for ($i = $Coursestars; $i >= 1; $i--)
+                                    <span class="star star-checked"><i class="fa fa-star"></i></span>
+                                @endfor
+                                @for ($i = $Coursestars; $i <= 4; $i++)
+                                    <span class="star"><i class="fa fa-star"></i></span>
+                                @endfor
+                            </div>
+                        @else
+                            <div class="rating mt-2 mr-5">
+                                @for ($i = 5; $i >= 1; $i--)
+                                    <span class="star"><i class="fa fa-star"></i></span>
+                                @endfor
+                            </div>
+                        @endif
                         <a class="rounded-pill px-3 mr-5 btn btn-primary" href="/course/edit/{{ $course->id }}"><i class="text-white mr-2 fa fa-pencil" aria-hidden="true"></i>edit</a> 
                         <form action="/course/delete/{{ $course->id }}" method="post">
                             {{csrf_field()}}

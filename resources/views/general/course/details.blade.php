@@ -87,11 +87,13 @@
                         <span class="star"><i class="fa fa-star"></i></span>
                     @endfor
                     </div>
+                    @else
+                    <div class="rating ml-4 mt-2">
+                        @for ($i = 5; $i >= 1; $i--)
+                            <span class="star"><i class="fa fa-star"></i></span>
+                        @endfor
+                    </div>
                     @endif
-                </div>
-                <div class="col-6">
-                
-                
                 </div>
             </div>
             <div class="row">
@@ -122,7 +124,12 @@
             <a href="/course/{{ $course->id }}/video/{{ $video->id }}" class="text-decoration-none col-12 col-md-6 rounded bg-white my-2">
                 <div class="row">
                     <div class="col-4">
-                        <img class="w-100 rounded" src="/images/uploads/{{$video->tumbnail}}" alt="Tumbnail">
+                        <div class="d-flex justify-content-center align-items-center w-100 rounded tumbnail @if($video->exclusive == 'y') exclusive-tumbnail @endif" style="background-image: url(/images/uploads/{{$video->tumbnail}});">
+                            @if($video->exclusive == 'y')
+                                <span class="rounded-pill btn btn-unlock btn-secondary">unlock video</span>
+                            @endif
+                        </div>
+                        <!--<img class="w-100 rounded" src="/images/uploads/{{$video->tumbnail}}" alt="Tumbnail">-->
                     </div>
                     <div class="col-8">
                         <div class="row">

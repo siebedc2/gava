@@ -15,12 +15,13 @@
 @section('content')
 @include('components.menu')
 @include('components.cancel-subscription-popup')
-<div class="container-fluid profile-bg">
+<div class="profile-bg">
+<div class="container">
     <div class="row">
-        <div class="col-11 mt-4 d-flex justify-content-end">
+        <div class="col-12 mt-4 d-flex justify-content-end">
             @if(empty($user))
             <a href="/profile/edit">
-                <img src="/images/settings.png" alt="Settings icon">
+                <img class="mr-3" src="/images/settings.png" alt="Settings icon">
             </a>
             @else
             <span class="report-user">
@@ -30,6 +31,7 @@
             @endif
         </div>
     </div>
+</div>
 </div>
 
 <div class="container">

@@ -1,6 +1,7 @@
-<div class="container-fluid pt-3 pb-3 menu d-none d-md-block">
+<div class="w-100 menu">
+<div class="container pt-3 pb-3 d-none d-md-block">
     <div class="row d-flex justify-content-center">
-        <div class="col-10">
+        <div class="col-12">
             <div class="row">
                 <div class="col-6">
                     <a href="/home">
@@ -23,4 +24,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>

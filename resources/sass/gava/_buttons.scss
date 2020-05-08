@@ -68,8 +68,11 @@
             color: #fff !important;
             background-color: #545b62;
         }
-
-
+    }
+    
+    &.btn-unlock {
+        position: relative;
+        z-index: 99;
     }
 }
 

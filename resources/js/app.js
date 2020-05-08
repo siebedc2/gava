@@ -17,5 +17,6 @@ require('./gava/report-video');
 require('./gava/report-comment');
 require('./gava/like-comment');
 require('./gava/landing-mobile-menu');
+require('./gava/multiselect');
 
 require('./bootstrap');

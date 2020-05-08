@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('extra-css')
+<!--<link rel="stylesheet" href="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.css">-->
+@endsection
+
 @section('content')
 @include('components.menu')
 <div class="container">
@@ -33,8 +37,8 @@
                         </div>
                         <div class="form-group">
                             <label for="tags" class="d-none">Example select</label>
-                            <select name="tags" class="border-0 bg-light rounded-pill form-control" id="tags" required>
-                                <option disabled selected>What technologies is this about?</option>
+                            <select name="tags[]" data-placeholder="What technologies is this about?" class="border-0 bg-light rounded-pill form-control" id="tags" multiple="multiple" required>
+                                <!--<option disabled selected>What technologies is this about?</option>-->
                                 @foreach($tags as $tag)
                                 <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                                 @endforeach
@@ -101,4 +105,8 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('extra-js')
+<script src="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.js"></script>
 @endsection

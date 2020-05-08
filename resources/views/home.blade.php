@@ -62,15 +62,42 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 @if(count($videoService->getAllCourseVideos($course->id)) == 1)
-                                                    <p class="course-video-amount text-black-50">{{ count($videoService->getAllCourseVideos($course->id)) }} video</p>
+                                                    <p class="mb-0 course-video-amount text-black-50">{{ count($videoService->getAllCourseVideos($course->id)) }} video</p>
                                                 @else
-                                                    <p class="course-video-amount text-black-50">{{ count($videoService->getAllCourseVideos($course->id)) }} video's</p>
+                                                    <p class="mb-0 course-video-amount text-black-50">{{ count($videoService->getAllCourseVideos($course->id)) }} video's</p>
                                                 @endif
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-12">
-                                                
+                                                <?php 
+                                                    $videos = $videoService->getAllCourseVideos($course->id); 
+                                                    $rating = 0;    
+                                                ?>
+                                                @foreach($videos as $video)
+                                                    <?php 
+                                                        $rating += $ratingService->getAVG($video['id']);
+                                                    ?>  
+                                                @endforeach
+
+                                                @if($rating != null)
+                                                <?php $Coursestars = round(($rating / $videos->count()),0); ?>
+                                                <div class="rating">
+                                                    @for ($i = $Coursestars; $i >= 1; $i--)
+                                                        <span class="star star-checked"><i class="fa fa-star"></i></span>
+                                                    @endfor
+
+                                                    @for ($i = $Coursestars; $i <= 4; $i++)
+                                                        <span class="star"><i class="fa fa-star"></i></span>
+                                                    @endfor
+                                                </div>
+                                                @else
+                                                <div class="rating">
+                                                    @for ($i = 5; $i >= 1; $i--)
+                                                        <span class="star"><i class="fa fa-star"></i></span>
+                                                    @endfor
+                                                </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -129,7 +156,11 @@
                                                 @endfor
                                             </div>
                                             @else
-                                            <p class="course-rating font-italic text-black-50">Nog geen rating</p>
+                                            <div class="rating">
+                                                @for ($i = 5; $i >= 1; $i--)
+                                                    <span class="star"><i class="fa fa-star"></i></span>
+                                                @endfor
+                                            </div>
                                             @endif
                                         </div>
                                     </div>
