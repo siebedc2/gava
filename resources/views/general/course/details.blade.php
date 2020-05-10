@@ -130,12 +130,16 @@
 
     <div class="row">
         @foreach($videos as $video)
-        <a href="/course/{{ $course->id }}/video/{{ $video->id }}"
-            class="text-decoration-none col-12 col-md-6 rounded bg-white my-2">
+        <a href="
+            @if($video->exclusive == 'y') 
+                /subscribe/{{ $user->id }} 
+            @else 
+                /course/{{ $course->id }}/video/{{ $video->id }} 
+            @endif
+            " class="text-decoration-none col-12 col-md-6 rounded bg-white my-2">
             <div class="row">
                 <div class="col-4">
-                    <div class="d-flex justify-content-center align-items-center w-100 rounded tumbnail @if($video->exclusive == 'y') exclusive-tumbnail @endif"
-                        style="background-image: url(/images/uploads/{{$video->tumbnail}});">
+                    <div class="d-flex justify-content-center align-items-center w-100 rounded tumbnail @if($video->exclusive == 'y') exclusive-tumbnail @endif" style="background-image: url(/images/uploads/{{$video->tumbnail}});">
                         @if($video->exclusive == 'y')
                         <span class="rounded-pill btn btn-unlock btn-secondary">unlock video</span>
                         @endif
