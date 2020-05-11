@@ -1,5 +1,6 @@
 $('.like-comment').click(function(){
-    var commentId = $(this).parent().parent().find('.commentId').html();
+    var commentId = $(this).parent().parent().parent().find('.commentId').html();
+    var likeAmount = $(this).next();
     console.log(commentId);
 
     $.ajax({
@@ -18,7 +19,7 @@ $('.like-comment').click(function(){
         console.log(response);
 
         if (response.message == "success") {
-
+            likeAmount.html(parseInt($(likeAmount).html()) + 1);
         }
     });
 });

@@ -226,7 +226,7 @@ h2 {
 
 .tumbnail {
   height: 95px;
-  max-width: 160px;
+  max-width: 168px;
   background-position: center center;
   background-size: cover;
   border-radius: 0.25rem;
@@ -270,6 +270,10 @@ h2 {
   z-index: 99;
   font-size: 40px;
   opacity: 0.7;
+}
+
+.lock {
+  width: 12px;
 }
 
 .link {
@@ -398,12 +402,26 @@ span {
   }*/
 }
 
+.subcribe-confirmation {
+  position: absolute;
+  top: 74.5px;
+  left: 0;
+  right: 0;
+  bottom: 0px;
+  width: 100%;
+}
+
 .check {
   width: 20px;
 }
 
 .false {
   width: 15px;
+}
+
+.report-icon {
+  height: 20px;
+  width: 20px;
 }
 
 .star {
@@ -666,6 +684,48 @@ span {
 
 .ms-drop .ms-no-results {
   display: none;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #DADADA;
+  border: 0px none #ffffff;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #DADADA;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #4951CF;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+  border: 0px none #ffffff;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track:hover {
+  background: #ffffff;
+}
+
+::-webkit-scrollbar-track:active {
+  background: #ffffff;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
 }
 
 /*!

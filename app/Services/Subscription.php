@@ -41,6 +41,29 @@ class Subscription {
             ])->pluck('creator_id')->toArray();
     }
 
+    public function notSubsribedWhenVideoWasCreated($videoCreatedAt, $creatorId) {
+        if(!Auth::user()) {
+            return true;
+        }
+
+        $dates = SubscriptionModel::where([
+            ['creator_id', $creatorId],
+            ['user_id', Auth::id()]
+        ])->get();
+
+        foreach($dates as $date) {            
+            $startDate = $date['created_at'];
+            $endDate =  $date['created_at']->addMonths($startDate->diffInMonths($date['updated_at']) + 1);
+
+            if($videoCreatedAt->between($startDate, $endDate) || date_diff($startDate, $endDate) == "+0 days") {
+                return false;
+            }
+        }
+
+        // If false is not returned, return true
+        return true;
+    }
+
     public function getSubscriptionById($creatorId) {
         return SubscriptionModel::where('creator_id', $creatorId)->firstOrFail();
     }
@@ -56,7 +79,10 @@ class Subscription {
         SubscriptionModel::where([
             [ 'user_id', Auth::id() ],
             [ 'creator_id', $creatorId]
-        ])->update(
+        ])
+        ->orderBy('created_at', 'desc')
+        ->limit(1)
+        ->update(
             [
                 'status' => 'offline'
             ]

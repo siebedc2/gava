@@ -1,5 +1,7 @@
 <?php 
     $ratingService = new App\Services\Rating();
+    $subscriptionService = new App\Services\Subscription();
+    $likeService = new App\Services\Like();
 ?>
 
 @extends('layouts.app')
@@ -25,7 +27,7 @@
                             <div class="col-10">
                                 <div class="row">
                                     <div class="col-12">
-                                        <h4 class="mb-1">{{ $video->course->user->name }}</h4>
+                                        <h4 class="font-weight-normal mb-1">{{ $video->course->user->name }}</h4>
                                     </div>
                                     <div class="col-12">
                                         @if($subscribersAmount == 1)
@@ -44,7 +46,7 @@
                     <div class="col-6 d-flex justify-content-end align-items-center">
                         <span class="report-video mr-5">
                             <input type="hidden" class="videoId" name="videoId" value="{{$video->id}}">
-                            <img src="/images/report.png" alt="Report">
+                            <img class="report-icon" src="/images/report.svg" alt="Report">
                         </span>
                         @if(in_array($video->course->user->id, $subscribersIds))
                         <form action="/subscribe/cancel/{{$video->course->user->id}}" method="post">
@@ -125,11 +127,14 @@
                             <!--<button type="submit" class="rounded-pill btn btn-primary mb-2">verzenden</button>-->
                         </form>
                         <div class="row">
-                            <div class="col-6 text-center">
-                                <a class="rounded-pill w-100 btn btn-primary" href="">post video comment</a>
+                            <div class="col-4 text-center">
+                                <a class="rounded-pill w-100 btn btn-primary" href="">video comment</a>
                             </div>
-                            <div class="col-6 text-center">
+                            <div class="col-4 text-center">
                                 <a class="rounded-pill w-100 btn btn-primary" href="/course/{{$video->course_id}}/video/{{$video->id}}/ratings">video ratings</a>
+                            </div>
+                            <div class="col-4 text-center">
+                                <a class="rounded-pill w-100 btn btn-primary" href="/course/{{$video->course_id}}/video/{{$video->id}}/ratings">share this video</a>
                             </div>
                         </div>
 
@@ -155,17 +160,26 @@
                         @auth
                             <div class="row">
                                 <p class="commentId" hidden>{{$comment->id}}</p>
-                                <div class="col-3">
-                                    <span class="like-comment">Like</span>
-                                </div>
-                                <div class="col-3">
-                                    <span>Upvote</span>
-                                </div>
-                                <div class="col-3">
-                                    <span>Reply</span>
-                                </div>
-                                <div class="col-3">
-                                    <span class="report-comment">Report</span>
+                                <div class="col-8 d-flex justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <span class="like-comment"><img src="/images/upvote.svg" alt="Upvote icon"></span>
+                                        <p class="mb-0 ml-2">0</p>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <span class="like-comment"><img src="/images/like.svg" alt="Like icon"></span>
+                                        <p class="like-amount mb-0 ml-2">{{ $likeService->getLikeAmount($comment->id) }}</p>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <span class="like-comment"><img src="/images/text_comment.svg" alt="Text comment icon"></span>
+                                        <p class="mb-0 ml-2">reply</p>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <span class="like-comment"><img src="/images/video_comment.svg" alt="Video comment icon"></span>
+                                        <p class="mb-0 ml-2">reply</p>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <span class="report-comment"><img class="report-icon" src="/images/report.svg" alt="Report icon"></span>
+                                    </div>
                                 </div>
                             </div>
                         @endauth
@@ -180,22 +194,57 @@
             @if($courseVideo->id != $video->id)
             <a href="/course/{{$courseVideo->course_id}}/video/{{$courseVideo->id}}" class="text-decoration-none row rounded bg-white my-3">
                 <div class="col-5">
-                    <img src="/images/uploads/{{$courseVideo->tumbnail}}" alt="Tumbnail" class="w-100 rounded">
+                    <div class="d-flex justify-content-center align-items-center w-100 rounded tumbnail @if($courseVideo->exclusive == 'y' && $subscriptionService->notSubsribedWhenVideoWasCreated($courseVideo->created_at, $video->course->user->id)) exclusive-tumbnail @endif" style="background-image: url(/images/uploads/{{$courseVideo->tumbnail}});">
+                        @if($courseVideo->exclusive == 'y' && $subscriptionService->notSubsribedWhenVideoWasCreated($courseVideo->created_at, $video->course->user->id))
+                        <span class="rounded-pill btn btn-unlock btn-secondary">unlock video</span>
+                        @endif
+                    </div>
                 </div>
                 <div class="col-7">
                     <div class="row">
                         <div class="col-12">
-                            <p class="mb-1">{{ $courseVideo->title }}</p>
+                            @if($courseVideo->exclusive == 'y') 
+                                @if($subscriptionService->notSubsribedWhenVideoWasCreated($courseVideo->created_at, $video->course->user->id))
+                                    <div class="d-flex align-items-center mb-1">
+                                        <img class="lock" src="/images/locked.svg" alt="unlocked icon">
+                                        <p class="ml-2 mb-0">{{ $courseVideo->title }}</p>
+                                    </div>
+                                @else
+                                    <div class="d-flex align-items-center mb-1">
+                                        <img class="lock" src="/images/unlocked.svg" alt="unlocked icon">
+                                        <p class="ml-2 mb-0">{{ $courseVideo->title }}</p>
+                                    </div>
+                                @endif
+                            @else 
+                                <p class="mb-1">{{ $courseVideo->title }}</p>
+                            @endif
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <p class="course-username">{{$courseVideo->course->user->name}}</p>
+                            <p class="mb-1"><span class="course-username">{{ $courseVideo->course->user->name }}</span><span class="video-date-dot text-black-50">{{ date_format($courseVideo->created_at, "F d Y")  }}</span></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            
+                        @if(!empty($courseVideo->ratings))
+                            <?php $stars = $ratingService->getAVG($courseVideo->id); ?>
+                            <div class="rating">
+                                @for ($i = $stars; $i >= 1; $i--)
+                                    <span class="star star-checked"><i class="fa fa-star"></i></span>
+                                @endfor
+
+                                @for ($i = $stars; $i <= 4; $i++) 
+                                    <span class="star"><i class="fa fa-star"></i></span>
+                                @endfor
+                            </div>
+                        @else
+                            <div class="rating">
+                                @for ($i = 5; $i >= 1; $i--)
+                                    <span class="star"><i class="fa fa-star"></i></span>
+                                @endfor
+                            </div>
+                        @endif
                         </div>
                     </div>
                 </div>

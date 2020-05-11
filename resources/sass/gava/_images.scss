@@ -79,7 +79,7 @@
 
 .tumbnail {
     height: 95px;
-    max-width: 160px;
+    max-width: 168px;
     background-position: center center;
     background-size: cover;
     border-radius: 0.25rem;
@@ -125,3 +125,6 @@
     }
 }
 
+.lock {
+    width: 12px;
+}

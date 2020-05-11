@@ -15,6 +15,10 @@ class Like {
         ]);
     }
 
+    public function getLikeAmount($commentId) {
+        return LikeModel::where('comment_id', $commentId)->get()->count();
+    }
+
     public function create($commentId) {
         $commentLike                = new LikeModel();
         $commentLike->like          = "1";

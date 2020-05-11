@@ -37342,7 +37342,8 @@ if (typeof optionBtn !== "undefined" && line1 != null && typeof line2 !== "undef
 /***/ (function(module, exports) {
 
 $('.like-comment').click(function () {
-  var commentId = $(this).parent().parent().find('.commentId').html();
+  var commentId = $(this).parent().parent().parent().find('.commentId').html();
+  var likeAmount = $(this).next();
   console.log(commentId);
   $.ajax({
     method: "POST",
@@ -37356,7 +37357,9 @@ $('.like-comment').click(function () {
   }).done(function (response) {
     console.log(response);
 
-    if (response.message == "success") {}
+    if (response.message == "success") {
+      likeAmount.html(parseInt($(likeAmount).html()) + 1);
+    }
   });
 });
 
@@ -37420,7 +37423,7 @@ if (typeof tumbnail_input !== "undefined" && tumbnail_input != null) {
 /***/ (function(module, exports) {
 
 $('.report-comment').click(function () {
-  var commentId = $(this).parent().parent().find('.commentId').html();
+  var commentId = $(this).parent().parent().parent().find('.commentId').html();
   console.log(commentId);
   $.ajax({
     method: "POST",

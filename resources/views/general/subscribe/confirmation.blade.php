@@ -3,7 +3,7 @@
 @section('content')
 @include('components.menu')
 <div class="container">
-    <div class="subcribe-confirmation row d-flex justify-content-center mt-4">
+    <div class="subcribe-confirmation row d-flex justify-content-center align-items-center ml-0">
         <div class="col-12 col-md-10">
             <div class="row">
                 <div class="col-12">

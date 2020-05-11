@@ -1,5 +1,6 @@
 <?php 
     $ratingService = new App\Services\Rating();
+    $subscriptionService = new App\Services\Subscription();
 ?>
 
 @extends('layouts.app')
@@ -52,13 +53,12 @@
                 @if(Auth::user())
                 @if(Auth::id() != $course->user_id)
                 <div class="col-6 d-flex justify-content-end align-items-center">
-                    <span class="mr-5"><img src="/images/report.png" alt="Report"></span>
+                    <span class="mr-5"><img class="report-icon" src="/images/report.svg" alt="Report"></span>
                     @if(in_array($user->id, $subscribersIds))
                     <form action="/subscribe/cancel/{{$user->id}}" method="post">
                         {{csrf_field()}}
                         <input type="hidden" id="creatorId" name="creatorId" value="{{$user->id}}">
-                        <button class="cancel-subscription rounded-pill px-4 btn btn-secondary" type="submit">cancel
-                            subscription</button>
+                        <button class="cancel-subscription rounded-pill px-4 btn btn-secondary" type="submit">cancel subscription</button>
                     </form>
                     @else
                     <a href="/subscribe/{{ $user->id }}" class="rounded-pill px-4 btn btn-secondary">subscribe</a>
@@ -105,8 +105,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <p class="mb-3"><span
-                            class="course-date text-black-50">{{ date_format($course->created_at, "F d Y")  }}</span>
+                    <p class="mb-3"><span class="course-date text-black-50">{{ date_format($course->created_at, "F d Y")  }}</span>
                     </p>
                 </div>
             </div>
@@ -131,7 +130,7 @@
     <div class="row">
         @foreach($videos as $video)
         <a href="
-            @if($video->exclusive == 'y') 
+            @if($video->exclusive == 'y' && $subscriptionService->notSubsribedWhenVideoWasCreated($video->created_at, $user->id)) 
                 /subscribe/{{ $user->id }} 
             @else 
                 /course/{{ $course->id }}/video/{{ $video->id }} 
@@ -139,8 +138,8 @@
             " class="text-decoration-none col-12 col-md-6 rounded bg-white my-2">
             <div class="row">
                 <div class="col-4">
-                    <div class="d-flex justify-content-center align-items-center w-100 rounded tumbnail @if($video->exclusive == 'y') exclusive-tumbnail @endif" style="background-image: url(/images/uploads/{{$video->tumbnail}});">
-                        @if($video->exclusive == 'y')
+                    <div class="d-flex justify-content-center align-items-center w-100 rounded tumbnail @if($video->exclusive == 'y' && $subscriptionService->notSubsribedWhenVideoWasCreated($video->created_at, $user->id)) exclusive-tumbnail @endif" style="background-image: url(/images/uploads/{{$video->tumbnail}});">
+                        @if($video->exclusive == 'y' && $subscriptionService->notSubsribedWhenVideoWasCreated($video->created_at, $user->id))
                         <span class="rounded-pill btn btn-unlock btn-secondary">unlock video</span>
                         @endif
                     </div>
@@ -148,12 +147,26 @@
                 <div class="col-8">
                     <div class="row">
                         <div class="col-12">
-                            <p class="mb-1">{{ $video->title }}</p>
+                            @if($video->exclusive == 'y') 
+                                @if($subscriptionService->notSubsribedWhenVideoWasCreated($video->created_at, $user->id))
+                                    <div class="d-flex align-items-center mb-1">
+                                        <img class="lock" src="/images/locked.svg" alt="unlocked icon">
+                                        <p class="ml-2 mb-0">{{ $video->title }}</p>
+                                    </div>
+                                @else
+                                    <div class="d-flex align-items-center mb-1">
+                                        <img class="lock" src="/images/unlocked.svg" alt="unlocked icon">
+                                        <p class="ml-2 mb-0">{{ $video->title }}</p>
+                                    </div>
+                                @endif
+                            @else 
+                                <p class="mb-1">{{ $video->title }}</p>
+                            @endif
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <p class="mb-1"><span class="course-username">{{ $course->user->name }}</span><span class="video-date-dot text-black-50">{{ date_format($course->created_at, "F d Y")  }}</span></p>
+                            <p class="mb-1"><span class="course-username">{{ $course->user->name }}</span><span class="video-date-dot text-black-50">{{ date_format($video->created_at, "F d Y")  }}</span></p>
                         </div>
                     </div>
                     <div class="row">

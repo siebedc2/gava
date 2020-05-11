@@ -64,17 +64,21 @@
                             <div class="row">
                                 <div class="col-12">
                                 <?php 
-                                    $videos = $videoService->getAllCourseVideos($course->id); 
-                                    $rating = 0;    
+                                    $videos             = $videoService->getAllCourseVideos($course->id); 
+                                    $rating             = 0;   
+                                    $amountOfRatings    = 0;  
                                 ?>
                                 @foreach($videos as $video)
                                     <?php 
-                                        $rating += $ratingService->getAVG($video['id']);
+                                        if(!empty($ratingService->getAVG($video['id']))) {
+                                            $rating += $ratingService->getAVG($video['id']);
+                                            $amountOfRatings += 1;
+                                        }
                                     ?>  
                                 @endforeach
 
                                 @if($rating != null)
-                                    <?php $Coursestars = round(($rating / $videos->count()),0); ?>
+                                    <?php $Coursestars = round(($rating / $amountOfRatings),0); ?>
                                     <div class="rating">
                                         @for ($i = $Coursestars; $i >= 1; $i--)
                                             <span class="star star-checked"><i class="fa fa-star"></i></span>

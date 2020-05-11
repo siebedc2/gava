@@ -1,5 +1,5 @@
 $('.report-comment').click(function(){
-    var commentId = $(this).parent().parent().find('.commentId').html();
+    var commentId = $(this).parent().parent().parent().find('.commentId').html();
     console.log(commentId);
 
     $.ajax({
