@@ -88,7 +88,7 @@ Route::prefix('/course')->middleware('auth')->group(function() {
     Route::get('/{course_id}/video/{video_id}', [
         'as'   => 'detailsVideo',
         'uses' => 'VideoController@details'
-    ]);
+    ])->middleware('checkSubscription');
 
     Route::get('/{course_id}/video/{video_id}/ratings', [
         'as'   => 'ratingsVideo',

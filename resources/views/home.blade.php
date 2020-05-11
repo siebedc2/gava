@@ -69,7 +69,7 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-12">
+                                            <div class="col-12 d-flex">
                                                 <?php 
                                                     $videos             = $videoService->getAllCourseVideos($course->id); 
                                                     $rating             = 0;   
@@ -77,13 +77,15 @@
                                                 ?>
                                                 @foreach($videos as $video)
                                                     <?php 
-                                                        if(!empty($ratingService->getAVG($video['id']))) {
-                                                            $rating += $ratingService->getAVG($video['id']);
+                                                        $ratingData = $ratingService->getAVG($video['id']);
+                                                        if(!empty($ratingData['starAVG'])) {
+                                                            $ratingData = $ratingService->getAVG($video['id']);
+                                                            $rating += $ratingData['starAVG'];
                                                             $amountOfRatings += 1;
                                                         }
                                                     ?>  
                                                 @endforeach
-
+                                                
                                                 @if($rating != null)
                                                 <?php $Coursestars = round(($rating / $amountOfRatings),0); ?>
                                                 <div class="rating">
@@ -102,6 +104,8 @@
                                                     @endfor
                                                 </div>
                                                 @endif
+
+                                                <p class="text-black-50 mb-0 ml-2">({{$amountOfRatings}})</p>
                                             </div>
                                         </div>
                                     </div>

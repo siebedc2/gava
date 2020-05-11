@@ -57,29 +57,36 @@
                     <div class="col-5 d-flex justify-content-end">
                         <?php 
                             $videos = $videoService->getAllCourseVideos($course->id); 
-                            $rating = 0;    
+                            $stars = 0;    
                         ?>
                         @foreach($videos as $video)
                             <?php 
-                                $rating += $ratingService->getAVG($video['id']);
+                                $rating = $ratingService->getAVG($video['id']);
+                                $stars += $rating['starAVG'];
                             ?>  
                         @endforeach
 
-                        @if($rating != null)
-                            <?php $Coursestars = round(($rating / $videos->count()),0); ?>
-                            <div class="rating mt-2 mr-5">
-                                @for ($i = $Coursestars; $i >= 1; $i--)
-                                    <span class="star star-checked"><i class="fa fa-star"></i></span>
-                                @endfor
-                                @for ($i = $Coursestars; $i <= 4; $i++)
-                                    <span class="star"><i class="fa fa-star"></i></span>
-                                @endfor
+                        @if($stars != null)
+                            <?php $Coursestars = round(($stars / $videos->count()),0); ?>
+                            <div class="d-flex align-items-center mr-5">
+                                <div class="rating mt-2">
+                                    @for ($i = $Coursestars; $i >= 1; $i--)
+                                        <span class="star star-checked"><i class="fa fa-star"></i></span>
+                                    @endfor
+                                    @for ($i = $Coursestars; $i <= 4; $i++)
+                                        <span class="star"><i class="fa fa-star"></i></span>
+                                    @endfor
+                                </div>
+                                <p class="text-black-50 mb-0 ml-2">({{$rating['amountOfRatings']}})</p>
                             </div>
                         @else
-                            <div class="rating mt-2 mr-5">
-                                @for ($i = 5; $i >= 1; $i--)
-                                    <span class="star"><i class="fa fa-star"></i></span>
-                                @endfor
+                            <div class="d-flex align-items-center mr-5">
+                                <div class="rating mt-2">
+                                    @for ($i = 5; $i >= 1; $i--)
+                                        <span class="star"><i class="fa fa-star"></i></span>
+                                    @endfor
+                                </div>
+                                <p class="text-black-50 mt-1 mb-0 ml-2">(0)</p>
                             </div>
                         @endif
                         <a class="rounded-pill px-3 mr-5 btn btn-primary" href="/course/edit/{{ $course->id }}"><i class="text-white mr-2 fa fa-pencil" aria-hidden="true"></i>edit</a> 

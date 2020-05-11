@@ -83,25 +83,28 @@
                     <div class="col-8">
                         <h3>{{ $video->title }}</h3>
                     </div>
-                    <div class="col-4 d-flex justify-content-end">
+                    <div class="col-4 d-flex justify-content-end align-items-center">
                         @if(!empty($video->ratings))
-                            <?php $stars = $ratingService->getAVG($video->id); ?>
+                            <?php $rating = $ratingService->getAVG($video->id); ?>
                             <div class="rating mt-2">
-                                @for ($i = $stars; $i >= 1; $i--)
+                                @for ($i = $rating['starAVG']; $i >= 1; $i--)
                                     <span class="star star-checked"><i class="fa fa-star"></i></span>
                                 @endfor
 
-                                @for ($i = $stars; $i <= 4; $i++)
+                                @for ($i = $rating['starAVG']; $i <= 4; $i++)
                                     <span class="star"><i class="fa fa-star"></i></span>
                                 @endfor
                             </div>
+                            <p class="text-black-50 mb-0 ml-2">({{$rating['amountOfRatings']}})</p>
                         @else
                             <div class="rating mt-2">
                                 @for ($i = 5; $i >= 1; $i--)
                                     <span class="star"><i class="fa fa-star"></i></span>
                                 @endfor
                             </div>
+                            <p class="text-black-50 mb-0 ml-2">(0)</p>
                         @endif
+                        
                     </div>
                 </div>
                 <div class="row">
@@ -226,25 +229,28 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 d-flex">
                         @if(!empty($courseVideo->ratings))
-                            <?php $stars = $ratingService->getAVG($courseVideo->id); ?>
+                            <?php $rating = $ratingService->getAVG($courseVideo->id); ?>
                             <div class="rating">
-                                @for ($i = $stars; $i >= 1; $i--)
+                                @for ($i = $rating['starAVG']; $i >= 1; $i--)
                                     <span class="star star-checked"><i class="fa fa-star"></i></span>
                                 @endfor
 
-                                @for ($i = $stars; $i <= 4; $i++) 
+                                @for ($i = $rating['starAVG']; $i <= 4; $i++) 
                                     <span class="star"><i class="fa fa-star"></i></span>
                                 @endfor
                             </div>
+                            <p class="text-black-50 mb-0 ml-2">({{$rating['amountOfRatings']}})</p>
                         @else
                             <div class="rating">
                                 @for ($i = 5; $i >= 1; $i--)
                                     <span class="star"><i class="fa fa-star"></i></span>
                                 @endfor
                             </div>
+                            <p class="text-black-50 mb-0 ml-2">(0)</p>
                         @endif
+                        
                         </div>
                     </div>
                 </div>

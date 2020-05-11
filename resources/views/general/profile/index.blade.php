@@ -122,34 +122,37 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-12 d-flex">
                                 <?php 
                                     $videos = $videoService->getAllCourseVideos($course->id); 
-                                    $rating = 0;    
+                                    $stars = 0;    
                                 ?>
                                 @foreach($videos as $video)
                                 <?php 
-                                       $rating += $ratingService->getAVG($video['id']);
-                                                ?>
+                                        $rating = $ratingService->getAVG($video['id']);
+                                        $stars += $rating['starAVG'];
+                                ?>
                                 @endforeach
 
-                                @if($rating != null)
-                                <?php $Coursestars = round(($rating / $videos->count()),0); ?>
+                                @if($stars != null)
+                                <?php $Coursestars = round(($stars / $videos->count()),0); ?>
                                 <div class="rating">
                                     @for ($i = $Coursestars; $i >= 1; $i--)
                                     <span class="star star-checked"><i class="fa fa-star"></i></span>
                                     @endfor
 
                                     @for ($i = $Coursestars; $i <= 4; $i++) <span class="star"><i
-                                            class="fa fa-star"></i></span>
-                                        @endfor
+                                        class="fa fa-star"></i></span>
+                                    @endfor
                                 </div>
+                                <p class="text-black-50 mb-0 ml-2">({{$rating['amountOfRatings']}})</p>
                                 @else
                                 <div class="rating">
                                     @for ($i = 5; $i >= 1; $i--)
                                     <span class="star"><i class="fa fa-star"></i></span>
                                     @endfor
                                 </div>
+                                <p class="text-black-50 mb-0 ml-2">(0)</p>
                                 @endif
                             </div>
                         </div>

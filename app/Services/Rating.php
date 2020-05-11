@@ -19,6 +19,8 @@ class Rating {
     }
 
     public function getAVG($videoId) {
-        return round(RatingModel::where('video_id', $videoId)->avg('stars'),0);
+        $data['starAVG']            = round(RatingModel::where('video_id', $videoId)->avg('stars'),0);
+        $data['amountOfRatings']    = RatingModel::where('video_id', $videoId)->count();
+        return $data;
     }    
 }
