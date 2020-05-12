@@ -1,16 +1,16 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="//site.com/playerjs.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="player"></div>
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <video class="w-100" id="player" playsinline controls data-poster="/path/to/poster.jpg">
-                <source src="/images/uploads/video.mp4" type="video/mp4" />
-
-                <!-- Captions are optional -->
-                <!--<track kind="captions" label="English captions" src="/path/to/captions.vtt" srclang="en" default />-->
-            </video>
-        </div>
-    </div>
-</div>
-@endsection
+<script>
+   var player = new Playerjs({id:"player", file:"//site.com/video.mp4"});
+</script>
+</body>
+</html>

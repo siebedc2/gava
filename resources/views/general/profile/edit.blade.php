@@ -8,16 +8,16 @@
             <form enctype="multipart/form-data" action="/profile/edit" method="post">
                 {{csrf_field()}}
                 <div class="row mt-4">               
-                    <div class="col-4">
+                    <div class="col-4 d-flex align-items-center">
                         <a href="/profile">
-                            <img src="/images/arrowBack.png" alt="Arrow back">
+                            <img class="arrow-icon" src="/images/arrowBack.png" alt="Arrow back">
                         </a>
                     </div>
-                    <div class="col-4 text-center">
-                        <h2>Settings</h2>
+                    <div class="col-4 d-flex align-items-center justify-content-center">
+                        <h2 class="font-weight-normal mb-0">Settings</h2>
                     </div>
                     <div class="col-4 text-right">
-                        <button type="submit" class="rounded-pill px-5 btn btn-primary">save</button>
+                        <button type="submit" class="rounded-pill px-md-5 btn btn-confirm">save</button>
                     </div>
                 </div>                
                 <div class="row d-flex justify-content-center">
@@ -38,7 +38,7 @@
                             <label class="d-none" for="email">Email address</label>
                             <input name="email" type="email" class="w-100 rounded-pill border-0 bg-light form-control" id="email" value="{{ Auth::user()->email }}" required>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check pl-0">
                             <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                             <label class="form-check-label" for="defaultCheck1">enable notifications</label>
                         </div>

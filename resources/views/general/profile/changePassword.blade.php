@@ -8,16 +8,16 @@
             <form action="/profile/edit/change-password" method="post">
                 {{csrf_field()}}
                 <div class="row mt-4">               
-                    <div class="col-4">
+                    <div class="col-3 col-md-4 d-flex align-items-center">
                         <a href="/profile/edit">
-                            <img src="/images/arrowBack.png" alt="Arrow back">
+                            <img class="arrow-icon" src="/images/arrowBack.png" alt="Arrow back">
                         </a>
                     </div>
-                    <div class="col-4 text-center">
-                        <h2>Change password</h2>
+                    <div class="col-6 col-md-4 d-flex align-items-center justify-content-center">
+                        <h2 class="font-weight-normal mb-0">Change password</h2>
                     </div>
-                    <div class="col-4 text-right">
-                        <button type="submit" class="rounded-pill px-5 btn btn-primary">save</button>
+                    <div class="col-3 col-md-4 text-right">
+                        <button type="submit" class="rounded-pill px-md-5 btn btn-confirm">save</button>
                     </div>
                 </div>
                 

@@ -141,19 +141,25 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-12">
+                                        <div class="col-12 d-flex">
                                             <?php 
-                                                $videos = $videoService->getAllCourseVideos($course->id); 
-                                                $rating = 0;    
+                                                $videos             = $videoService->getAllCourseVideos($course->id); 
+                                                $rating             = 0;   
+                                                $amountOfRatings    = 0; 
                                             ?>
                                             @foreach($videos as $video)
                                                 <?php 
-                                                    $rating += $ratingService->getAVG($video['id']);
+                                                    $ratingData = $ratingService->getAVG($video['id']);
+                                                    if(!empty($ratingData['starAVG'])) {
+                                                        $ratingData = $ratingService->getAVG($video['id']);
+                                                        $rating += $ratingData['starAVG'];
+                                                        $amountOfRatings += 1;
+                                                    }
                                                 ?>  
                                             @endforeach
 
                                             @if($rating != null)
-                                            <?php $Coursestars = round(($rating / $videos->count()),0); ?>
+                                            <?php $Coursestars = round(($rating / $amountOfRatings),0); ?>
                                             <div class="rating">
                                                 @for ($i = $Coursestars; $i >= 1; $i--)
                                                     <span class="star star-checked"><i class="fa fa-star"></i></span>
@@ -170,6 +176,7 @@
                                                 @endfor
                                             </div>
                                             @endif
+                                            <p class="text-black-50 mb-0 ml-2">({{$amountOfRatings}})</p>
                                         </div>
                                     </div>
                                 </div>

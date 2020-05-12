@@ -68,9 +68,14 @@
         <div class="col-12 col-md-6">
             <div class="row">
                 <div class="col-12">
-                    <iframe height="300px" width="100%" src="/images/uploads/{{ $video->video }}" frameborder="0"
+                    <!--<iframe height="300px" width="100%" src="/images/uploads/{{ $video->video }}" frameborder="0"
                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
+                        allowfullscreen></iframe>-->
+                    <div id="player"></div>
+
+                    <script>
+                        var player = new Playerjs({id:"player", file:"video.mp4"});
+                    </script>
                 </div>
             </div>
             <div class="video-information border-bottom text-white">

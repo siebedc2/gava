@@ -37083,8 +37083,6 @@ __webpack_require__(/*! ./gava/landing-mobile-menu */ "./resources/js/gava/landi
 
 __webpack_require__(/*! ./gava/multiselect */ "./resources/js/gava/multiselect.js");
 
-__webpack_require__(/*! ./gava/preview-image */ "./resources/js/gava/preview-image.js");
-
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 /***/ }),
@@ -37375,43 +37373,6 @@ $('.like-comment').click(function () {
 $(function () {
   $('#tags').multipleSelect();
 });
-
-/***/ }),
-
-/***/ "./resources/js/gava/preview-image.js":
-/*!********************************************!*\
-  !*** ./resources/js/gava/preview-image.js ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var profile_picture_input = $('#profile_picture').val();
-
-if (typeof profile_picture_input !== "undefined" && profile_picture_input != null) {
-  $('#profile_picture').on('change', function (e) {
-    var reader = new FileReader();
-
-    reader.onload = function () {
-      $('.edit-profile-image').css('background-image', 'url(' + reader.result + ')');
-    };
-
-    reader.readAsDataURL(e.target.files[0]);
-  });
-}
-
-var tumbnail_input = $('#tumbnail').val();
-
-if (typeof tumbnail_input !== "undefined" && tumbnail_input != null) {
-  $('#tumbnail').on('change', function (e) {
-    var reader = new FileReader();
-
-    reader.onload = function () {
-      $('.edit-tumbnail').css('background-image', 'url(' + reader.result + ')');
-    };
-
-    reader.readAsDataURL(e.target.files[0]);
-  });
-}
 
 /***/ }),
 

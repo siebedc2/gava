@@ -8,16 +8,16 @@
             <form enctype="multipart/form-data" method="post">
                 {{csrf_field()}}
                 <div class="row mt-4">
-                    <div class="col-4">
+                    <div class="col-4 d-flex align-items-center">
                         <a href="{{ URL::previous() }}">
-                            <img src="/images/arrowBack.png" alt="Arrow back">
+                            <img class="arrow-icon" src="/images/arrowBack.png" alt="Arrow back">
                         </a>
                     </div>
-                    <div class="col-4 text-center">
-                        <h2 class="font-weight-normal">Edit video</h2>
+                    <div class="col-4 d-flex align-items-center justify-content-center">
+                        <h2 class="font-weight-normal mb-0">Edit video</h2>
                     </div>
                     <div class="col-4 text-right">
-                        <button type="submit" class="rounded-pill px-5 btn btn-primary">save</button>
+                        <button type="submit" class="rounded-pill px-md-5 btn btn-confirm">save</button>
                     </div>
                 </div>
 
@@ -31,7 +31,7 @@
                             <label class="d-none" for="description">Example textarea</label>
                             <textarea name="description"  class="bg-light border-0 form-control" id="description" rows="3">{{ $video->description }}</textarea>
                         </div>
-                        <div class="form-group form-check">
+                        <div class="form-group form-check pl-0">
                             <input name="exclusive" type="checkbox" class="form-check-input" id="exclusive" value="{{$video->exclusive}}" @if($video->exclusive == "y") checked @endif>
                             <label for="exclusive" class="form-check-label">make this video exclusive to my subscribers</label>
                         </div>

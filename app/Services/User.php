@@ -35,15 +35,6 @@ class User {
         }
 
         $user->save();
-
-        /*UserModel::where('id', $userId)
-                    ->update(
-                        [
-                            'name'  => $request['name'],
-                            'email' => $request['email'],
-                            'profile_picture' => $request['profile_picture']
-                        ]
-                        );*/
     }
 
     public function changePassword($request, $userId) {

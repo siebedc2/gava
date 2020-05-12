@@ -69,6 +69,11 @@
             background-color: #545b62;
         }
     }
+
+    &.btn-confirm {
+        color: $btn-primary-color;
+        font-weight: bold;
+    }
     
     &.btn-unlock {
         position: relative;
@@ -84,5 +89,29 @@
 
     p {
         font-size: 40px;
+    }
+}
+
+@media (min-width: 768px) {
+    .btn {
+        &.btn-confirm {
+            background-color: $btn-primary-color;
+            border: $btn-primary-color;
+            color: white;
+            font-weight: normal;
+    
+            &:focus {
+                background-color: $btn-primary-color !important;
+            }
+    
+            &:active {
+                background-color: $btn-primary-color !important;
+            }
+    
+            &:hover {
+                color: white !important;
+                background-color: $btn-primary-hover-color;
+            }
+        }
     }
 }

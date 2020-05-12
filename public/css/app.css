@@ -72,6 +72,11 @@
   background-color: #545b62;
 }
 
+.btn.btn-confirm {
+  color: #291875;
+  font-weight: bold;
+}
+
 .btn.btn-unlock {
   position: relative;
   z-index: 99;
@@ -86,6 +91,28 @@
 
 .add-btn p {
   font-size: 40px;
+}
+
+@media (min-width: 768px) {
+  .btn.btn-confirm {
+    background-color: #291875;
+    border: #291875;
+    color: white;
+    font-weight: normal;
+  }
+
+  .btn.btn-confirm:focus {
+    background-color: #291875 !important;
+  }
+
+  .btn.btn-confirm:active {
+    background-color: #291875 !important;
+  }
+
+  .btn.btn-confirm:hover {
+    color: white !important;
+    background-color: #1f1259;
+  }
 }
 
 .gava {
@@ -127,7 +154,7 @@
 
 .profile-bg {
   background-color: #291875;
-  height: 220px;
+  height: 150px;
 }
 
 @media (min-width: 768px) {
@@ -135,10 +162,14 @@
     height: 520px;
     width: 460px;
   }
+
+  .profile-bg {
+    height: 220px;
+  }
 }
 
 h2 {
-  font-size: 28px !important;
+  font-size: 18px !important;
 }
 
 .card-header {
@@ -358,6 +389,10 @@ span {
   margin-left: 0px !important;
 }
 
+.profile_user_name {
+  font-size: 26px !important;
+}
+
 .vh-90 {
   height: 90vh;
 }
@@ -411,6 +446,54 @@ span {
   width: 100%;
 }
 
+.profile-content {
+  margin-top: -80px !important;
+}
+
+.form-check-input {
+  position: absolute;
+  opacity: 0;
+  /*&:hover + label:before {
+    background: #291875;
+  }*/
+}
+
+.form-check-input + label {
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+}
+
+.form-check-input + label:before {
+  content: "";
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: text-top;
+  width: 18px;
+  height: 18px;
+  background: white;
+  border: 1px solid #291875;
+  border-radius: 5px;
+}
+
+.form-check-input:focus + label:before {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+}
+
+.form-check-input:checked + label:before {
+  background: #291875;
+}
+
+.form-check-input:disabled + label {
+  color: #b8b8b8;
+  cursor: auto;
+}
+
+.form-check-input:disabled + label:before {
+  box-shadow: none;
+  background: #ddd;
+}
+
 .check {
   width: 20px;
 }
@@ -437,7 +520,15 @@ span {
 }
 
 .star-checked i {
-  color: #291875;
+  color: #4951CF;
+}
+
+.premium_profile_icon {
+  width: 20px;
+}
+
+.arrow-icon {
+  width: 31px;
 }
 
 #player {

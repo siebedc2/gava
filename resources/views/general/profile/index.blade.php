@@ -1,6 +1,7 @@
 <?php 
-    $videoService = new App\Services\Video(); 
-    $ratingService = new App\Services\Rating();
+    $videoService   = new App\Services\Video(); 
+    $ratingService  = new App\Services\Rating();
+    $subscriptionService    = new App\Services\Subscription();
 ?>
 
 @extends('layouts.app')
@@ -21,7 +22,14 @@
 <div class="profile-bg">
     <div class="container">
         <div class="row">
-            <div class="col-12 mt-4 d-flex justify-content-end">
+            <div class="col-6 mt-4">
+                @if(!empty($user))
+                <a href="{{ url()->previous() }}">
+                    <img class="arrow-icon" src="/images/arrow_back_white.svg" alt="Settings icon">
+                </a>
+                @endif
+            </div>
+            <div class="col-6 mt-4 d-flex justify-content-end">
                 @if(empty($user))
                 <a href="/profile/edit">
                     <img class="mr-3" src="/images/settings.png" alt="Settings icon">
@@ -37,13 +45,13 @@
     </div>
 </div>
 
-<div class="container">
+<div class="container profile-content mt-md-0 mb-5">
     <div class="row my-4">
         <div class="col-12">
             <div class="row d-flex align-items-center">
-                <div class="col-6">
+                <div class="col-md-6">
                     <div class="row d-flex align-items-center">
-                        <div class="col-3">
+                        <div class="d-flex justify-content-center col-md-3">
                             @if(!empty($user))
                             <div style="background-image: url(/images/uploads/{{$user->profile_picture}});"
                                 class="profile-image rounded-circle"></div>
@@ -52,16 +60,26 @@
                                 class="profile-image rounded-circle"></div>
                             @endif
                         </div>
-                        <div class="col-9">
+                        <div class="col-md-9 text-center text-md-left">
                             <div class="row">
-                                <div class="col-12">
+                                <div class="col-12 d-flex justify-content-center justify-content-md-start mt-3 mt-md-0">
                                     @if(!empty($user))
-                                    <h2>{{ $user->name }}</h2>
+                                        <div class="d-flex">
+                                            <h2 class="profile_user_name">{{ $user->name }}</h2>
+                                            @if($subscriptionService->checkIfSubscribed($user->id))
+                                                <img class="premium_profile_icon ml-4 mb-2" src="/images/premium_darkblue.svg" alt="Premium icon">
+                                            @endif
+                                        </div>
                                     @else
-                                    <h2>{{ Auth::user()->name }}</h2>
+                                        <div class="d-flex">
+                                            <h2 class="profile_user_name">{{ Auth::user()->name }}</h2>        
+                                            @if($subscriptionService->checkIfSubscribed(Auth::id()))
+                                                <img class="premium_profile_icon ml-4 mb-2" src="/images/premium_darkblue.svg" alt="Premium icon">
+                                            @endif
+                                        </div>
                                     @endif
                                 </div>
-                                <div class="col-12">
+                                <div class="col-12 mt-1 mt-md-0">
                                     @if($subscribersAmount == 1)
                                     <h6 class="font-weight-normal">{{ $subscribersAmount }} subscriber</h6>
                                     @elseif($subscribersAmount == 0)
@@ -74,14 +92,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6 d-flex justify-content-end">
+                <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end mt-3 mt-md-0">
                     @if(!empty($user))
                     @if(in_array($user->id, $subscribersIds))
                     <form action="/subscribe/cancel/{{$user->id}}" method="post">
                         {{csrf_field()}}
                         <input type="hidden" id="creatorId" name="creatorId" value="{{$user->id}}">
-                        <button class="cancel-subscription rounded-pill px-5 btn btn-secondary" type="submit">cancel
-                            subscription</button>
+                        <button class="cancel-subscription rounded-pill px-5 btn btn-secondary" type="submit">cancel subscription</button>
                     </form>
                     @else
                     <a href="/subscribe/{{ $user->id }}" class="rounded-pill px-5 btn btn-secondary">subscribe</a>
@@ -91,20 +108,20 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row pt-md-3">
         <div class="col-12 col-md-8">
             <div class="row">
                 <div class="col-12">
-                    <h3 class="font-weight-normal">Courses</h3>
+                    <h2 class="font-weight-normal">Courses</h2>
                 </div>
             </div>
             @foreach($courses as $course)
             <a href="/course/{{ $course->id }}" class="text-decoration-none">
-                <div class="row my-2">
-                    <div class="col-3">
+                <div class="row my-2 d-flex align-items-center">
+                    <div class="col-6 col-md-3">
                         <div class="d-flex justify-content-center align-items-center w-100 rounded tumbnail" style="background-image: url(/images/uploads/{{$course->tumbnail}});"></div>
                     </div>
-                    <div class="col-9">
+                    <div class="col-6 col-md-9">
                         <div class="row">
                             <div class="col-12">
                                 <p class="mb-1">{{ $course->title }}</p>
@@ -161,10 +178,10 @@
             </a>
             @endforeach
         </div>
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-4 mt-4 mt-md-0">
             <div class="row">
                 <div class="col-12">
-                    <h3 class="font-weight-normal">Subscribers</h3>
+                    <h2 class="font-weight-normal">Subscribers</h2>
                 </div>
             </div>
 

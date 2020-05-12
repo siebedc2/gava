@@ -23,7 +23,15 @@
     pointer-events: none !important;
     
     & i {
-        color: $btn-primary-color;
+        color: $checked-star-color;
     }
 
 } 
+
+.premium_profile_icon {
+    width: 20px;
+}
+
+.arrow-icon {
+    width: 31px;
+}

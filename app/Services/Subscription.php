@@ -41,6 +41,21 @@ class Subscription {
             ])->pluck('creator_id')->toArray();
     }
 
+    public function checkIfSubscribed($userId) {
+        $subscriptions = SubscriptionModel::where([
+            ['user_id', $userId], 
+            ['status', 'online']
+        ])->get();
+
+        if($subscriptions->count() > 0) {
+            return true;
+        }
+
+        else {
+            return false;
+        }
+    }
+
     public function notSubsribedWhenVideoWasCreated($videoCreatedAt, $creatorId) {
         if(!Auth::user()) {
             return true;
