@@ -37081,7 +37081,8 @@ __webpack_require__(/*! ./gava/like-comment */ "./resources/js/gava/like-comment
 
 __webpack_require__(/*! ./gava/landing-mobile-menu */ "./resources/js/gava/landing-mobile-menu.js");
 
-__webpack_require__(/*! ./gava/multiselect */ "./resources/js/gava/multiselect.js");
+__webpack_require__(/*! ./gava/multiselect */ "./resources/js/gava/multiselect.js"); //require('./gava/playerjs');
+
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 

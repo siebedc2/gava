@@ -11,6 +11,10 @@
     <meta name="og:title" content="Gava - {{ $video->name }}">
 @endsection
 
+@section('extra-css')
+<script src="https://cdn.plrjs.com/player/2si44sh83212a/2c1cnkurl0zy.js" type="text/javascript"></script>
+@endsection
+
 @section('content')
 @include('components.menu')
 @include('components.cancel-subscription-popup')
@@ -74,7 +78,7 @@
                     <div id="player"></div>
 
                     <script>
-                        var player = new Playerjs({id:"player", file:"video.mp4"});
+                        var player = new Playerjs({id:"player", file:"/images/uploads/video.mp4"});
                     </script>
                 </div>
             </div>
@@ -100,14 +104,14 @@
                                     <span class="star"><i class="fa fa-star"></i></span>
                                 @endfor
                             </div>
-                            <p class="text-black-50 mb-0 ml-2">({{$rating['amountOfRatings']}})</p>
+                            <p class="text-black-50 mt-2 mb-0 ml-2">({{$rating['amountOfRatings']}})</p>
                         @else
                             <div class="rating mt-2">
                                 @for ($i = 5; $i >= 1; $i--)
                                     <span class="star"><i class="fa fa-star"></i></span>
                                 @endfor
                             </div>
-                            <p class="text-black-50 mb-0 ml-2">(0)</p>
+                            <p class="text-black-50 mt-2 mb-0 ml-2">(0)</p>
                         @endif
                         
                     </div>
@@ -267,3 +271,4 @@
 </div>
 </div>
 @endsection
+
