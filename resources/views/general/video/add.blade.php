@@ -8,16 +8,16 @@
             <form enctype="multipart/form-data" method="post">
                 {{csrf_field()}}
                 <div class="row mt-4">
-                    <div class="col-4">
+                    <div class="col-3 col-md-4 d-flex align-items-center">
                         <a href="{{ URL::previous() }}">
-                            <img src="/images/arrowBack.png" alt="Arrow back">
+                            <img class="arrow-icon" src="/images/arrowBack.png" alt="Arrow back">
                         </a>
                     </div>
-                    <div class="col-4 text-center">
-                        <h2 class="font-weight-normal">Add video</h2>
+                    <div class="col-6 col-md-4 d-flex align-items-center justify-content-center">
+                        <h2 class="font-weight-normal mb-0">Add video</h2>
                     </div>
-                    <div class="col-4 text-right">
-                        <button type="submit" class="rounded-pill px-5 btn btn-primary">upload</button>
+                    <div class="col-3 col-md-4 text-right">
+                        <button type="submit" class="rounded-pill px-md-5 btn btn-confirm">upload</button>
                     </div>
                 </div>
 
@@ -35,9 +35,10 @@
                             <input name="exclusive" type="checkbox" class="form-check-input" id="exclusive" value="y">
                             <label for="exclusive" class="form-check-label">make this video exclusive to my subscribers</label>
                         </div>
-                        <div class="form-group mt-4">
-                            <label for="tumbnail">Upload custom thumbnail</label>
-                            <label class="d-block w-50 add-btn d-flex justify-content-center align-items-center" for="tumbnail">
+                        <div class="form-group mt-4 text-center text-md-left">
+                            <label class="d-md-none rounded-pill btn btn-primary" for="tumbnail">upload custom thumbnail</label>
+                            <label class="d-none d-md-block" for="tumbnail">Upload custom thumbnail</label>
+                            <label class="d-none w-50 add-btn d-md-flex justify-content-center align-items-center" for="tumbnail">
                                 <img src="/images/add.svg" alt="Add icon">
                             </label>
                             <input name="tumbnail" type="file" class="form-control-file" id="tumbnail">
@@ -45,9 +46,10 @@
                     </div>
 
                     <div class="col-12 col-md-5 offset-md-1">
-                        <div class="form-group">                            
-                            <label for="video">Select file</label>
-                            <label class="d-block w-100 add-btn d-flex justify-content-center align-items-center" for="video">
+                        <div class="form-group text-center text-md-left">
+                            <label class="d-md-none rounded-pill btn btn-primary" for="video">select file</label>
+                            <label class="d-none d-md-block" for="video">Select file</label>
+                            <label class="d-none w-100 add-btn d-md-flex justify-content-center align-items-center" for="video">
                                 <img src="/images/add.svg" alt="Add icon">
                             </label>
                             <input name="video" type="file" class="form-control-file" id="video">

@@ -48,9 +48,11 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     @yield('extra-css')
+
+    @yield('playerjs')
     
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon">
     
     <!-- Canonical tag -->
     <link rel="canonical" href="https://gava-learning.be/">

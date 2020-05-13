@@ -12,16 +12,16 @@
             <form enctype="multipart/form-data" method="post">
                 {{csrf_field()}}
                 <div class="row mt-4">
-                    <div class="col-4">
+                    <div class="col-3 col-md-4 d-flex align-items-center">
                         <a href="/dashboard">
-                            <img src="/images/arrowBack.png" alt="Arrow back">
+                            <img class="arrow-icon" src="/images/arrowBack.png" alt="Arrow back">
                         </a>
                     </div>
-                    <div class="col-4 text-center">
-                        <h2 class="font-weight-normal">Add course</h2>
+                    <div class="col-6 col-md-4 d-flex align-items-center justify-content-center">
+                        <h2 class="font-weight-normal mb-0">Add course</h2>
                     </div>
-                    <div class="col-4 text-right">
-                        <button type="submit" class="rounded-pill px-5 btn btn-primary">publish</button>
+                    <div class="col-3 col-md-4 text-right">
+                        <button type="submit" class="rounded-pill px-md-5 btn btn-confirm">publish</button>
                     </div>
                 </div>
 
@@ -43,46 +43,73 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group mt-5">
-                            <label for="tumbnail">Upload custom thumbnail</label>
-                            <label class="d-block w-50 add-btn d-flex justify-content-center align-items-center" for="tumbnail">
+                        <div class="form-group mt-5 text-center text-md-left">
+                            <label class="d-md-none rounded-pill btn btn-primary" for="tumbnail">upload custom thumbnail</label>
+                            <label class="d-none d-md-block" for="tumbnail">Upload custom thumbnail</label>
+                            <label class="d-none w-50 add-btn d-md-flex justify-content-center align-items-center" for="tumbnail">
                                 <img src="/images/add.svg" alt="Add icon">
                             </label>
-                            <input name="tumbnail" type="file" class="form-control-file" id="tumbnail" required>
+                            <input name="tumbnail" type="file" class="form-control-file position-static" id="tumbnail" required>
                         </div>
                     </div>
 
                     <div class="col-12 col-md-5 offset-md-1">
-                        <div class="row">
-                            <div class="col-12">
-                                <p>Upload video</p>
-                            </div>
-                        </div>  
-                        <div class="row">
-                            <div class="col-12">
-                                @if (session('status'))
-                                    <div class="alert alert-success">
-                                        {{ session('status') }}
-                                    </div>
-                                @endif
-                            </div>
-                        </div>  
-                        <div class="row">
-                            <a class="col-12 text-decoration-none" href="/course/video/add">
-                                <div class="add-btn d-flex align-items-center justify-content-center">
-                                    <img src="/images/add.svg" alt="Add icon">
+                        <div class="d-md-none">
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <a href="/course/video/add" class="rounded-pill px-md-5 btn btn-primary">add new video to course</a>
                                 </div>
-                            </a>
+                            </div>
                         </div>
-                        <div class="row">
-                            @if(!empty($videos ?? ''))
-                                @foreach($videos as $video)
-                                    <div class="col-12">
-                                        <p>{{ $video['title'] }}</p>
+
+                        <div class="d-none d-md-block">
+                            <div class="row">
+                                <div class="col-12">
+                                    <p>Upload video</p>
+                                </div>
+                            </div>  
+                            <div class="row">
+                                <div class="col-12">
+                                    @if (session('status'))
+                                        <div class="alert alert-success">
+                                            {{ session('status') }}
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>  
+                            <div class="row">
+                                <a class="col-12 text-decoration-none" href="/course/video/add">
+                                    <div class="add-btn d-flex align-items-center justify-content-center">
+                                        <img src="/images/add.svg" alt="Add icon">
                                     </div>
-                                @endforeach
-                            @endif
+                                </a>
+                            </div>
                         </div>
+                        @if(!empty($videos ?? ''))
+                            @foreach($videos as $video)
+                            <div class="row mt-3 d-flex align-items-center">
+                            <div class="col-5">
+                                <div class="d-flex justify-content-center align-items-center w-100 rounded tumbnail" style="background-image: url(/images/uploads/{{$video['tumbnail']}});"></div>
+                            </div>
+                            <div class="col-5">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="mb-1">{{ $video['title'] }}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="rating">
+                                            @for ($i = 5; $i >= 1; $i--)
+                                                <span class="star"><i class="fa fa-star"></i></span>
+                                            @endfor
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
 

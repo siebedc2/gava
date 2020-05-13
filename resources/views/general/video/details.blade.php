@@ -11,7 +11,7 @@
     <meta name="og:title" content="Gava - {{ $video->name }}">
 @endsection
 
-@section('extra-css')
+@section('playerjs')
 <script src="https://cdn.plrjs.com/player/2si44sh83212a/2c1cnkurl0zy.js" type="text/javascript"></script>
 @endsection
 
@@ -72,13 +72,8 @@
         <div class="col-12 col-md-6">
             <div class="row">
                 <div class="col-12">
-                    <!--<iframe height="300px" width="100%" src="/images/uploads/{{ $video->video }}" frameborder="0"
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>-->
-                    <div id="player"></div>
-
-                    <script>
-                        var player = new Playerjs({id:"player", file:"/images/uploads/video.mp4"});
+                    <div id="player"></div><script>
+                        var player = new Playerjs({id:"player", file:"/images/uploads/<?php Print($video->video); ?>"});
                     </script>
                 </div>
             </div>
@@ -92,7 +87,7 @@
                     <div class="col-8">
                         <h3>{{ $video->title }}</h3>
                     </div>
-                    <div class="col-4 d-flex justify-content-end align-items-center">
+                    <div class="col-4 d-flex justify-content-end align-items-md-center">
                         @if(!empty($video->ratings))
                             <?php $rating = $ratingService->getAVG($video->id); ?>
                             <div class="rating mt-2">
