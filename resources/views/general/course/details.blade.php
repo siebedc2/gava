@@ -53,7 +53,10 @@
                 @if(Auth::user())
                 @if(Auth::id() != $course->user_id)
                 <div class="col-6 d-flex justify-content-end align-items-center">
-                    <span class="mr-5"><img class="report-icon" src="/images/report.svg" alt="Report"></span>
+                    <div class="report-user">
+                        <input type="hidden" value="{{$user->id}}" class="userId" name="userId">
+                        <span class="mr-5"><img class="report-icon" src="/images/report.svg" alt="Report"></span>
+                    </div>
                     @if(in_array($user->id, $subscribersIds))
                     <form action="/subscribe/cancel/{{$user->id}}" method="post">
                         {{csrf_field()}}
@@ -84,7 +87,7 @@
                         @endforeach
 
                         @if(!empty($Coursestars))
-                        <div class="rating ml-4 mt-2">
+                        <div class="rating ml-4">
                             @for ($i = $Coursestars; $i >= 1; $i--)
                                 <span class="star star-checked"><i class="fa fa-star"></i></span>
                             @endfor
@@ -94,7 +97,7 @@
                             @endfor
                         </div>
                         @else
-                        <div class="rating ml-4 mt-2">
+                        <div class="rating ml-4">
                             @for ($i = 5; $i >= 1; $i--)
                             <span class="star"><i class="fa fa-star"></i></span>
                             @endfor

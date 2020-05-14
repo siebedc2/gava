@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Subscription as SubscriptionModel;
 use Validator;
 use Auth;
+use Carbon\CarbonPeriod;
 
 class Subscription {
     public function validator(array $data) {
@@ -20,10 +21,15 @@ class Subscription {
         ] )->get();
     }
 
-    public function getAllUserSubscribers($userId) {
+    public function getAllUserSubscribers($creatorId) {
         return SubscriptionModel::where([
-            ['creator_id', $userId], 
-            ['status', 'online']
+            ['creator_id', $creatorId]
+        ])->get();
+    }
+
+    public function getAllCreators($userId) {
+        return SubscriptionModel::where([
+            ['user_id', $userId]
         ])->get();
     }
 
@@ -79,8 +85,31 @@ class Subscription {
         return true;
     }
 
-    public function getSubscriptionById($creatorId) {
-        return SubscriptionModel::where('creator_id', $creatorId)->firstOrFail();
+    public function getSubscriptionById($creatorId, $userId) {
+        return SubscriptionModel::where([
+            ['creator_id', $creatorId],
+            ['user_id', $userId]
+        ])->firstOrFail();
+    }
+
+    public function getAllSubscriptionsByCreatorId($creatorId, $userId) {
+        return SubscriptionModel::where([
+            ['creator_id', $creatorId],
+            ['user_id', $userId]
+        ])->get();
+    }
+
+    public function getsubscribedMonths($subscription) {
+        $start    = $subscription->created_at;
+        $end      = $subscription->updated_at;
+        $i        = 0;
+
+        foreach (CarbonPeriod::create($start, '1 month', $end) as $month) {
+            $months[$i] = $month->format('Y-m-d');
+            $i++;
+        }
+
+        return $months;
     }
 
     public function create($data, $creatorId) {

@@ -185,9 +185,14 @@
                 </div>
             </div>
 
-            @if(!empty($subscriptions))
+            @if(!empty($subscriptions)) 
+
             @foreach($subscriptions as $subscription)
+            
             @if($subscription->user_id != Auth::id())
+            
+            @if($subscription['status'] == "online")
+
             <a href="/profile/{{ $subscription->user_id }}" class="text-decoration-none">
                 <div class="row my-3 d-flex align-items-center">
                     <div class="col-3">
@@ -199,12 +204,15 @@
                     </div>
                 </div>
             </a>
+            @endif
+
             @else
+            @if($subscription['status'] == "online")
             <div>
                 <div class="row my-3 d-flex align-items-center">
                     <div class="col-3">
-                        <img class="w-100 rounded-circle" src="/images/uploads/{{$subscription->user->profile_picture}}"
-                            alt="Profile picture">
+                        <div style="background-image: url(/images/uploads/{{$subscription->user->profile_picture}});"
+                            class="subscriber-image rounded-circle"></div>
                     </div>
                     <div class="col-8">
                         <p class="mb-0">{{ $subscription->user['name'] }}</p>
@@ -212,7 +220,9 @@
                 </div>
             </div>
             @endif
+            @endif
             @endforeach
+
             @else
             <p class="text-black-50">No subscribers yet</p>
             @endif

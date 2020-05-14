@@ -74,12 +74,16 @@ class UserController extends Controller
 
     public function purchaseHistory(SubscriptionService $subscription) {
         $userId = Auth::user()->id;
-        $data['subscriptions'] = $subscription->getAllUserSubscribers($userId);
+        $data['subscriptions'] = $subscription->getAllCreators($userId);
         return view('general.profile.purchase.index', $data);
     }
 
     public function purchaseHistoryDetail(SubscriptionService $subscription, $creatorId) {
-        $data['subscription'] = $subscription->getSubscriptionById($creatorId);
+        $userId = Auth::user()->id;
+        $data['firstSubscription'] = $subscription->getSubscriptionById($creatorId, $userId);
+        $data['subscriptions'] = $subscription->getAllSubscriptionsByCreatorId($creatorId, $userId);
+        $data['subscribersIds'] = $subscription->getSubscriberId(Auth::id());
+        
         return view('general.profile.purchase.details', $data);
     }
 
