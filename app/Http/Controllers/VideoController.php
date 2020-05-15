@@ -64,27 +64,53 @@ class VideoController extends Controller
         }   
     }
 
-    public function edit(VideoService $video, $courseId, $videoId) {
-        $data['video'] = $video->getById($videoId);
+    public function edit(VideoService $video, $courseId, $videoId = null ) {       
+        if($videoId == null) {
+            $videoId = $courseId;
+            $data['video'] = $video->getSessionVideoById($videoId);
+        }
+
+        else {
+            $data['video'] = $video->getById($videoId)->toArray();
+        }
+
         return view('general/video/edit', $data);
     }
 
-    public function handleEdit(VideoService $video, $courseId, $videoId) {
+    public function handleEdit(VideoService $video, $courseId, $videoId = null) {
         if ($video->validator($this->_request->all())->fails()) {
             $errors = $video->validator($this->_request->all())->errors();
             return redirect('/course/' . $courseId . '/video/edit/' . $videoId)->with('errors', $errors);
         } 
         
         else {
-            //dd($this->_request->all());
-            $video->edit($this->_request->all(), $courseId, $videoId);
-            return redirect('/course/edit/' . $courseId)->with('status', 'Video aangepast!');
+            if($videoId == null) {
+                $videoId = $courseId;
+                $video->editSessionVideo($this->_request->all(), $videoId);
+                return redirect('/course/add')->with('status', 'Video edited!');  
+            }
+    
+            else {
+                $video->edit($this->_request->all(), $courseId, $videoId);
+                return redirect('/course/edit/' . $courseId)->with('status', 'Video edited!');    
+            }            
         }
     }
 
-    public function handleDelete(VideoService $video, $courseId, $videoId) {
-        $video->delete($videoId);
-        return redirect('/course/edit/' . $courseId)->with('status', 'Video is verwijderd!');
+    public function handleDelete(VideoService $video) {
+        if($this->_request->input('courseId') != null) {
+            $video->delete($this->_request->input('videoId'));
+            $msg = "success";
+        }
+
+        else {
+            $video->deleteInSession($this->_request->input('videoId'));
+            $msg = "success";
+        }        
+
+        return response()->json([
+            'message'   => $msg
+        ]);
     }
 
     public function handleReportVideo(VideoReportService $videoReport) {

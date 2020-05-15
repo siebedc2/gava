@@ -18,6 +18,10 @@ class Video {
         return VideoModel::find($videoId);
     }
 
+    public function getSessionVideoById($videoId) {
+        return session('videos.' .  $videoId);
+    }
+
     public function getAllCourseVideos($courseId) {
         return VideoModel::where([
             ['course_id', $courseId],
@@ -83,7 +87,18 @@ class Video {
         $request['tumbnail'] = $tumbnailName;
 
         $videos = session('videos');
-        $videos[$request['title']] = $request;
+
+        if(!empty(session('videos'))) {
+            $id = count(session('videos')) + 1;
+        }
+
+        else {
+            $id = 1;
+        }
+
+        $request['id'] = $id;
+
+        $videos[$id] = $request;
         session(['videos' => $videos]);
     }
 
@@ -97,14 +112,66 @@ class Video {
             $request['video'] = $video['video'];
         }
 
+        else {
+            $videoInput = $request['video'];
+            $videoName = $videoInput->getClientOriginalName();
+            $videoInput->move('images/uploads', $videoName);
+            $request['video'] = $videoName;
+        }
+
+        if(empty($request['tumbnail'])) {
+            $video = $this->getById($videoId);
+            $request['tumbnail'] = $video['tumbnail'];
+        }
+
+        else {
+            $tumbnailInput = $request['tumbnail'];
+            $tumbnailName = $tumbnailInput->getClientOriginalName();
+            $tumbnailInput->move('images/uploads', $tumbnailName);
+            $request['tumbnail'] = $tumbnailName;
+        }
+
         VideoModel::where('id', $videoId)
                     ->update(
                         [
-                        'title' => $request['title'], 
-                        'description' => $request['description'],
-                        'video' => $request['video'],
-                        'exclusive' => $request['exclusive']
+                        'title'         => $request['title'], 
+                        'description'   => $request['description'],
+                        'video'         => $request['video'],
+                        'tumbnail'      => $request['tumbnail'],
+                        'exclusive'     => $request['exclusive']
                         ]);
+    }
+
+    public function editSessionVideo($request, $videoId) {
+        if(empty($request['exclusive'])) {
+            $request['exclusive'] = 'n';
+        }
+
+        $videos                     = session('videos');
+        $storedVideo                = $videos[$videoId];
+        $storedVideo['title']       = $request['title'];
+        $storedVideo['description'] = $request['description'];
+        $storedVideo['exclusive']   = $request['exclusive'];
+
+        if(!empty($request['tumbnail'])) {
+            $tumbnailInput = $request['tumbnail'];
+            $tumbnailName = $tumbnailInput->getClientOriginalName();
+            $tumbnailInput->move('images/uploads', $tumbnailName);
+            $request['tumbnail'] = $tumbnailName;
+            $storedVideo['tumbnail']    = $request['tumbnail'];
+        }
+
+        if(!empty($request['video'])) {
+            $videoInput = $request['video'];
+            $videoName = $videoInput->getClientOriginalName();
+            $videoInput->move('images/uploads', $videoName);
+            $request['video'] = $videoName;
+            $storedVideo['video']    = $request['video'];
+        }
+
+        $videos[$videoId] = $storedVideo;
+        session(['videos' => $videos]);
+
     }
 
     public function delete($videoId) {
@@ -114,5 +181,9 @@ class Video {
                             'status' => 'offline'
                         ]
                     );
+    }
+
+    public function deleteInSession($videoId) {
+        session()->pull('videos.' .  $videoId);
     }
 }

@@ -1,14 +1,15 @@
 $('.delete-video').click(function(e){
     e.preventDefault();
-    //var form = $(this.parentElement);
+    var video = $(this).parent().parent();
     var videoId = $(this).prev().attr('value');
-    console.log(videoId);
+    var courseId = $(this).prev().prev().attr('value');
 
-    /*$.ajax({
+    $.ajax({
         method: "POST",
-        url: '/subscriptions/getCreator',
+        url: '/course/video/delete',
         data: {
-            creatorId : creatorId
+            videoId : videoId,
+            courseId : courseId
         },
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -17,17 +18,12 @@ $('.delete-video').click(function(e){
     
     .done(function(response){    
         
-        console.log(response.creator);
-
         if (response.message == "success") {
-
-            $('.popup-subscriber-name').html(response.creator.name);
-            $('.popup-subscriber-picture').css('background-image', 'url(/images/uploads/' + response.creator.profile_picture + ')');
-
-            $('#confirm').modal({ backdrop: 'static', keyboard: false })
-                .on('click', '#delete-btn', function(){
-                form.submit();
+            $(video).fadeOut(500, function(){
+                $(this).removeClass('d-flex');
+                $(this).addClass('d-none');
             });
+            
         }
-    });*/
+    });
 });

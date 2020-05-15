@@ -86,8 +86,8 @@
                             </div>
                         </div>
                         @if(!empty($videos ?? ''))
-                            @foreach($videos as $video)
-                            <div class="row mt-3 d-flex align-items-center">
+                        @foreach($videos as $video)
+                        <div class="row mt-3 d-flex align-items-center video-preview">
                             <div class="col-5">
                                 <div class="d-flex justify-content-center align-items-center w-100 rounded tumbnail" style="background-image: url(/images/uploads/{{$video['tumbnail']}});"></div>
                             </div>
@@ -107,8 +107,18 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col-1 mb-4">
+                                <a href="/course/video/edit/{{ $video['id'] }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                            </div>
+
+                            <div class="col-1 mb-4">
+                                <input type="hidden" value="{{ \Route::current()->parameter('id') }}">
+                                <input type="hidden" value="{{ $video['id'] }}">
+                                <span class="delete-video"><i class="fa fa-trash" aria-hidden="true"></i></span>
+                            </div>
                         </div>
-                            @endforeach
+                        @endforeach
                         @endif
                     </div>
                 </div>

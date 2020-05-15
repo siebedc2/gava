@@ -37081,8 +37081,9 @@ __webpack_require__(/*! ./gava/like-comment */ "./resources/js/gava/like-comment
 
 __webpack_require__(/*! ./gava/landing-mobile-menu */ "./resources/js/gava/landing-mobile-menu.js");
 
-__webpack_require__(/*! ./gava/multiselect */ "./resources/js/gava/multiselect.js"); //require('./gava/playerjs');
+__webpack_require__(/*! ./gava/multiselect */ "./resources/js/gava/multiselect.js");
 
+__webpack_require__(/*! ./gava/preview-image */ "./resources/js/gava/preview-image.js");
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
@@ -37251,33 +37252,28 @@ $('.delete-btn').click(function (e) {
 /***/ (function(module, exports) {
 
 $('.delete-video').click(function (e) {
-  e.preventDefault(); //var form = $(this.parentElement);
-
+  e.preventDefault();
+  var video = $(this).parent().parent();
   var videoId = $(this).prev().attr('value');
-  console.log(videoId);
-  /*$.ajax({
-      method: "POST",
-      url: '/subscriptions/getCreator',
-      data: {
-          creatorId : creatorId
-      },
-      headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-  })
-  
-  .done(function(response){    
-      
-      console.log(response.creator);
-        if (response.message == "success") {
-            $('.popup-subscriber-name').html(response.creator.name);
-          $('.popup-subscriber-picture').css('background-image', 'url(/images/uploads/' + response.creator.profile_picture + ')');
-            $('#confirm').modal({ backdrop: 'static', keyboard: false })
-              .on('click', '#delete-btn', function(){
-              form.submit();
-          });
-      }
-  });*/
+  var courseId = $(this).prev().prev().attr('value');
+  $.ajax({
+    method: "POST",
+    url: '/course/video/delete',
+    data: {
+      videoId: videoId,
+      courseId: courseId
+    },
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  }).done(function (response) {
+    if (response.message == "success") {
+      $(video).fadeOut(500, function () {
+        $(this).removeClass('d-flex');
+        $(this).addClass('d-none');
+      });
+    }
+  });
 });
 
 /***/ }),
@@ -37376,6 +37372,43 @@ var multiSelect = $('#tags').val();
 if (typeof multiSelect !== "undefined" && multiSelect != null) {
   $(function () {
     $('#tags').multipleSelect();
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/js/gava/preview-image.js":
+/*!********************************************!*\
+  !*** ./resources/js/gava/preview-image.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var profile_picture_input = $('#profile_picture').val();
+
+if (typeof profile_picture_input !== "undefined" && profile_picture_input != null) {
+  $('#profile_picture').on('change', function (e) {
+    var reader = new FileReader();
+
+    reader.onload = function () {
+      $('.edit-profile-image').css('background-image', 'url(' + reader.result + ')');
+    };
+
+    reader.readAsDataURL(e.target.files[0]);
+  });
+}
+
+var tumbnail_input = $('#tumbnail').val();
+
+if (typeof tumbnail_input !== "undefined" && tumbnail_input != null) {
+  $('#tumbnail').on('change', function (e) {
+    var reader = new FileReader();
+
+    reader.onload = function () {
+      $('.edit-tumbnail').css('background-image', 'url(' + reader.result + ')');
+    };
+
+    reader.readAsDataURL(e.target.files[0]);
   });
 }
 

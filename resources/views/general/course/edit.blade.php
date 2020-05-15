@@ -95,9 +95,9 @@
                                             <span class="star star-checked"><i class="fa fa-star"></i></span>
                                             @endfor
 
-                                            @for ($i = $stars; $i <= 4; $i++) <span class="star"><i
-                                                    class="fa fa-star"></i></span>
-                                                @endfor
+                                            @for ($i = $stars; $i <= 4; $i++) 
+                                            <span class="star"><i class="fa fa-star"></i></span>
+                                            @endfor
                                         </div>
                                         @else
                                         <div class="rating">
@@ -115,6 +115,7 @@
                             </div>
 
                             <div class="col-1 mb-4">
+                                <input type="hidden" value="{{ \Route::current()->parameter('id') }}">
                                 <input type="hidden" value="{{ $video->id }}">
                                 <span class="delete-video"><i class="fa fa-trash" aria-hidden="true"></i></span>
                             </div>

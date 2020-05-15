@@ -31,7 +31,7 @@
                             <label class="d-none" for="description">Example textarea</label>
                             <textarea name="description"  class="bg-light border-0 form-control" id="description" rows="3" placeholder="What is this video about?"></textarea>
                         </div>
-                        <div class="form-group form-check">
+                        <div class="form-group form-check pl-0">
                             <input name="exclusive" type="checkbox" class="form-check-input" id="exclusive" value="y">
                             <label for="exclusive" class="form-check-label">make this video exclusive to my subscribers</label>
                         </div>

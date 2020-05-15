@@ -81,7 +81,7 @@ Route::prefix('/course')->middleware('auth')->group(function() {
     ]);
     
     Route::post('/video/report', [
-        'as'   => 'addVideo',
+        'as'   => 'reportideo',
         'uses' => 'VideoController@handleReportVideo'
     ]);
     
@@ -100,17 +100,27 @@ Route::prefix('/course')->middleware('auth')->group(function() {
         'uses' => 'VideoController@addRating'
     ]);
     
-    Route::get('/{course_id}/video/edit/{id}', [
+    Route::get('/{course_id?}/video/edit/{id}', [
         'as'   => 'editVideo',
         'uses' => 'VideoController@edit'
     ]);
     
-    Route::post('/{course_id}/video/edit/{id}', [
+    Route::post('/{course_id?}/video/edit/{id}', [
+        'as'   => 'editVideo',
+        'uses' => 'VideoController@handleEdit'
+    ]);
+
+    Route::get('/video/edit/{id}', [
+        'as'   => 'editVideo',
+        'uses' => 'VideoController@edit'
+    ]);
+    
+    Route::post('/video/edit/{id}', [
         'as'   => 'editVideo',
         'uses' => 'VideoController@handleEdit'
     ]);
     
-    Route::post('/{course_id}/video/delete/{id}', [
+    Route::post('/video/delete', [
         'as'   => 'deleteVideo',
         'uses' => 'VideoController@handleDelete'
     ]);
