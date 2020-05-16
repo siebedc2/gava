@@ -92,6 +92,12 @@
     }
 }
 
+.add-course-col {
+    position: fixed;
+    z-index: 50;
+    top: 530px;
+}
+
 @media (min-width: 768px) {
     .btn {
         &.btn-confirm {
@@ -113,5 +119,10 @@
                 background-color: $btn-primary-hover-color;
             }
         }
+    }
+
+    .add-course-col {
+        position: static;
+        top: 0px;
     }
 }

@@ -35,26 +35,30 @@
                             <input name="exclusive" type="checkbox" class="form-check-input" id="exclusive" value="{{$video['exclusive']}}" @if($video['exclusive'] == "y") checked @endif>
                             <label for="exclusive" class="form-check-label">make this video exclusive to my subscribers</label>
                         </div>
-                        <div class="form-group">
-                            <label for="tumbnail">Change custom thumbnail</label>
-                            <label class="d-block w-50" for="tumbnail">
-                                <div class="d-flex justify-content-center align-items-center w-100 rounded tumbnail edit-tumbnail" style="background-image: url(/images/uploads/{{$video['tumbnail']}});">
+                        <div class="form-group mt-4 text-center text-md-left">
+                            <label class="d-md-none rounded-pill btn btn-primary" for="tumbnail">change custom thumbnail</label>
+                            <label class="d-none d-md-block" for="tumbnail">Change custom thumbnail</label>
+                            <p class="d-md-none my-2">{{ $video['tumbnail'] }}</p> 
+                            <label class="d-block w-50" for="tumbnail">   
+                                <div class="d-none d-md-flex justify-content-center align-items-center w-100 rounded tumbnail edit-tumbnail" style="background-image: url(/images/uploads/{{$video['tumbnail']}});">
                                     <i class="text-white fa fa-pencil" aria-hidden="true"></i>
                                 </div>
                             </label>
-                            <input name="tumbnail" type="file" class="form-control-file" id="tumbnail">
+                            <input name="tumbnail" type="file" class="form-control-file position-static" id="tumbnail">
                         </div>
                     </div>
 
-                    <div class="col-12 col-md-5 offset-md-1">
+                    <div class="col-12 col-md-5 offset-md-1 text-center text-md-left">
                         <div class="form-group">
-                            <label for="video">Select file</label>
-                            <input name="video" type="file" class="form-control-file" id="video" value="{{ $video['video'] }}">
-                        </div>
-                        <div class="video-preview">
-                            <iframe height="280px" width="100%" src="/images/uploads/{{ $video['video'] }}" frameborder="0"
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
+                            <label class="d-md-none rounded-pill btn btn-primary" for="video">select file</label>
+                            <label class="d-none d-md-block" for="video">Select file</label>
+                            <p class="d-md-none my-2">{{ $video['video'] }}</p> 
+                            <div class="video-preview">      
+                            <iframe class="d-none d-md-block" height="280px" width="100%" src="/images/uploads/{{ $video['video'] }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                                
+                            </iframe>                         
+                            </div>
+                            <input name="video" type="file" class="form-control-file position-static" id="video" value="{{ $video['video'] }}">
                         </div>
                     </div>
                 </div>

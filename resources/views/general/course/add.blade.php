@@ -63,7 +63,7 @@
                         </div>
 
                         <div class="d-none d-md-block">
-                            <div class="row">
+                            <div class="row d-none d-md-flex">
                                 <div class="col-12">
                                     <p>Upload video</p>
                                 </div>
@@ -77,7 +77,7 @@
                                     @endif
                                 </div>
                             </div>  
-                            <div class="row">
+                            <div class="row d-none d-md-flex">
                                 <a class="col-12 text-decoration-none" href="/course/video/add">
                                     <div class="add-btn d-flex align-items-center justify-content-center">
                                         <img src="/images/add.svg" alt="Add icon">

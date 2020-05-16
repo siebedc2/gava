@@ -11,11 +11,11 @@
     <div class="row d-flex flex-wrap-reverse">
         <div class="col-12 order-1">
             <div class="row my-4">
-                <div class="col-5 offset-4">
+                <div class="col-md-5 offset-md-4">
                     <span id="my-courses" class="ml-5 border rounded-pill btn btn-primary active">my courses</span>
                     <span id="my-statistics" class="ml-1 border rounded-pill btn btn-primary non-active">my statistics</span>
                 </div>
-                <div class="col-3 text-right">
+                <div class="col-md-3 text-center text-md-right add-course-col">
                     <a id="add-course" class="border rounded-pill btn btn-primary" href="/course/add">create new course</a>
                 </div>
             </div>

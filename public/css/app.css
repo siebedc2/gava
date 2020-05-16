@@ -93,6 +93,12 @@
   font-size: 40px;
 }
 
+.add-course-col {
+  position: fixed;
+  z-index: 50;
+  top: 530px;
+}
+
 @media (min-width: 768px) {
   .btn.btn-confirm {
     background-color: #291875;
@@ -112,6 +118,11 @@
   .btn.btn-confirm:hover {
     color: white !important;
     background-color: #1f1259;
+  }
+
+  .add-course-col {
+    position: static;
+    top: 0px;
   }
 }
 
@@ -529,12 +540,6 @@ span {
 
 .arrow-icon {
   width: 31px;
-}
-
-#player {
-  --plyr-color-main: #1ac266;
-  --plyr-badge-background: red;
-  --plyr-badge-text-color: red;
 }
 
 .ms-offscreen {

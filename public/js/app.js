@@ -37405,7 +37405,14 @@ if (typeof tumbnail_input !== "undefined" && tumbnail_input != null) {
     var reader = new FileReader();
 
     reader.onload = function () {
-      $('.edit-tumbnail').css('background-image', 'url(' + reader.result + ')');
+      var x = window.matchMedia("(max-width: 768px)");
+      console.log(reader.result);
+
+      if (x.matches) {
+        $('p.edit-tumbnail').html(reader.result);
+      } else {
+        $('div.edit-tumbnail').css('background-image', 'url(' + reader.result + ')');
+      }
     };
 
     reader.readAsDataURL(e.target.files[0]);
