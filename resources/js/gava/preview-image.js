@@ -14,21 +14,46 @@ var tumbnail_input = $('#tumbnail').val();
 
 if (typeof tumbnail_input !== "undefined" && tumbnail_input != null) {
     $('#tumbnail').on('change', function(e){
-        var reader = new FileReader();
-        reader.onload = function () {
-            var x = window.matchMedia("(max-width: 768px)");
-
-            console.log(reader.result);
-
-            if(x.matches) {
-                $('p.edit-tumbnail').html(reader.result)
+        var x = window.matchMedia("(max-width: 768px)");
+        if(x.matches) {
+            filename  = this.value;
+            var lastIndex = filename.lastIndexOf("\\");
+            if (lastIndex >= 0) {
+                filename = filename.substring(lastIndex + 1);
             }
 
-            else {
-                $('div.edit-tumbnail').css('background-image', 'url(' + reader.result + ')');
+            console.log(filename);
+
+            $('p.edit-tumbnail').html(filename);
+        }
+
+        else {
+            var reader = new FileReader();
+            reader.onload = function () {    
+                $('div.edit-tumbnail, label.edit-tumbnail').css('background-image', 'url(' + reader.result + ')');
+                $('label.edit-tumbnail').addClass('tumbnail');
+                $('.fa-pencil').removeClass('d-none');
+                $('.add-icon').addClass('d-none');
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    });
+}
+
+var video_input = $('#video').val();
+if (typeof tumbnail_input !== "undefined" && tumbnail_input != null) {
+    $('#video').on('change', function(e){
+        var x = window.matchMedia("(max-width: 768px)");
+        if(x.matches) {
+            filename  = this.value;
+            var lastIndex = filename.lastIndexOf("\\");
+            if (lastIndex >= 0) {
+                filename = filename.substring(lastIndex + 1);
             }
-            
-        };
-        reader.readAsDataURL(e.target.files[0]);
+    
+            console.log(filename);
+    
+            $('p.edit-video').html(filename);
+        }
     });
 }

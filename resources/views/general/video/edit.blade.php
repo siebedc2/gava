@@ -38,7 +38,7 @@
                         <div class="form-group mt-4 text-center text-md-left">
                             <label class="d-md-none rounded-pill btn btn-primary" for="tumbnail">change custom thumbnail</label>
                             <label class="d-none d-md-block" for="tumbnail">Change custom thumbnail</label>
-                            <p class="d-md-none my-2">{{ $video['tumbnail'] }}</p> 
+                            <p class="d-md-none my-2 edit-tumbnail">{{ $video['tumbnail'] }}</p> 
                             <label class="d-block w-50" for="tumbnail">   
                                 <div class="d-none d-md-flex justify-content-center align-items-center w-100 rounded tumbnail edit-tumbnail" style="background-image: url(/images/uploads/{{$video['tumbnail']}});">
                                     <i class="text-white fa fa-pencil" aria-hidden="true"></i>
@@ -54,9 +54,7 @@
                             <label class="d-none d-md-block" for="video">Select file</label>
                             <p class="d-md-none my-2">{{ $video['video'] }}</p> 
                             <div class="video-preview">      
-                            <iframe class="d-none d-md-block" height="280px" width="100%" src="/images/uploads/{{ $video['video'] }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-                                
-                            </iframe>                         
+                                <iframe class="d-none d-md-block" height="280px" width="100%" src="/images/uploads/{{ $video['video'] }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>                         
                             </div>
                             <input name="video" type="file" class="form-control-file position-static" id="video" value="{{ $video['video'] }}">
                         </div>

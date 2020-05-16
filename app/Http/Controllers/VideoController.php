@@ -11,6 +11,7 @@ use App\Services\Subscription as SubscriptionService;
 use App\Services\VideoReport as VideoReportService;
 use App\Services\CommentReport as CommentReportService;
 use App\Services\Like as LikeService;
+use App\Services\Upvote as UpvoteService;
 use App\Services\Rating as RatingService;
 use Auth;
 
@@ -143,6 +144,20 @@ class VideoController extends Controller
 
     public function handleLikeComment(LikeService $like) {
         if($like->create($this->_request->input('commentId'))) {
+            $msg = "success";
+        }
+
+        else {
+            $msg = "error";
+        }
+
+        return response()->json([
+            'message'   => $msg
+        ]);
+    }
+
+    public function handleUpvoteComment(UpvoteService $upvote) {
+        if($upvote->create($this->_request->input('commentId'))) {
             $msg = "success";
         }
 

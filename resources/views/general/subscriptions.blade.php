@@ -114,7 +114,7 @@
     @include('components.cancel-subscription-popup')
     <div class="row">
         @foreach($creators as $creator)
-        <div class="col-12 col-md-6">
+        <div class="creator col-12 col-md-6 mb-4">
             <div class="row d-flex align-items-center">
                 <div class="col-2">
                     <div style="background-image: url(/images/uploads/{{$creator->creator->profile_picture}});" class="subscriber-image rounded-circle"></div>

@@ -50,7 +50,13 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <p class="course-video-amount text-black-50">{{ count($videoService->getAllCourseVideos($course->id)) }} video's</p>
+                                @if(count($videoService->getAllCourseVideos($course->id)) == 1)
+                                <p class="mb-0 course-video-amount text-black-50">
+                                    {{ count($videoService->getAllCourseVideos($course->id)) }} video</p>
+                                @else
+                                <p class="mb-0 course-video-amount text-black-50">
+                                    {{ count($videoService->getAllCourseVideos($course->id)) }} video's</p>
+                                @endif
                             </div>
                         </div>
                     </div>

@@ -38,8 +38,10 @@
                         <div class="form-group mt-4 text-center text-md-left">
                             <label class="d-md-none rounded-pill btn btn-primary" for="tumbnail">upload custom thumbnail</label>
                             <label class="d-none d-md-block" for="tumbnail">Upload custom thumbnail</label>
-                            <label class="d-none w-50 add-btn d-md-flex justify-content-center align-items-center" for="tumbnail">
-                                <img src="/images/add.svg" alt="Add icon">
+                            <p class="d-md-none my-2 edit-tumbnail"></p> 
+                            <label class="d-none w-50 add-btn d-md-flex justify-content-center align-items-center edit-tumbnail" for="tumbnail">
+                                <img class="add-icon" src="/images/add.svg" alt="Add icon">
+                                <i class="d-none text-white fa fa-pencil" aria-hidden="true"></i>
                             </label>
                             <input name="tumbnail" type="file" class="form-control-file position-static" id="tumbnail">
                         </div>
@@ -49,6 +51,7 @@
                         <div class="form-group text-center text-md-left">
                             <label class="d-md-none rounded-pill btn btn-primary" for="video">select file</label>
                             <label class="d-none d-md-block" for="video">Select file</label>
+                            <p class="d-md-none my-2 edit-video"></p>
                             <label class="d-none w-100 add-btn d-md-flex justify-content-center align-items-center " for="video">
                                 <img src="/images/add.svg" alt="Add icon">
                             </label>

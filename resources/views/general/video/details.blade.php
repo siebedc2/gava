@@ -2,6 +2,7 @@
     $ratingService = new App\Services\Rating();
     $subscriptionService = new App\Services\Subscription();
     $likeService = new App\Services\Like();
+    $upvoteService = new App\Services\Upvote();
 ?>
 
 @extends('layouts.app')
@@ -169,8 +170,8 @@
                                 <p class="commentId" hidden>{{$comment->id}}</p>
                                 <div class="col-8 d-flex justify-content-between">
                                     <div class="d-flex align-items-center">
-                                        <span class="like-comment"><img src="/images/upvote.svg" alt="Upvote icon"></span>
-                                        <p class="mb-0 ml-2">0</p>
+                                        <span class="upvote-comment"><img src="/images/upvote.svg" alt="Upvote icon"></span>
+                                        <p class="upvote-amount mb-0 ml-2">{{ $upvoteService->getUpvoteAmount($comment->id) }}</p>
                                     </div>
                                     <div class="d-flex align-items-center">
                                         <span class="like-comment"><img src="/images/like.svg" alt="Like icon"></span>
