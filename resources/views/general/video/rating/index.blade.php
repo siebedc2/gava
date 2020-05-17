@@ -117,10 +117,10 @@
                     <div class="col-6 col-md-4 d-flex">
                         <p class="mr-2">quality</p>
                         <div class="rating">
-                            @for ($i = $rating->stars; $i >= 1; $i--)
+                            @for ($i = $rating->quality; $i >= 1; $i--)
                                 <span class="star star-checked"><i class="fa fa-star"></i></span>
                             @endfor
-                            @for ($i = $rating->stars; $i <= 4; $i++) 
+                            @for ($i = $rating->quality; $i <= 4; $i++) 
                                 <span class="star"><i class="fa fa-star"></i></span>
                             @endfor
                         </div>

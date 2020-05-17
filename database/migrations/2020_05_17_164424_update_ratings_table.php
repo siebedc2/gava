@@ -14,10 +14,7 @@ class UpdateRatingsTable extends Migration
     public function up()
     {
         Schema::table('ratings', function (Blueprint $table) {
-            $table->dropColumn('course_id');
-            $table->text('comment')->nullable()->after('stars');
-            $table->string('video_id')->after('user_id');
-            $table->index(['video_id']);
+            $table->string('quality')->after('stars');
         });
     }
 
@@ -29,8 +26,7 @@ class UpdateRatingsTable extends Migration
     public function down()
     {
         Schema::table('ratings', function (Blueprint $table) {
-            $table->dropColumn('video_id');
-            $table->dropColumn('comment');
+            $table->dropColumn('quality');
         });
     }
 }

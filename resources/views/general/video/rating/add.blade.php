@@ -27,23 +27,23 @@
                             <label for="content">How would you rate the content of this video?</label>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="content" id="content1star" value="1">
-                                <label class="form-check-label" for="content1star"></label>
+                                <label class="form-check-label" for="content1star"><span class="star"><i class="fa fa-star"></i></span></label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="content" id="content2stars" value="2">
-                                <label class="form-check-label" for="content2stars"></label>
+                                <label class="form-check-label" for="content2stars"><span class="star"><i class="fa fa-star"></i></span></label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="content" id="content3stars" value="3">
-                                <label class="form-check-label" for="content3stars"></label>
+                                <label class="form-check-label" for="content3stars"><span class="star"><i class="fa fa-star"></i></span></label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="content" id="content4stars" value="4">
-                                <label class="form-check-label" for="content4stars"></label>
+                                <label class="form-check-label" for="content4stars"><span class="star"><i class="fa fa-star"></i></span></label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="content" id="content5stars" value="5">
-                                <label class="form-check-label" for="content5stars"></label>
+                                <label class="form-check-label" for="content5stars"><span class="star"><i class="fa fa-star"></i></span></label>
                             </div>
                         </div>
                         
@@ -51,23 +51,23 @@
                             <label for="quality">How would you rate the quality of this video?</label>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="quality" id="quality1star" value="1">
-                                <label class="form-check-label" for="quality1star"></label>
+                                <label class="form-check-label" for="quality1star"><span class="star"><i class="fa fa-star"></i></span></label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="quality" id="quality2star" value="2">
-                                <label class="form-check-label" for="quality2star"></label>
+                                <label class="form-check-label" for="quality2star"><span class="star"><i class="fa fa-star"></i></span></label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="quality" id="quality3star" value="3">
-                                <label class="form-check-label" for="quality3star"></label>
+                                <label class="form-check-label" for="quality3star"><span class="star"><i class="fa fa-star"></i></span></label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="quality" id="quality4star" value="4">
-                                <label class="form-check-label" for="quality4star"></label>
+                                <label class="form-check-label" for="quality4star"><span class="star"><i class="fa fa-star"></i></span></label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="quality" id="quality5star" value="5">
-                                <label class="form-check-label" for="quality5star"></label>
+                                <input class="d-none form-check-input" type="radio" name="quality" id="quality5star" value="5">
+                                <label class="form-check-label" for="quality5star"><span class="star"><i class="fa fa-star"></i></span></label>
                             </div>
                         </div>
 

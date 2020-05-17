@@ -42,6 +42,20 @@ class VideoController extends Controller
         return view('general.video.rating.add');
     }
 
+    public function handleAddRating(RatingService $rating, $courseId, $videoId) {
+        dd($this->_request->input());
+        
+        if ($rating->validator($this->_request->input())->fails()) {
+            $errors = $rating->validator($this->_request->input())->errors();
+            return redirect('/course/' . $courseId . '/video/' . $videoId . '/rating/add')->withInput($this->_request->input())->with('errors', $errors);
+        } 
+        
+        else {
+            $rating->create($this->_request->input(), $videoId);
+            return redirect('/course/' . $courseId . '/video/' . $videoId . '/ratings')->with('status', 'Added rating!');
+        }   
+    }
+
     public function add() {
         return view('general/video/add');
     }
