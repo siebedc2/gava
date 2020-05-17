@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <form action="" method="post">
+            <form method="post">
                 {{csrf_field()}}
                 <div class="row mt-4">               
                     <div class="col-4">
@@ -23,26 +23,54 @@
                 
                 <div class="row d-flex justify-content-center">
                     <div class="col-12 col-md-4 mt-4">
-                        <div class="form-group">
-                            <label for="comment">How would you rate the content of this video?</label>
-                            <div class="rating">
-                                <span class="star"><i class="fa fa-star"></i></span>
-                                <span class="star"><i class="fa fa-star"></i></span>
-                                <span class="star"><i class="fa fa-star"></i></span>
-                                <span class="star"><i class="fa fa-star"></i></span>
-                                <span class="star"><i class="fa fa-star"></i></span>
+                        <div class="content-rating">
+                            <label for="content">How would you rate the content of this video?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="content" id="content1star" value="1">
+                                <label class="form-check-label" for="content1star"></label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="content" id="content2stars" value="2">
+                                <label class="form-check-label" for="content2stars"></label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="content" id="content3stars" value="3">
+                                <label class="form-check-label" for="content3stars"></label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="content" id="content4stars" value="4">
+                                <label class="form-check-label" for="content4stars"></label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="content" id="content5stars" value="5">
+                                <label class="form-check-label" for="content5stars"></label>
                             </div>
                         </div>
-                        <div class="form-group mt-4">
-                            <label for="comment">How would you rate the quality of this video?</label>
-                            <div class="rating">
-                                <span class="star"><i class="fa fa-star"></i></span>
-                                <span class="star"><i class="fa fa-star"></i></span>
-                                <span class="star"><i class="fa fa-star"></i></span>
-                                <span class="star"><i class="fa fa-star"></i></span>
-                                <span class="star"><i class="fa fa-star"></i></span>
+                        
+                        <div class="quality-rating mt-4">
+                            <label for="quality">How would you rate the quality of this video?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="quality" id="quality1star" value="1">
+                                <label class="form-check-label" for="quality1star"></label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="quality" id="quality2star" value="2">
+                                <label class="form-check-label" for="quality2star"></label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="quality" id="quality3star" value="3">
+                                <label class="form-check-label" for="quality3star"></label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="quality" id="quality4star" value="4">
+                                <label class="form-check-label" for="quality4star"></label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="quality" id="quality5star" value="5">
+                                <label class="form-check-label" for="quality5star"></label>
                             </div>
                         </div>
+
                         <div class="form-group mt-4">
                             <label for="comment">Can you give some feedback?</label>
                             <textarea name="comment" class="border-0 bg-light form-control" id="description" rows="3" placeholder="Type here..." required></textarea>
@@ -57,7 +85,6 @@
                         </div>
                     @endif
 
-                    
                     @if (session('status'))
                         <div class="col-12">
                             <div class="alert alert-success text-center">

@@ -15,4 +15,8 @@ class Rating extends Model
     public function video() {
         return $this->belongsTo('App\Models\Video');
     }
+
+    public function user() {
+        return $this->belongsTo('App\Models\User');
+    }
 }

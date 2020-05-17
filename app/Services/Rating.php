@@ -14,8 +14,8 @@ class Rating {
         ]);
     }
 
-    public function getAll() {
-        return RatingModel::all();
+    public function getAllVideoRatings($videoId) {
+        return RatingModel::where('video_id', $videoId)->get();
     }
 
     public function getAVG($videoId) {

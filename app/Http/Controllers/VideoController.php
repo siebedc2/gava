@@ -33,8 +33,8 @@ class VideoController extends Controller
         return view('general/video/details', $data);
     }
 
-    public function ratings(RatingService $rating) {
-        $data['ratings'] = $rating->getAll();
+    public function ratings(RatingService $rating, $courseId, $videoId) {
+        $data['ratings'] = $rating->getAllVideoRatings($videoId);
         return view('general.video.rating.index', $data);
     }
 

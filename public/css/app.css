@@ -400,6 +400,10 @@ span {
   margin-left: 0px !important;
 }
 
+.rating:last-child {
+  border-bottom: 0px !important;
+}
+
 .profile_user_name {
   font-size: 26px !important;
 }
