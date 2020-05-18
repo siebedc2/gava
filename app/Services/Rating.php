@@ -15,7 +15,7 @@ class Rating {
     }
 
     public function getAllVideoRatings($videoId) {
-        return RatingModel::where('video_id', $videoId)->get();
+        return RatingModel::where('video_id', $videoId)->orderBy('id', 'DESC')->get();
     }
 
     public function getAVG($videoId) {

@@ -21,5 +21,7 @@ require('./gava/upvote-comment');
 require('./gava/landing-mobile-menu');
 require('./gava/multiselect');
 require('./gava/preview-image');
+require('./gava/star-selector');
+require('./gava/rating-reply');
 
 require('./bootstrap');

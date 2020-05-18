@@ -3,7 +3,7 @@
         <div class="modal-dialog">
             <div class="modal-content p-2 border-0">
                 <div class="modal-body text-center">
-                    <p>Are you sure you want to cancel your subscription? <br> You won’t get a refund for this month.</p>
+                    <p>With cancelling this subscription you will lose access to all locked exclusive videos. Only permanently unlocked vidoes will stay available.</p>
                     <div class="my-3 d-flex align-items-center justify-content-center">
                         <div class="popup-subscriber-picture rounded-circle mr-3"></div>
                         <p class="popup-subscriber-name mb-0"></p>

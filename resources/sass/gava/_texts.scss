@@ -47,10 +47,14 @@
     margin-left: 0px !important;
 }
 
-.rating:last-child {
+.reply:last-child {
     border-bottom: 0px !important;
 }
 
 .profile_user_name {
     font-size: 26px !important;
+}
+
+.creator-reply {
+    border-left: 3px solid $color-secondary;
 }

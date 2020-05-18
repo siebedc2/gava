@@ -89,7 +89,7 @@
                         </div>
                         @if(!empty($videos ?? ''))
                         @foreach($videos as $video)
-                        <div class="row mt-3 d-flex align-items-center video-preview">
+                        <div class="row mt-3 d-flex align-items-center videos-preview">
                             <div class="col-5">
                                 <div class="d-flex justify-content-center align-items-center w-100 rounded tumbnail" style="background-image: url(/images/uploads/{{$video['tumbnail']}});"></div>
                             </div>
@@ -100,12 +100,13 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-12">
+                                    <div class="col-12 d-flex">
                                         <div class="rating">
                                             @for ($i = 5; $i >= 1; $i--)
                                                 <span class="star"><i class="fa fa-star"></i></span>
                                             @endfor
                                         </div>
+                                        <p class="ml-2 text-black-50">(0)</p>
                                     </div>
                                 </div>
                             </div>

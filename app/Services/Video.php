@@ -10,7 +10,8 @@ class Video {
         return Validator::make($data, [
             'title'         => 'required',
             'description'   => 'required',
-            'video'         => 'nullable|mimes:mp4'
+            'tumbnail'      => 'nullable|size:2000',
+            'video'         => 'nullable|mimes:mp4|size:150000000'
         ]);
     }
 

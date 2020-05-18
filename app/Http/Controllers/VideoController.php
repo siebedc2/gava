@@ -13,6 +13,7 @@ use App\Services\CommentReport as CommentReportService;
 use App\Services\Like as LikeService;
 use App\Services\Upvote as UpvoteService;
 use App\Services\Rating as RatingService;
+use App\Services\RatingReply as RatingReplyService;
 use Auth;
 
 class VideoController extends Controller
@@ -42,9 +43,7 @@ class VideoController extends Controller
         return view('general.video.rating.add');
     }
 
-    public function handleAddRating(RatingService $rating, $courseId, $videoId) {
-        dd($this->_request->input());
-        
+    public function handleAddRating(RatingService $rating, $courseId, $videoId) {        
         if ($rating->validator($this->_request->input())->fails()) {
             $errors = $rating->validator($this->_request->input())->errors();
             return redirect('/course/' . $courseId . '/video/' . $videoId . '/rating/add')->withInput($this->_request->input())->with('errors', $errors);
@@ -54,6 +53,20 @@ class VideoController extends Controller
             $rating->create($this->_request->input(), $videoId);
             return redirect('/course/' . $courseId . '/video/' . $videoId . '/ratings')->with('status', 'Added rating!');
         }   
+    }
+
+    public function handleReplyRating(RatingReplyService $ratingReply) {
+        if($ratingReply->create($this->_request->input())) {
+            $msg = "success";
+        }
+
+        else {
+            $msg = "error";
+        }
+
+        return response()->json([
+            'message'   => $msg
+        ]);
     }
 
     public function add() {

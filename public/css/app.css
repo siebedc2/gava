@@ -434,12 +434,16 @@ span {
   margin-left: 0px !important;
 }
 
-.rating:last-child {
+.reply:last-child {
   border-bottom: 0px !important;
 }
 
 .profile_user_name {
   font-size: 26px !important;
+}
+
+.creator-reply {
+  border-left: 3px solid #4951CF;
 }
 
 .vh-90 {
@@ -499,21 +503,18 @@ span {
   margin-top: -80px !important;
 }
 
-.form-check-input {
+.form-check-input:not(.star-input) {
   position: absolute;
   opacity: 0;
-  /*&:hover + label:before {
-    background: #291875;
-  }*/
 }
 
-.form-check-input + label {
+.form-check-input:not(.star-input) + label {
   position: relative;
   cursor: pointer;
   padding: 0;
 }
 
-.form-check-input + label:before {
+.form-check-input:not(.star-input) + label:before {
   content: "";
   margin-right: 10px;
   display: inline-block;
@@ -525,22 +526,26 @@ span {
   border-radius: 5px;
 }
 
-.form-check-input:focus + label:before {
+.form-check-input:not(.star-input):focus + label:before {
   box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
 }
 
-.form-check-input:checked + label:before {
+.form-check-input:not(.star-input):checked + label:before {
   background: #291875;
 }
 
-.form-check-input:disabled + label {
+.form-check-input:not(.star-input):disabled + label {
   color: #b8b8b8;
   cursor: auto;
 }
 
-.form-check-input:disabled + label:before {
+.form-check-input:not(.star-input):disabled + label:before {
   box-shadow: none;
   background: #ddd;
+}
+
+.star-input {
+  display: none;
 }
 
 .check {
@@ -860,6 +865,16 @@ span {
 
 ::-webkit-scrollbar-corner {
   background: transparent;
+}
+
+.reply-form {
+  position: relative;
+}
+
+.reply-form button {
+  position: absolute;
+  top: 6px;
+  right: 10px;
 }
 
 /*!

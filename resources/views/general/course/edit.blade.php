@@ -1,3 +1,7 @@
+<?php 
+    $ratingService = new App\Services\Rating();
+?>
+
 @extends('layouts.app')
 
 @section('content')
@@ -89,24 +93,26 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-12">
-                                        @if(!empty($video->ratings))
-                                        <?php $stars = $ratingService->getAVG($video->id); ?>
+                                    <div class="col-12 d-flex">
+                                    @if(!empty($video->ratings))
+                                        <?php $rating = $ratingService->getAVG($video->id); ?>
                                         <div class="rating">
-                                            @for ($i = $stars; $i >= 1; $i--)
+                                            @for ($i = $rating['starAVG']; $i >= 1; $i--)
                                             <span class="star star-checked"><i class="fa fa-star"></i></span>
                                             @endfor
 
-                                            @for ($i = $stars; $i <= 4; $i++) 
+                                            @for ($i = $rating['starAVG']; $i <= 4; $i++) 
                                             <span class="star"><i class="fa fa-star"></i></span>
                                             @endfor
                                         </div>
+                                        <p class="text-black-50 mb-0 ml-2">({{$rating['amountOfRatings']}})</p>
                                         @else
                                         <div class="rating">
                                             @for ($i = 5; $i >= 1; $i--)
                                             <span class="star"><i class="fa fa-star"></i></span>
                                             @endfor
                                         </div>
+                                        <p class="mb-0 ml-2 text-black-50">(0)</p>
                                         @endif
                                     </div>
                                 </div>

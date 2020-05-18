@@ -83,7 +83,7 @@
                                         <span class="star"><i class="fa fa-star"></i></span>
                                     @endfor
                                 </div>
-                                <p class="text-black-50 mb-0 ml-2">({{$rating['amountOfRatings']}})</p>
+                                <p class="text-black-50 mt-1 mb-0 ml-2">({{$rating['amountOfRatings']}})</p>
                             </div>
                         @else
                             <div class="d-flex align-items-center mr-5">

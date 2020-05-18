@@ -1,4 +1,4 @@
-.form-check-input {
+.form-check-input:not(.star-input) {
     position: absolute; // take it out of document flow
     opacity: 0; // hide it
   
@@ -20,12 +20,7 @@
       border: 1px solid #291875;
       border-radius: 5px;
     }
-  
-    // Box hover
-    /*&:hover + label:before {
-      background: #291875;
-    }*/
-    
+      
     // Box focus
     &:focus + label:before {
       box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
@@ -46,6 +41,9 @@
     &:disabled + label:before {
       box-shadow: none;
       background: #ddd;
-    }
-    
- }
+    } 
+}
+
+.star-input {
+  display: none;
+}

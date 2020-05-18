@@ -19,4 +19,8 @@ class Rating extends Model
     public function user() {
         return $this->belongsTo('App\Models\User');
     }
+
+    public function ratingreply() {
+        return $this->hasOne('App\Models\RatingReply');
+    }
 }
