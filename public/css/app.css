@@ -481,6 +481,10 @@ span {
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.16);
 }
 
+.modal .extra {
+  font-size: 10px;
+}
+
 @media (min-width: 768px) {
   /*.subcribe-confirmation {
       position: absolute;
