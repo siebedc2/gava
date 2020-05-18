@@ -52,8 +52,16 @@
                             <label class="d-md-none rounded-pill btn btn-primary" for="video">select file</label>
                             <label class="d-none d-md-block" for="video">Select file</label>
                             <p class="d-md-none my-2 edit-video"></p>
-                            <label class="d-none w-100 add-btn d-md-flex justify-content-center align-items-center " for="video">
+                            <label class="d-none w-100 add-btn d-md-flex justify-content-center align-items-center edit-video" for="video">
                                 <img src="/images/add.svg" alt="Add icon">
+                            </label>
+                            <label for="video" class="video-preview d-none d-md-none"> 
+                                <video class="w-100" loop autoplay muted>
+                                    <source id="video-source" src="" type="video/mp4">    
+                                </video>
+                                <div class="layer d-flex justify-content-center align-items-center">
+                                    <i class="text-white fa fa-pencil" aria-hidden="true"></i>
+                                </div>
                             </label>
                             <input name="video" type="file" class="form-control-file position-static" id="video">
                         </div>

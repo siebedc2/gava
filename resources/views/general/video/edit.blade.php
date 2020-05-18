@@ -53,9 +53,14 @@
                             <label class="d-md-none rounded-pill btn btn-primary" for="video">select file</label>
                             <label class="d-none d-md-block" for="video">Select file</label>
                             <p class="d-md-none my-2">{{ $video['video'] }}</p> 
-                            <div class="video-preview">      
-                                <iframe class="d-none d-md-block" height="280px" width="100%" src="/images/uploads/{{ $video['video'] }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>                         
-                            </div>
+                            <label for="video" class="video-preview d-none d-md-block"> 
+                                <video class="w-100" loop autoplay muted>
+                                    <source id="video-source" src="/images/uploads/{{ $video['video'] }}" type="video/mp4">    
+                                </video>
+                                <div class="layer d-flex justify-content-center align-items-center">
+                                    <i class="text-white fa fa-pencil" aria-hidden="true"></i>
+                                </div>
+                            </label>
                             <input name="video" type="file" class="form-control-file position-static" id="video" value="{{ $video['video'] }}">
                         </div>
                     </div>

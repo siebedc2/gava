@@ -41,7 +41,7 @@ if (typeof tumbnail_input !== "undefined" && tumbnail_input != null) {
 }
 
 var video_input = $('#video').val();
-if (typeof tumbnail_input !== "undefined" && tumbnail_input != null) {
+if (typeof video_input !== "undefined" && video_input != null) {
     $('#video').on('change', function(e){
         var x = window.matchMedia("(max-width: 768px)");
         if(x.matches) {
@@ -52,8 +52,16 @@ if (typeof tumbnail_input !== "undefined" && tumbnail_input != null) {
             }
     
             console.log(filename);
-    
             $('p.edit-video').html(filename);
+        }
+
+        else {
+            $('label.edit-video').removeClass('d-md-flex');
+            $('.video-preview').removeClass('d-md-none');
+            $('.video-preview').addClass('d-md-block');
+            var $source = $('#video-source');
+            $source[0].src = URL.createObjectURL(this.files[0]);
+            $source.parent()[0].load();
         }
     });
 }
