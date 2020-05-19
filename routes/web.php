@@ -43,6 +43,11 @@ Route::get('/course/edit/{id}', [
     'uses' => 'CourseController@edit'
 ]);
 
+Route::post('/course/getVideo', [
+    'as'   => 'getVideo',
+    'uses' => 'videoController@getVideo'
+]);
+
 Route::post('/course/edit/{id}', [
     'as'   => 'editCourse',
     'uses' => 'CourseController@handleEdit'

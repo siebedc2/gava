@@ -6,6 +6,7 @@
 
 @section('content')
 @include('components.menu')
+@include('components.delete-video-popup')
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -75,7 +76,7 @@
                             </div>
                         </div>
                         <div class="row d-none d-md-flex">
-                            <a class="col-12 text-decoration-none" href="/course/video/add">
+                            <a class="col-12 text-decoration-none" href="/course/{{$course->id}}/video/add">
                                 <div class="add-btn d-flex align-items-center justify-content-center">
                                     <img src="/images/add.svg" alt="Add icon">
                                 </div>
@@ -131,7 +132,7 @@
                         @endforeach
                         <div class="mt-5 row text-center d-md-none">
                             <div class="col-12">
-                                <a class="rounded-pill btn btn-primary" href="/course/video/add">add new video</a>
+                                <a class="rounded-pill btn btn-primary" href="/course/{{$course->id}}/video/add">add new video</a>
                             </div>
                         </div>
                     </div>

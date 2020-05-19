@@ -1,3 +1,8 @@
+.header .position-fixed {
+    z-index: 10;
+    bottom: 110px;
+}
+
 .btn {
     color: white;
     border: 0px !important;
@@ -125,4 +130,10 @@
         position: static;
         top: 0px;
     }
+
+    .header .position-fixed {
+        position: static !important;
+        bottom: 0px;
+    }
+    
 }

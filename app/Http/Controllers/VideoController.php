@@ -34,6 +34,21 @@ class VideoController extends Controller
         return view('general/video/details', $data);
     }
 
+    public function getVideo(VideoService $video) {
+        if($this->_request->input('courseId') == null) {
+            $videoData = $video->getSessionVideoById($this->_request->input('videoId'));
+        }
+
+        else {
+            $videoData = $video->getById($this->_request->input('videoId'));
+        }
+
+        return response()->json([
+            'message'   => 'success',
+            'video'    => $videoData
+        ]);
+    }
+
     public function ratings(RatingService $rating, $courseId, $videoId) {
         $data['ratings'] = $rating->getAllVideoRatings($videoId);
         return view('general.video.rating.index', $data);

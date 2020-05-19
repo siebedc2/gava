@@ -6,6 +6,7 @@
 
 @section('content')
 @include('components.menu')
+@include('components.delete-video-popup')
 <div class="container">
     <div class="row">
         <div class="col-12">

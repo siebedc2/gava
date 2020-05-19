@@ -8,16 +8,16 @@
             <form method="post">
                 {{csrf_field()}}
                 <div class="row mt-4">               
-                    <div class="col-4">
+                    <div class="col-4 d-flex align-items-center">
                         <a href="{{ url()->previous() }}">
-                            <img src="/images/arrowBack.png" alt="Arrow back">
+                            <img class="arrow-icon" src="/images/arrowBack.png" alt="Arrow back">
                         </a>
                     </div>
-                    <div class="col-4 text-center">
-                        <h2 class="font-weight-normal">Add a rating</h2>
+                    <div class="col-4 d-flex align-items-center justify-content-center">
+                        <h2 class="font-weight-normal mb-0">Add a rating</h2>
                     </div>
                     <div class="col-4 text-right">
-                        <button type="submit" class="rounded-pill px-5 btn btn-primary">save</button>
+                        <button type="submit" class="rounded-pill px-md-5 btn btn-confirm">save</button>
                     </div>
                 </div>
                 

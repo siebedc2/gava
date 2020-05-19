@@ -10,8 +10,8 @@ class Video {
         return Validator::make($data, [
             'title'         => 'required',
             'description'   => 'required',
-            'tumbnail'      => 'nullable|size:2000',
-            'video'         => 'nullable|mimes:mp4|size:150000000'
+            'tumbnail'      => 'nullable|max:2000',
+            'video'         => 'nullable|mimes:mp4|max:150000000'
         ]);
     }
 
@@ -77,6 +77,10 @@ class Video {
     }
 
     public function addToSession($request) {
+        if(empty($request['exclusive'])) {
+            $request['exclusive'] = 'n';
+        }
+
         $videoInput = $request['video'];
         $videoName = $videoInput->getClientOriginalName();
         $videoInput->move('images/uploads', $videoName);
