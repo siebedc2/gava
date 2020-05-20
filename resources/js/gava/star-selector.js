@@ -1,5 +1,6 @@
 var content_rating = $('.content-rating').val();
 var quality_rating = $('.quality-rating').val();
+var rating_filter  = $('.rating-filter').val();
 
 if (typeof content_rating !== "undefined" && content_rating != null || typeof quality_rating !== "undefined" && quality_rating != null) {
     $('input[type=radio][name=content]').click(function (e) {
@@ -38,4 +39,24 @@ if (typeof content_rating !== "undefined" && content_rating != null || typeof qu
         $('.quality-rating .star').removeClass('star-checked');
     }
 
+}
+
+if (typeof rating_filter !== "undefined" && rating_filter != null) {
+    $('input[type=radio][name=rating]').click(function (e) {
+        reset_rating_stars();
+        
+        var stars_value = $(e.target).val(); 
+        var stars = $('.rating-filter .star'); 
+        
+        console.log(stars[0]);
+
+        for(i=0; i <= stars_value - 1 ; i++) {
+            $(stars[i]).addClass('star-checked');
+        }
+
+    });
+
+    function reset_rating_stars() {
+        $('.rating-filter .star').removeClass('star-checked');
+    }
 }

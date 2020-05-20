@@ -2,12 +2,25 @@
     color: #291875;
 }
 
+.text-black {
+    color: black !important;
+}
+
 ::selection {
     background: $color-thirthiary;
 }
 
 .username {
     color: $color-primary;
+}
+
+.rating .username, .reply .username {
+    color: $color-secondary;
+    font-size: 16px;
+}
+
+.rating .category {
+    color: $color-secondary;
 }
 
 .page-not-found-title {

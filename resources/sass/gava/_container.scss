@@ -2,12 +2,6 @@
     border-bottom: 1px solid #dee2e6;
 }
 
-@media(min-width: 768px) {
-    .rating-overview {
-        border-bottom: 0px !important;
-    }
-}
-
 .subcribe-confirmation {
     position: absolute;
     top: 74.5px;   
@@ -19,4 +13,26 @@
 
 .profile-content {
     margin-top: -80px !important;
+}
+
+.mobile-menu {
+    border-radius: 15px 15px 0px 0px;
+}
+
+@media(max-width: 768px) {
+    .filter-container {
+        background-color: white;
+        position: fixed !important;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1040;
+    }
+}
+
+@media(min-width: 768px) {
+    .rating-overview {
+        border-bottom: 0px !important;
+    }
 }

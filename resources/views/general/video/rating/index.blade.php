@@ -170,20 +170,20 @@
         <div class="col-md-7 offset-md-1">
             @foreach($ratings as $rating)
             <div class="rating">
-                <div class="row mb-3">
+                <div class="row mb-2">
                     <div class="col-12 d-flex align-items-center">
-                        <p class="mb-0">{{$rating->user->name}}</p>
+                        <p class="username mb-0">{{$rating->user->name}}</p>
                         <span class="report-user ml-2 mb-1"><img class="report-icon" src="/images/report.svg" alt="Report icon"></span>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mb-2">
                     <div class="col-12">
-                        <p>{{$rating->comment}}</p>
+                        <p class="mb-0 text-black">{{$rating->comment}}</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-6 col-md-4 d-flex">
-                        <p class="mr-2">content</p>
+                        <p class="category mr-2">content</p>
                         <div class="rating">
                             @for ($i = $rating->stars; $i >= 1; $i--)
                             <span class="star star-checked"><i class="fa fa-star"></i></span>
@@ -194,7 +194,7 @@
                         </div>
                     </div>
                     <div class="col-6 col-md-4 d-flex">
-                        <p class="mr-2">quality</p>
+                        <p class="category mr-2">quality</p>
                         <div class="rating">
                             @for ($i = $rating->quality; $i >= 1; $i--)
                             <span class="star star-checked"><i class="fa fa-star"></i></span>
@@ -208,8 +208,7 @@
             </div>
             <div class="reply pb-4 mb-3 border-bottom">
                 @if(Auth::id() == $rating->video->course->user->id)
-                <span
-                    class="@if(!empty($rating->ratingreply)) d-none @endif reply-rating rounded-pill px-3 btn btn-primary">reply</span>
+                <span class="@if(!empty($rating->ratingreply)) d-none @endif reply-rating rounded-pill px-3 btn btn-primary">reply</span>
                 @endif
 
                 <form class="d-none reply-form" action="">
@@ -219,13 +218,12 @@
 
                     <input type="hidden" class="ratingId" name="ratingId" value="{{$rating->id}}">
 
-                    <button type="submit" class="add-reply border-0 bg-transparent"><i
-                            class="fa fa-paper-plane"></i></button>
+                    <button type="submit" class="add-reply border-0 bg-transparent"><i class="fa fa-paper-plane"></i></button>
                 </form>
 
                 <div class="@if(empty($rating->ratingreply)) d-none @endif creator-reply pl-4">
-                    <p class="mb-1">{{$rating->video->course->user->name}}</p>
-                    <p class="reply_text">
+                    <p class="username mb-1">{{$rating->video->course->user->name}}</p>
+                    <p class="text-black reply_text">
                         @if(!empty($rating->ratingreply->reply))
                         {{$rating->ratingreply->reply}}
                         @endif

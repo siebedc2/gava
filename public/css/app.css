@@ -375,6 +375,23 @@ h2 {
   background: linear-gradient(to top right, #4951CF, #3AD7F0);
 }
 
+.menu .nav-link.active {
+  position: relative;
+}
+
+.menu .nav-link.active::before {
+  content: "\2022";
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  width: 5.5px;
+  margin-left: -2.25px;
+}
+
+.mobile-menu .nav-link {
+  font-size: 14px;
+}
+
 .auth-link {
   color: #291875;
 }
@@ -391,6 +408,10 @@ span {
   color: #291875;
 }
 
+.text-black {
+  color: black !important;
+}
+
 ::-moz-selection {
   background: #D01CE2;
 }
@@ -401,6 +422,16 @@ span {
 
 .username {
   color: #3AD7F0;
+}
+
+.rating .username,
+.reply .username {
+  color: #4951CF;
+  font-size: 16px;
+}
+
+.rating .category {
+  color: #4951CF;
 }
 
 .page-not-found-title {
@@ -500,12 +531,6 @@ span {
   border-bottom: 1px solid #dee2e6;
 }
 
-@media (min-width: 768px) {
-  .rating-overview {
-    border-bottom: 0px !important;
-  }
-}
-
 .subcribe-confirmation {
   position: absolute;
   top: 74.5px;
@@ -517,6 +542,28 @@ span {
 
 .profile-content {
   margin-top: -80px !important;
+}
+
+.mobile-menu {
+  border-radius: 15px 15px 0px 0px;
+}
+
+@media (max-width: 768px) {
+  .filter-container {
+    background-color: white;
+    position: fixed !important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1040;
+  }
+}
+
+@media (min-width: 768px) {
+  .rating-overview {
+    border-bottom: 0px !important;
+  }
 }
 
 .form-check-input:not(.star-input) {
@@ -599,6 +646,20 @@ span {
 
 .arrow-icon {
   width: 31px;
+}
+
+.subscribe-icon,
+.nav-icon {
+  height: 35px;
+  width: auto;
+}
+
+.rating .report-icon {
+  width: 15px;
+}
+
+.filter-icon {
+  width: 80px;
 }
 
 .ms-offscreen {
@@ -891,6 +952,30 @@ span {
   position: absolute;
   top: 6px;
   right: 10px;
+}
+
+.reply-form {
+  position: relative;
+}
+
+.reply-form button {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+}
+
+.search-filter {
+  position: relative;
+}
+
+.search-filter span {
+  position: absolute;
+  top: 6px;
+  right: 20px;
+}
+
+.rating-filter {
+  height: 37px;
 }
 
 /*!

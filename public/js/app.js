@@ -37091,6 +37091,8 @@ __webpack_require__(/*! ./gava/star-selector */ "./resources/js/gava/star-select
 
 __webpack_require__(/*! ./gava/rating-reply */ "./resources/js/gava/rating-reply.js");
 
+__webpack_require__(/*! ./gava/filter */ "./resources/js/gava/filter.js");
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 /***/ }),
@@ -37307,6 +37309,22 @@ $('.delete-video').click(function (e) {
       });
     }
   });
+});
+
+/***/ }),
+
+/***/ "./resources/js/gava/filter.js":
+/*!*************************************!*\
+  !*** ./resources/js/gava/filter.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$('.filter-menu').click(function () {
+  $('.filter-container').removeClass('d-none');
+});
+$('.close-filter').click(function () {
+  $('.filter-container').addClass('d-none');
 });
 
 /***/ }),
@@ -37626,6 +37644,7 @@ $('.report-video').click(function () {
 
 var content_rating = $('.content-rating').val();
 var quality_rating = $('.quality-rating').val();
+var rating_filter = $('.rating-filter').val();
 
 if (typeof content_rating !== "undefined" && content_rating != null || typeof quality_rating !== "undefined" && quality_rating != null) {
   var reset_content_stars = function reset_content_stars() {
@@ -37650,6 +37669,23 @@ if (typeof content_rating !== "undefined" && content_rating != null || typeof qu
     reset_quality_stars();
     var stars_value = $(e.target).val();
     var stars = $('.quality-rating .star');
+    console.log(stars[0]);
+
+    for (i = 0; i <= stars_value - 1; i++) {
+      $(stars[i]).addClass('star-checked');
+    }
+  });
+}
+
+if (typeof rating_filter !== "undefined" && rating_filter != null) {
+  var reset_rating_stars = function reset_rating_stars() {
+    $('.rating-filter .star').removeClass('star-checked');
+  };
+
+  $('input[type=radio][name=rating]').click(function (e) {
+    reset_rating_stars();
+    var stars_value = $(e.target).val();
+    var stars = $('.rating-filter .star');
     console.log(stars[0]);
 
     for (i = 0; i <= stars_value - 1; i++) {

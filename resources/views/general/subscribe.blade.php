@@ -16,7 +16,7 @@
                 </div>
 
                 <div class="row d-flex justify-content-center mt-4">
-                    <div class="col-12 col-md-10">
+                    <div class="col-11 col-md-10">
                         <div class="row">
                             <div class="col-12">
                                 <div class="row">
@@ -35,34 +35,34 @@
                         <div class="row mt-4">
                             <div class="col-12 col-md-4">
                                 <div class="row">
-                                    <div class="col-4 col-md-12 d-flex justify-content-center">
-                                        <img src="/images/lock.png" alt="Lock">
+                                    <div class="col-2 col-md-12 d-flex justify-content-center">
+                                        <img class="subscribe-icon" src="/images/lock.png" alt="Lock">
                                     </div>
 
-                                    <div class="col-8 col-md-12 text-md-center mt-md-3 px-md-4">
-                                        <p>Exclusive content <br> Learn from exclusive videos, only accessible to subscribed users</p>
+                                    <div class="col-10 col-md-12 text-md-center mt-md-3 px-md-4">
+                                        <p><strong>Exclusive content</strong> <br> Learn from exclusive videos, only accessible to subscribed users</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-12 col-md-4">
                                 <div class="row">
-                                    <div class="col-4 col-md-12 d-flex justify-content-center">
-                                        <img src="/images/crown.png" alt="Crown">
+                                    <div class="col-2 col-md-12 d-flex justify-content-center">
+                                        <img class="subscribe-icon" src="/images/crown.png" alt="Crown">
                                     </div>
 
-                                    <div class="col-8 col-md-12 text-md-center mt-md-3 px-md-4">
-                                        <p>Stand out <br> Special user-flair will make you more distinguishable from normal users</p>
+                                    <div class="col-10 col-md-12 text-md-center mt-md-3 px-md-4">
+                                        <p><strong>Stand out</strong> <br> Special user-flair will make you more distinguishable from normal users</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-12 col-md-4">
                                 <div class="row">
-                                    <div class="col-4 col-md-12 d-flex justify-content-center">
-                                        <img src="/images/notifications.png" alt="Notifications">
+                                    <div class="col-2 col-md-12 d-flex justify-content-center">
+                                        <img class="subscribe-icon" src="/images/notifications.png" alt="Notifications">
                                     </div>
 
-                                    <div class="col-8 col-md-12 text-md-center mt-md-3 px-md-4">
-                                        <p>Get notified <br> Receive notifications when new content is published</p>
+                                    <div class="col-10 col-md-12 text-md-center mt-md-3 px-md-4">
+                                        <p><strong>Get notified</strong> <br> Receive notifications when new content is published</p>
                                     </div>
                                 </div>
                             </div>
@@ -70,7 +70,7 @@
 
                         <div class="row mt-4">
                             <div class="col-12 text-center">
-                                <div class="form-check">
+                                <div class="form-check pl-0">
                                     <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" required>
                                     <label class="form-check-label" for="defaultCheck1">I accept the <a href="">terms & conditions</a></label>
                                 </div>
@@ -83,7 +83,7 @@
                             </div>
                         </div>
 
-                        <div class="row d-flex justify-content-center">
+                        <div class="row d-none d-md-flex justify-content-center">
                             <div class="col-8 text-center">
                                 <p>* Subscriptions are €8 a month and renew automatically. You can cancel or edit your payment at any time.</p>
                             </div>
@@ -94,4 +94,5 @@
         </div>
     </div>
 </div>
+@include('components.mobile-menu')
 @endsection

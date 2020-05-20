@@ -23,5 +23,6 @@ require('./gava/multiselect');
 require('./gava/preview-image');
 require('./gava/star-selector');
 require('./gava/rating-reply');
+require('./gava/filter');
 
 require('./bootstrap');

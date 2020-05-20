@@ -7,3 +7,27 @@
         right: 10px;
     }
 }
+
+.reply-form {
+    position: relative;
+
+    & button {
+        position: absolute;
+        top: 6px;
+        right: 10px;
+    }
+}
+
+.search-filter {
+    position: relative;
+
+    & span {
+        position: absolute;
+        top: 6px;
+        right: 20px;
+    }
+}
+
+.rating-filter {
+    height: 37px;
+}

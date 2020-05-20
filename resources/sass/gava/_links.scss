@@ -10,6 +10,25 @@
     }
 }
 
+.menu .nav-link {
+    &.active {
+        position: relative;
+    }
+
+    &.active::before {
+        content: "•";
+        position: absolute;
+        top: 25px;
+        left: 50%;
+        width: 5.5px;
+        margin-left: -2.25px;
+    }
+}
+
+.mobile-menu .nav-link {
+    font-size: 14px;
+}
+
 .auth-link {
     color: $btn-primary-color;
 

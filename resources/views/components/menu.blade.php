@@ -9,17 +9,21 @@
                     </a>
                 </div>
 
-                <div class="col-6">
-                    <div class="row d-flex justify-content-end">
-                        <div class="col-10">
-                            <div class="d-flex justify-content-between">
-                                <a class="text-decoration-none text-white link d-block" href="/home">courses</a>
-                                <a class="text-decoration-none text-white link d-block" href="/subscriptions">subscriptions</a>
-                                <a class="text-decoration-none text-white link d-block" href="/dashboard">dashboard</a>
-                                <a class="text-decoration-none text-white link d-block" href="/profile">profile</a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-6 d-flex justify-content-end">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="text-white link nav-link @if(\Request::route()->getName() == 'home') active @endif" href="/home">courses</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="text-white link nav-link @if(\Request::route()->getName() == 'subscriptions') active @endif" href="/subscriptions">subscriptions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="text-white link nav-link @if(\Request::route()->getName() == 'dashboard') active @endif" href="/dashboard">dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="text-white link nav-link @if(\Request::route()->getName() == 'profile') active @endif" href="/profile">profile</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
