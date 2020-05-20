@@ -226,6 +226,10 @@ h2 {
   font-size: 30px;
 }
 
+.landing-logo {
+  z-index: 1050;
+}
+
 .gava .icon {
   width: 70px;
 }
@@ -369,6 +373,7 @@ h2 {
 
 .link.link-primary {
   border: 1px solid #fff;
+  max-width: 100px;
 }
 
 .link.link-secondary {
@@ -976,6 +981,32 @@ span {
 
 .rating-filter {
   height: 37px;
+}
+
+.menu {
+  height: 86px;
+}
+
+.menu-icon {
+  z-index: 1050;
+}
+
+.menu .line {
+  height: 3px;
+  width: 30px;
+  transition: 0.3s all;
+}
+
+@media (max-width: 768px) {
+  .landing-nav {
+    background-color: #050547;
+    position: absolute !important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1040;
+  }
 }
 
 /*!

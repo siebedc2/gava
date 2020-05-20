@@ -6,6 +6,7 @@
 
 // Landingpagina
 require('./gava/tech-popup');
+require('./gava/landing-mobile-menu');
 
 // Platform
 require('./gava/dashboard-tab');
@@ -18,7 +19,6 @@ require('./gava/report-video');
 require('./gava/report-comment');
 require('./gava/like-comment');
 require('./gava/upvote-comment');
-require('./gava/landing-mobile-menu');
 require('./gava/multiselect');
 require('./gava/preview-image');
 require('./gava/star-selector');
