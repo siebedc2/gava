@@ -1,7 +1,7 @@
 $('.mobile-video-options').click(function(e){
     var courseId = $(e.target).parent().prev().prev().val();
     var videoId = $(e.target).parent().prev().val();
-    video = $(e.target).parent().parent().parent();
+    var video = $(e.target).parent().parent().parent();
 
     $('.video-options-menu').css('bottom', '75px');
     $('.add-video-col').css('bottom', '230px');
@@ -15,30 +15,28 @@ $('.mobile-video-options').click(function(e){
     }
     
     $('.delete-video').prev().val(videoId);
+    
+    $('.delete-video').click(function(e){
+        delete_course(video, courseId, videoId);
+        hide_options(e);
+    })
+
+    $('.cancel-btn').click(function(e){
+        hide_options(e);
+    });
+
 })
 
-$('.cancel-btn').click(function(e){
-    $('.video-options-menu').css('bottom', '-80px');
-    $('.add-video-col').css('bottom', '110px');
-});
-
 $('.delete-video').click(function(e){
-
-    e.preventDefault();
     var videoId = $(this).prev().attr('value');
-
-    var x = window.matchMedia("(min-width: 768px)");
-    if(x.matches) {
-        var video = $(this).parent().parent();    
-    }
-
-    //console.log(video);
-    
+    var video = $(this).parent().parent();        
     var courseId = $(this).prev().prev().attr('value');
 
-    //console.log(videoId);
+    delete_course(video, courseId, videoId);
+})
 
-    /*$.ajax({
+function delete_course(video, courseId, videoId) {
+    $.ajax({
         method: "POST",
         url: '/course/getVideo',
         data: {
@@ -59,7 +57,7 @@ $('.delete-video').click(function(e){
             $('.popup-video-title').html(response.video.title);
             $('.popup-video-picture').css('background-image', 'url(/images/uploads/' + response.video.tumbnail + ')');
             
-            $('#confirm').modal({ backdrop: 'static', keyboard: false }).on('click', '#delete-btn', function(){
+            $('#confirm').modal({ backdrop: 'static', keyboard: false }).on('click', '#delete-btn', function(e){
                 
                 e.preventDefault();
                 
@@ -91,5 +89,12 @@ $('.delete-video').click(function(e){
                 });
             });
         }
-    });*/
-});
+    });
+
+}
+
+function hide_options(e) {
+    $('.video-options-menu').css('bottom', '-80px');
+    $('.add-video-col').css('bottom', '110px');
+}
+
