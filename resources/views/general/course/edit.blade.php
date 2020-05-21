@@ -82,6 +82,7 @@
                                 </div>
                             </a>
                         </div>
+                        @if(!empty($videos))
                         @foreach($videos as $video)
                         <div class="row mt-3 d-flex align-items-center">
                             <div class="col-5">
@@ -119,19 +120,26 @@
                                 </div>
                             </div>
 
-                            <div class="col-1 mb-4">
+                            <div class="col-2 d-flex align-self-start align-self-md-center justify-content-end d-md-none">
+                                <input type="hidden" value="{{ \Route::current()->parameter('id') }}">
+                                <input type="hidden" value="{{ $video->id }}">
+                                <span class="d-md-none mobile-video-options"><img src="/images/mobile-options.svg" alt="Options icon"></span>
+                            </div>
+
+                            <div class="d-none d-md-block col-1 mb-4">
                                 <a href="/course/{{ $video->course_id }}/video/edit/{{ $video->id }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                             </div>
 
-                            <div class="col-1 mb-4">
+                            <div class="d-none d-md-block col-1 mb-4">
                                 <input type="hidden" value="{{ \Route::current()->parameter('id') }}">
                                 <input type="hidden" value="{{ $video->id }}">
                                 <span class="delete-video"><i class="fa fa-trash" aria-hidden="true"></i></span>
                             </div>
                         </div>
                         @endforeach
+                        @endif
                         <div class="mt-5 row text-center d-md-none">
-                            <div class="col-12">
+                            <div class="col-12 add-video-col">
                                 <a class="rounded-pill btn btn-primary" href="/course/{{$course->id}}/video/add">add new video</a>
                             </div>
                         </div>
@@ -154,7 +162,9 @@
             </form>
         </div>
     </div>
+    @include('components.video-options-menu')
 </div>
+@include('components.mobile-menu')
 @endsection
 
 @section('extra-js')

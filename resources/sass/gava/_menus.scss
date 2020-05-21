@@ -1,14 +1,27 @@
-.menu {
+.landing-menu {
     height: 86px;
 }
 
 .menu-icon {
     z-index: 1050;
+    cursor: pointer;
 }
 
 .menu .line {
     height: 3px;
     width: 30px;
+    transition: .3s all;
+}
+
+.mobile-menu, .course-options-menu, .video-options-menu {
+    border-radius: 15px 15px 0px 0px;
+}
+
+.course-options-menu, .video-options-menu {
+    bottom: -80px;
+    left: 0;
+    right: 0;
+    background-color: $btn-primary-color;
     transition: .3s all;
 }
 

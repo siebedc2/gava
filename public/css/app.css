@@ -98,10 +98,12 @@
   font-size: 40px;
 }
 
-.add-course-col {
-  position: fixed;
+.add-course-col,
+.add-video-col {
+  position: fixed !important;
   z-index: 50;
-  top: 530px;
+  bottom: 110px;
+  transition: 0.3s all;
 }
 
 @media (min-width: 768px) {
@@ -126,7 +128,7 @@
   }
 
   .add-course-col {
-    position: static;
+    position: relative !important;
     top: 0px;
   }
 
@@ -549,10 +551,6 @@ span {
   margin-top: -80px !important;
 }
 
-.mobile-menu {
-  border-radius: 15px 15px 0px 0px;
-}
-
 @media (max-width: 768px) {
   .filter-container {
     background-color: white;
@@ -665,6 +663,11 @@ span {
 
 .filter-icon {
   width: 80px;
+}
+
+.mobile-course-options img,
+.mobile-video-options img {
+  width: 4px;
 }
 
 .ms-offscreen {
@@ -983,17 +986,33 @@ span {
   height: 37px;
 }
 
-.menu {
+.landing-menu {
   height: 86px;
 }
 
 .menu-icon {
   z-index: 1050;
+  cursor: pointer;
 }
 
 .menu .line {
   height: 3px;
   width: 30px;
+  transition: 0.3s all;
+}
+
+.mobile-menu,
+.course-options-menu,
+.video-options-menu {
+  border-radius: 15px 15px 0px 0px;
+}
+
+.course-options-menu,
+.video-options-menu {
+  bottom: -80px;
+  left: 0;
+  right: 0;
+  background-color: #291875;
   transition: 0.3s all;
 }
 

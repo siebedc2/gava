@@ -1,5 +1,5 @@
 <div class="modal" id="confirm">
-    <div class="vh-100 d-flex align-items-center">
+    <div class="vh-100 d-flex justify-content-center align-items-center">
         <div class="modal-dialog">
             <div class="modal-content p-3 border-0">
                 <div class="modal-body text-center">

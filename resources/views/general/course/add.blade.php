@@ -59,7 +59,7 @@
                     <div class="col-12 col-md-5 offset-md-1">
                         <div class="d-md-none">
                             <div class="row">
-                                <div class="col-12 text-center">
+                                <div class="col-12 add-video-col text-center">
                                     <a href="/course/video/add" class="rounded-pill px-md-5 btn btn-primary">add new video to course</a>
                                 </div>
                             </div>
@@ -112,11 +112,17 @@
                                 </div>
                             </div>
 
-                            <div class="col-1 mb-4">
+                            <div class="col-2 d-flex align-self-start align-self-md-center justify-content-end d-md-none">
+                                <input type="hidden" value="{{ \Route::current()->parameter('id') }}">
+                                <input type="hidden" value="{{ $video['id'] }}">
+                                <span class="d-md-none mobile-video-options"><img src="/images/mobile-options.svg" alt="Options icon"></span>
+                            </div>
+
+                            <div class="d-none d-md-block col-1 mb-4">
                                 <a href="/course/video/edit/{{ $video['id'] }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                             </div>
 
-                            <div class="col-1 mb-4">
+                            <div class="d-none d-md-block col-1 mb-4">
                                 <input type="hidden" value="{{ \Route::current()->parameter('id') }}">
                                 <input type="hidden" value="{{ $video['id'] }}">
                                 <span class="delete-video"><i class="fa fa-trash" aria-hidden="true"></i></span>
@@ -143,7 +149,9 @@
             </form>
         </div>
     </div>
+    @include('components.video-options-menu')
 </div>
+@include('components.mobile-menu')
 @endsection
 
 @section('extra-js')

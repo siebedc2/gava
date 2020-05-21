@@ -1,13 +1,44 @@
+$('.mobile-video-options').click(function(e){
+    var courseId = $(e.target).parent().prev().prev().val();
+    var videoId = $(e.target).parent().prev().val();
+    video = $(e.target).parent().parent().parent();
+
+    $('.video-options-menu').css('bottom', '75px');
+    $('.add-video-col').css('bottom', '230px');
+
+    if(courseId != "") {
+        $('.edit-video').attr("href", "/course/" + courseId + "/video/edit/" + videoId);
+    }
+
+    else {
+        $('.edit-video').attr("href", "/course/video/edit/" + videoId);
+    }
+    
+    $('.delete-video').prev().val(videoId);
+})
+
+$('.cancel-btn').click(function(e){
+    $('.video-options-menu').css('bottom', '-80px');
+    $('.add-video-col').css('bottom', '110px');
+});
+
 $('.delete-video').click(function(e){
 
     e.preventDefault();
     var videoId = $(this).prev().attr('value');
-    var video = $(this).parent().parent();
+
+    var x = window.matchMedia("(min-width: 768px)");
+    if(x.matches) {
+        var video = $(this).parent().parent();    
+    }
+
+    //console.log(video);
+    
     var courseId = $(this).prev().prev().attr('value');
 
-    console.log(videoId);
+    //console.log(videoId);
 
-    $.ajax({
+    /*$.ajax({
         method: "POST",
         url: '/course/getVideo',
         data: {
@@ -60,5 +91,5 @@ $('.delete-video').click(function(e){
                 });
             });
         }
-    });
+    });*/
 });

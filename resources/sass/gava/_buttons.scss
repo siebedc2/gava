@@ -97,10 +97,11 @@
     }
 }
 
-.add-course-col {
-    position: fixed;
+.add-course-col, .add-video-col {
+    position: fixed !important;
     z-index: 50;
-    top: 530px;
+    bottom: 110px;
+    transition: .3s all;
 }
 
 @media (min-width: 768px) {
@@ -127,7 +128,7 @@
     }
 
     .add-course-col {
-        position: static;
+        position: relative !important;
         top: 0px;
     }
 

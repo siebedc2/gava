@@ -1,4 +1,4 @@
-<div class="container-fluid py-4 menu">
+<div class="container-fluid py-4 menu landing-menu">
     <div class="row d-flex justify-content-center">
         <div class="col-10 position-static">
             <div class="row">

@@ -24,5 +24,7 @@ require('./gava/preview-image');
 require('./gava/star-selector');
 require('./gava/rating-reply');
 require('./gava/filter');
+require('./gava/course-options-menu');
+require('./gava/video-options-menu');
 
 require('./bootstrap');
