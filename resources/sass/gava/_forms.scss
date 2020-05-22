@@ -31,3 +31,13 @@
 .rating-filter {
     height: 37px;
 }
+
+.add-comment-form {
+    position: relative;
+
+    & button {
+        position: absolute;
+        top: 6px;
+        right: 15px;
+    }
+}

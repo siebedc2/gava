@@ -986,6 +986,16 @@ span {
   height: 37px;
 }
 
+.add-comment-form {
+  position: relative;
+}
+
+.add-comment-form button {
+  position: absolute;
+  top: 6px;
+  right: 15px;
+}
+
 .landing-menu {
   height: 86px;
 }

@@ -22,14 +22,27 @@
 <div class="container">
     <div class="row mt-4">
         <div class="col-12">
+            <div class="row d-flex align-items-center d-md-none mb-4">
+                <div class="col-6">
+                    <a href="/course/{{$video->course->id}}">
+                        <img class="arrow-icon" src="/images/arrowBack.png" alt="Arrow back">
+                    </a>
+                </div>
+                <div class="col-6 d-flex justify-content-end">
+                    <span class="report-video">
+                        <input type="hidden" class="videoId" name="videoId" value="{{$video->id}}">
+                        <img class="report-icon" src="/images/report.svg" alt="Report">
+                    </span>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-6">
                     <a class="text-decoration-none" href="/profile/{{ $video->course->user->id }}">
                         <div class="row d-flex align-items-center">
-                            <div class="col-2">
+                            <div class="col-4 col-md-2">
                                 <div style="background-image: url(/images/uploads/{{$video->course->user->profile_picture}});" class="subscriber-image rounded-circle"></div>
                             </div>
-                            <div class="col-10">
+                            <div class="col-8 col-md-10">
                                 <div class="row">
                                     <div class="col-12">
                                         <h4 class="font-weight-normal mb-1">{{ $video->course->user->name }}</h4>
@@ -49,7 +62,7 @@
                 @if(Auth::user())
                     @if(Auth::id() != $course->user_id)
                     <div class="col-6 d-flex justify-content-end align-items-center">
-                        <span class="report-video mr-5">
+                        <span class="d-none d-md-block report-video mr-5">
                             <input type="hidden" class="videoId" name="videoId" value="{{$video->id}}">
                             <img class="report-icon" src="/images/report.svg" alt="Report">
                         </span>
@@ -127,22 +140,23 @@
             @auth
                 <div class="row mt-3">
                     <div class="col-12">
-                        <form action="">
+                        <form class="add-comment-form" action="">
                             <div class="form-group">
                                 <label class="d-none" for="comment">Comment</label>
                                 <input type="email" class="bg-light border-0 rounded-pill form-control" id="comment" placeholder="write a comment">
                             </div>
-                            <!--<button type="submit" class="rounded-pill btn btn-primary mb-2">verzenden</button>-->
+                            <button type="submit" class="add-comment border-0 bg-transparent"><i class="fa fa-paper-plane"></i></button>
                         </form>
                         <div class="row">
-                            <div class="col-4 text-center">
+                            <div class="col-6 col-md-4 text-center">
                                 <a class="rounded-pill w-100 btn btn-primary" href="">video comment</a>
                             </div>
-                            <div class="col-4 text-center">
-                                <a class="rounded-pill w-100 btn btn-primary" href="/course/{{$video->course_id}}/video/{{$video->id}}/ratings">video ratings</a>
+                            <div class="col-4 col-md-4 text-center">
+                                <a class="rounded-pill w-100 btn btn-primary" href="/course/{{$video->course_id}}/video/{{$video->id}}/ratings">ratings</a>
                             </div>
-                            <div class="col-4 text-center">
-                                <a class="rounded-pill w-100 btn btn-primary" href="/course/{{$video->course_id}}/video/{{$video->id}}/ratings">share this video</a>
+                            <div class="col-2 col-md-4 text-center">
+                                <a class="d-md-none rounded-circle w-100 btn btn-primary" href="/course/{{$video->course_id}}/video/{{$video->id}}/ratings"><i class="text-white fa fa-share-alt"></i></a>
+                                <a class="d-none d-md-block rounded-pill w-100 btn btn-primary" href="/course/{{$video->course_id}}/video/{{$video->id}}/ratings">share this video</a>
                             </div>
                         </div>
 
@@ -200,10 +214,25 @@
             <p>Next video's:</p>
             @foreach($courseVideos as $courseVideo)
             @if($courseVideo->id != $video->id)
-            <a href="/course/{{$courseVideo->course_id}}/video/{{$courseVideo->id}}" class="text-decoration-none row rounded bg-white my-3">
+            <a href="
+                @if($video->exclusive == 'y' && $subscriptionService->hasSubscription($video->course->user->id))
+                    /course/{{$courseVideo->course_id}}/video/{{$courseVideo->id}}
+                @elseif($video->exclusive == 'y' && $subscriptionService->notSubsribedWhenVideoWasCreated($courseVideo->created_at, $video->course->user->id)) 
+                    /subscribe/{{ $user->id }} 
+                @else 
+                    /course/{{$courseVideo->course_id}}/video/{{$courseVideo->id}}
+                @endif" 
+                class="text-decoration-none row rounded bg-white my-3">
                 <div class="col-5">
-                    <div class="d-flex justify-content-center align-items-center w-100 rounded tumbnail @if($courseVideo->exclusive == 'y' && $subscriptionService->notSubsribedWhenVideoWasCreated($courseVideo->created_at, $video->course->user->id)) exclusive-tumbnail @endif" style="background-image: url(/images/uploads/{{$courseVideo->tumbnail}});">
-                        @if($courseVideo->exclusive == 'y' && $subscriptionService->notSubsribedWhenVideoWasCreated($courseVideo->created_at, $video->course->user->id))
+                    <div class="d-flex justify-content-center align-items-center w-100 rounded tumbnail 
+                        @if($courseVideo->exclusive == 'y' && $subscriptionService->hasSubscription($video->course->user->id))
+
+                        @elseif($courseVideo->exclusive == 'y' && $subscriptionService->notSubsribedWhenVideoWasCreated($courseVideo->created_at, $video->course->user->id))
+                            exclusive-tumbnail 
+                        @endif" 
+                        
+                        style="background-image: url(/images/uploads/{{$courseVideo->tumbnail}});">
+                        @if($courseVideo->exclusive == 'y' && !$subscriptionService->hasSubscription($video->course->user->id) && $subscriptionService->notSubsribedWhenVideoWasCreated($courseVideo->created_at, $video->course->user->id) )
                         <span class="rounded-pill btn btn-unlock btn-secondary">unlock video</span>
                         @endif
                     </div>
@@ -212,7 +241,12 @@
                     <div class="row">
                         <div class="col-12">
                             @if($courseVideo->exclusive == 'y') 
-                                @if($subscriptionService->notSubsribedWhenVideoWasCreated($courseVideo->created_at, $video->course->user->id))
+                                @if($subscriptionService->hasSubscription($video->course->user->id))
+                                    <div class="d-flex align-items-center mb-1">
+                                        <img class="lock" src="/images/unlocked.svg" alt="unlocked icon">
+                                        <p class="ml-2 mb-0">{{ $courseVideo->title }}</p>
+                                    </div>
+                                @elseif($subscriptionService->notSubsribedWhenVideoWasCreated($courseVideo->created_at, $video->course->user->id))
                                     <div class="d-flex align-items-center mb-1">
                                         <img class="lock" src="/images/locked.svg" alt="unlocked icon">
                                         <p class="ml-2 mb-0">{{ $courseVideo->title }}</p>

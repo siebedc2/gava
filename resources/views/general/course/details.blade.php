@@ -16,11 +16,24 @@
 <div class="container">
     <div class="row mt-4">
         <div class="col-12">
+            <div class="row d-flex align-items-center d-md-none mb-4">
+                <div class="col-6">
+                    <a href="/home">
+                        <img class="arrow-icon" src="/images/arrowBack.png" alt="Arrow back">
+                    </a>
+                </div>
+                <div class="col-6 d-flex justify-content-end">
+                    <div class="report-user">
+                        <input type="hidden" value="{{$user->id}}" class="userId" name="userId">
+                        <span><img class="report-icon" src="/images/report.svg" alt="Report"></span>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-6">
                     <a class="text-decoration-none" href="/profile/{{ $user->id }}">
                         <div class="row d-flex align-items-center">
-                            <div class="col-2">
+                            <div class="col-4 col-md-2">
                                 @if(!empty($user))
                                 <div style="background-image: url(/images/uploads/{{$user->profile_picture}});"
                                     class="subscriber-image rounded-circle"></div>
@@ -29,7 +42,7 @@
                                     class="subscriber-image rounded-circle"></div>
                                 @endif
                             </div>
-                            <div class="col-10">
+                            <div class="col-8 col-md-10">
                                 <div class="row">
                                     <div class="col-12">
                                         @if(!empty($user))
@@ -53,7 +66,7 @@
                 @if(Auth::user())
                 @if(Auth::id() != $course->user_id)
                 <div class="col-6 d-flex justify-content-end align-items-center">
-                    <div class="report-user">
+                    <div class="d-none d-md-block report-user">
                         <input type="hidden" value="{{$user->id}}" class="userId" name="userId">
                         <span class="mr-5"><img class="report-icon" src="/images/report.svg" alt="Report"></span>
                     </div>
@@ -133,7 +146,9 @@
     <div class="row">
         @foreach($videos as $video)
         <a href="
-            @if($video->exclusive == 'y' && $subscriptionService->notSubsribedWhenVideoWasCreated($video->created_at, $user->id)) 
+            @if($video->exclusive == 'y' && $subscriptionService->hasSubscription($user->id))
+                /course/{{ $course->id }}/video/{{ $video->id }} 
+            @elseif($video->exclusive == 'y' && $subscriptionService->notSubsribedWhenVideoWasCreated($video->created_at, $user->id)) 
                 /subscribe/{{ $user->id }} 
             @else 
                 /course/{{ $course->id }}/video/{{ $video->id }} 
@@ -141,9 +156,17 @@
             " class="text-decoration-none col-12 col-md-6 rounded bg-white my-2">
             <div class="row">
                 <div class="col-4">
-                    <div class="d-flex justify-content-center align-items-center w-100 rounded tumbnail @if($video->exclusive == 'y' && $subscriptionService->notSubsribedWhenVideoWasCreated($video->created_at, $user->id)) exclusive-tumbnail @endif" style="background-image: url(/images/uploads/{{$video->tumbnail}});">
-                        @if($video->exclusive == 'y' && $subscriptionService->notSubsribedWhenVideoWasCreated($video->created_at, $user->id))
+                    <div class="d-flex justify-content-center align-items-center w-100 rounded tumbnail 
+                        @if($video->exclusive == 'y' && $subscriptionService->hasSubscription($user->id))
+                            
+                        @elseif($video->exclusive == 'y' && $subscriptionService->notSubsribedWhenVideoWasCreated($video->created_at, $user->id)) 
+                            exclusive-tumbnail 
+                        @endif
+                        " style="background-image: url(/images/uploads/{{$video->tumbnail}});">
+
+                        @if($video->exclusive == 'y' && !$subscriptionService->hasSubscription($user->id) && $subscriptionService->notSubsribedWhenVideoWasCreated($video->created_at, $user->id))
                         <span class="rounded-pill btn btn-unlock btn-secondary">unlock video</span>
+                        
                         @endif
                     </div>
                 </div>
@@ -151,9 +174,14 @@
                     <div class="row">
                         <div class="col-12">
                             @if($video->exclusive == 'y') 
-                                @if($subscriptionService->notSubsribedWhenVideoWasCreated($video->created_at, $user->id))
+                                @if($subscriptionService->hasSubscription($user->id))
                                     <div class="d-flex align-items-center mb-1">
-                                        <img class="lock" src="/images/locked.svg" alt="unlocked icon">
+                                        <img class="lock" src="/images/unlocked.svg" alt="unlocked icon">
+                                        <p class="ml-2 mb-0">{{ $video->title }}</p>
+                                    </div>
+                                @elseif($subscriptionService->notSubsribedWhenVideoWasCreated($video->created_at, $user->id))
+                                    <div class="d-flex align-items-center mb-1">
+                                        <img class="lock" src="/images/locked.svg" alt="locked icon">
                                         <p class="ml-2 mb-0">{{ $video->title }}</p>
                                     </div>
                                 @else

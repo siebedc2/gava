@@ -85,6 +85,23 @@ class Subscription {
         return true;
     }
 
+    public function hasSubscription($creatorId) {
+        $subscription = SubscriptionModel::where([
+            ['creator_id', $creatorId],
+            ['user_id', Auth::id()], 
+            ['status', 'online']
+        ])->get();
+
+        
+        if($subscription->count() > 0) {
+            return true;
+        }
+
+        else {
+            return false;
+        }
+    }
+
     public function getSubscriptionById($creatorId, $userId) {
         return SubscriptionModel::where([
             ['creator_id', $creatorId],

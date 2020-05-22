@@ -141,36 +141,40 @@
                         <div class="row">
                             <div class="col-12 d-flex">
                                 <?php 
-                                    $videos = $videoService->getAllCourseVideos($course->id); 
-                                    $stars = 0;    
+                                    $videos             = $videoService->getAllCourseVideos($course->id); 
+                                    $rating             = 0;   
+                                    $amountOfRatings    = 0;     
                                 ?>
                                 @foreach($videos as $video)
                                 <?php 
-                                        $rating = $ratingService->getAVG($video['id']);
-                                        $stars += $rating['starAVG'];
+                                     $ratingData = $ratingService->getAVG($video['id']);
+                                     if(!empty($ratingData['starAVG'])) {
+                                         $ratingData = $ratingService->getAVG($video['id']);
+                                         $rating += $ratingData['starAVG'];
+                                         $amountOfRatings += 1;
+                                     }
                                 ?>
                                 @endforeach
 
-                                @if($stars != null)
-                                <?php $Coursestars = round(($stars / $videos->count()),0); ?>
-                                <div class="rating">
-                                    @for ($i = $Coursestars; $i >= 1; $i--)
-                                    <span class="star star-checked"><i class="fa fa-star"></i></span>
-                                    @endfor
+                                @if($rating != null)
+                                    <?php $Coursestars = round(($rating / $amountOfRatings),0); ?>
+                                        <div class="rating">
+                                            @for ($i = $Coursestars; $i >= 1; $i--)
+                                                <span class="star star-checked"><i class="fa fa-star"></i></span>
+                                            @endfor
 
-                                    @for ($i = $Coursestars; $i <= 4; $i++) <span class="star"><i
-                                        class="fa fa-star"></i></span>
-                                    @endfor
-                                </div>
-                                <p class="text-black-50 mb-0 ml-2">({{$rating['amountOfRatings']}})</p>
+                                            @for ($i = $Coursestars; $i <= 4; $i++)
+                                                <span class="star"><i class="fa fa-star"></i></span>
+                                            @endfor
+                                        </div>
                                 @else
-                                <div class="rating">
-                                    @for ($i = 5; $i >= 1; $i--)
-                                    <span class="star"><i class="fa fa-star"></i></span>
-                                    @endfor
-                                </div>
-                                <p class="text-black-50 mb-0 ml-2">(0)</p>
+                                    <div class="rating">
+                                        @for ($i = 5; $i >= 1; $i--)
+                                            <span class="star"><i class="fa fa-star"></i></span>
+                                        @endfor
+                                    </div>
                                 @endif
+                                <p class="text-black-50 mb-0 ml-2">({{$amountOfRatings}})</p>
                             </div>
                         </div>
                     </div>
