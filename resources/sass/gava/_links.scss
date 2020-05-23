@@ -9,6 +9,10 @@
     &.link-secondary {
         background: $gradient-primary;
     }
+
+    &.subscribers-link {
+        color: $btn-primary-color;
+    }
 }
 
 .menu .nav-link {

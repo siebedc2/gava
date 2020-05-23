@@ -170,7 +170,7 @@
                     @foreach($comments as $comment)
                     <div class="row">
                         <div class="col-12">
-                            <p class="mb-0">{{ $comment->user->name }}</p>
+                            <p class="mb-0 @if($subscriptionService->notSubsribedWhenVideoWasCreated($video->created_at, $video->course->user->name)) premium-comment-user @endif">{{ $comment->user->name }}</p>
                         </div>
                     </div>
                     <div class="row">

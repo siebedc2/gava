@@ -81,11 +81,22 @@
                                 </div>
                                 <div class="col-12 mt-1 mt-md-0">
                                     @if($subscribersAmount == 1)
-                                    <h6 class="font-weight-normal">{{ $subscribersAmount }} subscriber</h6>
+                                    <h6 class="d-none d-md-block font-weight-normal">{{ $subscribersAmount }} subscriber</h6>
+                                    @if(empty($user))
+                                    <a class="link subscribers-link text-decoration-none d-md-none" href="/profile/{{Auth::id()}}/subscribers">{{ $subscribersAmount }} subscriber</a>
+                                    @else
+                                    <a class="link subscribers-link text-decoration-none d-md-none" href="/profile/{{$user->id}}/subscribers">{{ $subscribersAmount }} subscriber</a>
+                                    @endif
+
                                     @elseif($subscribersAmount == 0)
                                     <h6 class="font-weight-normal">{{ $subscribersAmount }} subscribers yet</h6>
                                     @else
-                                    <h6 class="font-weight-normal">{{ $subscribersAmount }} subscribers</h6>
+                                    <h6 class="d-none d-md-block font-weight-normal">{{ $subscribersAmount }} subscribers</h6>
+                                    @if(empty($user))
+                                    <a class="link subscribers-link text-decoration-none d-md-none" href="/profile/{{Auth::id()}}/subscribers">{{ $subscribersAmount }} subscribers</a>
+                                    @else
+                                    <a class="link subscribers-link text-decoration-none d-md-none" href="/profile/{{$user->id}}/subscribers">{{ $subscribersAmount }} subscribers</a>
+                                    @endif
                                     @endif
                                 </div>
                             </div>
@@ -182,7 +193,7 @@
             </a>
             @endforeach
         </div>
-        <div class="col-12 col-md-4 mt-4 mt-md-0">
+        <div class="d-none d-md-block col-12 col-md-4 mt-4 mt-md-0">
             <div class="row">
                 <div class="col-12">
                     <h2 class="font-weight-normal">Subscribers</h2>

@@ -20,5 +20,5 @@ return [
     'ratingsVideo'          => 'Gava - Video ratings',
     'addVideoRating'        => 'Gava - Add video rating',
     'landing'               => 'Gava - Learn, teach, innovate',
-    
+    'subscribers'           => 'Gava - Subscribers'
 ];

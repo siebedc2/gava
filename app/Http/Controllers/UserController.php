@@ -25,6 +25,11 @@ class UserController extends Controller
         return view('general.profile.index', $data);
     }
 
+    public function subscribers(SubscriptionService $subscription, $userId) {
+        $data['subscriptions'] = $subscription->getAllUserSubscribers($userId);
+        return view('general.profile.subscribers', $data);
+    }
+
     public function edit() {
         return view('general.profile.edit');
     }

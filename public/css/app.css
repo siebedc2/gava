@@ -382,6 +382,10 @@ h2 {
   background: linear-gradient(to top right, #4951CF, #3AD7F0);
 }
 
+.link.subscribers-link {
+  color: #291875;
+}
+
 .menu .nav-link.active {
   position: relative;
 }
@@ -493,6 +497,10 @@ span {
 
 .creator-reply {
   border-left: 3px solid #4951CF;
+}
+
+.premium-comment-user {
+  color: white;
 }
 
 .vh-90 {

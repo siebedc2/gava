@@ -254,6 +254,11 @@ Route::prefix('/profile')->middleware('auth')->group(function() {
         'uses' => 'UserController@userProfile'
     ]);
 
+    Route::get('/{id}/subscribers', [
+        'as'   => 'subscribers',
+        'uses' => 'UserController@subscribers'
+    ]);
+
     Route::post('/user/report', [
         'as'   => 'reportUser',
         'uses' => 'UserController@handleReportUser'
