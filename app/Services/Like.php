@@ -19,6 +19,22 @@ class Like {
         return LikeModel::where('comment_id', $commentId)->get()->count();
     }
 
+    public function getLikeByUserId($commentId, $userId) {
+        return LikeModel::where([
+            ['comment_id', $commentId],
+            ['user_id', $userId]
+        ])->get()->count();
+    }
+
+    public function delete($commentId, $userId) {
+        $deletedItem = LikeModel::where([
+            ['comment_id', $commentId],
+            ['user_id', $userId]
+        ])->delete();
+
+        return $deletedItem;
+    }
+
     public function create($commentId) {
         $commentLike                = new LikeModel();
         $commentLike->like          = "1";

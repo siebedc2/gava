@@ -19,6 +19,22 @@ class Upvote {
         return UpvoteModel::where('comment_id', $commentId)->get()->count();
     }
 
+    public function getUpvoteByUserId($commentId, $userId) {
+        return UpvoteModel::where([
+            ['comment_id', $commentId],
+            ['user_id', $userId]
+        ])->get()->count();
+    }
+
+    public function delete($commentId, $userId) {
+        $deletedItem = UpvoteModel::where([
+            ['comment_id', $commentId],
+            ['user_id', $userId]
+        ])->delete();
+
+        return $deletedItem;
+    }
+
     public function create($commentId) {
         $commentUpvote                = new UpvoteModel();
         $commentUpvote->upvote        = "1";

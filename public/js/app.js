@@ -37504,6 +37504,8 @@ $('.like-comment').click(function () {
 
     if (response.message == "success") {
       likeAmount.html(parseInt($(likeAmount).html()) + 1);
+    } else if (response.message == "hasAlready") {
+      likeAmount.html(parseInt($(likeAmount).html()) - 1);
     }
   });
 });
@@ -37987,6 +37989,8 @@ $('.upvote-comment').click(function () {
 
     if (response.message == "success") {
       upvoteAmount.html(parseInt($(upvoteAmount).html()) + 1);
+    } else if (response.message == "hasAlready") {
+      upvoteAmount.html(parseInt($(upvoteAmount).html()) - 1);
     }
   });
 });

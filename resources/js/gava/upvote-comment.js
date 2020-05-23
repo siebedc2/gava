@@ -21,5 +21,9 @@ $('.upvote-comment').click(function(){
         if (response.message == "success") {
             upvoteAmount.html(parseInt($(upvoteAmount).html()) + 1);
         }
+
+        else if(response.message == "hasAlready") {
+            upvoteAmount.html(parseInt($(upvoteAmount).html()) - 1);
+        }
     });
 });

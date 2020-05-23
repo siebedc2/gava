@@ -185,26 +185,50 @@ class VideoController extends Controller
     }
 
     public function handleLikeComment(LikeService $like) {
-        if($like->create($this->_request->input('commentId'))) {
-            $msg = "success";
+        if($like->getLikeByUserId($this->_request->input('commentId'), Auth::id()) > 0) {
+            if($like->delete($this->_request->input('commentId'), Auth::id())) {
+                $msg = "hasAlready";
+            }
+    
+            else {
+                $msg = "error";
+            }
         }
 
         else {
-            $msg = "error";
+            if($like->create($this->_request->input('commentId'))) {
+                $msg = "success";
+            }
+    
+            else {
+                $msg = "error";
+            }
         }
-
+        
         return response()->json([
             'message'   => $msg
         ]);
     }
 
     public function handleUpvoteComment(UpvoteService $upvote) {
-        if($upvote->create($this->_request->input('commentId'))) {
-            $msg = "success";
+        if($upvote->getUpvoteByUserId($this->_request->input('commentId'), Auth::id()) > 0) {
+            if($upvote->delete($this->_request->input('commentId'), Auth::id())) {
+                $msg = "hasAlready";
+            }
+    
+            else {
+                $msg = "error";
+            }
         }
 
         else {
-            $msg = "error";
+            if($upvote->create($this->_request->input('commentId'))) {
+                $msg = "success";
+            }
+    
+            else {
+                $msg = "error";
+            }
         }
 
         return response()->json([

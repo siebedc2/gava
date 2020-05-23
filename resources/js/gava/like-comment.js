@@ -21,5 +21,9 @@ $('.like-comment').click(function(){
         if (response.message == "success") {
             likeAmount.html(parseInt($(likeAmount).html()) + 1);
         }
+
+        else if(response.message == "hasAlready") {
+            likeAmount.html(parseInt($(likeAmount).html()) -1);
+        }
     });
 });
