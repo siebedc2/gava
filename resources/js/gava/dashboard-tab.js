@@ -12,6 +12,8 @@ $('#my-statistics').click(function() {
     $('#myCoursesContainer').removeClass('d-block');
 
     $('#add-course').addClass('d-none');
+    
+    $('#confirm-note').modal({ backdrop: 'static', keyboard: false });
 });
 
 $('#my-courses').click(function() {

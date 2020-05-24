@@ -6,7 +6,7 @@
 
 @section('content')
 @include('components.menu')
-<div class="container">
+<div class="container mb-5 pb-5">
     <div class="row pt-4">
         <div class="col-3 col-md-4 d-flex align-items-center">
             <a href="/profile/edit/purchase-history">
@@ -185,4 +185,5 @@
         </div>
     </div>
 </div>
+@include('components.mobile-menu')
 @endsection

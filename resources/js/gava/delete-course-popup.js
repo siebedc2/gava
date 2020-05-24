@@ -27,7 +27,7 @@ $('.delete-btn').click(function(e){
             $('#confirm').modal({ backdrop: 'static', keyboard: false })
                 .on('click', '#delete-btn', function(){
                     form.submit();
-                });
+            });
         }
     });
 

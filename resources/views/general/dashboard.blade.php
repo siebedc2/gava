@@ -154,6 +154,7 @@
       
 
 <div id="myStatisticsContainer" class="container d-none">
+    @include('components.statistics-popup')
     <div class="row">
         <div class="col-12 col-md-6">
             <div class="row">

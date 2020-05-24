@@ -38,10 +38,10 @@
                 @if(in_array($course->user_id, $subscribersIds))
                 <a href="/course/{{ $course->id }}" class="col-12 col-md-6 rounded bg-white text-decoration-none my-2">
                     <div class="row">
-                        <div class="col-6 col-md-4">
+                        <div class="col-5 col-md-4">
                             <div class="d-flex justify-content-center align-items-center w-100 rounded tumbnail" style="background-image: url(/images/uploads/{{$course->tumbnail}});"></div>
                         </div>
-                        <div class="col-6 col-md-8">
+                        <div class="col-7 col-md-8">
                             <div class="row">
                                 <div class="col-12">
                                     <p class="mb-1">{{ $course->title }}</p>
@@ -116,12 +116,13 @@
         @foreach($creators as $creator)
         <div class="creator col-12 col-md-6 mb-4">
             <div class="row d-flex align-items-center">
-                <div class="col-2">
-                    <div style="background-image: url(/images/uploads/{{$creator->creator->profile_picture}});" class="subscriber-image rounded-circle"></div>
+                <div class="col-7">
+                    <a class="text-decoration-none d-flex align-items-center" href="/profile/{{$creator->creator->id}}">        
+                        <div style="background-image: url(/images/uploads/{{$creator->creator->profile_picture}});" class="subscriber-image rounded-circle"></div>
+                        <p class="creator-name ml-3 mb-0">{{ $creator->creator->name }}</p>
+                    </a>
                 </div>
-                <div class="col-5">
-                    <p class="creator-name mb-0">{{ $creator->creator->name }}</p>
-                </div>
+                
                 <div class="col-5">
                     <form action="/subscribe/cancel/{{$creator->creator->id}}" method="post">
                         {{csrf_field()}}

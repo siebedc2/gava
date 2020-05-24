@@ -19,7 +19,7 @@
 @section('content')
 @include('components.menu')
 @include('components.cancel-subscription-popup')
-<div class="container">
+<div class="container mb-5 pb-5">
     <div class="row mt-4">
         <div class="col-12">
             <div class="row d-flex align-items-center d-md-none mb-4">
@@ -152,59 +152,64 @@
                                 <a class="rounded-pill w-100 btn btn-primary" href="">video comment</a>
                             </div>
                             <div class="col-4 col-md-4 text-center">
-                                <a class="rounded-pill w-100 btn btn-primary" href="/course/{{$video->course_id}}/video/{{$video->id}}/ratings">ratings</a>
+                                <a class="rounded-pill w-100 btn btn-tertiary" href="/course/{{$video->course_id}}/video/{{$video->id}}/ratings">ratings</a>
                             </div>
                             <div class="col-2 col-md-4 text-center">
                                 <a class="d-md-none rounded-circle w-100 btn btn-primary" href="/course/{{$video->course_id}}/video/{{$video->id}}/ratings"><i class="text-white fa fa-share-alt"></i></a>
-                                <a class="d-none d-md-block rounded-pill w-100 btn btn-primary" href="/course/{{$video->course_id}}/video/{{$video->id}}/ratings">share this video</a>
+                                <a class="d-none d-md-block rounded-pill w-100 btn btn-quaternary" href="/course/{{$video->course_id}}/video/{{$video->id}}/ratings">share this video</a>
                             </div>
                         </div>
-
-                        
                     </div>
                 </div>
             @endauth
 
-            <div class="row text-white mt-4 mb-5">
+            <div class="row text-white mt-5 mb-5">
                 <div class="col-12">
                     @foreach($comments as $comment)
-                    <div class="row">
+                    <div class="mb-4">
+                        <div class="row">
                         <div class="col-12">
-                            <p class="mb-0 @if($subscriptionService->notSubsribedWhenVideoWasCreated($video->created_at, $video->course->user->name)) premium-comment-user @endif">{{ $comment->user->name }}</p>
+                            @if($subscriptionService->notSubsribedWhenVideoWasCreated($video->created_at, $video->course->user->name))
+                            <div class="d-inline-block rounded-pill premium-comment-user">
+                                <p class="mb-0 text-white"><img class="premium_comment_username_icon mb-1 mr-1" src="/images/premium_white.svg" alt="Premium icon">{{ $comment->user->name }}</p>
+                            </div>
+                            @else
+                            <p class="mb-0">{{ $comment->user->name }}</p>
+                            @endif
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-2 mb-1">
                         <div class="col-12">
                             <p class="mb-0">{{ $comment->comment }}</p>
                         </div>
                     </div>
-                    
                         @auth
                             <div class="row">
                                 <p class="commentId" hidden>{{$comment->id}}</p>
-                                <div class="col-8 d-flex justify-content-between">
+                                <div class="col-8 d-flex">
                                     <div class="d-flex align-items-center">
                                         <span class="upvote-comment"><img src="/images/upvote.svg" alt="Upvote icon"></span>
-                                        <p class="upvote-amount mb-0 ml-2">{{ $upvoteService->getUpvoteAmount($comment->id) }}</p>
+                                        <p class="upvote-amount mt-1 mb-0 ml-2">{{ $upvoteService->getUpvoteAmount($comment->id) }}</p>
                                     </div>
-                                    <div class="d-flex align-items-center">
+                                    <div class="ml-4 d-flex align-items-center">
                                         <span class="like-comment"><img src="/images/like.svg" alt="Like icon"></span>
-                                        <p class="like-amount mb-0 ml-2">{{ $likeService->getLikeAmount($comment->id) }}</p>
+                                        <p class="like-amount mt-1 mb-0 ml-2">{{ $likeService->getLikeAmount($comment->id) }}</p>
                                     </div>
-                                    <div class="d-flex align-items-center">
-                                        <span class="like-comment"><img src="/images/text_comment.svg" alt="Text comment icon"></span>
-                                        <p class="mb-0 ml-2">reply</p>
+                                    <div class="ml-4 d-flex align-items-center">
+                                        <span class=""><img src="/images/text_comment.svg" alt="Text comment icon"></span>
+                                        <p class="mt-1 mb-0 ml-2">reply</p>
                                     </div>
-                                    <div class="d-flex align-items-center">
-                                        <span class="like-comment"><img src="/images/video_comment.svg" alt="Video comment icon"></span>
-                                        <p class="mb-0 ml-2">reply</p>
+                                    <div class="ml-4 d-flex align-items-center">
+                                        <span class="mt-1"><img src="/images/video_comment.svg" alt="Video comment icon"></span>
+                                        <p class="mt-1 mb-0 ml-2">reply</p>
                                     </div>
-                                    <div class="d-flex align-items-center">
+                                    <div class="ml-4 d-flex align-items-center">
                                         <span class="report-comment"><img class="report-icon" src="/images/report.svg" alt="Report icon"></span>
                                     </div>
                                 </div>
                             </div>
                         @endauth
+                        </div>
                     @endforeach
                 </div>
             </div>
@@ -300,5 +305,5 @@
     </div>
 </div>
 </div>
+@include('components.mobile-menu')
 @endsection
-

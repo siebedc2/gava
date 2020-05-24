@@ -3,7 +3,7 @@
 @section('content')
 @include('components.menu')
 <div class="container">
-    <div class="row mt-4">
+    <div class="row pt-4">
         <div class="col-3 col-md-4 d-flex align-items-center">
             <a href="/profile/edit">
                 <img class="arrow-icon" src="/images/arrowBack.png" alt="Arrow back">
@@ -63,4 +63,5 @@
     </div>
     @endforeach
 </div>
+@include('components.mobile-menu')
 @endsection

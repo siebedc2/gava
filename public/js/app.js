@@ -37097,6 +37097,8 @@ __webpack_require__(/*! ./gava/course-options-menu */ "./resources/js/gava/cours
 
 __webpack_require__(/*! ./gava/video-options-menu */ "./resources/js/gava/video-options-menu.js");
 
+__webpack_require__(/*! ./gava/post-comment */ "./resources/js/gava/post-comment.js");
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 /***/ }),
@@ -37225,6 +37227,10 @@ $('#my-statistics').click(function () {
   $('#myCoursesContainer').addClass('d-none');
   $('#myCoursesContainer').removeClass('d-block');
   $('#add-course').addClass('d-none');
+  $('#confirm-note').modal({
+    backdrop: 'static',
+    keyboard: false
+  });
 });
 $('#my-courses').click(function () {
   $('#my-statistics').removeClass('active');
@@ -37526,6 +37532,38 @@ if (typeof multiSelect !== "undefined" && multiSelect != null) {
     $('#tags').multipleSelect();
   });
 }
+
+/***/ }),
+
+/***/ "./resources/js/gava/post-comment.js":
+/*!*******************************************!*\
+  !*** ./resources/js/gava/post-comment.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$('.add-comment').click(function (e) {
+  e.preventDefault();
+  var comment = $(e.target).parent().prev().find('#comment').val();
+  console.log(comment);
+  /*$.ajax({
+      method: "POST",
+      url: '/comment/post',
+      data: {
+          comment : comment
+      },
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+  })
+  
+  .done(function(response){    
+      
+      console.log(response);
+        if (response.message == "success") {
+        }
+  });*/
+});
 
 /***/ }),
 

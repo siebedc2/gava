@@ -1,7 +1,7 @@
 <div class="container-fluid d-block d-md-none mobile-menu fixed-bottom">
     <div class="row pt-3">
         <div class="col-12">
-            <ul class="nav">
+            <ul class="nav d-flex justify-content-between">
                 <li class="nav-item text-center">
                     <img class="nav-icon" src="/images/mobile-home.svg" alt="Icon courses">
                     <a class="text-white link nav-link @if(\Request::route()->getName() == 'home') active @endif" href="/home">courses</a>

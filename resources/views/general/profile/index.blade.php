@@ -45,7 +45,7 @@
     </div>
 </div>
 
-<div class="container profile-content mt-md-0 mb-5">
+<div class="container profile-content mt-md-0 pb-5 mb-5">
     <div class="row my-4">
         <div class="col-12">
             <div class="row d-flex align-items-center">
@@ -129,10 +129,10 @@
             @foreach($courses as $course)
             <a href="/course/{{ $course->id }}" class="text-decoration-none">
                 <div class="row my-2 d-flex align-items-center">
-                    <div class="col-6 col-md-3">
+                    <div class="col-5 col-md-3">
                         <div class="d-flex justify-content-center align-items-center w-100 rounded tumbnail" style="background-image: url(/images/uploads/{{$course->tumbnail}});"></div>
                     </div>
-                    <div class="col-6 col-md-9">
+                    <div class="col-7 col-md-9">
                         <div class="row">
                             <div class="col-12">
                                 <p class="mb-1">{{ $course->title }}</p>

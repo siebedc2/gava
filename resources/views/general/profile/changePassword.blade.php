@@ -88,4 +88,5 @@
         </div>
     </div>
 </div>
+@include('components.mobile-menu')
 @endsection

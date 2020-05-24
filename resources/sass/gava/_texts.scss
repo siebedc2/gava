@@ -1,14 +1,15 @@
 * {
     color: #291875;
+    font-family: "Product Sans", sans-serif;
 }
 
 .text-black {
     color: black !important;
 }
 
-::selection {
-    background: $color-thirthiary;
-}
+/*::selection {
+    background: $color-quinary;
+}*/
 
 .username {
     color: $color-primary;
@@ -74,4 +75,6 @@
 
 .premium-comment-user {
     color: white;
+    background-color: $color-primary;
+    padding: 2px 14px;
 }

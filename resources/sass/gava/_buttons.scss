@@ -4,7 +4,7 @@
 }
 
 .btn {
-    color: white;
+    color: white !important;
     border: 0px !important;
     border-radius: 0;
     padding: 8px 15px;
@@ -43,6 +43,42 @@
 
         &:hover {
             background-color: $btn-secondary-hover-color;
+        }
+    }
+
+    &.btn-tertiary {
+        background-color: $color-secondary;
+        border: $color-secondary;
+        color: white;
+
+        &:focus {
+            background-color: $color-secondary !important;
+        }
+
+        &:active {
+            background-color: $color-secondary !important;
+        }
+
+        &:hover {
+            background-color: $btn-tertiary-hover-color;
+        }
+    }
+
+    &.btn-quaternary {
+        background-color: $color-tertiary;
+        border: $color-tertiary;
+        color: white;
+
+        &:focus {
+            background-color: $color-tertiary !important;
+        }
+
+        &:active {
+            background-color: $color-tertiary !important;
+        }
+
+        &:hover {
+            background-color: $btn-quaternary-hover-color;
         }
     }
 

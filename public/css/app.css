@@ -1,12 +1,17 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
+@font-face {
+  font-family: "Product Sans";
+  src: url(/fonts/ProductSansRegular.ttf);
+}
+
 .header .position-fixed {
   z-index: 10;
   bottom: 110px;
 }
 
 .btn {
-  color: white;
+  color: white !important;
   border: 0px !important;
   border-radius: 0;
   padding: 8px 15px;
@@ -46,6 +51,42 @@
 
 .btn.btn-secondary:hover {
   background-color: #1ad1ee;
+}
+
+.btn.btn-tertiary {
+  background-color: #4951CF;
+  border: #4951CF;
+  color: white;
+}
+
+.btn.btn-tertiary:focus {
+  background-color: #4951CF !important;
+}
+
+.btn.btn-tertiary:active {
+  background-color: #4951CF !important;
+}
+
+.btn.btn-tertiary:hover {
+  background-color: #333cc3;
+}
+
+.btn.btn-quaternary {
+  background-color: #6E27D4;
+  border: #6E27D4;
+  color: white;
+}
+
+.btn.btn-quaternary:focus {
+  background-color: #6E27D4 !important;
+}
+
+.btn.btn-quaternary:active {
+  background-color: #6E27D4 !important;
+}
+
+.btn.btn-quaternary:hover {
+  background-color: #5f22b7;
 }
 
 .btn.active {
@@ -417,19 +458,16 @@ span {
 
 * {
   color: #291875;
+  font-family: "Product Sans", sans-serif;
 }
 
 .text-black {
   color: black !important;
 }
 
-::-moz-selection {
-  background: #D01CE2;
-}
-
-::selection {
-  background: #D01CE2;
-}
+/*::selection {
+    background: $color-quinary;
+}*/
 
 .username {
   color: #3AD7F0;
@@ -501,6 +539,8 @@ span {
 
 .premium-comment-user {
   color: white;
+  background-color: #3AD7F0;
+  padding: 2px 14px;
 }
 
 .vh-90 {
@@ -676,6 +716,10 @@ span {
 .mobile-course-options img,
 .mobile-video-options img {
   width: 4px;
+}
+
+.premium_comment_username_icon {
+  width: 12px;
 }
 
 .ms-offscreen {

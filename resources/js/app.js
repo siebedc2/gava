@@ -26,5 +26,6 @@ require('./gava/rating-reply');
 require('./gava/filter');
 require('./gava/course-options-menu');
 require('./gava/video-options-menu');
+require('./gava/post-comment');
 
 require('./bootstrap');
