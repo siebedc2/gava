@@ -11,4 +11,8 @@ class Upvote extends Model
     protected $fillable = [
         'id', 'upvote', 'comment_id', 'user_id'
     ];
+
+    public function comment() {
+        return $this->belongsTo('App\Models\Comment');
+    }
 }

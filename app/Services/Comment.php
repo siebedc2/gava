@@ -14,10 +14,14 @@ class Comment {
     }
 
     public function getAll($videoId) {
-        return CommentModel::where([
+        $comments = CommentModel::where([
             ['video_id', $videoId],
             ['subcomment', '0']            
-            ])->get();
+            ])->get()->sortByDesc(function ($comment) {
+                return $comment->upvotes->count();
+            });
+
+        return $comments;
     }
 
     public function getSubcomment($commentId) {

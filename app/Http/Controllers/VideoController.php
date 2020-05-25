@@ -262,7 +262,8 @@ class VideoController extends Controller
         }
 
         return response()->json([
-            'message'   => $msg
+            'message'   => $msg,
+            'commentsHTML'  => view('components/comments')->with(['videoId' => $this->_request->input('videoId')])->render()
         ]);
     }
 }

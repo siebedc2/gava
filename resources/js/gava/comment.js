@@ -32,6 +32,7 @@ window.initCommentEvents = function() {
 
     // Upvote comment
     $('.upvote-comment').click(function(){
+        var videoId = $(this).parent().parent().parent().find('.videoId').html();
         var commentId = $(this).parent().parent().parent().find('.commentId').html();
         var upvoteAmount = $(this).next();
         console.log(commentId);
@@ -40,7 +41,9 @@ window.initCommentEvents = function() {
             method: "POST",
             url: '/comment/upvote',
             data: {
-                commentId : commentId
+                commentId   : commentId,
+                videoId     : videoId
+
             },
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -53,10 +56,16 @@ window.initCommentEvents = function() {
     
             if (response.message == "success") {
                 upvoteAmount.html(parseInt($(upvoteAmount).html()) + 1);
+                $(".comments").remove();
+                $(".comments-wrapper").append(response.commentsHTML);
+                window.initCommentEvents();
             }
     
             else if(response.message == "hasAlready") {
                 upvoteAmount.html(parseInt($(upvoteAmount).html()) - 1);
+                $(".comments").remove();
+                $(".comments-wrapper").append(response.commentsHTML);
+                window.initCommentEvents();
             }
         });
     });
@@ -120,6 +129,7 @@ window.initCommentEvents = function() {
                 if (response.message == "success") {
                     $(".comments").remove();
                     $(".comments-wrapper").append(response.commentsHTML);
+                    $(e.target).parent().prev().find('#comment').val('');
                     window.initCommentEvents();
                 }
             });

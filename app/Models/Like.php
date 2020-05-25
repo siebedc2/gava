@@ -11,4 +11,8 @@ class Like extends Model
     protected $fillable = [
         'id', 'like', 'comment_id', 'user_id'
     ];
+
+    public function comment() {
+        return $this->belongsTo('App\Models\Comment');
+    }
 }

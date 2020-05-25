@@ -20,4 +20,12 @@ class Comment extends Model
     public function video() {
         return $this->hasOne('App\Models\Video');
     }
+
+    public function likes() {
+        return $this->hasMany('App\Models\Like');
+    }
+
+    public function upvotes() {
+        return $this->hasMany('App\Models\Upvote');
+    }
 }
