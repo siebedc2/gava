@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use \App\Services\Video as VideoService;
 use \App\Services\Subscription as SubscriptionService;
+use Auth;
 
 class CheckSubscription
 {
@@ -21,7 +22,7 @@ class CheckSubscription
         $subscriptionService    = new SubscriptionService();
         $video                  = $videoService->getById($request->route()->parameter('video_id'));
 
-        if($video->exclusive == 'y' && !$subscriptionService->hasSubscription($video->course->user->id) && $subscriptionService->notSubsribedWhenVideoWasCreated($video->created_at, $video->course->user->id)) {
+        if($video->exclusive == 'y' && !$subscriptionService->hasSubscription(Auth::id(), $video->course->user->id) && $subscriptionService->notSubsribedWhenVideoWasCreated($video->created_at, $video->course->user->id)) {
             return redirect('/subscribe/' . $video->course->user->id);
         }
 

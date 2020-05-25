@@ -86,7 +86,7 @@
     max-width: 168px;
     background-position: center center;
     background-size: cover;
-    border-radius: 0.25rem;
+    border-radius: 10px;
 
     &.exclusive-tumbnail {
         position: relative;
@@ -136,4 +136,8 @@
 
 .lock {
     width: 12px;
+}
+
+#player {
+    border-radius: 10px;
 }

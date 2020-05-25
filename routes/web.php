@@ -152,8 +152,18 @@ Route::post('/comment/like', [
 ]);
 
 Route::post('/comment/upvote', [
-    'as'   => 'likeComment',
+    'as'   => 'upvoteComment',
     'uses' => 'VideoController@handleUpvoteComment'
+]);
+
+Route::post('/comment/post', [
+    'as'   => 'postComment',
+    'uses' => 'VideoController@handlePostComment'
+]);
+
+Route::post('/subcomment/post', [
+    'as'   => 'postSubcomment',
+    'uses' => 'VideoController@handlePostSubcomment'
 ]);
 
 Route::prefix('/subscriptions')->middleware('auth')->group(function() {

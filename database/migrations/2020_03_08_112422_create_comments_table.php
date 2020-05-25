@@ -16,6 +16,8 @@ class CreateCommentsTable extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('comment');
+            $table->enum('type', ['text', 'video'])->default('text');
+            $table->string('subcomment');
             $table->string('video_id')->nullable();
             $table->string('user_id');
             $table->index(['video_id']);

@@ -69,7 +69,7 @@
     font-size: 26px !important;
 }
 
-.creator-reply {
+.creator-reply, .subcomments {
     border-left: 3px solid $color-secondary;
 }
 
@@ -77,4 +77,8 @@
     color: white;
     background-color: $color-primary;
     padding: 2px 14px;
+}
+
+.normal-comment-user {
+    color: $color-secondary;
 }

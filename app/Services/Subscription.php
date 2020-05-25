@@ -85,14 +85,13 @@ class Subscription {
         return true;
     }
 
-    public function hasSubscription($creatorId) {
+    public function hasSubscription($userId, $creatorId) {
         $subscription = SubscriptionModel::where([
             ['creator_id', $creatorId],
-            ['user_id', Auth::id()], 
+            ['user_id', $userId], 
             ['status', 'online']
         ])->get();
 
-        
         if($subscription->count() > 0) {
             return true;
         }

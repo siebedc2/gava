@@ -3,6 +3,7 @@
     $subscriptionService = new App\Services\Subscription();
     $likeService = new App\Services\Like();
     $upvoteService = new App\Services\Upvote();
+    $commentService = new App\Services\Comment();
 ?>
 
 @extends('layouts.app')
@@ -13,7 +14,8 @@
 @endsection
 
 @section('playerjs')
-<script src="https://cdn.plrjs.com/player/2si44sh83212a/2c1cnkurl0zy.js" type="text/javascript"></script>
+<!--<script src="https://cdn.plrjs.com/player/2si44sh83212a/2c1cnkurl0zy.js" type="text/javascript"></script>-->
+<script src="https://cdn.plrjs.com/player/2si44sh83212a/wvw5lu0pdpjf.js"></script>
 @endsection
 
 @section('content')
@@ -86,7 +88,8 @@
         <div class="col-12 col-md-6">
             <div class="row">
                 <div class="col-12">
-                    <div id="player"></div><script>
+                    <div id="player"></div>
+                    <script>
                         var player = new Playerjs({id:"player", file:"/images/uploads/<?php Print($video->video); ?>"});
                     </script>
                 </div>
@@ -141,9 +144,9 @@
                 <div class="row mt-3">
                     <div class="col-12">
                         <form class="add-comment-form" action="">
+                            <input type="hidden" value="{{$video->id}}">
                             <div class="form-group">
-                                <label class="d-none" for="comment">Comment</label>
-                                <input type="email" class="bg-light border-0 rounded-pill form-control" id="comment" placeholder="write a comment">
+                                <input type="text" class="bg-light border-0 rounded-pill form-control" id="comment" placeholder="write a comment">
                             </div>
                             <button type="submit" class="add-comment border-0 bg-transparent"><i class="fa fa-paper-plane"></i></button>
                         </form>
@@ -164,53 +167,8 @@
             @endauth
 
             <div class="row text-white mt-5 mb-5">
-                <div class="col-12">
-                    @foreach($comments as $comment)
-                    <div class="mb-4">
-                        <div class="row">
-                        <div class="col-12">
-                            @if($subscriptionService->notSubsribedWhenVideoWasCreated($video->created_at, $video->course->user->name))
-                            <div class="d-inline-block rounded-pill premium-comment-user">
-                                <p class="mb-0 text-white"><img class="premium_comment_username_icon mb-1 mr-1" src="/images/premium_white.svg" alt="Premium icon">{{ $comment->user->name }}</p>
-                            </div>
-                            @else
-                            <p class="mb-0">{{ $comment->user->name }}</p>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="row mt-2 mb-1">
-                        <div class="col-12">
-                            <p class="mb-0">{{ $comment->comment }}</p>
-                        </div>
-                    </div>
-                        @auth
-                            <div class="row">
-                                <p class="commentId" hidden>{{$comment->id}}</p>
-                                <div class="col-8 d-flex">
-                                    <div class="d-flex align-items-center">
-                                        <span class="upvote-comment"><img src="/images/upvote.svg" alt="Upvote icon"></span>
-                                        <p class="upvote-amount mt-1 mb-0 ml-2">{{ $upvoteService->getUpvoteAmount($comment->id) }}</p>
-                                    </div>
-                                    <div class="ml-4 d-flex align-items-center">
-                                        <span class="like-comment"><img src="/images/like.svg" alt="Like icon"></span>
-                                        <p class="like-amount mt-1 mb-0 ml-2">{{ $likeService->getLikeAmount($comment->id) }}</p>
-                                    </div>
-                                    <div class="ml-4 d-flex align-items-center">
-                                        <span class=""><img src="/images/text_comment.svg" alt="Text comment icon"></span>
-                                        <p class="mt-1 mb-0 ml-2">reply</p>
-                                    </div>
-                                    <div class="ml-4 d-flex align-items-center">
-                                        <span class="mt-1"><img src="/images/video_comment.svg" alt="Video comment icon"></span>
-                                        <p class="mt-1 mb-0 ml-2">reply</p>
-                                    </div>
-                                    <div class="ml-4 d-flex align-items-center">
-                                        <span class="report-comment"><img class="report-icon" src="/images/report.svg" alt="Report icon"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        @endauth
-                        </div>
-                    @endforeach
+                <div class="col-12 comments-wrapper">
+                    @include('components.comments', ['videoId' => $video->id])
                 </div>
             </div>
         </div>
@@ -220,7 +178,7 @@
             @foreach($courseVideos as $courseVideo)
             @if($courseVideo->id != $video->id)
             <a href="
-                @if($video->exclusive == 'y' && $subscriptionService->hasSubscription($video->course->user->id))
+                @if($video->exclusive == 'y' && $subscriptionService->hasSubscription(Auth::id(), $video->course->user->id))
                     /course/{{$courseVideo->course_id}}/video/{{$courseVideo->id}}
                 @elseif($video->exclusive == 'y' && $subscriptionService->notSubsribedWhenVideoWasCreated($courseVideo->created_at, $video->course->user->id)) 
                     /subscribe/{{ $user->id }} 
@@ -229,15 +187,15 @@
                 @endif" 
                 class="text-decoration-none row rounded bg-white my-3">
                 <div class="col-5">
-                    <div class="d-flex justify-content-center align-items-center w-100 rounded tumbnail 
-                        @if($courseVideo->exclusive == 'y' && $subscriptionService->hasSubscription($video->course->user->id))
+                    <div class="d-flex justify-content-center align-items-center w-100 tumbnail 
+                        @if($courseVideo->exclusive == 'y' && $subscriptionService->hasSubscription(Auth::id(), $video->course->user->id))
 
                         @elseif($courseVideo->exclusive == 'y' && $subscriptionService->notSubsribedWhenVideoWasCreated($courseVideo->created_at, $video->course->user->id))
                             exclusive-tumbnail 
                         @endif" 
                         
                         style="background-image: url(/images/uploads/{{$courseVideo->tumbnail}});">
-                        @if($courseVideo->exclusive == 'y' && !$subscriptionService->hasSubscription($video->course->user->id) && $subscriptionService->notSubsribedWhenVideoWasCreated($courseVideo->created_at, $video->course->user->id) )
+                        @if($courseVideo->exclusive == 'y' && !$subscriptionService->hasSubscription(Auth::id(), $video->course->user->id) && $subscriptionService->notSubsribedWhenVideoWasCreated($courseVideo->created_at, $video->course->user->id) )
                         <span class="rounded-pill btn btn-unlock btn-secondary">unlock video</span>
                         @endif
                     </div>
@@ -246,7 +204,7 @@
                     <div class="row">
                         <div class="col-12">
                             @if($courseVideo->exclusive == 'y') 
-                                @if($subscriptionService->hasSubscription($video->course->user->id))
+                                @if($subscriptionService->hasSubscription(Auth::id(), $video->course->user->id))
                                     <div class="d-flex align-items-center mb-1">
                                         <img class="lock" src="/images/unlocked.svg" alt="unlocked icon">
                                         <p class="ml-2 mb-0">{{ $courseVideo->title }}</p>

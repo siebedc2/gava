@@ -146,7 +146,7 @@
     <div class="row">
         @foreach($videos as $video)
         <a href="
-            @if($video->exclusive == 'y' && $subscriptionService->hasSubscription($user->id))
+            @if($video->exclusive == 'y' && $subscriptionService->hasSubscription(Auth::id(), $user->id))
                 /course/{{ $course->id }}/video/{{ $video->id }} 
             @elseif($video->exclusive == 'y' && $subscriptionService->notSubsribedWhenVideoWasCreated($video->created_at, $user->id)) 
                 /subscribe/{{ $user->id }} 
@@ -156,15 +156,15 @@
             " class="text-decoration-none col-12 col-md-6 rounded bg-white my-2">
             <div class="row">
                 <div class="col-5 col-md-4">
-                    <div class="d-flex justify-content-center align-items-center w-100 rounded tumbnail 
-                        @if($video->exclusive == 'y' && $subscriptionService->hasSubscription($user->id))
+                    <div class="d-flex justify-content-center align-items-center w-100 tumbnail 
+                        @if($video->exclusive == 'y' && $subscriptionService->hasSubscription(Auth::id(), $user->id))
                             
                         @elseif($video->exclusive == 'y' && $subscriptionService->notSubsribedWhenVideoWasCreated($video->created_at, $user->id)) 
                             exclusive-tumbnail 
                         @endif
                         " style="background-image: url(/images/uploads/{{$video->tumbnail}});">
 
-                        @if($video->exclusive == 'y' && !$subscriptionService->hasSubscription($user->id) && $subscriptionService->notSubsribedWhenVideoWasCreated($video->created_at, $user->id))
+                        @if($video->exclusive == 'y' && !$subscriptionService->hasSubscription(Auth::id(), $user->id) && $subscriptionService->notSubsribedWhenVideoWasCreated($video->created_at, $user->id))
                         <span class="rounded-pill btn btn-unlock btn-secondary">unlock video</span>
                         
                         @endif
@@ -174,7 +174,7 @@
                     <div class="row">
                         <div class="col-12">
                             @if($video->exclusive == 'y') 
-                                @if($subscriptionService->hasSubscription($user->id))
+                                @if($subscriptionService->hasSubscription(Auth::id(), $user->id))
                                     <div class="d-flex align-items-center mb-1">
                                         <img class="lock" src="/images/unlocked.svg" alt="unlocked icon">
                                         <p class="ml-2 mb-0">{{ $video->title }}</p>

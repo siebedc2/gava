@@ -358,7 +358,7 @@ h2 {
   max-width: 168px;
   background-position: center center;
   background-size: cover;
-  border-radius: 0.25rem;
+  border-radius: 10px;
 }
 
 .tumbnail.exclusive-tumbnail {
@@ -408,6 +408,10 @@ h2 {
 
 .lock {
   width: 12px;
+}
+
+#player {
+  border-radius: 10px;
 }
 
 .link {
@@ -533,7 +537,8 @@ span {
   font-size: 26px !important;
 }
 
-.creator-reply {
+.creator-reply,
+.subcomments {
   border-left: 3px solid #4951CF;
 }
 
@@ -541,6 +546,10 @@ span {
   color: white;
   background-color: #3AD7F0;
   padding: 2px 14px;
+}
+
+.normal-comment-user {
+  color: #4951CF;
 }
 
 .vh-90 {
@@ -1014,11 +1023,13 @@ span {
   right: 10px;
 }
 
-.reply-form {
+.reply-form,
+.subcomment-form {
   position: relative;
 }
 
-.reply-form button {
+.reply-form button,
+.subcomment-form button {
   position: absolute;
   top: 6px;
   right: 10px;

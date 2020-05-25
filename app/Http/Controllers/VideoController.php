@@ -28,7 +28,7 @@ class VideoController extends Controller
         $data['course'] = $course->getById($courseId);
         $data['video'] = $video->getById($videoId);
         $data['courseVideos'] = $video->getAllCourseVideos($courseId);
-        $data['comments'] = $comment->getAll($videoId);
+        //$data['comments'] = $comment->getAll($videoId);
         $data['subscribersAmount'] = $subscription->getAmountOfSubscribers($data['course']['user_id']);
         $data['subscribersIds'] = $subscription->getSubscriberId(Auth::id());
         return view('general/video/details', $data);
@@ -167,6 +167,36 @@ class VideoController extends Controller
 
         return response()->json([
             'message'   => $msg
+        ]);
+    }
+
+    public function handlePostComment(CommentService $comment) {
+        if($comment->create($this->_request->input('comment'), $this->_request->input('videoId'), $this->_request->input('commentId'), $this->_request->input('type'), $this->_request->input('subcomment'))) {
+            $msg = "success";
+        }
+
+        else {
+            $msg = "error";
+        }
+
+        return response()->json([
+            'message'       => $msg,
+            'commentsHTML'  => view('components/comments')->with(['videoId' => $this->_request->input('videoId')])->render()
+        ]);
+    }
+
+    public function handlePostSubcomment() {
+        if($comment->create($this->_request->input('comment'), $this->_request->input('videoId'), $this->_request->input('commentId'), $this->_request->input('type'), $this->_request->input('subcomment'))) {
+            $msg = "success";
+        }
+
+        else {
+            $msg = "error";
+        }
+
+        return response()->json([
+            'message'   => $msg,
+            'commentsHTML'  => view('components/comments')->render()
         ]);
     }
 

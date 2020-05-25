@@ -1,13 +1,15 @@
-$('.add-comment').click(function(e){
-    e.preventDefault();
+$('.add-textsubcomment').click(function(e) {
+    var form = $(e.target).parent().parent().parent().next().find('.subcomment-form');
+    form.removeClass('d-none');
 
-    var videoId = $(e.target).parent().prev().prev().val();
-    var comment = $(e.target).parent().prev().find('#comment').val();
+    $('.add-subcomment').click(function(e) {
+        e.preventDefault();
 
-    if(typeof comment !== "undefined" && comment != null && comment !== "") {
-        console.log(comment);
-        var type = "text";
-        var subcomment = "0";
+        var comment     = $(form).find('#subcomment').val();
+        var commentId   = $(form).find('.commentId').val();
+        var videoId     = $(form).find('.videoId').val();
+        var type        = "text";
+        var subcomment  = "1";
 
         $.ajax({
             method: "POST",
@@ -15,6 +17,7 @@ $('.add-comment').click(function(e){
             data: {
                 comment     : comment,
                 videoId     : videoId,
+                commentId   : commentId,
                 type        : type,
                 subcomment  : subcomment
             },
@@ -25,16 +28,13 @@ $('.add-comment').click(function(e){
     
         .done(function(response){    
         
-            console.log(response.commentsHTML);
+            console.log(response);
 
             if (response.message == "success") {
                 $(".comments").remove();
                 $(".comments-wrapper").append(response.commentsHTML);
             }
         });
-    }
-
-    else {
-        alert('lege comment');
-    }
+    });
+    
 });

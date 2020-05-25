@@ -39,7 +39,7 @@
                 <a href="/course/{{ $course->id }}" class="col-12 col-md-6 rounded bg-white text-decoration-none my-2">
                     <div class="row">
                         <div class="col-5 col-md-4">
-                            <div class="d-flex justify-content-center align-items-center w-100 rounded tumbnail" style="background-image: url(/images/uploads/{{$course->tumbnail}});"></div>
+                            <div class="d-flex justify-content-center align-items-center w-100 tumbnail" style="background-image: url(/images/uploads/{{$course->tumbnail}});"></div>
                         </div>
                         <div class="col-7 col-md-8">
                             <div class="row">
