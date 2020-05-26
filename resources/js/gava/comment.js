@@ -127,6 +127,9 @@ window.initCommentEvents = function() {
                 console.log(response.commentsHTML);
     
                 if (response.message == "success") {
+                    $('#comment').addClass('border-0');
+                    $('#comment').removeClass('border-danger');
+
                     $(".comments").remove();
                     $(".comments-wrapper").append(response.commentsHTML);
                     $(e.target).parent().prev().find('#comment').val('');
@@ -136,52 +139,62 @@ window.initCommentEvents = function() {
         }
     
         else {
-            alert('lege comment');
+            console.log('leeg');
+            $('#comment').removeClass('border-0');
+            $('#comment').addClass('border-danger');
         }
     });
 
     // Post subcomment
     $('.add-textsubcomment').click(function(e) {
-    var form = $(e.target).parent().parent().parent().next().find('.subcomment-form');
-    form.removeClass('d-none');
+        var form = $(e.target).parent().parent().parent().next().find('.subcomment-form');
+        form.removeClass('d-none');
 
-    $('.add-subcomment').click(function(e) {
-        e.preventDefault();
+        $('.add-subcomment').click(function(e) {
+            e.preventDefault();
 
-        var comment     = $(form).find('#subcomment').val();
-        var commentId   = $(form).find('.commentId').val();
-        var videoId     = $(form).find('.videoId').val();
-        var type        = "text";
-        var subcomment  = "1";
+            var comment     = $(form).find('#subcomment').val();
+            var commentId   = $(form).find('.commentId').val();
+            var videoId     = $(form).find('.videoId').val();
+            var type        = "text";
+            var subcomment  = "1";
 
-        $.ajax({
-            method: "POST",
-            url: '/comment/post',
-            data: {
-                comment     : comment,
-                videoId     : videoId,
-                commentId   : commentId,
-                type        : type,
-                subcomment  : subcomment
-            },
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        })
-    
-        .done(function(response){    
+            if(typeof comment !== "undefined" && comment != null && comment !== "") {
+                $.ajax({
+                    method: "POST",
+                    url: '/comment/post',
+                    data: {
+                        comment     : comment,
+                        videoId     : videoId,
+                        commentId   : commentId,
+                        type        : type,
+                        subcomment  : subcomment
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                })
+            
+                .done(function(response){    
+                
+                    console.log(response);
         
-            console.log(response);
+                    if (response.message == "success") {
+                        $(".comments").remove();
+                        $(".comments-wrapper").append(response.commentsHTML);
+                        window.initCommentEvents();
+                    }
+                });
+            }   
 
-            if (response.message == "success") {
-                $(".comments").remove();
-                $(".comments-wrapper").append(response.commentsHTML);
-                window.initCommentEvents();
+            else {
+                $(form).find('#subcomment').removeClass('border-0');
+                $(form).find('#subcomment').addClass('border-danger');
             }
+
         });
-    });
     
-});
+    });
 }
 
 initCommentEvents();

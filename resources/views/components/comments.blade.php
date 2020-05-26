@@ -153,6 +153,7 @@
         </div>
         @auth
         <div class="row">
+            <p class="videoId" hidden>{{$videoId ? $videoId : ''}}</p>
             <p class="commentId" hidden>{{$comment->id}}</p>
             <div class="col-8 d-flex">
                 <div class="d-flex align-items-center">
@@ -209,16 +210,17 @@
             </div>
             @auth
             <div class="row">
-                <p class="commentId" hidden>{{$comment->id}}</p>
+                <p class="videoId" hidden>{{$videoId ? $videoId : ''}}</p>
+                <p class="commentId" hidden>{{$subcomment->id}}</p>
                 <div class="col-8 d-flex">
                     <div class="d-flex align-items-center">
                         <span class="upvote-comment"><img src="/images/upvote.svg" alt="Upvote icon"></span>
-                        <p class="upvote-amount mt-1 mb-0 ml-2">{{ $upvoteService->getUpvoteAmount($comment->id) }}
+                        <p class="upvote-amount mt-1 mb-0 ml-2">{{ $upvoteService->getUpvoteAmount($subcomment->id) }}
                         </p>
                     </div>
                     <div class="ml-4 d-flex align-items-center">
                         <span class="like-comment"><img src="/images/like.svg" alt="Like icon"></span>
-                        <p class="like-amount mt-1 mb-0 ml-2">{{ $likeService->getLikeAmount($comment->id) }}</p>
+                        <p class="like-amount mt-1 mb-0 ml-2">{{ $likeService->getLikeAmount($subcomment->id) }}</p>
                     </div>
                     <div class="ml-4 d-flex align-items-center">
                         <span class="add-textsubcomment"><img src="/images/text_comment.svg" alt="Text comment icon"></span>
