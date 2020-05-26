@@ -155,8 +155,8 @@
                         </form>
                         <div class="row">
                             <div class="col-6 col-md-4 text-center">
-                                <form enctype="multipart/form-data" action="">
-                                    @csrf
+                                <form class="video-comment-form" method="post" enctype="multipart/form-data" action="">
+                                    {!! csrf_field() !!}
                                     <div class="form-group">
                                         <input type="hidden"  value="{{$video->id}}">
                                         <label for="video-comment" class="rounded-pill w-100 btn btn-primary">video comment</label>

@@ -25,7 +25,13 @@
         </div>
         <div class="row mt-2 mb-1">
             <div class="col-12">
+                @if($comment->type == 'text')
                 <p class="text-black mb-0">{{ $comment->comment }}</p>
+                @else
+                <video width="320" height="auto" controls>
+                    <source src="/images/uploads/{{$comment->comment}}" type="video/mp4">
+                </video>
+                @endif
             </div>
         </div>
         @auth

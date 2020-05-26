@@ -186,23 +186,20 @@ class VideoController extends Controller
     }
 
     public function handlePostVideoComment(CommentService $comment) {
-        /*if($comment->create($this->_request->input('comment'), $this->_request->input('videoId'), $this->_request->input('commentId'), $this->_request->input('type'), $this->_request->input('subcomment'))) {
+        $file = $this->_request->file('video-comment');
+        $name = $this->_request->file('video-comment')->getClientOriginalName();
+        
+        if($comment->create($name, $this->_request->input('videoId'), $this->_request->input('commentId'), $this->_request->input('type'), $this->_request->input('subcomment'))) {
             $msg = "success";
         }
 
         else {
             $msg = "error";
-        }*/
-
-        //$msg = 'kust mijn kloten';
-
-        $videoInput = $this->_request->file('comment');
-        //$videoName = $videoInput->getClientOriginalName();
-        //$videoInput->move('images/uploads', $videoName);
-        //$request['video'] = $videoName;
+        }
 
         return response()->json([
-            'message'       => $videoInput
+            'message'       => $msg,
+            'commentsHTML'  => view('components/comments')->with(['videoId' => $this->_request->input('videoId')])->render()
         ]);
     }
 

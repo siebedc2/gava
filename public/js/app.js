@@ -37311,24 +37311,25 @@ window.initCommentEvents = function () {
   }); // Post comment (video)
 
   $('#video-comment').change(function (e) {
-    var comment = $(this).val().replace(/C:\\fakepath\\/i, '');
     var videoId = $(e.target).prev().prev().val();
     var type = "video";
     var subcomment = "0";
+    var formData = new FormData($('.video-comment-form')[0]);
+    formData.append('videoId', videoId);
+    formData.append('type', type);
+    formData.append('subcomment', subcomment);
     $('#video-confirm').modal({
       backdrop: 'static',
       keyboard: false
     }).on('click', '#confirm-btn', function (e) {
       e.preventDefault();
+      console.log(formData);
       $.ajax({
         method: "POST",
-        url: '/comment/post',
-        data: {
-          comment: comment,
-          videoId: videoId,
-          type: type,
-          subcomment: subcomment
-        },
+        url: '/videocomment/post',
+        data: formData,
+        processData: false,
+        contentType: false,
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
@@ -37340,7 +37341,8 @@ window.initCommentEvents = function () {
           $('#comment').removeClass('border-danger');
           $(".comments").remove();
           $(".comments-wrapper").append(response.commentsHTML);
-          $(e.target).parent().val('');
+          $('#video-confirm').modal('hide');
+          $('#video-comment').parent().val('');
           window.initCommentEvents();
         }
       });
