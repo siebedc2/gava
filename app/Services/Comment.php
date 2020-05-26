@@ -17,7 +17,7 @@ class Comment {
         $comments = CommentModel::where([
             ['video_id', $videoId],
             ['subcomment', '0']            
-            ])->get()->sortByDesc(function ($comment) {
+            ])->orderBy('id', 'DESC')->get()->sortByDesc(function ($comment) {
                 return $comment->upvotes->count();
             });
 

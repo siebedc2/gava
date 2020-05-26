@@ -37268,7 +37268,7 @@ window.initCommentEvents = function () {
 
       if (response.message == "success") {}
     });
-  }); // Post comment
+  }); // Post comment (text)
 
   $('.add-comment').click(function (e) {
     e.preventDefault();
@@ -37308,6 +37308,43 @@ window.initCommentEvents = function () {
       $('#comment').removeClass('border-0');
       $('#comment').addClass('border-danger');
     }
+  }); // Post comment (video)
+
+  $('#video-comment').change(function (e) {
+    var comment = $(this).val().replace(/C:\\fakepath\\/i, '');
+    var videoId = $(e.target).prev().prev().val();
+    var type = "video";
+    var subcomment = "0";
+    $('#video-confirm').modal({
+      backdrop: 'static',
+      keyboard: false
+    }).on('click', '#confirm-btn', function (e) {
+      e.preventDefault();
+      $.ajax({
+        method: "POST",
+        url: '/comment/post',
+        data: {
+          comment: comment,
+          videoId: videoId,
+          type: type,
+          subcomment: subcomment
+        },
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      }).done(function (response) {
+        console.log(response.message);
+
+        if (response.message == "success") {
+          $('#comment').addClass('border-0');
+          $('#comment').removeClass('border-danger');
+          $(".comments").remove();
+          $(".comments-wrapper").append(response.commentsHTML);
+          $(e.target).parent().val('');
+          window.initCommentEvents();
+        }
+      });
+    });
   }); // Post subcomment
 
   $('.add-textsubcomment').click(function (e) {

@@ -166,6 +166,12 @@ Route::post('/subcomment/post', [
     'uses' => 'VideoController@handlePostSubcomment'
 ]);
 
+Route::post('/videocomment/post', [
+    'as'   => 'postSubcomment',
+    'uses' => 'VideoController@handlePostVideoComment'
+]);
+
+
 Route::prefix('/subscriptions')->middleware('auth')->group(function() {
     Route::get('/', [
         'as'   => 'subscriptions',

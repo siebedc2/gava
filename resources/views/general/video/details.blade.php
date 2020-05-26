@@ -141,18 +141,28 @@
             </div>
 
             @auth
+                @include('components.video-comment-popup')
                 <div class="row mt-3">
                     <div class="col-12">
-                        <form class="add-comment-form" action="">
-                            <input type="hidden" value="{{$video->id}}">
-                            <div class="form-group">
-                                <input type="text" class="bg-light border-0 rounded-pill form-control" id="comment" placeholder="write a comment">
+                        <form action="">
+                            <div class="add-comment-form">
+                                <input type="hidden"  value="{{$video->id}}">
+                                <div class="form-group">
+                                    <input type="text" class="bg-light border-0 rounded-pill form-control" id="comment" placeholder="write a comment">
+                                </div>
+                                <button type="submit" class="add-comment border-0 bg-transparent"><i class="fa fa-paper-plane"></i></button>
                             </div>
-                            <button type="submit" class="add-comment border-0 bg-transparent"><i class="fa fa-paper-plane"></i></button>
                         </form>
                         <div class="row">
                             <div class="col-6 col-md-4 text-center">
-                                <a class="rounded-pill w-100 btn btn-primary" href="">video comment</a>
+                                <form enctype="multipart/form-data" action="">
+                                    @csrf
+                                    <div class="form-group">
+                                        <input type="hidden"  value="{{$video->id}}">
+                                        <label for="video-comment" class="rounded-pill w-100 btn btn-primary">video comment</label>
+                                        <input name="video-comment" id="video-comment" type="file" accept="video/*" class="d-none form-control">
+                                    </div>
+                                </form>
                             </div>
                             <div class="col-4 col-md-4 text-center">
                                 <a class="rounded-pill w-100 btn btn-tertiary" href="/course/{{$video->course_id}}/video/{{$video->id}}/ratings">ratings</a>
