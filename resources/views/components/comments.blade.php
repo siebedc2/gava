@@ -40,11 +40,22 @@
             <p class="commentId" hidden>{{$comment->id}}</p>
             <div class="col-8 d-flex">
                 <div class="d-flex align-items-center">
-                    <span class="upvote-comment"><img src="/images/upvote.svg" alt="Upvote icon"></span>
+                    <span class="upvote-comment">
+                    @if($upvoteService->getUpvoteByUserId($comment->id, Auth::id()) > 0)
+                    <img src="/images/upvote-lightblue.svg" alt="Upvote icon">
+                    @else
+                    <img src="/images/upvote-grey.svg" alt="Upvote icon">
+                    @endif</span>
                     <p class="upvote-amount mt-1 mb-0 ml-2">{{ $upvoteService->getUpvoteAmount($comment->id) }}</p>
                 </div>
                 <div class="ml-4 d-flex align-items-center">
-                    <span class="like-comment"><img src="/images/like.svg" alt="Like icon"></span>
+                    <span class="like-comment">
+                    @if($likeService->getLikeByUserId($comment->id, Auth::id()) > 0)
+                    <img src="/images/like.svg" alt="Like icon">
+                    @else
+                    <img src="/images/like-grey.svg" alt="Like icon">
+                    @endif
+                    </span>
                     <p class="like-amount mt-1 mb-0 ml-2">{{ $likeService->getLikeAmount($comment->id) }}</p>
                 </div>
                 <div class="ml-4 d-flex align-items-center">
@@ -116,12 +127,23 @@
                 <p class="commentId" hidden>{{$subcomment->id}}</p>
                 <div class="col-8 d-flex">
                     <div class="d-flex align-items-center">
-                        <span class="upvote-comment"><img src="/images/upvote.svg" alt="Upvote icon"></span>
-                        <p class="upvote-amount mt-1 mb-0 ml-2">{{ $upvoteService->getUpvoteAmount($subcomment->id) }}
-                        </p>
+                        <span class="upvote-comment">
+                        @if($upvoteService->getUpvoteByUserId($subcomment->id, Auth::id()) > 0)
+                        <img src="/images/upvote-lightblue.svg" alt="Upvote icon">
+                        @else
+                        <img src="/images/upvote-grey.svg" alt="Upvote icon">
+                        @endif
+                        </span>
+                        <p class="upvote-amount mt-1 mb-0 ml-2">{{ $upvoteService->getUpvoteAmount($subcomment->id) }}</p>
                     </div>
                     <div class="ml-4 d-flex align-items-center">
-                        <span class="like-comment"><img src="/images/like.svg" alt="Like icon"></span>
+                        <span class="like-comment">
+                        @if($likeService->getLikeByUserId($subcomment->id, Auth::id()) > 0)
+                        <img src="/images/like.svg" alt="Like icon">
+                        @else
+                        <img src="/images/like-grey.svg" alt="Like icon">
+                        @endif
+                        </span>
                         <p class="like-amount mt-1 mb-0 ml-2">{{ $likeService->getLikeAmount($subcomment->id) }}</p>
                     </div>
                     <div class="ml-4 d-flex align-items-center">
@@ -199,11 +221,23 @@
             <p class="commentId" hidden>{{$comment->id}}</p>
             <div class="col-8 d-flex">
                 <div class="d-flex align-items-center">
-                    <span class="upvote-comment"><img src="/images/upvote.svg" alt="Upvote icon"></span>
+                    <span class="upvote-comment">
+                    @if($upvoteService->getUpvoteByUserId($comment->id, Auth::id()) > 0)
+                    <img src="/images/upvote-lightblue.svg" alt="Upvote icon">
+                    @else
+                    <img src="/images/upvote-grey.svg" alt="Upvote icon">
+                    @endif
+                    </span>
                     <p class="upvote-amount mt-1 mb-0 ml-2">{{ $upvoteService->getUpvoteAmount($comment->id) }}</p>
                 </div>
                 <div class="ml-4 d-flex align-items-center">
-                    <span class="like-comment"><img src="/images/like.svg" alt="Like icon"></span>
+                    <span class="like-comment">
+                    @if($likeService->getLikeByUserId($comment->id, Auth::id()) > 0)
+                    <img src="/images/like.svg" alt="Like icon">
+                    @else
+                    <img src="/images/like-grey.svg" alt="Like icon">
+                    @endif
+                    </span>
                     <p class="like-amount mt-1 mb-0 ml-2">{{ $likeService->getLikeAmount($comment->id) }}</p>
                 </div>
                 <div class="ml-4 d-flex align-items-center">
@@ -275,12 +309,23 @@
                 <p class="commentId" hidden>{{$subcomment->id}}</p>
                 <div class="col-8 d-flex">
                     <div class="d-flex align-items-center">
-                        <span class="upvote-comment"><img src="/images/upvote.svg" alt="Upvote icon"></span>
-                        <p class="upvote-amount mt-1 mb-0 ml-2">{{ $upvoteService->getUpvoteAmount($subcomment->id) }}
-                        </p>
+                        <span class="upvote-comment">
+                        @if($upvoteService->getUpvoteByUserId($subcomment->id, Auth::id()) > 0)
+                        <img src="/images/upvote-lightblue.svg" alt="Upvote icon">
+                        @else
+                        <img src="/images/upvote-grey.svg" alt="Upvote icon">
+                        @endif
+                        </span>
+                        <p class="upvote-amount mt-1 mb-0 ml-2">{{ $upvoteService->getUpvoteAmount($subcomment->id) }}</p>
                     </div>
                     <div class="ml-4 d-flex align-items-center">
-                        <span class="like-comment"><img src="/images/like.svg" alt="Like icon"></span>
+                        <span class="like-comment">
+                        @if($likeService->getLikeByUserId($subcomment->id, Auth::id()) > 0)
+                        <img src="/images/like.svg" alt="Like icon">
+                        @else
+                        <img src="/images/like-grey.svg" alt="Like icon">
+                        @endif
+                        </span>
                         <p class="like-amount mt-1 mb-0 ml-2">{{ $likeService->getLikeAmount($subcomment->id) }}</p>
                     </div>
                     <div class="ml-4 d-flex align-items-center">

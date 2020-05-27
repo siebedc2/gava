@@ -37196,6 +37196,7 @@ $('.cancel-subscription').click(function (e) {
 window.initCommentEvents = function () {
   // Like comment
   $('.like-comment').click(function () {
+    var videoId = $(this).parent().parent().parent().find('.videoId').html();
     var commentId = $(this).parent().parent().parent().find('.commentId').html();
     var likeAmount = $(this).next();
     console.log(commentId);
@@ -37203,7 +37204,8 @@ window.initCommentEvents = function () {
       method: "POST",
       url: '/comment/like',
       data: {
-        commentId: commentId
+        commentId: commentId,
+        videoId: videoId
       },
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -37213,8 +37215,14 @@ window.initCommentEvents = function () {
 
       if (response.message == "success") {
         likeAmount.html(parseInt($(likeAmount).html()) + 1);
+        $(".comments").remove();
+        $(".comments-wrapper").append(response.commentsHTML);
+        window.initCommentEvents();
       } else if (response.message == "hasAlready") {
         likeAmount.html(parseInt($(likeAmount).html()) - 1);
+        $(".comments").remove();
+        $(".comments-wrapper").append(response.commentsHTML);
+        window.initCommentEvents();
       }
     });
   }); // Upvote comment
