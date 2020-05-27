@@ -28,7 +28,7 @@
                 @if($comment->type == 'text')
                 <p class="text-black mb-0">{{ $comment->comment }}</p>
                 @else
-                <video width="320" height="auto" controls>
+                <video width="320" height="auto" class="d-block" controls>
                     <source src="/images/uploads/{{$comment->comment}}" type="video/mp4">
                 </video>
                 @endif
@@ -52,8 +52,20 @@
                     <p class="mt-1 mb-0 ml-2">reply</p>
                 </div>
                 <div class="ml-4 d-flex align-items-center">
-                    <span class="mt-1"><img src="/images/video_comment.svg" alt="Video comment icon"></span>
-                    <p class="mt-1 mb-0 ml-2">reply</p>
+                    <label for="video-subcomment" class="add-video-subcomment d-flex mt-2">
+                        <span class="mt-1"><img src="/images/video_comment.svg" alt="Video comment icon"></span>
+                        <p class="mt-1 mb-0 ml-2">reply</p>
+                    </label>
+
+                    <form class="d-none video-subcomment-form" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <input name="video-subcomment" id="video-subcomment" type="file" accept="video/*" class="video-subcomment d-none form-control">
+                        </div>
+
+                        <input type="hidden" class="commentId" name="commentId" value="{{$comment->id}}">
+                        <input type="hidden" class="videoId" name="videoId" value="{{$video->id}}">
+
+                    </form>
                 </div>
                 <div class="ml-4 d-flex align-items-center">
                     <span class="report-comment"><img class="report-icon" src="/images/report.svg"  alt="Report icon"></span>
@@ -88,7 +100,14 @@
                     @else
                     <p class="normal-comment-user mb-2">{{$subcomment->user->name }}</p>
                     @endif
-                    <p class="text-black mb-1">{{$subcomment->comment}}</p>
+
+                    @if($subcomment->type == 'text')
+                    <p class="text-black mb-0">{{ $subcomment->comment }}</p>
+                    @else
+                    <video width="320" height="auto" class="d-block" controls>
+                        <source src="/images/uploads/{{$subcomment->comment}}" type="video/mp4">
+                    </video>
+                    @endif
                 </div>
             </div>
             @auth
@@ -110,8 +129,19 @@
                         <p class="mt-1 mb-0 ml-2">reply</p>
                     </div>
                     <div class="ml-4 d-flex align-items-center">
-                        <span class="mt-1"><img src="/images/video_comment.svg" alt="Video comment icon"></span>
-                        <p class="mt-1 mb-0 ml-2">reply</p>
+                        <label for="video-subcomment" class="add-video-subcomment d-flex mt-2">
+                            <span class="mt-1"><img src="/images/video_comment.svg" alt="Video comment icon"></span>
+                            <p class="mt-1 mb-0 ml-2">reply</p>
+                        </label>
+
+                        <form class="d-none video-subcomment-form" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <input name="video-subcomment" id="video-subcomment" type="file" accept="video/*" class="video-subcomment d-none form-control">
+                            </div>
+
+                            <input type="hidden" class="commentId" name="commentId" value="{{$comment->id}}">
+                            <input type="hidden" class="videoId" name="videoId" value="{{$video->id}}">
+                        </form>
                     </div>
                     <div class="ml-4 d-flex align-items-center">
                         <span class="report-comment"><img class="report-icon" src="/images/report.svg" alt="Report icon"></span>
@@ -154,7 +184,13 @@
         </div>
         <div class="row mt-2 mb-1">
             <div class="col-12">
+                @if($comment->type == 'text')
                 <p class="text-black mb-0">{{ $comment->comment }}</p>
+                @else
+                <video width="320" height="auto" class="d-block" controls>
+                    <source src="/images/uploads/{{$comment->comment}}" type="video/mp4">
+                </video>
+                @endif
             </div>
         </div>
         @auth
@@ -175,8 +211,20 @@
                     <p class="mt-1 mb-0 ml-2">reply</p>
                 </div>
                 <div class="ml-4 d-flex align-items-center">
-                    <span class="mt-1"><img src="/images/video_comment.svg" alt="Video comment icon"></span>
-                    <p class="mt-1 mb-0 ml-2">reply</p>
+                    <label for="video-subcomment" class="add-video-subcomment d-flex mt-2">
+                        <span class="mt-1"><img src="/images/video_comment.svg" alt="Video comment icon"></span>
+                        <p class="mt-1 mb-0 ml-2">reply</p>
+                    </label>
+
+                    <form class="d-none video-subcomment-form" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <input name="video-subcomment" id="video-subcomment" type="file" accept="video/*" class="video-subcomment d-none form-control">
+                        </div>
+
+                        <input type="hidden" class="commentId" name="commentId" value="{{$comment->id}}">
+                        <input type="hidden" class="videoId" name="videoId" value="{{$video->id}}">
+
+                    </form>
                 </div>
                 <div class="ml-4 d-flex align-items-center">
                     <span class="report-comment"><img class="report-icon" src="/images/report.svg"  alt="Report icon"></span>
@@ -211,7 +259,14 @@
                     @else
                     <p class="normal-comment-user mb-2">{{$subcomment->user->name }}</p>
                     @endif
-                    <p class="text-black mb-1">{{$subcomment->comment}}</p>
+
+                    @if($subcomment->type == 'text')
+                    <p class="text-black mb-0">{{ $subcomment->comment }}</p>
+                    @else
+                    <video width="320" height="auto" class="d-block" controls>
+                        <source src="/images/uploads/{{$subcomment->comment}}" type="video/mp4">
+                    </video>
+                    @endif
                 </div>
             </div>
             @auth
@@ -233,8 +288,20 @@
                         <p class="mt-1 mb-0 ml-2">reply</p>
                     </div>
                     <div class="ml-4 d-flex align-items-center">
-                        <span class="mt-1"><img src="/images/video_comment.svg" alt="Video comment icon"></span>
-                        <p class="mt-1 mb-0 ml-2">reply</p>
+                        <label for="video-subcomment" class="add-video-subcomment d-flex mt-2">
+                            <span class="mt-1"><img src="/images/video_comment.svg" alt="Video comment icon"></span>
+                            <p class="mt-1 mb-0 ml-2">reply</p>
+                        </label>
+
+                        <form class="d-none video-subcomment-form" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <input id="video-subcomment" name="video-subcomment" type="file" accept="video/*" class="video-subcomment d-none form-control">
+                            </div>
+                            
+                            <input type="hidden" class="commentId" name="commentId" value="{{$comment->id}}">
+                            <input type="hidden" class="videoId" name="videoId" value="{{$video->id}}">
+
+                        </form>
                     </div>
                     <div class="ml-4 d-flex align-items-center">
                         <span class="report-comment"><img class="report-icon" src="/images/report.svg" alt="Report icon"></span>

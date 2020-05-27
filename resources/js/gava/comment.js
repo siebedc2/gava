@@ -99,6 +99,8 @@ window.initCommentEvents = function() {
     // Post comment (text)
     $('.add-comment').click(function(e){
         e.preventDefault();
+
+        console.log('bericht');
     
         var videoId = $(e.target).parent().prev().prev().val();
         var comment = $(e.target).parent().prev().find('#comment').val();
@@ -132,6 +134,7 @@ window.initCommentEvents = function() {
 
                     $(".comments").remove();
                     $(".comments-wrapper").append(response.commentsHTML);
+                    
                     $(e.target).parent().prev().find('#comment').val('');
                     window.initCommentEvents();
                 }
@@ -184,13 +187,13 @@ window.initCommentEvents = function() {
                     $(".comments-wrapper").append(response.commentsHTML);
                     $('#video-confirm').modal('hide');
                     $('#video-comment').parent().val('');
-                    window.initCommentEvents();
+                    //window.initCommentEvents();
                 }
             });
         });
     });
 
-    // Post subcomment
+    // Post subcomment (text)
     $('.add-textsubcomment').click(function(e) {
         var form = $(e.target).parent().parent().parent().next().find('.subcomment-form');
         form.removeClass('d-none');
@@ -239,6 +242,57 @@ window.initCommentEvents = function() {
 
         });
     
+    });
+
+    // Post subcomment (video)
+    $('.add-video-subcomment').click(function(e){
+        
+        var form = $(e.target).parent().parent().parent().find('.video-subcomment-form');
+        
+        $('#video-subcomment').change(function(e){
+            var commentId = $(form).find('.commentId').val();
+            var videoId = $(form).find('.videoId').val();
+        
+            e.preventDefault();
+
+            var type = "video";
+            var subcomment = "1";
+
+            var formData = new FormData($('.video-subcomment-form')[0]);
+            formData.append('videoId', videoId);
+            formData.append('commentId', commentId);
+            formData.append('type', type);
+            formData.append('subcomment', subcomment);
+
+            $('#video-confirm').modal({ backdrop: 'static', keyboard: false }).on('click', '#confirm-btn', function(e){
+                e.preventDefault();
+
+                $.ajax({
+                    method: "POST",
+                    url: '/videocomment/post',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                })
+        
+                .done(function(response){    
+                    
+                    console.log(response.message);
+
+                    if (response.message == "success") {
+                        form.addClass('d-none');
+                        $('#video-subcomment').val('');
+                        $('#video-confirm').modal('hide');
+                        $(".comments").remove();
+                        $(".comments-wrapper").append(response.commentsHTML);
+                        window.initCommentEvents();
+                    }
+                });
+            });
+        });       
     });
 }
 
