@@ -64,7 +64,7 @@ Route::get('/course/{id}', [
 ]);
 
 // Video
-Route::prefix('/course')->middleware('auth')->group(function() {
+Route::prefix('/course')->group(function() {
     Route::get('/{course_id?}/video/add', [
         'as'   => 'addVideo',
         'uses' => 'VideoController@add'
@@ -169,7 +169,7 @@ Route::post('/subcomment/post', [
 Route::post('/videocomment/post', [
     'as'   => 'postSubcomment',
     'uses' => 'VideoController@handlePostVideoComment'
-]);
+])->middleware('auth');
 
 
 Route::prefix('/subscriptions')->middleware('auth')->group(function() {

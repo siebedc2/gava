@@ -5,6 +5,10 @@
 
 @extends('layouts.app')
 
+@section('extra-css')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
+@endsection
+
 @section('content')
 @include('components.menu')
 <div class="container">
@@ -246,8 +250,4 @@
     </div>
 </div>
 @include('components.mobile-menu')
-@endsection
-
-@section('extra-js')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
 @endsection

@@ -140,7 +140,7 @@
                 </div>
             </div>
 
-            @auth
+            
                 @include('components.video-comment-popup')
                 <div class="row mt-3">
                     <div class="col-12">
@@ -153,8 +153,10 @@
                                 <button type="submit" class="add-comment border-0 bg-transparent"><i class="fa fa-paper-plane"></i></button>
                             </div>
                         </form>
+                        
                         <div class="row">
                             <div class="col-6 col-md-4 text-center">
+                                @auth
                                 <form class="video-comment-form" method="post" enctype="multipart/form-data" action="">
                                     {!! csrf_field() !!}
                                     <div class="form-group">
@@ -163,6 +165,10 @@
                                         <input name="video-comment" id="video-comment" type="file" accept="video/*" class="d-none form-control">
                                     </div>
                                 </form>
+                                @endauth
+                                @guest
+                                <span class="rounded-pill w-100 btn btn-primary">video comment</span>
+                                @endguest
                             </div>
                             <div class="col-4 col-md-4 text-center">
                                 <a class="rounded-pill w-100 btn btn-tertiary" href="/course/{{$video->course_id}}/video/{{$video->id}}/ratings">ratings</a>
@@ -174,7 +180,7 @@
                         </div>
                     </div>
                 </div>
-            @endauth
+            
 
             <div class="row text-white mt-5 mb-5">
                 <div class="col-12 comments-wrapper">
