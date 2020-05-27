@@ -159,12 +159,12 @@
         <div class="col-12 col-md-6">
             <div class="row">
                 <div class="col-12">
-                    <p>Views</p>
+                    <h2 class="font-weight-normal">Views</h2>
                 </div>
             </div>
-            <div class="row bg-light">
+            <div class="row">
                 <div class="col-12">
-
+                    
                 </div>
             </div>
         </div>
@@ -172,7 +172,7 @@
         <div class="col-12 col-md-6">
             <div class="row">
                 <div class="col-12">
-                    <p>Revenue</p>
+                    <h2 class="font-weight-normal">Revenue <span class="ml-2"><img class="mb-1 revenue-icon" src="/images/revenue-info.svg" alt="Info icon"></span></h2>
                 </div>
             </div>
             <div class="row bg-light">
@@ -184,61 +184,37 @@
     </div> 
     
     <div class="row">
-        <div class="col-6 col-md-3 text-center bg-light rounded">
-            <div class="row">
-                <div class="col-12">
-                    <p>Total Subscribers</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <p>{{ $subscribersAmount }}</p>
-                </div>
+        <div class="col-6 col-md-3 text-center rounded">
+            <div class="bg-light pt-3 pb-1">
+                <h2 class="font-weight-normal">Total Subscribers</h2>
+                <p class="mb-0 statistics-number"><strong>{{ $subscribersAmount }}</strong></p>
             </div>
         </div>
-        <div class="col-6 col-md-3 text-center bg-light rounded">
-            <div class="row">
-                <div class="col-12">
-                    <p>Total Revenue</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    {{ $subscribersAmount * 8 }}
-                </div>
+        <div class="col-6 col-md-3 text-center rounded">
+            <div class="bg-light pt-3 pb-1">
+                <h2 class="font-weight-normal">Total revenue <span class="ml-2"><img class="mb-1 revenue-icon" src="/images/revenue-info.svg" alt="Info icon"></span></h2>
+                <p class="mb-0 statistics-number"><strong>&euro;{{ $subscribersAmount * 8 }}</strong></p>
             </div>
         </div>
-        <div class="col-6 col-md-3 text-center bg-light rounded">
-            <div class="row">
-                <div class="col-12">
-                    <p>Total Courses</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    {{ $coursesAmount }}
-                </div>
+        <div class="col-6 col-md-3 text-center rounded">
+            <div class="bg-light pt-3 pb-1">
+                <h2 class="font-weight-normal">Total Courses</h2>
+                <p class="mb-0 statistics-number"><strong>{{ $coursesAmount }}</strong></p>
             </div>
         </div>
-        <div class="col-6 col-md-3 text-center bg-light rounded">
-            <div class="row">
-                <div class="col-12">
-                    <p>Total Views</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-
-                </div>
+        <div class="col-6 col-md-3 text-center rounded">
+            <div class="bg-light pt-3 pb-1">
+                <h2 class="font-weight-normal">Total Views</h2>
+                <p class="mb-0 statistics-number"><strong>1</strong></p>
             </div>
         </div>
     </div>
 
-    <div class="row">
+    <div class="row mt-4">
         <div class="col-12">
             <div class="row">
                 <div class="col-12">
-                    <p>Subscribers</p>
+                    <h2 class="font-weight-normal">Subscribers</h2>
                 </div>
             </div>
 

@@ -552,6 +552,10 @@ span {
   color: #4951CF;
 }
 
+.statistics-number {
+  font-size: 30px;
+}
+
 .vh-90 {
   height: 90vh;
 }
@@ -737,6 +741,10 @@ span {
 
 .upvote-comment img {
   height: 14.99px;
+}
+
+.revenue-icon {
+  width: 12px;
 }
 
 .ms-offscreen {

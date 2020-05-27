@@ -12,7 +12,9 @@ $('#my-statistics').click(function() {
     $('#myCoursesContainer').removeClass('d-block');
 
     $('#add-course').addClass('d-none');
-    
+});
+
+$('.revenue-icon').click(function() {
     $('#confirm-note').modal({ backdrop: 'static', keyboard: false });
 });
 

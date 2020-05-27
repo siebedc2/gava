@@ -4,38 +4,49 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <div class="form-group mt-5 text-center text-md-left">
-                <label class="d-md-none rounded-pill btn btn-primary" for="tumbnail">upload custom thumbnail</label>
-                <label class="d-none d-md-block" for="tumbnail">Upload custom thumbnail</label>
-                <label class="d-none w-50 add-btn d-md-flex justify-content-center align-items-center edit-tumbnail" ondrop="drop(event)" ondragover="allowDrop(event)" for="tumbnail">
-                    <img src="/images/add.svg" alt="Add icon">
-                </label>
-                <input name="tumbnail" type="file" class="form-control-file position-static" id="tumbnail" required>
+            <div class="card">
+                <div class="card-body">
+                    <canvas id="chartContainer"></canvas>
+                </div>
             </div>
         </div>
-    </div>
+     </div>     
 </div>
+@endsection
+
+@section('extra-js')
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
 
 <script>
-    function dragStart(event) {
-        //event.dataTransfer.setData("Text", event.target.id);
-        //document.getElementById("demo").innerHTML = "Started to drag the p element";
+var chartData = {
+  labels: ["S", "M", "T", "W", "T", "F", "S"],
+  datasets: [{
+    data: [589, 445, 483, 503, 689, 692, 634],
+  },
+  {
+    data: [639, 465, 493, 478, 589, 632, 674],
+  }]
+};
+
+var chLine = document.getElementById("chLine");
+if (chLine) {
+  new Chart(chLine, {
+  type: 'line',
+  data: chartData,
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: false
+        }
+      }]
+    },
+    legend: {
+      display: false
     }
-
-    function allowDrop(event) {
-        event.preventDefault();
-    }   
-
-    function drop(event) {
-        event.preventDefault();
-        
-        /*var reader = new FileReader();
-        reader.onload = function () {
-            $('.edit-tumbnail').css('background-image', 'url(' + reader.result + ')');
-        };
-        reader.readAsDataURL(event.target.files[0]);*/
-
-        alert('dropped');
-    }
+  }
+  });
+}
 </script>
 @endsection
