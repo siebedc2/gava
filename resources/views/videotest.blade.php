@@ -2,34 +2,41 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-12">
+    <div class="row my-2">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <canvas id="chartContainer"></canvas>
+                    <canvas class="bg-ligth" id="chLine" height="100"></canvas>
                 </div>
             </div>
         </div>
-     </div>     
+    </div>    
 </div>
 @endsection
 
 @section('extra-js')
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
 
 <script>
+   /* chart.js chart examples */
+
+// chart colors
+var colors = ['#007bff','#28a745','#333333','#c3e6cb','#dc3545','#6c757d'];
+
+/* large line chart */
+var chLine = document.getElementById("chLine");
 var chartData = {
   labels: ["S", "M", "T", "W", "T", "F", "S"],
   datasets: [{
     data: [589, 445, 483, 503, 689, 692, 634],
-  },
-  {
-    data: [639, 465, 493, 478, 589, 632, 674],
+    backgroundColor: 'transparent',
+    borderColor: colors[0],
+    borderWidth: 4,
+    pointBackgroundColor: colors[0]
   }]
 };
 
-var chLine = document.getElementById("chLine");
 if (chLine) {
   new Chart(chLine, {
   type: 'line',

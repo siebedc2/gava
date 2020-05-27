@@ -37098,6 +37098,10 @@ __webpack_require__(/*! ./gava/comment */ "./resources/js/gava/comment.js"); //r
 //require('./gava/post-subcomment');
 
 
+__webpack_require__(/*! ./gava/views-chart */ "./resources/js/gava/views-chart.js");
+
+__webpack_require__(/*! ./gava/revenue-chart */ "./resources/js/gava/revenue-chart.js");
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 /***/ }),
@@ -37942,6 +37946,50 @@ $('.report-video').click(function () {
 
 /***/ }),
 
+/***/ "./resources/js/gava/revenue-chart.js":
+/*!********************************************!*\
+  !*** ./resources/js/gava/revenue-chart.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// chart colors
+var colors = ['#291875', '#28a745', '#333333', '#c3e6cb', '#dc3545', '#6c757d'];
+/* large line chart */
+
+var chLine = document.getElementById("revenue");
+var chartData = {
+  labels: ["S", "M", "T", "W", "T", "F", "S"],
+  datasets: [{
+    data: [589, 445, 483, 100, 689, 692, 634],
+    backgroundColor: 'transparent',
+    borderColor: colors[0],
+    borderWidth: 4,
+    pointBackgroundColor: colors[0]
+  }]
+};
+
+if (chLine) {
+  new Chart(chLine, {
+    type: 'line',
+    data: chartData,
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: false
+          }
+        }]
+      },
+      legend: {
+        display: false
+      }
+    }
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/js/gava/star-selector.js":
 /*!********************************************!*\
   !*** ./resources/js/gava/star-selector.js ***!
@@ -38200,6 +38248,50 @@ $('.cancel-btn').click(function(e){
     $('.video-options-menu').css('bottom', '-80px');
     $('.add-video-col').css('bottom', '110px');
 });*/
+
+/***/ }),
+
+/***/ "./resources/js/gava/views-chart.js":
+/*!******************************************!*\
+  !*** ./resources/js/gava/views-chart.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// chart colors
+var colors = ['#291875', '#28a745', '#333333', '#c3e6cb', '#dc3545', '#6c757d'];
+/* large line chart */
+
+var chLine = document.getElementById("views");
+var chartData = {
+  labels: ["S", "M", "T", "W", "T", "F", "S"],
+  datasets: [{
+    data: [589, 445, 483, 503, 689, 692, 634],
+    backgroundColor: 'transparent',
+    borderColor: colors[0],
+    borderWidth: 4,
+    pointBackgroundColor: colors[0]
+  }]
+};
+
+if (chLine) {
+  new Chart(chLine, {
+    type: 'line',
+    data: chartData,
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: false
+          }
+        }]
+      },
+      legend: {
+        display: false
+      }
+    }
+  });
+}
 
 /***/ }),
 

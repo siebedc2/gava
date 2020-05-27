@@ -162,9 +162,13 @@
                     <h2 class="font-weight-normal">Views</h2>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <div class="card bg-light border-0">
+                        <div class="card-body">
+                            <canvas class="bg-ligth" id="views" height="100"></canvas>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -175,9 +179,13 @@
                     <h2 class="font-weight-normal">Revenue <span class="ml-2"><img class="mb-1 revenue-icon" src="/images/revenue-info.svg" alt="Info icon"></span></h2>
                 </div>
             </div>
-            <div class="row bg-light">
-                <div class="col-12">
-
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <div class="card bg-light border-0">
+                        <div class="card-body">
+                            <canvas class="bg-ligth" id="revenue" height="100"></canvas>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -238,4 +246,8 @@
     </div>
 </div>
 @include('components.mobile-menu')
+@endsection
+
+@section('extra-js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
 @endsection
