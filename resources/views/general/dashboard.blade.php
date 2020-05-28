@@ -1,6 +1,7 @@
 <?php 
-    $videoService = new App\Services\Video(); 
-    $ratingService = new App\Services\Rating();
+    $videoService           = new App\Services\Video(); 
+    $ratingService          = new App\Services\Rating();
+    $subscriptionService    = new App\Services\Subscription();
 ?>
 
 @extends('layouts.app')
@@ -178,6 +179,10 @@
         </div>
 
         <div class="col-12 col-md-6">
+            <p class="revenue-month1" hidden>{{ $subscriptionService->getMonthRevenue(\Carbon\Carbon::now()->month-2, Auth::id()) }}</p>
+            <p class="revenue-month2" hidden>{{ $subscriptionService->getMonthRevenue(\Carbon\Carbon::now()->month-1, Auth::id()) }}</p>
+            <p class="revenue-month3" hidden>{{ $subscriptionService->getMonthRevenue(\Carbon\Carbon::now()->month, Auth::id()) }}</p>
+
             <div class="row">
                 <div class="col-12">
                     <h2 class="font-weight-normal">Revenue <span class="ml-2"><img class="mb-1 revenue-icon" src="/images/revenue-info.svg" alt="Info icon"></span></h2>
@@ -205,7 +210,7 @@
         <div class="col-6 col-md-3 text-center rounded">
             <div class="bg-light pt-3 pb-1">
                 <h2 class="font-weight-normal">Total revenue <span class="ml-2"><img class="mb-1 revenue-icon" src="/images/revenue-info.svg" alt="Info icon"></span></h2>
-                <p class="mb-0 statistics-number"><strong>&euro;{{ $subscribersAmount * 8 }}</strong></p>
+                <p class="mb-0 statistics-number"><strong>&euro;{{ $subscriptionService->getTotalRevenue(Auth::id()) }}</strong></p>
             </div>
         </div>
         <div class="col-6 col-md-3 text-center rounded">

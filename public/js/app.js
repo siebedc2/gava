@@ -38248,15 +38248,25 @@ $('.report-video').click(function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// chart colors
-var colors = ['#291875', '#28a745', '#333333', '#c3e6cb', '#dc3545', '#6c757d'];
+// months
+var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var d = new Date();
+var month1name = monthNames[d.getMonth() - 2];
+var month2name = monthNames[d.getMonth() - 1];
+var month3name = monthNames[d.getMonth()]; // chart colors
+
+var colors = ['#291875']; // revenues
+
+var month1data = document.querySelector('.revenue-month1').innerHTML;
+var month2data = document.querySelector('.revenue-month2').innerHTML;
+var month3data = document.querySelector('.revenue-month3').innerHTML;
 /* large line chart */
 
 var chLine = document.getElementById("revenue");
 var chartData = {
-  labels: ["March", "April", "May"],
+  labels: [month1name, month2name, month3name],
   datasets: [{
-    data: [589, 445, 100],
+    data: [month1data, month2data, month3data],
     backgroundColor: 'transparent',
     borderColor: colors[0],
     borderWidth: 4,

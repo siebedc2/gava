@@ -6,6 +6,7 @@ use App\Models\Subscription as SubscriptionModel;
 use Validator;
 use Auth;
 use Carbon\CarbonPeriod;
+use Carbon\Carbon;
 
 class Subscription {
     public function validator(array $data) {
@@ -45,6 +46,28 @@ class Subscription {
             ['user_id', $userId],
             ['status', 'online']
             ])->pluck('creator_id')->toArray();
+    }
+
+    public function getMonthRevenue($month, $creatorId) {
+        $subscriptionAmount = SubscriptionModel::where('creator_id', $creatorId)->whereMonth('created_at', Carbon::create()->month($month))->get()->count();
+        $revenueMonth = $subscriptionAmount * 4.8;
+        return $revenueMonth;
+    }
+
+    public function getTotalRevenue($creatorId) {
+        $subscriptions = SubscriptionModel::where('creator_id', $creatorId)->get();
+        $amounthOfMonts = 0;
+
+        foreach($subscriptions as $subscription) {
+            $startDate = $subscription->created_at;
+            $endDate = $subscription->updated_at;
+            $diff  = $startDate->diff($endDate);
+            
+            $amounthOfMonts += intval($diff->format('%m'));
+        }
+
+        $totalRevenue = $amounthOfMonts * 4.8;
+        return $totalRevenue;
     }
 
     public function checkIfSubscribed($userId) {
