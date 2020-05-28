@@ -25,15 +25,48 @@
 
     else {
         $courses = $courseService->getAll();
-    }    
+    }  
+    
+    
+
+    /*if(empty($tags) || in_array($tags, $array)) {
+
+    }*/
 ?>
 
 <div class="courses">
     <div class="row">
         @if(!empty($courses))
         @foreach($courses as $course)
+
+        <?php 
+            $videos             = $videoService->getAllCourseVideos($course->id); 
+            $rating             = 0;   
+            $amountOfRatings    = 0; 
+        ?>
+            
+            @foreach($videos as $video)
+                <?php 
+                    $ratingData = $ratingService->getAVG($video['id']);
+                    if(!empty($ratingData['starAVG'])) {
+                        $ratingData = $ratingService->getAVG($video['id']);
+                        $rating += $ratingData['starAVG'];
+                        $amountOfRatings += 1;
+                    }
+                ?>
+            @endforeach
+
+            @if($rating != null)
+                <?php $Coursestars = round(($rating / $amountOfRatings),0); ?>
+            @else
+                <?php $Coursestars = 0; ?>
+            @endif
+            @if($Coursestars >= $filterRating)
+        
         @auth
         @if($course->user_id != Auth::user()->id)
+
+        
         <a href="/course/{{ $course->id }}" class="col-12 col-md-6 rounded bg-white text-decoration-none my-2">
             <div class="row">
                 <div class="col-5 col-md-4">
@@ -65,40 +98,15 @@
                     </div>
                     <div class="row">
                         <div class="col-12 d-flex">
-                            <?php 
-                                                    $videos             = $videoService->getAllCourseVideos($course->id); 
-                                                    $rating             = 0;   
-                                                    $amountOfRatings    = 0; 
-                                                ?>
-                            @foreach($videos as $video)
-                            <?php 
-                                                        $ratingData = $ratingService->getAVG($video['id']);
-                                                        if(!empty($ratingData['starAVG'])) {
-                                                            $ratingData = $ratingService->getAVG($video['id']);
-                                                            $rating += $ratingData['starAVG'];
-                                                            $amountOfRatings += 1;
-                                                        }
-                                                    ?>
-                            @endforeach
-
-                            @if($rating != null)
-                            <?php $Coursestars = round(($rating / $amountOfRatings),0); ?>
                             <div class="rating">
                                 @for ($i = $Coursestars; $i >= 1; $i--)
                                 <span class="star star-checked"><i class="fa fa-star"></i></span>
                                 @endfor
 
-                                @for ($i = $Coursestars; $i <= 4; $i++) <span class="star"><i
-                                        class="fa fa-star"></i></span>
-                                    @endfor
-                            </div>
-                            @else
-                            <div class="rating">
-                                @for ($i = 5; $i >= 1; $i--)
+                                @for ($i = $Coursestars; $i <= 4; $i++) 
                                 <span class="star"><i class="fa fa-star"></i></span>
                                 @endfor
                             </div>
-                            @endif
 
                             <p class="text-black-50 mb-0 ml-2">({{$amountOfRatings}})</p>
                         </div>
@@ -142,24 +150,6 @@
                     </div>
                     <div class="row">
                         <div class="col-12 d-flex">
-                            <?php 
-                                                $videos             = $videoService->getAllCourseVideos($course->id); 
-                                                $rating             = 0;   
-                                                $amountOfRatings    = 0; 
-                                            ?>
-                            @foreach($videos as $video)
-                            <?php 
-                                                    $ratingData = $ratingService->getAVG($video['id']);
-                                                    if(!empty($ratingData['starAVG'])) {
-                                                        $ratingData = $ratingService->getAVG($video['id']);
-                                                        $rating += $ratingData['starAVG'];
-                                                        $amountOfRatings += 1;
-                                                    }
-                                                ?>
-                            @endforeach
-
-                            @if($rating != null)
-                            <?php $Coursestars = round(($rating / $amountOfRatings),0); ?>
                             <div class="rating">
                                 @for ($i = $Coursestars; $i >= 1; $i--)
                                 <span class="star star-checked"><i class="fa fa-star"></i></span>
@@ -169,13 +159,7 @@
                                         class="fa fa-star"></i></span>
                                     @endfor
                             </div>
-                            @else
-                            <div class="rating">
-                                @for ($i = 5; $i >= 1; $i--)
-                                <span class="star"><i class="fa fa-star"></i></span>
-                                @endfor
-                            </div>
-                            @endif
+                           
                             <p class="text-black-50 mb-0 ml-2">({{$amountOfRatings}})</p>
                         </div>
                     </div>
@@ -183,6 +167,7 @@
             </div>
         </a>
         @endguest
+        @endif
         @endforeach
         @endif
     </div>

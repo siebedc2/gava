@@ -83,7 +83,7 @@
             </div>
 
             <div class="courses-wrapper">
-                @include('components.courses', ['search' => '', 'sort' => ''])
+                @include('components.courses', ['search' => '', 'sort' => '', 'filterRating' => 0])
             </div>
         </div>
     </div>

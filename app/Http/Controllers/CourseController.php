@@ -26,10 +26,11 @@ class CourseController extends Controller
         if($this->_request->input('sort') != null || $this->_request->input('search') != null) {
             $sort = $this->_request->input('sort');
             $search = $this->_request->input('search');
+            $filterRating = $this->_request->input('rating');
 
             return response()->json([
                 'message'       => 'success',
-                'coursesHTML'   => view('components/courses')->with(['search' => $search, 'sort' => $sort])->render()
+                'coursesHTML'   => view('components/courses')->with(['search' => $search, 'sort' => $sort, 'filterRating' => $filterRating])->render()
             ]);
         }
 
