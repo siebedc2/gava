@@ -48,7 +48,7 @@ if (typeof rating_filter !== "undefined" && rating_filter != null) {
         var stars_value = $(e.target).val(); 
         var stars = $('.rating-filter .star'); 
         
-        console.log(stars[0]);
+        //console.log(stars[0]);
 
         for(i=0; i <= stars_value - 1 ; i++) {
             $(stars[i]).addClass('star-checked');

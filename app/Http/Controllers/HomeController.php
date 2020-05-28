@@ -28,9 +28,9 @@ class HomeController extends Controller
         return view('general.landing.index');
     }
 
-    public function premium() {
+    /*public function premium() {
         return view('general.landing.premium');
-    }
+    }*/
 
     public function subscriptions(SubscriptionService $subscription, CourseService $course) {
         $userId = Auth::user()->id;

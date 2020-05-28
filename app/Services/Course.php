@@ -19,6 +19,10 @@ class Course {
         return CourseModel::where('status', 'online')->get();
     }
 
+    public function searchCourses($search) {
+        return CourseModel::where('title', 'like', '%' .  $search . '%')->get();
+    }
+
     public function getById($courseId) {
         return CourseModel::find($courseId);
     }

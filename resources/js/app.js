@@ -16,9 +16,6 @@ require('./gava/delete-video-popup');
 require('./gava/cancel-subscription-popup');
 require('./gava/report-user');
 require('./gava/report-video');
-//require('./gava/report-comment');
-//require('./gava/like-comment');
-//require('./gava/upvote-comment');
 require('./gava/multiselect');
 require('./gava/preview-image');
 require('./gava/star-selector');
@@ -27,8 +24,6 @@ require('./gava/filter');
 require('./gava/course-options-menu');
 require('./gava/video-options-menu');
 require('./gava/comment');
-//require('./gava/post-comment');
-//require('./gava/post-subcomment');
 require('./gava/views-chart');
 require('./gava/revenue-chart');
 

@@ -22,7 +22,17 @@ class CourseController extends Controller
     }
 
     public function index(CourseService $course, TagService $tag) {
-        $data['courses'] = $course->getAll();
+        //$data['courses'] = $course->getAll();
+        if($this->_request->input('sort') != null || $this->_request->input('search') != null) {
+            $sort = $this->_request->input('sort');
+            $search = $this->_request->input('search');
+
+            return response()->json([
+                'message'       => 'success',
+                'coursesHTML'   => view('components/courses')->with(['search' => $search, 'sort' => $sort])->render()
+            ]);
+        }
+
         $data['tags'] = $tag->getAll();
         return view('home', $data);
     }
