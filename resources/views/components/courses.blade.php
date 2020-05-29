@@ -2,6 +2,7 @@
     $videoService = new App\Services\Video(); 
     $ratingService = new App\Services\Rating();
     $courseService = new App\Services\Course();
+    $courseTagService = new App\Services\CourseTag();
 
     if($search ? $search : '' != '' || $sort ? $sort : '' != '') {
         if($search != '') {
@@ -39,34 +40,35 @@
         @if(!empty($courses))
         @foreach($courses as $course)
 
-        <?php 
+        <?php
+            $courseTagIds       = $courseTagService->getCourseTagIds($course->id);
             $videos             = $videoService->getAllCourseVideos($course->id); 
             $rating             = 0;   
             $amountOfRatings    = 0; 
         ?>
             
-            @foreach($videos as $video)
-                <?php 
+        @foreach($videos as $video)
+            <?php 
+                $ratingData = $ratingService->getAVG($video['id']);
+                if(!empty($ratingData['starAVG'])) {
                     $ratingData = $ratingService->getAVG($video['id']);
-                    if(!empty($ratingData['starAVG'])) {
-                        $ratingData = $ratingService->getAVG($video['id']);
-                        $rating += $ratingData['starAVG'];
-                        $amountOfRatings += 1;
-                    }
-                ?>
-            @endforeach
+                    $rating += $ratingData['starAVG'];
+                    $amountOfRatings += 1;
+                }
+            ?>
+        @endforeach
 
-            @if($rating != null)
-                <?php $Coursestars = round(($rating / $amountOfRatings),0); ?>
-            @else
-                <?php $Coursestars = 0; ?>
-            @endif
-            @if($Coursestars >= $filterRating)
-        
+        @if($rating != null)
+            <?php $Coursestars = round(($rating / $amountOfRatings),0); ?>
+        @else
+            <?php $Coursestars = 0; ?>
+        @endif
+
+
+        @if(empty($courseTagId) || in_array($courseTagId, $courseTagIds))
+        @if($Coursestars >= $filterRating)
         @auth
         @if($course->user_id != Auth::user()->id)
-
-        
         <a href="/course/{{ $course->id }}" class="col-12 col-md-6 rounded bg-white text-decoration-none my-2">
             <div class="row">
                 <div class="col-5 col-md-4">
@@ -167,6 +169,7 @@
             </div>
         </a>
         @endguest
+        @endif
         @endif
         @endforeach
         @endif

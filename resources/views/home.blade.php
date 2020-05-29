@@ -37,7 +37,7 @@
                             </div>
                             <div class="col-12 col-md-3 my-2 my-md-0">
                                 <select name="tags" class="rounded-pill border-0 bg-light custom-select" id="tags">
-                                    <option>Filter on technologies</option>
+                                    <option value="">Filter on technologies</option>
                                     @foreach($tags as $tag)
                                     <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                                     @endforeach
@@ -83,7 +83,7 @@
             </div>
 
             <div class="courses-wrapper">
-                @include('components.courses', ['search' => '', 'sort' => '', 'filterRating' => 0])
+                @include('components.courses', ['search' => '', 'sort' => '', 'filterRating' => 0, 'courseTagId' => ''])
             </div>
         </div>
     </div>

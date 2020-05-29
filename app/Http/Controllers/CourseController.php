@@ -27,10 +27,11 @@ class CourseController extends Controller
             $sort = $this->_request->input('sort');
             $search = $this->_request->input('search');
             $filterRating = $this->_request->input('rating');
+            $courseTagId = $this->_request->input('tags');
 
             return response()->json([
                 'message'       => 'success',
-                'coursesHTML'   => view('components/courses')->with(['search' => $search, 'sort' => $sort, 'filterRating' => $filterRating])->render()
+                'coursesHTML'   => view('components/courses')->with(['search' => $search, 'sort' => $sort, 'filterRating' => $filterRating, 'courseTagId' => $courseTagId ])->render()
             ]);
         }
 
