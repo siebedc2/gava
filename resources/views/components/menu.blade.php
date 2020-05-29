@@ -9,6 +9,7 @@
                     </a>
                 </div>
 
+                @if(Route::getCurrentRoute() != null )
                 <div class="col-6 d-flex justify-content-end">
                     <ul class="nav">
                         <li class="nav-item">
@@ -25,6 +26,7 @@
                         </li>
                     </ul>
                 </div>
+                @endif
             </div>
         </div>
     </div>

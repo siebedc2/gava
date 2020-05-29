@@ -20,7 +20,7 @@
         </div>
         <div class="row mt-5">
             <div class="col-12 text-center">
-                <a href="/" class="rounded-pill px-4 btn btn-primary">return home</a>
+                <a href="/home" class="rounded-pill px-4 btn btn-primary">return home</a>
             </div>
         </div>
     </div>

@@ -281,10 +281,5 @@ Route::prefix('/profile')->middleware('auth')->group(function() {
     ]);
 });
 
-
-Route::get('/testvideo', function(){
-    return view('videotest');
-});
-
 // Authentication
 Auth::routes();

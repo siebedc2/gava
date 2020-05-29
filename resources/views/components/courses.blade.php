@@ -4,7 +4,7 @@
     $courseService = new App\Services\Course();
     $courseTagService = new App\Services\CourseTag();
 
-    if($search ? $search : '' != '' || $sort ? $sort : '' != '') {
+    if(($search ? $search : '') != '' || ($sort ? $sort : '') != '') {
         if($search != '') {
             $courses = $courseService->searchCourses($search);
         }
@@ -27,12 +27,6 @@
     else {
         $courses = $courseService->getAll();
     }  
-    
-    
-
-    /*if(empty($tags) || in_array($tags, $array)) {
-
-    }*/
 ?>
 
 <div class="courses">

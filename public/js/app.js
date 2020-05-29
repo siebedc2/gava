@@ -37341,11 +37341,11 @@ __webpack_require__(/*! ./gava/dashboard-tab */ "./resources/js/gava/dashboard-t
 
 __webpack_require__(/*! ./gava/subscriptions-tab */ "./resources/js/gava/subscriptions-tab.js");
 
-__webpack_require__(/*! ./gava/delete-course-popup */ "./resources/js/gava/delete-course-popup.js");
-
 __webpack_require__(/*! ./gava/delete-video-popup */ "./resources/js/gava/delete-video-popup.js");
 
 __webpack_require__(/*! ./gava/cancel-subscription-popup */ "./resources/js/gava/cancel-subscription-popup.js");
+
+__webpack_require__(/*! ./gava/delete-course-popup */ "./resources/js/gava/delete-course-popup.js");
 
 __webpack_require__(/*! ./gava/report-user */ "./resources/js/gava/report-user.js");
 
@@ -37365,11 +37365,9 @@ __webpack_require__(/*! ./gava/course-options-menu */ "./resources/js/gava/cours
 
 __webpack_require__(/*! ./gava/video-options-menu */ "./resources/js/gava/video-options-menu.js");
 
-__webpack_require__(/*! ./gava/comment */ "./resources/js/gava/comment.js");
+__webpack_require__(/*! ./gava/comment */ "./resources/js/gava/comment.js"); //require('./gava/views-chart');
+//require('./gava/revenue-chart');
 
-__webpack_require__(/*! ./gava/views-chart */ "./resources/js/gava/views-chart.js");
-
-__webpack_require__(/*! ./gava/revenue-chart */ "./resources/js/gava/revenue-chart.js");
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
@@ -38241,60 +38239,6 @@ $('.report-video').click(function () {
 
 /***/ }),
 
-/***/ "./resources/js/gava/revenue-chart.js":
-/*!********************************************!*\
-  !*** ./resources/js/gava/revenue-chart.js ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// months
-var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-var d = new Date();
-var month1name = monthNames[d.getMonth() - 2];
-var month2name = monthNames[d.getMonth() - 1];
-var month3name = monthNames[d.getMonth()]; // chart colors
-
-var colors = ['#291875']; // revenues
-
-var month1data = document.querySelector('.revenue-month1').innerHTML;
-var month2data = document.querySelector('.revenue-month2').innerHTML;
-var month3data = document.querySelector('.revenue-month3').innerHTML;
-/* large line chart */
-
-var chLine = document.getElementById("revenue");
-var chartData = {
-  labels: [month1name, month2name, month3name],
-  datasets: [{
-    data: [month1data, month2data, month3data],
-    backgroundColor: 'transparent',
-    borderColor: colors[0],
-    borderWidth: 4,
-    pointBackgroundColor: colors[0]
-  }]
-};
-
-if (chLine) {
-  new Chart(chLine, {
-    type: 'line',
-    data: chartData,
-    options: {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: false
-          }
-        }]
-      },
-      legend: {
-        display: false
-      }
-    }
-  });
-}
-
-/***/ }),
-
 /***/ "./resources/js/gava/star-selector.js":
 /*!********************************************!*\
   !*** ./resources/js/gava/star-selector.js ***!
@@ -38552,50 +38496,6 @@ $('.cancel-btn').click(function(e){
     $('.video-options-menu').css('bottom', '-80px');
     $('.add-video-col').css('bottom', '110px');
 });*/
-
-/***/ }),
-
-/***/ "./resources/js/gava/views-chart.js":
-/*!******************************************!*\
-  !*** ./resources/js/gava/views-chart.js ***!
-  \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// chart colors
-var colors = ['#291875', '#28a745', '#333333', '#c3e6cb', '#dc3545', '#6c757d'];
-/* large line chart */
-
-var chLine = document.getElementById("views");
-var chartData = {
-  labels: ["March", "April", "May"],
-  datasets: [{
-    data: [589, 445, 483],
-    backgroundColor: 'transparent',
-    borderColor: colors[0],
-    borderWidth: 4,
-    pointBackgroundColor: colors[0]
-  }]
-};
-
-if (chLine) {
-  new Chart(chLine, {
-    type: 'line',
-    data: chartData,
-    options: {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: false
-          }
-        }]
-      },
-      legend: {
-        display: false
-      }
-    }
-  });
-}
 
 /***/ }),
 
