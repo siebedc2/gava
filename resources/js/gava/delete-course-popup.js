@@ -1,17 +1,17 @@
-$('.delete-btn').click(function(e){
+jQuery('.delete-btn').click(function(e){
     e.preventDefault();
-    var form = $(this.parentElement);
-    var courseId = $(this).prev().attr('value');
+    var form = jQuery(this.parentElement);
+    var courseId = jQuery(this).prev().attr('value');
     console.log(courseId);
 
-    $.ajax({
+    jQuery.ajax({
         method: "POST",
         url: '/dashboard/getCourse',
         data: {
             courseId : courseId
         },
         headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
         }
     })
     
@@ -21,10 +21,10 @@ $('.delete-btn').click(function(e){
 
         if (response.message == "success") {
 
-            $('.popup-course-title').html(response.course.title);
-            $('.popup-course-picture').css('background-image', 'url(/images/uploads/' + response.course.tumbnail + ')');
+            jQuery('.popup-course-title').html(response.course.title);
+            jQuery('.popup-course-picture').css('background-image', 'url(/images/uploads/' + response.course.tumbnail + ')');
 
-            $('#confirm').modal({ backdrop: 'static', keyboard: false })
+            jQuery('#confirm').modal({ backdrop: 'static', keyboard: false })
                 .on('click', '#delete-btn', function(){
                     form.submit();
             });

@@ -1029,6 +1029,10 @@ span {
   background: transparent;
 }
 
+.form-control:focus {
+  box-shadow: none !important;
+}
+
 .reply-form {
   position: relative;
 }

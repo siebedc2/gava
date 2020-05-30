@@ -8,6 +8,8 @@
 require('./gava/tech-popup');
 require('./gava/landing-mobile-menu');
 
+
+jQuery.noConflict();
 // Platform
 require('./gava/dashboard-tab');
 require('./gava/subscriptions-tab');
@@ -24,7 +26,7 @@ require('./gava/filter');
 require('./gava/course-options-menu');
 require('./gava/video-options-menu');
 require('./gava/comment');
-//require('./gava/views-chart');
-//require('./gava/revenue-chart');
+require('./gava/views-chart');
+require('./gava/revenue-chart');
 
 require('./bootstrap');

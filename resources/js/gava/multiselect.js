@@ -1,7 +1,7 @@
-var multiSelect = $('#tags').val();
+var multiSelect = jQuery('#tags').val();
 
 if (typeof multiSelect !== "undefined" && multiSelect != null) {
-    $(function () {
-        $('#tags').multipleSelect()
+    jQuery(function () {
+        jQuery('#tags').multipleSelect()
     })
 }

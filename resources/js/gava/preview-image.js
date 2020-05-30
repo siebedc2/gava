@@ -1,19 +1,19 @@
-var profile_picture_input = $('#profile_picture').val();
+var profile_picture_input = jQuery('#profile_picture').val();
 
 if (typeof profile_picture_input !== "undefined" && profile_picture_input != null) {
-    $('#profile_picture').on('change', function(e){
+    jQuery('#profile_picture').on('change', function(e){
         var reader = new FileReader();
         reader.onload = function () {
-            $('.edit-profile-image').css('background-image', 'url(' + reader.result + ')');
+            jQuery('.edit-profile-image').css('background-image', 'url(' + reader.result + ')');
         };
         reader.readAsDataURL(e.target.files[0]);
     });
 }
 
-var tumbnail_input = $('#tumbnail').val();
+var tumbnail_input = jQuery('#tumbnail').val();
 
 if (typeof tumbnail_input !== "undefined" && tumbnail_input != null) {
-    $('#tumbnail').on('change', function(e){
+    jQuery('#tumbnail').on('change', function(e){
         var x = window.matchMedia("(max-width: 768px)");
         if(x.matches) {
             filename  = this.value;
@@ -24,25 +24,25 @@ if (typeof tumbnail_input !== "undefined" && tumbnail_input != null) {
 
             console.log(filename);
 
-            $('p.edit-tumbnail').html(filename);
+            jQuery('p.edit-tumbnail').html(filename);
         }
 
         else {
             var reader = new FileReader();
             reader.onload = function () {    
-                $('div.edit-tumbnail, label.edit-tumbnail').css('background-image', 'url(' + reader.result + ')');
-                $('label.edit-tumbnail').addClass('tumbnail');
-                $('.fa-pencil').removeClass('d-none');
-                $('.add-icon').addClass('d-none');
+                jQuery('div.edit-tumbnail, label.edit-tumbnail').css('background-image', 'url(' + reader.result + ')');
+                jQuery('label.edit-tumbnail').addClass('tumbnail');
+                jQuery('.fa-pencil').removeClass('d-none');
+                jQuery('.add-icon').addClass('d-none');
             };
             reader.readAsDataURL(e.target.files[0]);
         }
     });
 }
 
-var video_input = $('#video').val();
+var video_input = jQuery('#video').val();
 if (typeof video_input !== "undefined" && video_input != null) {
-    $('#video').on('change', function(e){
+    jQuery('#video').on('change', function(e){
         var x = window.matchMedia("(max-width: 768px)");
         if(x.matches) {
             filename  = this.value;
@@ -52,16 +52,16 @@ if (typeof video_input !== "undefined" && video_input != null) {
             }
     
             console.log(filename);
-            $('p.edit-video').html(filename);
+            jQuery('p.edit-video').html(filename);
         }
 
         else {
-            $('label.edit-video').removeClass('d-md-flex');
-            $('.video-preview').removeClass('d-md-none');
-            $('.video-preview').addClass('d-md-block');
-            var $source = $('#video-source');
-            $source[0].src = URL.createObjectURL(this.files[0]);
-            $source.parent()[0].load();
+            jQuery('label.edit-video').removeClass('d-md-flex');
+            jQuery('.video-preview').removeClass('d-md-none');
+            jQuery('.video-preview').addClass('d-md-block');
+            var jQuerysource = jQuery('#video-source');
+            jQuerysource[0].src = URL.createObjectURL(this.files[0]);
+            jQuerysource.parent()[0].load();
         }
     });
 }

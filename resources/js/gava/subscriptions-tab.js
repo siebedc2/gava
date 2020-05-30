@@ -1,27 +1,27 @@
-$('#creators').click(function() {
-    $('#courses').removeClass('active');
-    $('#courses').addClass('non-active');
+jQuery('#creators').click(function() {
+    jQuery('#courses').removeClass('active');
+    jQuery('#courses').addClass('non-active');
 
-    $('#creators').removeClass('non-active');
-    $('#creators').addClass('active');
+    jQuery('#creators').removeClass('non-active');
+    jQuery('#creators').addClass('active');
 
-    $('#creatorsContainer').removeClass('d-none');
-    $('#creatorsContainer').addClass('d-block');
+    jQuery('#creatorsContainer').removeClass('d-none');
+    jQuery('#creatorsContainer').addClass('d-block');
 
-    $('#coursesContainer').addClass('d-none');
-    $('#coursesContainer').removeClass('d-block');
+    jQuery('#coursesContainer').addClass('d-none');
+    jQuery('#coursesContainer').removeClass('d-block');
 });
 
-$('#courses').click(function() {
-    $('#creators').removeClass('active');
-    $('#creators').addClass('non-active');
+jQuery('#courses').click(function() {
+    jQuery('#creators').removeClass('active');
+    jQuery('#creators').addClass('non-active');
 
-    $('#courses').removeClass('non-active');
-    $('#courses').addClass('active');
+    jQuery('#courses').removeClass('non-active');
+    jQuery('#courses').addClass('active');
 
-    $('#coursesContainer').removeClass('d-none');
-    $('#coursesContainer').addClass('d-block');
+    jQuery('#coursesContainer').removeClass('d-none');
+    jQuery('#coursesContainer').addClass('d-block');
 
-    $('#creatorsContainer').addClass('d-none');
-    $('#creatorsContainer').removeClass('d-block');
+    jQuery('#creatorsContainer').addClass('d-none');
+    jQuery('#creatorsContainer').removeClass('d-block');
 });

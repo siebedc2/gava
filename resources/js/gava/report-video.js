@@ -1,15 +1,15 @@
-$('.report-video').click(function(){
-    var videoId = $(this).find('.videoId').attr('value');
+jQuery('.report-video').click(function(){
+    var videoId = jQuery(this).find('.videoId').attr('value');
     console.log(videoId);
 
-    $.ajax({
+    jQuery.ajax({
         method: "POST",
         url: '/course/video/report',
         data: {
             videoId : videoId
         },
         headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
         }
     })
     

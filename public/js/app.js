@@ -37334,8 +37334,9 @@ module.exports = function(module) {
 // Landingpagina
 __webpack_require__(/*! ./gava/tech-popup */ "./resources/js/gava/tech-popup.js");
 
-__webpack_require__(/*! ./gava/landing-mobile-menu */ "./resources/js/gava/landing-mobile-menu.js"); // Platform
+__webpack_require__(/*! ./gava/landing-mobile-menu */ "./resources/js/gava/landing-mobile-menu.js");
 
+jQuery.noConflict(); // Platform
 
 __webpack_require__(/*! ./gava/dashboard-tab */ "./resources/js/gava/dashboard-tab.js");
 
@@ -37365,9 +37366,11 @@ __webpack_require__(/*! ./gava/course-options-menu */ "./resources/js/gava/cours
 
 __webpack_require__(/*! ./gava/video-options-menu */ "./resources/js/gava/video-options-menu.js");
 
-__webpack_require__(/*! ./gava/comment */ "./resources/js/gava/comment.js"); //require('./gava/views-chart');
-//require('./gava/revenue-chart');
+__webpack_require__(/*! ./gava/comment */ "./resources/js/gava/comment.js");
 
+__webpack_require__(/*! ./gava/views-chart */ "./resources/js/gava/views-chart.js");
+
+__webpack_require__(/*! ./gava/revenue-chart */ "./resources/js/gava/revenue-chart.js");
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
@@ -37425,27 +37428,27 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$('.cancel-subscription').click(function (e) {
+jQuery('.cancel-subscription').click(function (e) {
   e.preventDefault();
-  var form = $(this.parentElement);
-  var creatorId = $(this).prev().attr('value');
+  var form = jQuery(this.parentElement);
+  var creatorId = jQuery(this).prev().attr('value');
   console.log(creatorId);
-  $.ajax({
+  jQuery.ajax({
     method: "POST",
     url: '/subscriptions/getCreator',
     data: {
       creatorId: creatorId
     },
     headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
     }
   }).done(function (response) {
     console.log(response.creator);
 
     if (response.message == "success") {
-      $('.popup-subscriber-name').html(response.creator.name);
-      $('.popup-subscriber-picture').css('background-image', 'url(/images/uploads/' + response.creator.profile_picture + ')');
-      $('#confirm').modal({
+      jQuery('.popup-subscriber-name').html(response.creator.name);
+      jQuery('.popup-subscriber-picture').css('background-image', 'url(/images/uploads/' + response.creator.profile_picture + ')');
+      jQuery('#confirm').modal({
         backdrop: 'static',
         keyboard: false
       }).on('click', '#delete-btn', function () {
@@ -37466,12 +37469,12 @@ $('.cancel-subscription').click(function (e) {
 
 window.initCommentEvents = function () {
   // Like comment
-  $('.like-comment').click(function () {
-    var videoId = $(this).parent().parent().parent().find('.videoId').html();
-    var commentId = $(this).parent().parent().parent().find('.commentId').html();
-    var likeAmount = $(this).next();
+  jQuery('.like-comment').click(function () {
+    var videoId = jQuery(this).parent().parent().parent().find('.videoId').html();
+    var commentId = jQuery(this).parent().parent().parent().find('.commentId').html();
+    var likeAmount = jQuery(this).next();
     console.log(commentId);
-    $.ajax({
+    jQuery.ajax({
       method: "POST",
       url: '/comment/like',
       data: {
@@ -37479,31 +37482,31 @@ window.initCommentEvents = function () {
         videoId: videoId
       },
       headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
       }
     }).done(function (response) {
       console.log(response);
 
       if (response.message == "success") {
-        likeAmount.html(parseInt($(likeAmount).html()) + 1);
-        $(".comments").remove();
-        $(".comments-wrapper").append(response.commentsHTML);
+        likeAmount.html(parseInt(jQuery(likeAmount).html()) + 1);
+        jQuery(".comments").remove();
+        jQuery(".comments-wrapper").append(response.commentsHTML);
         window.initCommentEvents();
       } else if (response.message == "hasAlready") {
-        likeAmount.html(parseInt($(likeAmount).html()) - 1);
-        $(".comments").remove();
-        $(".comments-wrapper").append(response.commentsHTML);
+        likeAmount.html(parseInt(jQuery(likeAmount).html()) - 1);
+        jQuery(".comments").remove();
+        jQuery(".comments-wrapper").append(response.commentsHTML);
         window.initCommentEvents();
       }
     });
   }); // Upvote comment
 
-  $('.upvote-comment').click(function () {
-    var videoId = $(this).parent().parent().parent().find('.videoId').html();
-    var commentId = $(this).parent().parent().parent().find('.commentId').html();
-    var upvoteAmount = $(this).next();
+  jQuery('.upvote-comment').click(function () {
+    var videoId = jQuery(this).parent().parent().parent().find('.videoId').html();
+    var commentId = jQuery(this).parent().parent().parent().find('.commentId').html();
+    var upvoteAmount = jQuery(this).next();
     console.log(commentId);
-    $.ajax({
+    jQuery.ajax({
       method: "POST",
       url: '/comment/upvote',
       data: {
@@ -37511,36 +37514,36 @@ window.initCommentEvents = function () {
         videoId: videoId
       },
       headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
       }
     }).done(function (response) {
       console.log(response);
 
       if (response.message == "success") {
-        upvoteAmount.html(parseInt($(upvoteAmount).html()) + 1);
-        $(".comments").remove();
-        $(".comments-wrapper").append(response.commentsHTML);
+        upvoteAmount.html(parseInt(jQuery(upvoteAmount).html()) + 1);
+        jQuery(".comments").remove();
+        jQuery(".comments-wrapper").append(response.commentsHTML);
         window.initCommentEvents();
       } else if (response.message == "hasAlready") {
-        upvoteAmount.html(parseInt($(upvoteAmount).html()) - 1);
-        $(".comments").remove();
-        $(".comments-wrapper").append(response.commentsHTML);
+        upvoteAmount.html(parseInt(jQuery(upvoteAmount).html()) - 1);
+        jQuery(".comments").remove();
+        jQuery(".comments-wrapper").append(response.commentsHTML);
         window.initCommentEvents();
       }
     });
   }); // Report comment
 
-  $('.report-comment').click(function () {
-    var commentId = $(this).parent().parent().parent().find('.commentId').html();
+  jQuery('.report-comment').click(function () {
+    var commentId = jQuery(this).parent().parent().parent().find('.commentId').html();
     console.log(commentId);
-    $.ajax({
+    jQuery.ajax({
       method: "POST",
       url: '/comment/report',
       data: {
         commentId: commentId
       },
       headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
       }
     }).done(function (response) {
       console.log(response);
@@ -37549,17 +37552,17 @@ window.initCommentEvents = function () {
     });
   }); // Post comment (text)
 
-  $('.add-comment').click(function (e) {
+  jQuery('.add-comment').click(function (e) {
     e.preventDefault();
     console.log('bericht');
-    var videoId = $(e.target).parent().prev().prev().val();
-    var comment = $(e.target).parent().prev().find('#comment').val();
+    var videoId = jQuery(e.target).parent().prev().prev().val();
+    var comment = jQuery(e.target).parent().prev().find('#comment').val();
 
     if (typeof comment !== "undefined" && comment != null && comment !== "") {
       console.log(comment);
       var type = "text";
       var subcomment = "0";
-      $.ajax({
+      jQuery.ajax({
         method: "POST",
         url: '/comment/post',
         data: {
@@ -37569,78 +37572,78 @@ window.initCommentEvents = function () {
           subcomment: subcomment
         },
         headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
         }
       }).done(function (response) {
         console.log(response.commentsHTML);
 
         if (response.message == "success") {
-          $('#comment').addClass('border-0');
-          $('#comment').removeClass('border-danger');
-          $(".comments").remove();
-          $(".comments-wrapper").append(response.commentsHTML);
-          $(e.target).parent().prev().find('#comment').val('');
+          jQuery('#comment').addClass('border-0');
+          jQuery('#comment').removeClass('border-danger');
+          jQuery(".comments").remove();
+          jQuery(".comments-wrapper").append(response.commentsHTML);
+          jQuery(e.target).parent().prev().find('#comment').val('');
           window.initCommentEvents();
         }
       });
     } else {
       console.log('leeg');
-      $('#comment').removeClass('border-0');
-      $('#comment').addClass('border-danger');
+      jQuery('#comment').removeClass('border-0');
+      jQuery('#comment').addClass('border-danger');
     }
   }); // Post comment (video)
 
-  $('#video-comment').change(function (e) {
-    var videoId = $(e.target).prev().prev().val();
+  jQuery('#video-comment').change(function (e) {
+    var videoId = jQuery(e.target).prev().prev().val();
     var type = "video";
     var subcomment = "0";
-    var formData = new FormData($('.video-comment-form')[0]);
+    var formData = new FormData(jQuery('.video-comment-form')[0]);
     formData.append('videoId', videoId);
     formData.append('type', type);
     formData.append('subcomment', subcomment);
-    $('#video-confirm').modal({
+    jQuery('#video-confirm').modal({
       backdrop: 'static',
       keyboard: false
     }).on('click', '#confirm-btn', function (e) {
       e.preventDefault();
       console.log(formData);
-      $.ajax({
+      jQuery.ajax({
         method: "POST",
         url: '/videocomment/post',
         data: formData,
         processData: false,
         contentType: false,
         headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
         }
       }).done(function (response) {
         console.log(response.message);
 
         if (response.message == "success") {
-          $('#comment').addClass('border-0');
-          $('#comment').removeClass('border-danger');
-          $(".comments").remove();
-          $(".comments-wrapper").append(response.commentsHTML);
-          $('#video-confirm').modal('hide');
-          $('#video-comment').parent().val(''); //window.initCommentEvents();
+          jQuery('#comment').addClass('border-0');
+          jQuery('#comment').removeClass('border-danger');
+          jQuery(".comments").remove();
+          jQuery(".comments-wrapper").append(response.commentsHTML);
+          jQuery('#video-confirm').modal('hide');
+          jQuery('#video-comment').parent().val(''); //window.initCommentEvents();
         }
       });
     });
   }); // Post subcomment (text)
 
-  $('.add-textsubcomment').click(function (e) {
-    var form = $(e.target).parent().parent().parent().next().find('.subcomment-form');
+  jQuery('.add-textsubcomment').click(function (e) {
+    var form = jQuery(e.target).parent().parent().parent().next().find('.subcomment-form');
     form.removeClass('d-none');
-    $('.add-subcomment').click(function (e) {
+    jQuery('.add-subcomment').click(function (e) {
       e.preventDefault();
-      var comment = $(form).find('#subcomment').val();
-      var commentId = $(form).find('.commentId').val();
-      var videoId = $(form).find('.videoId').val();
+      var comment = jQuery(form).find('#subcomment').val();
+      var commentId = jQuery(form).find('.commentId').val();
+      var videoId = jQuery(form).find('.videoId').val();
       var type = "text";
       var subcomment = "1";
 
       if (typeof comment !== "undefined" && comment != null && comment !== "") {
-        $.ajax({
+        jQuery.ajax({
           method: "POST",
           url: '/comment/post',
           data: {
@@ -37651,60 +37654,60 @@ window.initCommentEvents = function () {
             subcomment: subcomment
           },
           headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
           }
         }).done(function (response) {
           console.log(response);
 
           if (response.message == "success") {
-            $(".comments").remove();
-            $(".comments-wrapper").append(response.commentsHTML);
+            jQuery(".comments").remove();
+            jQuery(".comments-wrapper").append(response.commentsHTML);
             window.initCommentEvents();
           }
         });
       } else {
-        $(form).find('#subcomment').removeClass('border-0');
-        $(form).find('#subcomment').addClass('border-danger');
+        jQuery(form).find('#subcomment').removeClass('border-0');
+        jQuery(form).find('#subcomment').addClass('border-danger');
       }
     });
   }); // Post subcomment (video)
 
-  $('.add-video-subcomment').click(function (e) {
-    var form = $(e.target).parent().parent().parent().find('.video-subcomment-form');
-    $('#video-subcomment').change(function (e) {
-      var commentId = $(form).find('.commentId').val();
-      var videoId = $(form).find('.videoId').val();
+  jQuery('.add-video-subcomment').click(function (e) {
+    var form = jQuery(e.target).parent().parent().parent().find('.video-subcomment-form');
+    jQuery('#video-subcomment').change(function (e) {
+      var commentId = jQuery(form).find('.commentId').val();
+      var videoId = jQuery(form).find('.videoId').val();
       e.preventDefault();
       var type = "video";
       var subcomment = "1";
-      var formData = new FormData($('.video-subcomment-form')[0]);
+      var formData = new FormData(jQuery('.video-subcomment-form')[0]);
       formData.append('videoId', videoId);
       formData.append('commentId', commentId);
       formData.append('type', type);
       formData.append('subcomment', subcomment);
-      $('#video-confirm').modal({
+      jQuery('#video-confirm').modal({
         backdrop: 'static',
         keyboard: false
       }).on('click', '#confirm-btn', function (e) {
         e.preventDefault();
-        $.ajax({
+        jQuery.ajax({
           method: "POST",
           url: '/videocomment/post',
           data: formData,
           processData: false,
           contentType: false,
           headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
           }
         }).done(function (response) {
           console.log(response.message);
 
           if (response.message == "success") {
             form.addClass('d-none');
-            $('#video-subcomment').val('');
-            $('#video-confirm').modal('hide');
-            $(".comments").remove();
-            $(".comments-wrapper").append(response.commentsHTML);
+            jQuery('#video-subcomment').val('');
+            jQuery('#video-confirm').modal('hide');
+            jQuery(".comments").remove();
+            jQuery(".comments-wrapper").append(response.commentsHTML);
             window.initCommentEvents();
           }
         });
@@ -37724,18 +37727,18 @@ initCommentEvents();
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$('.mobile-course-options').click(function (e) {
-  var courseId = $(e.target).parent().prev().text();
+jQuery('.mobile-course-options').click(function (e) {
+  var courseId = jQuery(e.target).parent().prev().text();
   console.log(courseId);
-  $('.course-options-menu').css('bottom', '75px');
-  $('.add-course-col').css('bottom', '230px');
-  $('.edit-course').attr("href", "/course/edit/" + courseId);
-  $('.delete-course-form').attr('action', '/course/delete/' + courseId);
-  $('.delete-course-form #courseId').val(courseId);
+  jQuery('.course-options-menu').css('bottom', '75px');
+  jQuery('.add-course-col').css('bottom', '230px');
+  jQuery('.edit-course').attr("href", "/course/edit/" + courseId);
+  jQuery('.delete-course-form').attr('action', '/course/delete/' + courseId);
+  jQuery('.delete-course-form #courseId').val(courseId);
 });
-$('.cancel-btn').click(function (e) {
-  $('.course-options-menu').css('bottom', '-80px');
-  $('.add-course-col').css('bottom', '110px');
+jQuery('.cancel-btn').click(function (e) {
+  jQuery('.course-options-menu').css('bottom', '-80px');
+  jQuery('.add-course-col').css('bottom', '110px');
 });
 
 /***/ }),
@@ -37747,33 +37750,33 @@ $('.cancel-btn').click(function (e) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$('#my-statistics').click(function () {
-  $('#my-courses').removeClass('active');
-  $('#my-courses').addClass('non-active');
-  $('#my-statistics').removeClass('non-active');
-  $('#my-statistics').addClass('active');
-  $('#myStatisticsContainer').removeClass('d-none');
-  $('#myStatisticsContainer').addClass('d-block');
-  $('#myCoursesContainer').addClass('d-none');
-  $('#myCoursesContainer').removeClass('d-block');
-  $('#add-course').addClass('d-none');
+jQuery('#my-statistics').click(function () {
+  jQuery('#my-courses').removeClass('active');
+  jQuery('#my-courses').addClass('non-active');
+  jQuery('#my-statistics').removeClass('non-active');
+  jQuery('#my-statistics').addClass('active');
+  jQuery('#myStatisticsContainer').removeClass('d-none');
+  jQuery('#myStatisticsContainer').addClass('d-block');
+  jQuery('#myCoursesContainer').addClass('d-none');
+  jQuery('#myCoursesContainer').removeClass('d-block');
+  jQuery('#add-course').addClass('d-none');
 });
-$('.revenue-icon').click(function () {
-  $('#confirm-note').modal({
+jQuery('.revenue-icon').click(function () {
+  jQuery('#confirm-note').modal({
     backdrop: 'static',
     keyboard: false
   });
 });
-$('#my-courses').click(function () {
-  $('#my-statistics').removeClass('active');
-  $('#my-statistics').addClass('non-active');
-  $('#my-courses').removeClass('non-active');
-  $('#my-courses').addClass('active');
-  $('#myCoursesContainer').removeClass('d-none');
-  $('#myCoursesContainer').addClass('d-block');
-  $('#myStatisticsContainer').addClass('d-none');
-  $('#myStatisticsContainer').removeClass('d-block');
-  $('#add-course').removeClass('d-none');
+jQuery('#my-courses').click(function () {
+  jQuery('#my-statistics').removeClass('active');
+  jQuery('#my-statistics').addClass('non-active');
+  jQuery('#my-courses').removeClass('non-active');
+  jQuery('#my-courses').addClass('active');
+  jQuery('#myCoursesContainer').removeClass('d-none');
+  jQuery('#myCoursesContainer').addClass('d-block');
+  jQuery('#myStatisticsContainer').addClass('d-none');
+  jQuery('#myStatisticsContainer').removeClass('d-block');
+  jQuery('#add-course').removeClass('d-none');
 });
 
 /***/ }),
@@ -37785,27 +37788,27 @@ $('#my-courses').click(function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$('.delete-btn').click(function (e) {
+jQuery('.delete-btn').click(function (e) {
   e.preventDefault();
-  var form = $(this.parentElement);
-  var courseId = $(this).prev().attr('value');
+  var form = jQuery(this.parentElement);
+  var courseId = jQuery(this).prev().attr('value');
   console.log(courseId);
-  $.ajax({
+  jQuery.ajax({
     method: "POST",
     url: '/dashboard/getCourse',
     data: {
       courseId: courseId
     },
     headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
     }
   }).done(function (response) {
     console.log(response.course);
 
     if (response.message == "success") {
-      $('.popup-course-title').html(response.course.title);
-      $('.popup-course-picture').css('background-image', 'url(/images/uploads/' + response.course.tumbnail + ')');
-      $('#confirm').modal({
+      jQuery('.popup-course-title').html(response.course.title);
+      jQuery('.popup-course-picture').css('background-image', 'url(/images/uploads/' + response.course.tumbnail + ')');
+      jQuery('#confirm').modal({
         backdrop: 'static',
         keyboard: false
       }).on('click', '#delete-btn', function () {
@@ -37824,37 +37827,37 @@ $('.delete-btn').click(function (e) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$('.mobile-video-options').click(function (e) {
-  var courseId = $(e.target).parent().prev().prev().val();
-  var videoId = $(e.target).parent().prev().val();
-  var video = $(e.target).parent().parent().parent();
-  $('.video-options-menu').css('bottom', '75px');
-  $('.add-video-col').css('bottom', '230px');
+jQuery('.mobile-video-options').click(function (e) {
+  var courseId = jQuery(e.target).parent().prev().prev().val();
+  var videoId = jQuery(e.target).parent().prev().val();
+  var video = jQuery(e.target).parent().parent().parent();
+  jQuery('.video-options-menu').css('bottom', '75px');
+  jQuery('.add-video-col').css('bottom', '230px');
 
   if (courseId != "") {
-    $('.edit-video').attr("href", "/course/" + courseId + "/video/edit/" + videoId);
+    jQuery('.edit-video').attr("href", "/course/" + courseId + "/video/edit/" + videoId);
   } else {
-    $('.edit-video').attr("href", "/course/video/edit/" + videoId);
+    jQuery('.edit-video').attr("href", "/course/video/edit/" + videoId);
   }
 
-  $('.delete-video').prev().val(videoId);
-  $('.delete-video').click(function (e) {
+  jQuery('.delete-video').prev().val(videoId);
+  jQuery('.delete-video').click(function (e) {
     delete_course(video, courseId, videoId);
     hide_options(e);
   });
-  $('.cancel-btn').click(function (e) {
+  jQuery('.cancel-btn').click(function (e) {
     hide_options(e);
   });
 });
-$('.delete-video').click(function (e) {
-  var videoId = $(this).prev().attr('value');
-  var video = $(this).parent().parent();
-  var courseId = $(this).prev().prev().attr('value');
+jQuery('.delete-video').click(function (e) {
+  var videoId = jQuery(this).prev().attr('value');
+  var video = jQuery(this).parent().parent();
+  var courseId = jQuery(this).prev().prev().attr('value');
   delete_course(video, courseId, videoId);
 });
 
 function delete_course(video, courseId, videoId) {
-  $.ajax({
+  jQuery.ajax({
     method: "POST",
     url: '/course/getVideo',
     data: {
@@ -37862,21 +37865,21 @@ function delete_course(video, courseId, videoId) {
       courseId: courseId
     },
     headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
     }
   }).done(function (response) {
     console.log(response.video);
 
     if (response.message == "success") {
-      $('.popup-video-title').html(response.video.title);
-      $('.popup-video-picture').css('background-image', 'url(/images/uploads/' + response.video.tumbnail + ')');
-      $('#confirm').modal({
+      jQuery('.popup-video-title').html(response.video.title);
+      jQuery('.popup-video-picture').css('background-image', 'url(/images/uploads/' + response.video.tumbnail + ')');
+      jQuery('#confirm').modal({
         backdrop: 'static',
         keyboard: false
       }).on('click', '#delete-btn', function (e) {
         e.preventDefault();
         console.log(courseId);
-        $.ajax({
+        jQuery.ajax({
           method: "POST",
           url: '/course/video/delete',
           data: {
@@ -37884,14 +37887,14 @@ function delete_course(video, courseId, videoId) {
             courseId: courseId
           },
           headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
           }
         }).done(function (response) {
           if (response.message == "success") {
-            $('#confirm').modal('hide');
-            $(video).fadeOut(500, function () {
-              $(this).removeClass('d-flex');
-              $(this).addClass('d-none');
+            jQuery('#confirm').modal('hide');
+            jQuery(video).fadeOut(500, function () {
+              jQuery(this).removeClass('d-flex');
+              jQuery(this).addClass('d-none');
             });
           }
         });
@@ -37901,8 +37904,8 @@ function delete_course(video, courseId, videoId) {
 }
 
 function hide_options(e) {
-  $('.video-options-menu').css('bottom', '-80px');
-  $('.add-video-col').css('bottom', '110px');
+  jQuery('.video-options-menu').css('bottom', '-80px');
+  jQuery('.add-video-col').css('bottom', '110px');
 }
 
 /***/ }),
@@ -37914,18 +37917,18 @@ function hide_options(e) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$('.filter-menu').click(function () {
-  $('.filter-container').removeClass('d-none');
+jQuery('.filter-menu').click(function () {
+  jQuery('.filter-container').removeClass('d-none');
 });
-$('.close-filter').click(function () {
-  $('.filter-container').addClass('d-none');
+jQuery('.close-filter').click(function () {
+  jQuery('.filter-container').addClass('d-none');
 });
-$('.filter-form').change(function (e) {
-  var search = $('#search').val();
-  var tags = $('#tags option:selected').val();
-  var sort = $('#sort option:selected').val();
-  var rating = $('input[name=rating]:checked').val();
-  $.ajax({
+jQuery('.filter-form').change(function (e) {
+  var search = jQuery('#search').val();
+  var tags = jQuery('#tags option:selected').val();
+  var sort = jQuery('#sort option:selected').val();
+  var rating = jQuery('input[name=rating]:checked').val();
+  jQuery.ajax({
     type: 'GET',
     url: '/home',
     data: {
@@ -37935,14 +37938,14 @@ $('.filter-form').change(function (e) {
       rating: rating
     },
     headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
     }
   }).done(function (response) {
     console.log(response);
 
     if (response.message == "success") {
-      $(".courses").remove();
-      $(".courses-wrapper").append(response.coursesHTML);
+      jQuery(".courses").remove();
+      jQuery(".courses-wrapper").append(response.coursesHTML);
     }
   });
 });
@@ -38050,11 +38053,11 @@ if (typeof hamburger_menu !== "undefined" && hamburger_menu != null) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var multiSelect = $('#tags').val();
+var multiSelect = jQuery('#tags').val();
 
 if (typeof multiSelect !== "undefined" && multiSelect != null) {
-  $(function () {
-    $('#tags').multipleSelect();
+  jQuery(function () {
+    jQuery('#tags').multipleSelect();
   });
 }
 
@@ -38067,24 +38070,24 @@ if (typeof multiSelect !== "undefined" && multiSelect != null) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var profile_picture_input = $('#profile_picture').val();
+var profile_picture_input = jQuery('#profile_picture').val();
 
 if (typeof profile_picture_input !== "undefined" && profile_picture_input != null) {
-  $('#profile_picture').on('change', function (e) {
+  jQuery('#profile_picture').on('change', function (e) {
     var reader = new FileReader();
 
     reader.onload = function () {
-      $('.edit-profile-image').css('background-image', 'url(' + reader.result + ')');
+      jQuery('.edit-profile-image').css('background-image', 'url(' + reader.result + ')');
     };
 
     reader.readAsDataURL(e.target.files[0]);
   });
 }
 
-var tumbnail_input = $('#tumbnail').val();
+var tumbnail_input = jQuery('#tumbnail').val();
 
 if (typeof tumbnail_input !== "undefined" && tumbnail_input != null) {
-  $('#tumbnail').on('change', function (e) {
+  jQuery('#tumbnail').on('change', function (e) {
     var x = window.matchMedia("(max-width: 768px)");
 
     if (x.matches) {
@@ -38096,15 +38099,15 @@ if (typeof tumbnail_input !== "undefined" && tumbnail_input != null) {
       }
 
       console.log(filename);
-      $('p.edit-tumbnail').html(filename);
+      jQuery('p.edit-tumbnail').html(filename);
     } else {
       var reader = new FileReader();
 
       reader.onload = function () {
-        $('div.edit-tumbnail, label.edit-tumbnail').css('background-image', 'url(' + reader.result + ')');
-        $('label.edit-tumbnail').addClass('tumbnail');
-        $('.fa-pencil').removeClass('d-none');
-        $('.add-icon').addClass('d-none');
+        jQuery('div.edit-tumbnail, label.edit-tumbnail').css('background-image', 'url(' + reader.result + ')');
+        jQuery('label.edit-tumbnail').addClass('tumbnail');
+        jQuery('.fa-pencil').removeClass('d-none');
+        jQuery('.add-icon').addClass('d-none');
       };
 
       reader.readAsDataURL(e.target.files[0]);
@@ -38112,10 +38115,10 @@ if (typeof tumbnail_input !== "undefined" && tumbnail_input != null) {
   });
 }
 
-var video_input = $('#video').val();
+var video_input = jQuery('#video').val();
 
 if (typeof video_input !== "undefined" && video_input != null) {
-  $('#video').on('change', function (e) {
+  jQuery('#video').on('change', function (e) {
     var x = window.matchMedia("(max-width: 768px)");
 
     if (x.matches) {
@@ -38127,14 +38130,14 @@ if (typeof video_input !== "undefined" && video_input != null) {
       }
 
       console.log(filename);
-      $('p.edit-video').html(filename);
+      jQuery('p.edit-video').html(filename);
     } else {
-      $('label.edit-video').removeClass('d-md-flex');
-      $('.video-preview').removeClass('d-md-none');
-      $('.video-preview').addClass('d-md-block');
-      var $source = $('#video-source');
-      $source[0].src = URL.createObjectURL(this.files[0]);
-      $source.parent()[0].load();
+      jQuery('label.edit-video').removeClass('d-md-flex');
+      jQuery('.video-preview').removeClass('d-md-none');
+      jQuery('.video-preview').addClass('d-md-block');
+      var jQuerysource = jQuery('#video-source');
+      jQuerysource[0].src = URL.createObjectURL(this.files[0]);
+      jQuerysource.parent()[0].load();
     }
   });
 }
@@ -38148,20 +38151,20 @@ if (typeof video_input !== "undefined" && video_input != null) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$('.reply-rating').click(function (e) {
-  var reply_btn = $(e.target);
-  var form = $(e.target).next();
+jQuery('.reply-rating').click(function (e) {
+  var reply_btn = jQuery(e.target);
+  var form = jQuery(e.target).next();
   reply_btn.addClass('d-none');
   form.removeClass('d-none');
 });
-$('.add-reply').click(function (e) {
+jQuery('.add-reply').click(function (e) {
   e.preventDefault();
-  var reply = $(e.target).parent().prev().prev().children('input').val();
-  var ratingId = $(e.target).parent().prev().closest('.ratingId').val();
-  var form = $(e.target).closest('form');
-  var reply_container = $(e.target).closest('form').next();
-  var reply_container_text = $(reply_container).find('.reply_text');
-  $.ajax({
+  var reply = jQuery(e.target).parent().prev().prev().children('input').val();
+  var ratingId = jQuery(e.target).parent().prev().closest('.ratingId').val();
+  var form = jQuery(e.target).closest('form');
+  var reply_container = jQuery(e.target).closest('form').next();
+  var reply_container_text = jQuery(reply_container).find('.reply_text');
+  jQuery.ajax({
     method: "POST",
     url: '/course/ratings/reply',
     data: {
@@ -38169,13 +38172,13 @@ $('.add-reply').click(function (e) {
       ratingId: ratingId
     },
     headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
     }
   }).done(function (response) {
     if (response.message == "success") {
-      $(form).fadeOut(300, function () {
-        $(reply_container).removeClass('d-none');
-        $(reply_container_text).html(reply);
+      jQuery(form).fadeOut(300, function () {
+        jQuery(reply_container).removeClass('d-none');
+        jQuery(reply_container_text).html(reply);
       });
     }
   });
@@ -38190,17 +38193,17 @@ $('.add-reply').click(function (e) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$('.report-user').click(function () {
-  var userId = $(this).find('.userId').attr('value');
+jQuery('.report-user').click(function () {
+  var userId = jQuery(this).find('.userId').attr('value');
   console.log(userId);
-  $.ajax({
+  jQuery.ajax({
     method: "POST",
     url: '/profile/user/report',
     data: {
       userId: userId
     },
     headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
     }
   }).done(function (response) {
     console.log(response);
@@ -38218,17 +38221,17 @@ $('.report-user').click(function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$('.report-video').click(function () {
-  var videoId = $(this).find('.videoId').attr('value');
+jQuery('.report-video').click(function () {
+  var videoId = jQuery(this).find('.videoId').attr('value');
   console.log(videoId);
-  $.ajax({
+  jQuery.ajax({
     method: "POST",
     url: '/course/video/report',
     data: {
       videoId: videoId
     },
     headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
     }
   }).done(function (response) {
     console.log(response);
@@ -38239,6 +38242,66 @@ $('.report-video').click(function () {
 
 /***/ }),
 
+/***/ "./resources/js/gava/revenue-chart.js":
+/*!********************************************!*\
+  !*** ./resources/js/gava/revenue-chart.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// months
+var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var d = new Date();
+var month1name = monthNames[d.getMonth() - 2];
+var month2name = monthNames[d.getMonth() - 1];
+var month3name = monthNames[d.getMonth()]; // chart colors
+
+var colors = ['#291875'];
+var month1data = document.querySelector('.revenue-month1');
+var month2data = document.querySelector('.revenue-month2');
+var month3data = document.querySelector('.revenue-month3');
+
+if (month1data != null && month2data != null && month3data != null) {
+  // revenues
+  var month1dataValue = document.querySelector('.revenue-month1').innerHTML;
+  var month2dataValue = document.querySelector('.revenue-month2').innerHTML;
+  var month3dataValue = document.querySelector('.revenue-month3').innerHTML;
+  /* large line chart */
+
+  var chLine = document.getElementById("revenue");
+  var chartData = {
+    labels: [month1name, month2name, month3name],
+    datasets: [{
+      data: [month1data, month2data, month3data],
+      backgroundColor: 'transparent',
+      borderColor: colors[0],
+      borderWidth: 4,
+      pointBackgroundColor: colors[0]
+    }]
+  };
+
+  if (chLine) {
+    new Chart(chLine, {
+      type: 'line',
+      data: chartData,
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: false
+            }
+          }]
+        },
+        legend: {
+          display: false
+        }
+      }
+    });
+  }
+}
+
+/***/ }),
+
 /***/ "./resources/js/gava/star-selector.js":
 /*!********************************************!*\
   !*** ./resources/js/gava/star-selector.js ***!
@@ -38246,53 +38309,53 @@ $('.report-video').click(function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var content_rating = $('.content-rating').val();
-var quality_rating = $('.quality-rating').val();
-var rating_filter = $('.rating-filter').val();
+var content_rating = jQuery('.content-rating').val();
+var quality_rating = jQuery('.quality-rating').val();
+var rating_filter = jQuery('.rating-filter').val();
 
 if (typeof content_rating !== "undefined" && content_rating != null || typeof quality_rating !== "undefined" && quality_rating != null) {
   var reset_content_stars = function reset_content_stars() {
-    $('.content-rating .star').removeClass('star-checked');
+    jQuery('.content-rating .star').removeClass('star-checked');
   };
 
   var reset_quality_stars = function reset_quality_stars() {
-    $('.quality-rating .star').removeClass('star-checked');
+    jQuery('.quality-rating .star').removeClass('star-checked');
   };
 
-  $('input[type=radio][name=content]').click(function (e) {
+  jQuery('input[type=radio][name=content]').click(function (e) {
     reset_content_stars();
-    var stars_value = $(e.target).val();
-    var stars = $('.content-rating .star');
+    var stars_value = jQuery(e.target).val();
+    var stars = jQuery('.content-rating .star');
     console.log(stars[0]);
 
     for (i = 0; i <= stars_value - 1; i++) {
-      $(stars[i]).addClass('star-checked');
+      jQuery(stars[i]).addClass('star-checked');
     }
   });
-  $('input[type=radio][name=quality]').click(function (e) {
+  jQuery('input[type=radio][name=quality]').click(function (e) {
     reset_quality_stars();
-    var stars_value = $(e.target).val();
-    var stars = $('.quality-rating .star');
+    var stars_value = jQuery(e.target).val();
+    var stars = jQuery('.quality-rating .star');
     console.log(stars[0]);
 
     for (i = 0; i <= stars_value - 1; i++) {
-      $(stars[i]).addClass('star-checked');
+      jQuery(stars[i]).addClass('star-checked');
     }
   });
 }
 
 if (typeof rating_filter !== "undefined" && rating_filter != null) {
   var reset_rating_stars = function reset_rating_stars() {
-    $('.rating-filter .star').removeClass('star-checked');
+    jQuery('.rating-filter .star').removeClass('star-checked');
   };
 
-  $('input[type=radio][name=rating]').click(function (e) {
+  jQuery('input[type=radio][name=rating]').click(function (e) {
     reset_rating_stars();
-    var stars_value = $(e.target).val();
-    var stars = $('.rating-filter .star'); //console.log(stars[0]);
+    var stars_value = jQuery(e.target).val();
+    var stars = jQuery('.rating-filter .star'); //console.log(stars[0]);
 
     for (i = 0; i <= stars_value - 1; i++) {
-      $(stars[i]).addClass('star-checked');
+      jQuery(stars[i]).addClass('star-checked');
     }
   });
 }
@@ -38306,25 +38369,25 @@ if (typeof rating_filter !== "undefined" && rating_filter != null) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$('#creators').click(function () {
-  $('#courses').removeClass('active');
-  $('#courses').addClass('non-active');
-  $('#creators').removeClass('non-active');
-  $('#creators').addClass('active');
-  $('#creatorsContainer').removeClass('d-none');
-  $('#creatorsContainer').addClass('d-block');
-  $('#coursesContainer').addClass('d-none');
-  $('#coursesContainer').removeClass('d-block');
+jQuery('#creators').click(function () {
+  jQuery('#courses').removeClass('active');
+  jQuery('#courses').addClass('non-active');
+  jQuery('#creators').removeClass('non-active');
+  jQuery('#creators').addClass('active');
+  jQuery('#creatorsContainer').removeClass('d-none');
+  jQuery('#creatorsContainer').addClass('d-block');
+  jQuery('#coursesContainer').addClass('d-none');
+  jQuery('#coursesContainer').removeClass('d-block');
 });
-$('#courses').click(function () {
-  $('#creators').removeClass('active');
-  $('#creators').addClass('non-active');
-  $('#courses').removeClass('non-active');
-  $('#courses').addClass('active');
-  $('#coursesContainer').removeClass('d-none');
-  $('#coursesContainer').addClass('d-block');
-  $('#creatorsContainer').addClass('d-none');
-  $('#creatorsContainer').removeClass('d-block');
+jQuery('#courses').click(function () {
+  jQuery('#creators').removeClass('active');
+  jQuery('#creators').addClass('non-active');
+  jQuery('#courses').removeClass('non-active');
+  jQuery('#courses').addClass('active');
+  jQuery('#coursesContainer').removeClass('d-none');
+  jQuery('#coursesContainer').addClass('d-block');
+  jQuery('#creatorsContainer').addClass('d-none');
+  jQuery('#creatorsContainer').removeClass('d-block');
 });
 
 /***/ }),
@@ -38336,131 +38399,131 @@ $('#courses').click(function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$('#sub1').click(function () {
-  $('.descriptionBackground').removeClass('d-none');
-  $('.descriptionBackground').fadeIn(500, function () {
-    $('.description').fadeIn();
-    $('.description').removeClass('d-none');
-    $('.description').addClass('d-flex');
-    $('.description img').attr("src", "images/icon1.svg");
-    $('.description p').html("<strong class='text-white'>hardware, software, and interactive</strong> services will continue to rapidly evolve, creating many new careers, asall phones become smartphones, wearable capabilities expand, and our primary computer and tablets continue to evolve as our laptop replacement. This new level of mobility will allow any size business to transform how it markets, sells, communicates, collaborates, educates, trains, and innovates. Augmented Reality (AR)and Virtual Reality (VR) will become increasingly mobile, playing a major role in direct and indirect job creation.");
+jQuery('#sub1').click(function () {
+  jQuery('.descriptionBackground').removeClass('d-none');
+  jQuery('.descriptionBackground').fadeIn(500, function () {
+    jQuery('.description').fadeIn();
+    jQuery('.description').removeClass('d-none');
+    jQuery('.description').addClass('d-flex');
+    jQuery('.description img').attr("src", "images/icon1.svg");
+    jQuery('.description p').html("<strong class='text-white'>hardware, software, and interactive</strong> services will continue to rapidly evolve, creating many new careers, asall phones become smartphones, wearable capabilities expand, and our primary computer and tablets continue to evolve as our laptop replacement. This new level of mobility will allow any size business to transform how it markets, sells, communicates, collaborates, educates, trains, and innovates. Augmented Reality (AR)and Virtual Reality (VR) will become increasingly mobile, playing a major role in direct and indirect job creation.");
   });
 });
-$('#sub2').click(function () {
-  $('.descriptionBackground').removeClass('d-none');
-  $('.descriptionBackground').fadeIn(500, function () {
-    $('.description').fadeIn();
-    $('.description').removeClass('d-none');
-    $('.description').addClass('d-flex');
-    $('.description img').attr("src", "images/icon2.svg");
-    $('.description p').html("<strong class='text-white'>remote visual communications</strong> is rapidly evolving into a primary relationship-building tool for businesses of all sizes asemployees use smartphones, tablets, and laptops, in combination with current enterprise-level video conferencing systems combined with mobile conferencing apps, to communicate at new levels with customers, partners, and employees.");
+jQuery('#sub2').click(function () {
+  jQuery('.descriptionBackground').removeClass('d-none');
+  jQuery('.descriptionBackground').fadeIn(500, function () {
+    jQuery('.description').fadeIn();
+    jQuery('.description').removeClass('d-none');
+    jQuery('.description').addClass('d-flex');
+    jQuery('.description img').attr("src", "images/icon2.svg");
+    jQuery('.description p').html("<strong class='text-white'>remote visual communications</strong> is rapidly evolving into a primary relationship-building tool for businesses of all sizes asemployees use smartphones, tablets, and laptops, in combination with current enterprise-level video conferencing systems combined with mobile conferencing apps, to communicate at new levels with customers, partners, and employees.");
   });
 });
-$('#sub3').click(function () {
-  $('.descriptionBackground').removeClass('d-none');
-  $('.descriptionBackground').fadeIn(500, function () {
-    $('.description').fadeIn();
-    $('.description').removeClass('d-none');
-    $('.description').addClass('d-flex');
-    $('.description img').attr("src", "images/icon3.svg");
-    $('.description p').html("<strong class='text-white'>social enterprise management</strong> will continue to grow rapidly as organizations shift from an Information Age “informing”model to a Communication Age “communicating and engaging” model. New careers will emerge as Social Software for business rapidly grows with applications to enhance relationships, collaboration, networking, social validation, and more. Social Search will increasingly shape careers as marketers, researchers, and those on Wall Street create applications and services to tap into millions of daily tweets, Facebook conversations, and much more, providing real-time analysis of many key consumer metrics.");
+jQuery('#sub3').click(function () {
+  jQuery('.descriptionBackground').removeClass('d-none');
+  jQuery('.descriptionBackground').fadeIn(500, function () {
+    jQuery('.description').fadeIn();
+    jQuery('.description').removeClass('d-none');
+    jQuery('.description').addClass('d-flex');
+    jQuery('.description img').attr("src", "images/icon3.svg");
+    jQuery('.description p').html("<strong class='text-white'>social enterprise management</strong> will continue to grow rapidly as organizations shift from an Information Age “informing”model to a Communication Age “communicating and engaging” model. New careers will emerge as Social Software for business rapidly grows with applications to enhance relationships, collaboration, networking, social validation, and more. Social Search will increasingly shape careers as marketers, researchers, and those on Wall Street create applications and services to tap into millions of daily tweets, Facebook conversations, and much more, providing real-time analysis of many key consumer metrics.");
   });
 });
-$('#sub4').click(function () {
-  $('.descriptionBackground').removeClass('d-none');
-  $('.descriptionBackground').fadeIn(500, function () {
-    $('.description').fadeIn();
-    $('.description').removeClass('d-none');
-    $('.description').addClass('d-flex');
-    $('.description img').attr("src", "images/icon4.svg");
-    $('.description p').html("<strong class='text-white'>cybersecurity and forensics</strong> careers will grow rapidly as we become increasingly connected and dependent on computer systems and machines using intelligent sensors connected to just about everything. Careers in data and information forensics will grow rapidly as the need to solve cyber crimes increases.");
+jQuery('#sub4').click(function () {
+  jQuery('.descriptionBackground').removeClass('d-none');
+  jQuery('.descriptionBackground').fadeIn(500, function () {
+    jQuery('.description').fadeIn();
+    jQuery('.description').removeClass('d-none');
+    jQuery('.description').addClass('d-flex');
+    jQuery('.description img').attr("src", "images/icon4.svg");
+    jQuery('.description p').html("<strong class='text-white'>cybersecurity and forensics</strong> careers will grow rapidly as we become increasingly connected and dependent on computer systems and machines using intelligent sensors connected to just about everything. Careers in data and information forensics will grow rapidly as the need to solve cyber crimes increases.");
   });
 });
-$('#sub5').click(function () {
-  $('.descriptionBackground').removeClass('d-none');
-  $('.descriptionBackground').fadeIn(500, function () {
-    $('.description').fadeIn();
-    $('.description').removeClass('d-none');
-    $('.description').addClass('d-flex');
-    $('.description img').attr("src", "images/icon5.svg");
-    $('.description p').html("<strong class='text-white'>3D printing</strong> will create many new careers in manufacturing as this revolutionary technology allows any size company to manufacture quickly, locally, and with far fewer costs. Additive manufacturing builds things by depositing material, typically plastic or metal, layer by layer, until the final product is finished. Examples of final products today include jewelry, iPhone cases, shoes, car dashboards, parts for jet engines, prosthetic limbs, and much more.");
+jQuery('#sub5').click(function () {
+  jQuery('.descriptionBackground').removeClass('d-none');
+  jQuery('.descriptionBackground').fadeIn(500, function () {
+    jQuery('.description').fadeIn();
+    jQuery('.description').removeClass('d-none');
+    jQuery('.description').addClass('d-flex');
+    jQuery('.description img').attr("src", "images/icon5.svg");
+    jQuery('.description p').html("<strong class='text-white'>3D printing</strong> will create many new careers in manufacturing as this revolutionary technology allows any size company to manufacture quickly, locally, and with far fewer costs. Additive manufacturing builds things by depositing material, typically plastic or metal, layer by layer, until the final product is finished. Examples of final products today include jewelry, iPhone cases, shoes, car dashboards, parts for jet engines, prosthetic limbs, and much more.");
   });
 });
-$('#sub6').click(function () {
-  $('.descriptionBackground').removeClass('d-none');
-  $('.descriptionBackground').fadeIn(500, function () {
-    $('.description').fadeIn();
-    $('.description').removeClass('d-none');
-    $('.description').addClass('d-flex');
-    $('.description img').attr("src", "images/icon6.svg");
-    $('.description p').html("<strong class='text-white'>VR, AR & MR</strong>, coupled with the Gamification of Education, will create many new careers as corporations and educational institutions at all levels accelerate learning by using advanced simulations, VR, and skill-based learning systems that are self-diagnostic, interactive, game-like, and competitive, all focused on giving the user an immersive experience thanks to a photorealistic 3D interface.");
+jQuery('#sub6').click(function () {
+  jQuery('.descriptionBackground').removeClass('d-none');
+  jQuery('.descriptionBackground').fadeIn(500, function () {
+    jQuery('.description').fadeIn();
+    jQuery('.description').removeClass('d-none');
+    jQuery('.description').addClass('d-flex');
+    jQuery('.description img').attr("src", "images/icon6.svg");
+    jQuery('.description p').html("<strong class='text-white'>VR, AR & MR</strong>, coupled with the Gamification of Education, will create many new careers as corporations and educational institutions at all levels accelerate learning by using advanced simulations, VR, and skill-based learning systems that are self-diagnostic, interactive, game-like, and competitive, all focused on giving the user an immersive experience thanks to a photorealistic 3D interface.");
   });
 });
-$('#sub7').click(function () {
-  $('.descriptionBackground').removeClass('d-none');
-  $('.descriptionBackground').fadeIn(500, function () {
-    $('.description').fadeIn();
-    $('.description').removeClass('d-none');
-    $('.description').addClass('d-flex');
-    $('.description img').attr("src", "images/icon7.svg");
-    $('.description p').html("<strong class='text-white'>cloud services</strong> and virtualization will be increasingly embraced by businesses of all sizes, as this represents a major shift in how organizations obtain and maintain software, hardware, and computing capacity. IT is rapidly becoming an on-demand service that is rapidly transforming all business processes, resulting in a rapid evolution of current careers as well as creating new careers in every functional area.");
+jQuery('#sub7').click(function () {
+  jQuery('.descriptionBackground').removeClass('d-none');
+  jQuery('.descriptionBackground').fadeIn(500, function () {
+    jQuery('.description').fadeIn();
+    jQuery('.description').removeClass('d-none');
+    jQuery('.description').addClass('d-flex');
+    jQuery('.description img').attr("src", "images/icon7.svg");
+    jQuery('.description p').html("<strong class='text-white'>cloud services</strong> and virtualization will be increasingly embraced by businesses of all sizes, as this represents a major shift in how organizations obtain and maintain software, hardware, and computing capacity. IT is rapidly becoming an on-demand service that is rapidly transforming all business processes, resulting in a rapid evolution of current careers as well as creating new careers in every functional area.");
   });
 });
-$('#sub8').click(function () {
-  $('.descriptionBackground').removeClass('d-none');
-  $('.descriptionBackground').fadeIn(500, function () {
-    $('.description').fadeIn();
-    $('.description').removeClass('d-none');
-    $('.description').addClass('d-flex');
-    $('.description img').attr("src", "images/icon8.svg");
-    $('.description p').html("<strong class='text-white'>big data</strong> describe the technologies and techniques used to capture and utilize the exponentially increasing streams of data with the goal of bringing enterprise-wide visibility and insights to make rapid critical decisions. This new level of data integration and analytics will require many new skills and cross-functional training in order to take advantage of new opportunities as well as break down the many data and organizational silos that still exist.");
+jQuery('#sub8').click(function () {
+  jQuery('.descriptionBackground').removeClass('d-none');
+  jQuery('.descriptionBackground').fadeIn(500, function () {
+    jQuery('.description').fadeIn();
+    jQuery('.description').removeClass('d-none');
+    jQuery('.description').addClass('d-flex');
+    jQuery('.description img').attr("src", "images/icon8.svg");
+    jQuery('.description p').html("<strong class='text-white'>big data</strong> describe the technologies and techniques used to capture and utilize the exponentially increasing streams of data with the goal of bringing enterprise-wide visibility and insights to make rapid critical decisions. This new level of data integration and analytics will require many new skills and cross-functional training in order to take advantage of new opportunities as well as break down the many data and organizational silos that still exist.");
   });
 });
-$('#sub9').click(function () {
-  $('.descriptionBackground').removeClass('d-none');
-  $('.descriptionBackground').fadeIn(500, function () {
-    $('.description').fadeIn();
-    $('.description').removeClass('d-none');
-    $('.description').addClass('d-flex');
-    $('.description img').attr("src", "images/icon9.svg");
-    $('.description p').html("<strong class='text-white'>AI & machine learning</strong> using natural language voice commands was launched with Apple’s Siri, which was rapidly followed by Google, Microsoft, Amazon, and others all offering what is rapidly evolving into a mobile electronic concierge on your phone, tablet, and television. The technology will rapidly evolve, and soon every profession from retailers to maintenance workers will have an Alexa-like assistant. Adding an epersonal assistant to support an existing product and/or service will create many new careers.");
+jQuery('#sub9').click(function () {
+  jQuery('.descriptionBackground').removeClass('d-none');
+  jQuery('.descriptionBackground').fadeIn(500, function () {
+    jQuery('.description').fadeIn();
+    jQuery('.description').removeClass('d-none');
+    jQuery('.description').addClass('d-flex');
+    jQuery('.description img').attr("src", "images/icon9.svg");
+    jQuery('.description p').html("<strong class='text-white'>AI & machine learning</strong> using natural language voice commands was launched with Apple’s Siri, which was rapidly followed by Google, Microsoft, Amazon, and others all offering what is rapidly evolving into a mobile electronic concierge on your phone, tablet, and television. The technology will rapidly evolve, and soon every profession from retailers to maintenance workers will have an Alexa-like assistant. Adding an epersonal assistant to support an existing product and/or service will create many new careers.");
   });
 });
-$('#sub10').click(function () {
-  $('.descriptionBackground').removeClass('d-none');
-  $('.descriptionBackground').fadeIn(500, function () {
-    $('.description').fadeIn();
-    $('.description').removeClass('d-none');
-    $('.description').addClass('d-flex');
-    $('.description img').attr("src", "images/icon10.svg");
-    $('.description p').html("<strong class='text-white'>3D Web</strong> will transform today’s Internet experience (which is like looking at a flat piece of paper with a few photos, embedded video, and a few hyperlinks) to a true 3D experience, similar to today’s video games, where you can virtually walk into a showroom, look around, and both listen to and see the new car you are interested in, or whatever the website is trying to show you. This will employ many new graphic artists, designers, and programmers.");
+jQuery('#sub10').click(function () {
+  jQuery('.descriptionBackground').removeClass('d-none');
+  jQuery('.descriptionBackground').fadeIn(500, function () {
+    jQuery('.description').fadeIn();
+    jQuery('.description').removeClass('d-none');
+    jQuery('.description').addClass('d-flex');
+    jQuery('.description img').attr("src", "images/icon10.svg");
+    jQuery('.description p').html("<strong class='text-white'>3D Web</strong> will transform today’s Internet experience (which is like looking at a flat piece of paper with a few photos, embedded video, and a few hyperlinks) to a true 3D experience, similar to today’s video games, where you can virtually walk into a showroom, look around, and both listen to and see the new car you are interested in, or whatever the website is trying to show you. This will employ many new graphic artists, designers, and programmers.");
   });
 });
-$('#sub11').click(function () {
-  $('.descriptionBackground').removeClass('d-none');
-  $('.descriptionBackground').fadeIn(500, function () {
-    $('.description').fadeIn();
-    $('.description').removeClass('d-none');
-    $('.description').addClass('d-flex');
-    $('.description img').attr("src", "images/icon11.svg");
-    $('.description p').html("<strong class='text-white'>intelligent sensors and machines</strong> will create a rapidly growing Internet of Things (IoT),sharing real-time data, performing diagnostics, and making remote repairs. Many jobs will be created as we add intelligent connected sensors to bridges, roads, buildings, homes, and much more. In just a few years, there will be well over a billion machines talking to each other, and people will install them.");
+jQuery('#sub11').click(function () {
+  jQuery('.descriptionBackground').removeClass('d-none');
+  jQuery('.descriptionBackground').fadeIn(500, function () {
+    jQuery('.description').fadeIn();
+    jQuery('.description').removeClass('d-none');
+    jQuery('.description').addClass('d-flex');
+    jQuery('.description img').attr("src", "images/icon11.svg");
+    jQuery('.description p').html("<strong class='text-white'>intelligent sensors and machines</strong> will create a rapidly growing Internet of Things (IoT),sharing real-time data, performing diagnostics, and making remote repairs. Many jobs will be created as we add intelligent connected sensors to bridges, roads, buildings, homes, and much more. In just a few years, there will be well over a billion machines talking to each other, and people will install them.");
   });
 });
-$('#sub12').click(function () {
-  $('.descriptionBackground').removeClass('d-none');
-  $('.descriptionBackground').fadeIn(500, function () {
-    $('.description').fadeIn();
-    $('.description').removeClass('d-none');
-    $('.description').addClass('d-flex');
-    $('.description img').attr("src", "images/icon12.svg");
-    $('.description p').html("<strong class='text-white'>robotics and automation</strong> will take a giant leap forward thanks to networked sensors, artificial intelligence, and Amazon-like voice communications, taking the next level of repetitive jobs from humans. This will create many new career opportunities from design, programming, and installation to service and maintenance to name just a few.");
+jQuery('#sub12').click(function () {
+  jQuery('.descriptionBackground').removeClass('d-none');
+  jQuery('.descriptionBackground').fadeIn(500, function () {
+    jQuery('.description').fadeIn();
+    jQuery('.description').removeClass('d-none');
+    jQuery('.description').addClass('d-flex');
+    jQuery('.description img').attr("src", "images/icon12.svg");
+    jQuery('.description p').html("<strong class='text-white'>robotics and automation</strong> will take a giant leap forward thanks to networked sensors, artificial intelligence, and Amazon-like voice communications, taking the next level of repetitive jobs from humans. This will create many new career opportunities from design, programming, and installation to service and maintenance to name just a few.");
   });
 });
-$('.description .btn').click(function () {
-  $('.description').fadeOut(500, function () {
-    $('.descriptionBackground').fadeOut();
-    $('.description').addClass('d-none');
-    $('.description').removeClass('d-flex');
+jQuery('.description .btn').click(function () {
+  jQuery('.description').fadeOut(500, function () {
+    jQuery('.descriptionBackground').fadeOut();
+    jQuery('.description').addClass('d-none');
+    jQuery('.description').removeClass('d-flex');
   });
 });
 
@@ -38496,6 +38559,50 @@ $('.cancel-btn').click(function(e){
     $('.video-options-menu').css('bottom', '-80px');
     $('.add-video-col').css('bottom', '110px');
 });*/
+
+/***/ }),
+
+/***/ "./resources/js/gava/views-chart.js":
+/*!******************************************!*\
+  !*** ./resources/js/gava/views-chart.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// chart colors
+var colors = ['#291875', '#28a745', '#333333', '#c3e6cb', '#dc3545', '#6c757d'];
+/* large line chart */
+
+var chLine = document.getElementById("views");
+var chartData = {
+  labels: ["March", "April", "May"],
+  datasets: [{
+    data: [589, 445, 483],
+    backgroundColor: 'transparent',
+    borderColor: colors[0],
+    borderWidth: 4,
+    pointBackgroundColor: colors[0]
+  }]
+};
+
+if (chLine) {
+  new Chart(chLine, {
+    type: 'line',
+    data: chartData,
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: false
+          }
+        }]
+      },
+      legend: {
+        display: false
+      }
+    }
+  });
+}
 
 /***/ }),
 

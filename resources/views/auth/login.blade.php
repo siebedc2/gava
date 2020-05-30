@@ -66,7 +66,7 @@
                         <div class="form-group row mb-0">
                             <div class="col text-center">
                                 @if (Route::has('password.request'))
-                                    <a class="auth-link" href="{{ route('password.request') }}">
+                                    <a class="auth-link text-black-50" href="{{ route('password.request') }}">
                                         {{ __('Forgot your password?') }}
                                     </a>
                                 @endif

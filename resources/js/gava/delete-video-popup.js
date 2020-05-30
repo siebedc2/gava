@@ -1,42 +1,42 @@
-$('.mobile-video-options').click(function(e){
-    var courseId = $(e.target).parent().prev().prev().val();
-    var videoId = $(e.target).parent().prev().val();
-    var video = $(e.target).parent().parent().parent();
+jQuery('.mobile-video-options').click(function(e){
+    var courseId = jQuery(e.target).parent().prev().prev().val();
+    var videoId = jQuery(e.target).parent().prev().val();
+    var video = jQuery(e.target).parent().parent().parent();
 
-    $('.video-options-menu').css('bottom', '75px');
-    $('.add-video-col').css('bottom', '230px');
+    jQuery('.video-options-menu').css('bottom', '75px');
+    jQuery('.add-video-col').css('bottom', '230px');
 
     if(courseId != "") {
-        $('.edit-video').attr("href", "/course/" + courseId + "/video/edit/" + videoId);
+        jQuery('.edit-video').attr("href", "/course/" + courseId + "/video/edit/" + videoId);
     }
 
     else {
-        $('.edit-video').attr("href", "/course/video/edit/" + videoId);
+        jQuery('.edit-video').attr("href", "/course/video/edit/" + videoId);
     }
     
-    $('.delete-video').prev().val(videoId);
+    jQuery('.delete-video').prev().val(videoId);
     
-    $('.delete-video').click(function(e){
+    jQuery('.delete-video').click(function(e){
         delete_course(video, courseId, videoId);
         hide_options(e);
     })
 
-    $('.cancel-btn').click(function(e){
+    jQuery('.cancel-btn').click(function(e){
         hide_options(e);
     });
 
 })
 
-$('.delete-video').click(function(e){
-    var videoId = $(this).prev().attr('value');
-    var video = $(this).parent().parent();        
-    var courseId = $(this).prev().prev().attr('value');
+jQuery('.delete-video').click(function(e){
+    var videoId = jQuery(this).prev().attr('value');
+    var video = jQuery(this).parent().parent();        
+    var courseId = jQuery(this).prev().prev().attr('value');
 
     delete_course(video, courseId, videoId);
 })
 
 function delete_course(video, courseId, videoId) {
-    $.ajax({
+    jQuery.ajax({
         method: "POST",
         url: '/course/getVideo',
         data: {
@@ -44,7 +44,7 @@ function delete_course(video, courseId, videoId) {
             courseId : courseId
         },
         headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
         }
     })
     
@@ -54,16 +54,16 @@ function delete_course(video, courseId, videoId) {
 
         if (response.message == "success") {
 
-            $('.popup-video-title').html(response.video.title);
-            $('.popup-video-picture').css('background-image', 'url(/images/uploads/' + response.video.tumbnail + ')');
+            jQuery('.popup-video-title').html(response.video.title);
+            jQuery('.popup-video-picture').css('background-image', 'url(/images/uploads/' + response.video.tumbnail + ')');
             
-            $('#confirm').modal({ backdrop: 'static', keyboard: false }).on('click', '#delete-btn', function(e){
+            jQuery('#confirm').modal({ backdrop: 'static', keyboard: false }).on('click', '#delete-btn', function(e){
                 
                 e.preventDefault();
                 
                 console.log(courseId);
             
-                $.ajax({
+                jQuery.ajax({
                     method: "POST",
                     url: '/course/video/delete',
                     data: {
@@ -71,18 +71,18 @@ function delete_course(video, courseId, videoId) {
                         courseId : courseId
                     },
                     headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
                     }
                 })
                 
                 .done(function(response){    
                     
                     if (response.message == "success") {
-                        $('#confirm').modal('hide');
+                        jQuery('#confirm').modal('hide');
 
-                        $(video).fadeOut(500, function(){
-                            $(this).removeClass('d-flex');
-                            $(this).addClass('d-none');
+                        jQuery(video).fadeOut(500, function(){
+                            jQuery(this).removeClass('d-flex');
+                            jQuery(this).addClass('d-none');
                         });
                         
                     }
@@ -94,7 +94,7 @@ function delete_course(video, courseId, videoId) {
 }
 
 function hide_options(e) {
-    $('.video-options-menu').css('bottom', '-80px');
-    $('.add-video-col').css('bottom', '110px');
+    jQuery('.video-options-menu').css('bottom', '-80px');
+    jQuery('.add-video-col').css('bottom', '110px');
 }
 

@@ -1,17 +1,17 @@
-$('.cancel-subscription').click(function(e){
+jQuery('.cancel-subscription').click(function(e){
     e.preventDefault();
-    var form = $(this.parentElement);
-    var creatorId = $(this).prev().attr('value');
+    var form = jQuery(this.parentElement);
+    var creatorId = jQuery(this).prev().attr('value');
     console.log(creatorId);
 
-    $.ajax({
+    jQuery.ajax({
         method: "POST",
         url: '/subscriptions/getCreator',
         data: {
             creatorId : creatorId
         },
         headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
         }
     })
     
@@ -21,10 +21,10 @@ $('.cancel-subscription').click(function(e){
 
         if (response.message == "success") {
 
-            $('.popup-subscriber-name').html(response.creator.name);
-            $('.popup-subscriber-picture').css('background-image', 'url(/images/uploads/' + response.creator.profile_picture + ')');
+            jQuery('.popup-subscriber-name').html(response.creator.name);
+            jQuery('.popup-subscriber-picture').css('background-image', 'url(/images/uploads/' + response.creator.profile_picture + ')');
 
-            $('#confirm').modal({ backdrop: 'static', keyboard: false })
+            jQuery('#confirm').modal({ backdrop: 'static', keyboard: false })
                 .on('click', '#delete-btn', function(){
                 form.submit();
             });
