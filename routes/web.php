@@ -11,13 +11,20 @@
 |
 */
 
-// Landingspagina
-Route::get('/', [
-    'as'   => 'landing',
-    'uses' => 'HomeController@landing'
-]);
 
-Route::domain('platform.localhost')->group(function () {
+
+
+// Landingspagina
+Route::domain(config('app.url'))->group(function () {
+    Route::get('/', [
+        'as'   => 'landing',
+        'uses' => 'HomeController@landing'
+    ]);
+});
+
+$platformdomain = 'platform.' . parse_url(config('app.url'), PHP_URL_HOST);
+
+Route::domain($platformdomain)->group(function () {
     
 Route::get('/home', [
     'as'   => 'home',
