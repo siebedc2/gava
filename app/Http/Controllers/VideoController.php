@@ -191,11 +191,13 @@ class VideoController extends Controller
         if($this->_request->hasFile('video-comment')) {
             $file = $this->_request->file('video-comment');
             $name = $this->_request->file('video-comment')->getClientOriginalName();
+            $file->move('images/uploads', $name);
         }
 
         if($this->_request->hasFile('video-subcomment')) {
             $file = $this->_request->file('video-subcomment');
             $name = $this->_request->file('video-subcomment')->getClientOriginalName();
+            $file->move('images/uploads', $name);
         }
         
         if($comment->create($name, $this->_request->input('videoId'), $this->_request->input('commentId'), $this->_request->input('type'), $this->_request->input('subcomment'))) {

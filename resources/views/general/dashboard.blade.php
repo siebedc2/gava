@@ -16,8 +16,8 @@
 <div class="container">
     <div class="row d-flex flex-wrap-reverse">
         <div class="col-12 order-1">
-            <div class="row my-4">
-                <div class="col-md-5 offset-2 offset-md-4">
+            <div class="row my-4 text-center text-md-left">
+                <div class="col-md-5 offset-md-4">
                     <span id="my-courses" class="ml-md-5 border rounded-pill btn btn-primary active">my courses</span>
                     <span id="my-statistics" class="ml-1 border rounded-pill btn btn-primary non-active">my statistics</span>
                 </div>
@@ -29,7 +29,7 @@
     </div>
 </div>   
 
-<div class="container" id="myCoursesContainer">
+<div class="container pb-5 mb-5" id="myCoursesContainer">
     @include('components.delete-course-popup')
 
     <div class="row">
@@ -159,7 +159,7 @@
 </div>
       
 
-<div id="myStatisticsContainer" class="container d-none">
+<div id="myStatisticsContainer" class="container d-none pb-5 mb-5">
     @include('components.statistics-popup')
     <div class="row">
         <div class="col-12 col-md-6">
@@ -206,13 +206,13 @@
     </div> 
     
     <div class="row">
-        <div class="col-6 col-md-3 text-center">
+        <div class="col-6 col-md-3 text-center mb-3 mb-md-0">
             <div class="bg-light statistic-container pt-3 pb-1">
                 <h2 class="font-weight-normal">Total Subscribers</h2>
                 <p class="mb-0 statistics-number"><strong>{{ $subscribersAmount }}</strong></p>
             </div>
         </div>
-        <div class="col-6 col-md-3 text-center">
+        <div class="col-6 col-md-3 text-center mb-3 mb-md-0">
             <div class="bg-light statistic-container pt-3 pb-1">
                 <h2 class="font-weight-normal">Total revenue <span class="ml-2"><img class="mb-1 revenue-icon" src="/images/revenue-info.svg" alt="Info icon"></span></h2>
                 <p class="mb-0 statistics-number"><strong>&euro;{{ $subscriptionService->getTotalRevenue(Auth::id()) }}</strong></p>

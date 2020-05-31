@@ -144,6 +144,7 @@
   position: fixed !important;
   z-index: 50;
   bottom: 110px;
+  left: 0;
   transition: 0.3s all;
 }
 
@@ -446,6 +447,7 @@ h2 {
 
 .mobile-menu .nav-link {
   font-size: 14px;
+  padding: 10px;
 }
 
 .auth-link {
