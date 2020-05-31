@@ -595,6 +595,10 @@ span {
   font-size: 10px;
 }
 
+.statistic-container {
+  border-radius: 10px !important;
+}
+
 .rating-overview {
   border-bottom: 1px solid #dee2e6;
 }

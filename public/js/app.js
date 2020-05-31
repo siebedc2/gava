@@ -38272,7 +38272,7 @@ if (month1data != null && month2data != null && month3data != null) {
   var chartData = {
     labels: [month1name, month2name, month3name],
     datasets: [{
-      data: [month1data, month2data, month3data],
+      data: [month1dataValue, month2dataValue, month3dataValue],
       backgroundColor: 'transparent',
       borderColor: colors[0],
       borderWidth: 4,
@@ -38569,39 +38569,54 @@ $('.cancel-btn').click(function(e){
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// chart colors
-var colors = ['#291875', '#28a745', '#333333', '#c3e6cb', '#dc3545', '#6c757d'];
-/* large line chart */
+// months
+var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var d = new Date();
+var month1name = monthNames[d.getMonth() - 2];
+var month2name = monthNames[d.getMonth() - 1];
+var month3name = monthNames[d.getMonth()]; // chart colors
 
-var chLine = document.getElementById("views");
-var chartData = {
-  labels: ["March", "April", "May"],
-  datasets: [{
-    data: [589, 445, 483],
-    backgroundColor: 'transparent',
-    borderColor: colors[0],
-    borderWidth: 4,
-    pointBackgroundColor: colors[0]
-  }]
-};
+var colors = ['#291875'];
+var month1data = document.querySelector('.views-month1');
+var month2data = document.querySelector('.views-month2');
+var month3data = document.querySelector('.views-month3');
 
-if (chLine) {
-  new Chart(chLine, {
-    type: 'line',
-    data: chartData,
-    options: {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: false
-          }
-        }]
-      },
-      legend: {
-        display: false
+if (month1data != null && month2data != null && month3data != null) {
+  var month1dataValue = document.querySelector('.views-month1').innerHTML;
+  var month2dataValue = document.querySelector('.views-month2').innerHTML;
+  var month3dataValue = document.querySelector('.views-month3').innerHTML;
+  /* large line chart */
+
+  var chLine = document.getElementById("views");
+  var chartData = {
+    labels: [month1name, month2name, month3name],
+    datasets: [{
+      data: [month1dataValue, month2dataValue, month3dataValue],
+      backgroundColor: 'transparent',
+      borderColor: colors[0],
+      borderWidth: 4,
+      pointBackgroundColor: colors[0]
+    }]
+  };
+
+  if (chLine) {
+    new Chart(chLine, {
+      type: 'line',
+      data: chartData,
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: false
+            }
+          }]
+        },
+        legend: {
+          display: false
+        }
       }
-    }
-  });
+    });
+  }
 }
 
 /***/ }),

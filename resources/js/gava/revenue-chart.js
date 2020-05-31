@@ -26,7 +26,7 @@ if (month1data != null && month2data != null && month3data != null) {
     var chartData = {
         labels: [month1name, month2name, month3name],
         datasets: [{
-            data: [month1data, month2data, month3data],
+            data: [month1dataValue, month2dataValue, month3dataValue],
             backgroundColor: 'transparent',
             borderColor: colors[0],
             borderWidth: 4,

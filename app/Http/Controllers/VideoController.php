@@ -14,6 +14,7 @@ use App\Services\Like as LikeService;
 use App\Services\Upvote as UpvoteService;
 use App\Services\Rating as RatingService;
 use App\Services\RatingReply as RatingReplyService;
+use App\Services\View as ViewService;
 use Auth;
 
 class VideoController extends Controller
@@ -24,13 +25,14 @@ class VideoController extends Controller
         $this->_request = $request;
     }
 
-    public function details(CourseService $course, VideoService $video, CommentService $comment, SubscriptionService $subscription, $courseId, $videoId) {
+    public function details(CourseService $course, VideoService $video, CommentService $comment, SubscriptionService $subscription, ViewService $view, $courseId, $videoId) {
         $data['course'] = $course->getById($courseId);
         $data['video'] = $video->getById($videoId);
         $data['courseVideos'] = $video->getAllCourseVideos($courseId);
         //$data['comments'] = $comment->getAll($videoId);
         $data['subscribersAmount'] = $subscription->getAmountOfSubscribers($data['course']['user_id']);
         $data['subscribersIds'] = $subscription->getSubscriberId(Auth::id());
+        $view->create($data['course']->user->id);
         return view('general/video/details', $data);
     }
 

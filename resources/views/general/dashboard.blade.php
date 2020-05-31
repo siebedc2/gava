@@ -2,6 +2,7 @@
     $videoService           = new App\Services\Video(); 
     $ratingService          = new App\Services\Rating();
     $subscriptionService    = new App\Services\Subscription();
+    $viewService            = new App\Services\View();
 ?>
 
 @extends('layouts.app')
@@ -162,6 +163,10 @@
     @include('components.statistics-popup')
     <div class="row">
         <div class="col-12 col-md-6">
+            <p class="views-month1" hidden>{{ $viewService->getMonthViews(\Carbon\Carbon::now()->month-2, Auth::id()) }}</p>
+            <p class="views-month2" hidden>{{ $viewService->getMonthViews(\Carbon\Carbon::now()->month-1, Auth::id()) }}</p>
+            <p class="views-month3" hidden>{{ $viewService->getMonthViews(\Carbon\Carbon::now()->month, Auth::id()) }}</p>
+
             <div class="row">
                 <div class="col-12">
                     <h2 class="font-weight-normal">Views</h2>
@@ -169,7 +174,7 @@
             </div>
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <div class="card bg-light border-0">
+                    <div class="card bg-light statistic-container border-0">
                         <div class="card-body">
                             <canvas class="bg-ligth" id="views" height="100"></canvas>
                         </div>
@@ -178,7 +183,7 @@
             </div>
         </div>
 
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6 statistic-container">
             <p class="revenue-month1" hidden>{{ $subscriptionService->getMonthRevenue(\Carbon\Carbon::now()->month-2, Auth::id()) }}</p>
             <p class="revenue-month2" hidden>{{ $subscriptionService->getMonthRevenue(\Carbon\Carbon::now()->month-1, Auth::id()) }}</p>
             <p class="revenue-month3" hidden>{{ $subscriptionService->getMonthRevenue(\Carbon\Carbon::now()->month, Auth::id()) }}</p>
@@ -190,7 +195,7 @@
             </div>
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <div class="card bg-light border-0">
+                    <div class="card bg-light statistic-container border-0">
                         <div class="card-body">
                             <canvas class="bg-ligth" id="revenue" height="100"></canvas>
                         </div>
@@ -201,28 +206,28 @@
     </div> 
     
     <div class="row">
-        <div class="col-6 col-md-3 text-center rounded">
-            <div class="bg-light pt-3 pb-1">
+        <div class="col-6 col-md-3 text-center">
+            <div class="bg-light statistic-container pt-3 pb-1">
                 <h2 class="font-weight-normal">Total Subscribers</h2>
                 <p class="mb-0 statistics-number"><strong>{{ $subscribersAmount }}</strong></p>
             </div>
         </div>
-        <div class="col-6 col-md-3 text-center rounded">
-            <div class="bg-light pt-3 pb-1">
+        <div class="col-6 col-md-3 text-center">
+            <div class="bg-light statistic-container pt-3 pb-1">
                 <h2 class="font-weight-normal">Total revenue <span class="ml-2"><img class="mb-1 revenue-icon" src="/images/revenue-info.svg" alt="Info icon"></span></h2>
                 <p class="mb-0 statistics-number"><strong>&euro;{{ $subscriptionService->getTotalRevenue(Auth::id()) }}</strong></p>
             </div>
         </div>
-        <div class="col-6 col-md-3 text-center rounded">
-            <div class="bg-light pt-3 pb-1">
+        <div class="col-6 col-md-3 text-center">
+            <div class="bg-light statistic-container pt-3 pb-1">
                 <h2 class="font-weight-normal">Total Courses</h2>
                 <p class="mb-0 statistics-number"><strong>{{ $coursesAmount }}</strong></p>
             </div>
         </div>
-        <div class="col-6 col-md-3 text-center rounded">
-            <div class="bg-light pt-3 pb-1">
+        <div class="col-6 col-md-3 text-center">
+            <div class="bg-light statistic-container pt-3 pb-1">
                 <h2 class="font-weight-normal">Total Views</h2>
-                <p class="mb-0 statistics-number"><strong>1</strong></p>
+                <p class="mb-0 statistics-number"><strong>{{ $viewService->getTotal(Auth::id()) }}</strong></p>
             </div>
         </div>
     </div>
@@ -237,7 +242,7 @@
 
             <div class="row">
                 @foreach($subscriptions as $subscription)
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-6 my-2">
                     <a class="text-decoration-none" href="/profile/{{ $subscription->user_id }}">
                         <div class="row d-flex align-items-center">
                             <div class="col-2">
