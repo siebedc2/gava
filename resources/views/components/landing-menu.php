@@ -23,7 +23,7 @@
                             <a class="text-white link nav-link" href="#about">about</a>
                         </li>
                         <li class="nav-item mt-2 mt-md-0 ml-md-2">
-                            <a class="text-white link nav-link link-primary px-4 rounded-pill" href="/login">sign in</a>
+                            <a class="text-white link nav-link link-primary px-4 rounded-pill" href="http://platform.localhost/login">sign in</a>
                         </li>
                     </ul>
                 </div>

@@ -17,11 +17,8 @@ Route::get('/', [
     'uses' => 'HomeController@landing'
 ]);
 
-Route::get('/premium', [
-    'as'   => 'premium',
-    'uses' => 'HomeController@premium'
-]);
-
+Route::domain('platform.localhost')->group(function () {
+    
 Route::get('/home', [
     'as'   => 'home',
     'uses' => 'CourseController@index'
@@ -283,3 +280,4 @@ Route::prefix('/profile')->middleware('auth')->group(function() {
 
 // Authentication
 Auth::routes();
+});
