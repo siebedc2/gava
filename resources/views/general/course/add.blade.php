@@ -54,6 +54,17 @@
                             </label>
                             <input name="tumbnail" type="file" class="form-control-file position-static" id="tumbnail" required>
                         </div>
+                        @if ($errors->any())
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="alert text-center">
+                                        @foreach ($errors->all() as $error)
+                                        <p class="text-danger">{{ $error }}</p>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
 
                     <div class="col-12 col-md-5 offset-md-1">
@@ -101,13 +112,13 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-12 d-flex">
+                                    <div class="col-12 d-flex align-items-center">
                                         <div class="rating">
                                             @for ($i = 5; $i >= 1; $i--)
                                                 <span class="star"><i class="fa fa-star"></i></span>
                                             @endfor
                                         </div>
-                                        <p class="ml-2 text-black-50">(0)</p>
+                                        <p class="rating-amount ml-2 text-black-50">0</p>
                                     </div>
                                 </div>
                             </div>
@@ -132,20 +143,6 @@
                         @endif
                     </div>
                 </div>
-
-                @if ($errors->any())
-                <div class="row">
-                    <div class="col-12">
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                @endif
             </form>
         </div>
     </div>

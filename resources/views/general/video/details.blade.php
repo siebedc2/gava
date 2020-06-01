@@ -14,13 +14,13 @@
 @endsection
 
 @section('playerjs')
-<!--<script src="https://cdn.plrjs.com/player/2si44sh83212a/2c1cnkurl0zy.js" type="text/javascript"></script>-->
 <script src="https://cdn.plrjs.com/player/2si44sh83212a/wvw5lu0pdpjf.js"></script>
 @endsection
 
 @section('content')
 @include('components.menu')
 @include('components.cancel-subscription-popup')
+@include('components.share-video-popup')
 <div class="container mb-5 pb-5">
     <div class="row mt-4">
         <div class="col-12">
@@ -116,14 +116,14 @@
                                     <span class="star"><i class="fa fa-star"></i></span>
                                 @endfor
                             </div>
-                            <p class="text-black-50 mt-2 mb-0 ml-2">({{$rating['amountOfRatings']}})</p>
+                            <p class="rating-amount text-black-50 mt-2 mb-0 ml-2">{{$rating['amountOfRatings']}}</p>
                         @else
                             <div class="rating mt-2">
                                 @for ($i = 5; $i >= 1; $i--)
                                     <span class="star"><i class="fa fa-star"></i></span>
                                 @endfor
                             </div>
-                            <p class="text-black-50 mt-2 mb-0 ml-2">(0)</p>
+                            <p class="rating-amount text-black-50 mt-2 mb-0 ml-2">0</p>
                         @endif
                         
                     </div>
@@ -148,7 +148,7 @@
                             <div class="add-comment-form">
                                 <input type="hidden"  value="{{$video->id}}">
                                 <div class="form-group">
-                                    <input type="text" class="bg-light border-0 rounded-pill form-control" id="comment" placeholder="write a comment">
+                                    <input type="text" class="bg-light border-0 rounded-pill form-control pr-5" id="comment" placeholder="write a comment">
                                 </div>
                                 <button type="submit" class="add-comment border-0 bg-transparent"><i class="fa fa-paper-plane"></i></button>
                             </div>
@@ -174,8 +174,8 @@
                                 <a class="rounded-pill w-100 btn btn-tertiary" href="/course/{{$video->course_id}}/video/{{$video->id}}/ratings">ratings</a>
                             </div>
                             <div class="col-2 col-md-4 text-center">
-                                <a class="d-md-none rounded-circle w-100 btn btn-primary" href="/course/{{$video->course_id}}/video/{{$video->id}}/ratings"><i class="text-white fa fa-share-alt"></i></a>
-                                <a class="d-none d-md-block rounded-pill w-100 btn btn-quaternary" href="/course/{{$video->course_id}}/video/{{$video->id}}/ratings">share this video</a>
+                                <span class="d-md-none rounded-circle w-100 share-button  btn btn-primary"><i class="text-white fa fa-share-alt"></i></span>
+                                <span class="d-none d-md-block rounded-pill w-100 share-button btn btn-quaternary">share this video</span>
                             </div>
                         </div>
                     </div>
@@ -194,7 +194,7 @@
             @foreach($courseVideos as $courseVideo)
             @if($courseVideo->id != $video->id)
             <a href="
-                @if($video->exclusive == 'y' && $subscriptionService->hasSubscription(Auth::id(), $video->course->user->id))
+                @if($video->exclusive == 'y' && $subscriptionService->hasSubscription(Auth::id(), $video->course->user->id) || $video->course->user_id == Auth::id())
                     /course/{{$courseVideo->course_id}}/video/{{$courseVideo->id}}
                 @elseif($video->exclusive == 'y' && $subscriptionService->notSubsribedWhenVideoWasCreated($courseVideo->created_at, $video->course->user->id)) 
                     /subscribe/{{ $user->id }} 
@@ -206,12 +206,12 @@
                     <div class="d-flex justify-content-center align-items-center w-100 tumbnail 
                         @if($courseVideo->exclusive == 'y' && $subscriptionService->hasSubscription(Auth::id(), $video->course->user->id))
 
-                        @elseif($courseVideo->exclusive == 'y' && $subscriptionService->notSubsribedWhenVideoWasCreated($courseVideo->created_at, $video->course->user->id))
+                        @elseif($courseVideo->exclusive == 'y' && $subscriptionService->notSubsribedWhenVideoWasCreated($courseVideo->created_at, $video->course->user->id) && $video->course->user_id != Auth::id())
                             exclusive-tumbnail 
                         @endif" 
                         
                         style="background-image: url(/images/uploads/{{$courseVideo->tumbnail}});">
-                        @if($courseVideo->exclusive == 'y' && !$subscriptionService->hasSubscription(Auth::id(), $video->course->user->id) && $subscriptionService->notSubsribedWhenVideoWasCreated($courseVideo->created_at, $video->course->user->id) )
+                        @if($courseVideo->exclusive == 'y' && !$subscriptionService->hasSubscription(Auth::id(), $video->course->user->id) && $subscriptionService->notSubsribedWhenVideoWasCreated($courseVideo->created_at, $video->course->user->id) && $video->course->user_id != Auth::id())
                         <span class="rounded-pill btn btn-unlock btn-secondary">unlock video</span>
                         @endif
                     </div>
@@ -220,7 +220,12 @@
                     <div class="row">
                         <div class="col-12">
                             @if($courseVideo->exclusive == 'y') 
-                                @if($subscriptionService->hasSubscription(Auth::id(), $video->course->user->id))
+                                @if($video->course->user_id == Auth::id())
+                                    <div class="d-flex align-items-center mb-1">
+                                        <img class="lock" src="/images/unlocked.svg" alt="unlocked icon">
+                                        <p class="ml-2 mb-0">{{ $video->title }}</p>
+                                    </div>
+                                @elseif($subscriptionService->hasSubscription(Auth::id(), $video->course->user->id))
                                     <div class="d-flex align-items-center mb-1">
                                         <img class="lock" src="/images/unlocked.svg" alt="unlocked icon">
                                         <p class="ml-2 mb-0">{{ $courseVideo->title }}</p>
@@ -247,7 +252,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 d-flex">
+                        <div class="col-12 d-flex align-items-center">
                         @if(!empty($courseVideo->ratings))
                             <?php $rating = $ratingService->getAVG($courseVideo->id); ?>
                             <div class="rating">
@@ -259,14 +264,14 @@
                                     <span class="star"><i class="fa fa-star"></i></span>
                                 @endfor
                             </div>
-                            <p class="text-black-50 mb-0 ml-2">({{$rating['amountOfRatings']}})</p>
+                            <p class="rating-amount text-black-50 mb-0 ml-2">{{$rating['amountOfRatings']}}</p>
                         @else
                             <div class="rating">
                                 @for ($i = 5; $i >= 1; $i--)
                                     <span class="star"><i class="fa fa-star"></i></span>
                                 @endfor
                             </div>
-                            <p class="text-black-50 mb-0 ml-2">(0)</p>
+                            <p class="rating-amount text-black-50 mb-0 ml-2">0</p>
                         @endif
                         
                         </div>

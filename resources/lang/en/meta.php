@@ -18,7 +18,7 @@ return [
     'subscribe'             => 'Gava - Subscribe',
     'subscribeConfirmation' => 'Gava - Subscription confirmation',
     'ratingsVideo'          => 'Gava - Video ratings',
-    'addVideoRating'        => 'Gava - Add video rating',
+    'addVideoRating'        => 'Gava - Rate this video',
     'landing'               => 'Gava - Learn, teach, innovate',
     'subscribers'           => 'Gava - Subscribers',
     'password.request'      => 'Gava - Reset Password'

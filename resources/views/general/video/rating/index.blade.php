@@ -5,7 +5,7 @@
 <div class="container mb-5 mb-md-0">
     <div class="row mt-4 header">
         <div class="col-3 col-md-4 d-flex align-items-center">
-            <a href="{{ url()->previous() }}">
+            <a href="/course/{{Request::route('course_id')}}/video/{{Request::route('video_id')}}">
                 <img class="arrow-icon" src="/images/arrowBack.png" alt="Arrow back">
             </a>
         </div>
@@ -213,7 +213,7 @@
 
                 <form class="d-none reply-form" action="">
                     <div class="form-group">
-                        <input type="text" class="rounded-pill border-0 bg-light form-control" id="reply">
+                        <input type="text" class="rounded-pill border-0 bg-light form-control pr-5" id="reply">
                     </div>
 
                     <input type="hidden" class="ratingId" name="ratingId" value="{{$rating->id}}">

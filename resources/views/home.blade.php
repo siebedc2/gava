@@ -14,7 +14,6 @@
                 <div class="col-12 d-md-none">
                     <span class="ml-2 filter-menu"><img class="filter-icon" src="/images/filter-icon.svg" alt="Filter icon"></span>
                 </div>
-                
                 <div class="col-12 d-none d-md-block filter-container">
                     <form class="filter-form">
                         <div class="row mt-4 d-md-none">               

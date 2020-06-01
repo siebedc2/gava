@@ -37372,6 +37372,8 @@ __webpack_require__(/*! ./gava/views-chart */ "./resources/js/gava/views-chart.j
 
 __webpack_require__(/*! ./gava/revenue-chart */ "./resources/js/gava/revenue-chart.js");
 
+__webpack_require__(/*! ./gava/share-video */ "./resources/js/gava/share-video.js");
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 /***/ }),
@@ -38299,6 +38301,22 @@ if (month1data != null && month2data != null && month3data != null) {
     });
   }
 }
+
+/***/ }),
+
+/***/ "./resources/js/gava/share-video.js":
+/*!******************************************!*\
+  !*** ./resources/js/gava/share-video.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+jQuery('.share-button').click(function () {
+  jQuery('#share-video').modal({
+    backdrop: 'static',
+    keyboard: false
+  });
+});
 
 /***/ }),
 

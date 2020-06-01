@@ -28,5 +28,6 @@ require('./gava/video-options-menu');
 require('./gava/comment');
 require('./gava/views-chart');
 require('./gava/revenue-chart');
+require('./gava/share-video');
 
 require('./bootstrap');

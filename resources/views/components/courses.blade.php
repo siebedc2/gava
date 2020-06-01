@@ -34,33 +34,13 @@
         @if(!empty($courses))
         @foreach($courses as $course)
 
-        <?php
-            $courseTagIds       = $courseTagService->getCourseTagIds($course->id);
-            $videos             = $videoService->getAllCourseVideos($course->id); 
-            $rating             = 0;   
-            $amountOfRatings    = 0; 
+        <?php 
+            $rating         = $ratingService->getCourseRating($course); 
+            $courseTagIds   = $courseTagService->getCourseTagIds($course->id);
         ?>
-            
-        @foreach($videos as $video)
-            <?php 
-                $ratingData = $ratingService->getAVG($video['id']);
-                if(!empty($ratingData['starAVG'])) {
-                    $ratingData = $ratingService->getAVG($video['id']);
-                    $rating += $ratingData['starAVG'];
-                    $amountOfRatings += 1;
-                }
-            ?>
-        @endforeach
-
-        @if($rating != null)
-            <?php $Coursestars = round(($rating / $amountOfRatings),0); ?>
-        @else
-            <?php $Coursestars = 0; ?>
-        @endif
-
 
         @if(empty($courseTagId) || in_array($courseTagId, $courseTagIds))
-        @if($Coursestars >= $filterRating)
+        @if($rating['starAVG'] >= $filterRating)
         @auth
         @if($course->user_id != Auth::user()->id)
         <a href="/course/{{ $course->id }}" class="col-12 col-md-6 rounded bg-white text-decoration-none my-2">
@@ -93,18 +73,18 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 d-flex">
+                        <div class="col-12 d-flex align-items-center">
                             <div class="rating">
-                                @for ($i = $Coursestars; $i >= 1; $i--)
+                                @for ($i = $rating['starAVG']; $i >= 1; $i--)
                                 <span class="star star-checked"><i class="fa fa-star"></i></span>
                                 @endfor
 
-                                @for ($i = $Coursestars; $i <= 4; $i++) 
+                                @for ($i = $rating['starAVG']; $i <= 4; $i++) 
                                 <span class="star"><i class="fa fa-star"></i></span>
                                 @endfor
                             </div>
 
-                            <p class="text-black-50 mb-0 ml-2">({{$amountOfRatings}})</p>
+                            <p class="rating-amount text-black-50 mb-0 ml-2">{{$rating['amountOfRatings']}}</p>
                         </div>
                     </div>
                 </div>
@@ -145,18 +125,18 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 d-flex">
+                        <div class="col-12 d-flex align-items-center">
                             <div class="rating">
-                                @for ($i = $Coursestars; $i >= 1; $i--)
+                                @for ($i = $rating['starAVG']; $i >= 1; $i--)
                                 <span class="star star-checked"><i class="fa fa-star"></i></span>
                                 @endfor
 
-                                @for ($i = $Coursestars; $i <= 4; $i++) <span class="star"><i
-                                        class="fa fa-star"></i></span>
-                                    @endfor
+                                @for ($i = $rating['starAVG']; $i <= 4; $i++) 
+                                <span class="star"><i class="fa fa-star"></i></span>
+                                @endfor
                             </div>
                            
-                            <p class="text-black-50 mb-0 ml-2">({{$amountOfRatings}})</p>
+                            <p class="text-black-50 mb-0 ml-2">({{$rating['amountOfRatings']}})</p>
                         </div>
                     </div>
                 </div>

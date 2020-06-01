@@ -11,7 +11,7 @@ class Course {
         return Validator::make($data, [
             'title'         => 'required',
             'description'   => 'required',
-            'tumbnail'      => 'mimes:jpeg,png,jpg'
+            'tumbnail'      => 'nullable|mimes:jpeg,png,jpg|max:2000'
         ]);
     }
 

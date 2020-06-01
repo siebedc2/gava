@@ -59,7 +59,19 @@
                             </label>
                             <input name="tumbnail" type="file" class="form-control-file position-static" id="tumbnail">
                         </div>
+                        @if ($errors->any())
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="alert text-center">
+                                        @foreach ($errors->all() as $error)
+                                        <p class="text-danger">{{ $error }}</p>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
+
                     <div class="col-12 col-md-5 offset-md-1">
                         <div class="row d-none d-md-flex">
                             <div class="col-12">
@@ -95,7 +107,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-12 d-flex">
+                                    <div class="col-12 d-flex align-items-center">
                                     @if(!empty($video->ratings))
                                         <?php $rating = $ratingService->getAVG($video->id); ?>
                                         <div class="rating">
@@ -107,14 +119,14 @@
                                             <span class="star"><i class="fa fa-star"></i></span>
                                             @endfor
                                         </div>
-                                        <p class="text-black-50 mb-0 ml-2">({{$rating['amountOfRatings']}})</p>
+                                        <p class="rating-amount text-black-50 mb-0 ml-2">{{$rating['amountOfRatings']}}</p>
                                         @else
                                         <div class="rating">
                                             @for ($i = 5; $i >= 1; $i--)
                                             <span class="star"><i class="fa fa-star"></i></span>
                                             @endfor
                                         </div>
-                                        <p class="mb-0 ml-2 text-black-50">(0)</p>
+                                        <p class="rating-amount mb-0 ml-2 text-black-50">0</p>
                                         @endif
                                     </div>
                                 </div>
@@ -145,20 +157,6 @@
                         </div>
                     </div>
                 </div>
-
-                @if ($errors->any())
-                <div class="row">
-                    <div class="col-12">
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                @endif
             </form>
         </div>
     </div>

@@ -32,7 +32,7 @@
                             <textarea name="description"  class="bg-light border-0 form-control" id="description" rows="3">{{ $video['description'] }}</textarea>
                         </div>
                         <div class="form-group form-check pl-0">
-                            <input name="exclusive" type="checkbox" class="form-check-input" id="exclusive" value="{{$video['exclusive']}}" @if($video['exclusive'] == "y") checked @endif>
+                            <input name="exclusive" type="checkbox" class="form-check-input" id="exclusive" value="y" @if($video['exclusive'] == "y") checked @endif>
                             <label for="exclusive" class="form-check-label">make this video exclusive to my subscribers</label>
                         </div>
                         <div class="form-group mt-4 text-center text-md-left">
@@ -63,22 +63,19 @@
                             </label>
                             <input name="video" type="file" class="form-control-file position-static" id="video" value="{{ $video['video'] }}">
                         </div>
+                        @if ($errors->any())
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="alert text-center">
+                                        @foreach ($errors->all() as $error)
+                                        <p class="text-danger">{{ $error }}</p>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
-
-                @if ($errors->any())
-                <div class="row">
-                    <div class="col-12">
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                @endif
             </form>
         </div>
     </div>

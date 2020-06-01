@@ -86,7 +86,7 @@
             <div class="col-12 mt-2">
                 <form class="d-none subcomment-form" action="">
                     <div class="form-group">
-                        <input type="text" class="rounded-pill border-0 bg-light form-control" id="subcomment" placeholder="write a subcomment">
+                        <input type="text" class="rounded-pill border-0 bg-light form-control pr-5" id="subcomment" placeholder="write a subcomment">
                     </div>
 
                     <input type="hidden" class="commentId" name="commentId" value="{{$comment->id}}">
@@ -173,8 +173,7 @@
                 <div class="col-12 mt-2">
                     <form class="d-none subcomment-form" action="">
                         <div class="form-group">
-                            <input type="text" class="rounded-pill border-0 bg-light form-control" id="subcomment"
-                                placeholder="write a subcomment">
+                            <input type="text" class="rounded-pill border-0 bg-light form-control pr-5" id="subcomment" placeholder="write a subcomment">
                         </div>
 
                         <input type="hidden" class="commentId" name="commentId" value="{{$comment->id}}">
@@ -268,7 +267,7 @@
             <div class="col-12 mt-2">
                 <form class="d-none subcomment-form" action="">
                     <div class="form-group">
-                        <input type="text" class="rounded-pill border-0 bg-light form-control" id="subcomment" placeholder="write a subcomment">
+                        <input type="text" class="rounded-pill border-0 bg-light form-control pr-5" id="subcomment" placeholder="write a subcomment">
                     </div>
 
                     <input type="hidden" class="commentId" name="commentId" value="{{$comment->id}}">
@@ -356,8 +355,7 @@
                 <div class="col-12 mt-2">
                     <form class="d-none subcomment-form" action="">
                         <div class="form-group">
-                            <input type="text" class="rounded-pill border-0 bg-light form-control" id="subcomment"
-                                placeholder="write a subcomment">
+                            <input type="text" class="rounded-pill border-0 bg-light form-control pr-5" id="subcomment" placeholder="write a subcomment">
                         </div>
 
                         <input type="hidden" class="commentId" name="commentId" value="{{$comment->id}}">

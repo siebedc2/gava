@@ -14,7 +14,7 @@
                         </a>
                     </div>
                     <div class="col-4 d-flex align-items-center justify-content-center">
-                        <h2 class="font-weight-normal mb-0">Add a rating</h2>
+                        <h2 class="font-weight-normal mb-0">Rate this video</h2>
                     </div>
                     <div class="col-4 text-right">
                         <button type="submit" class="rounded-pill px-md-5 btn btn-confirm">save</button>
@@ -27,7 +27,7 @@
                             <label for="content">How would you rate the content of this video?</label>
                             <div class="d-flex">
                                 <div class="form-check pl-0">
-                                    <input class="form-check-input star-input" type="radio" name="content" id="content1star" value="1">
+                                    <input class="form-check-input star-input" type="radio" name="content" id="content1star" value="1" required>
                                     <label class="form-check-label" for="content1star"><span class="star"><i class="fa fa-star"></i></span></label>
                                 </div>
                                 <div class="form-check pl-2">
@@ -53,7 +53,7 @@
                             <label for="quality">How would you rate the quality of this video?</label>
                             <div class="d-flex">
                                 <div class="form-check pl-0">
-                                    <input class="form-check-input star-input" type="radio" name="quality" id="quality1star" value="1">
+                                    <input class="form-check-input star-input" type="radio" name="quality" id="quality1star" value="1" required>
                                     <label class="form-check-label" for="quality1star"><span class="star"><i class="fa fa-star"></i></span></label>
                                 </div>
                                 <div class="form-check pl-2">

@@ -89,34 +89,22 @@
     <div class="row mt-4 mb-5">
         <div class="col-12">
             <div class="row">
-                <div class="col-12 d-flex">
+                <div class="col-12 d-flex align-items-center">
                     <h2 class="font-weight-normal mb-0">{{ $course->title }}</h2>
+                    <?php 
+                        $rating = $ratingService->getCourseRating($course);  
+                    ?>
 
-                    @if($videos->count() >= 1)
-                        @foreach($videos as $video)
-                            @if($video->ratings != null)
-                                <?php $Coursestars = round($video->ratings->avg('stars'),0); ?>
-                            @endif
-                        @endforeach
+                    <div class="rating ml-4">
+                        @for ($i = $rating['starAVG']; $i >= 1; $i--)
+                            <span class="star star-checked"><i class="fa fa-star"></i></span>
+                        @endfor
 
-                        @if(!empty($Coursestars))
-                        <div class="rating ml-4">
-                            @for ($i = $Coursestars; $i >= 1; $i--)
-                                <span class="star star-checked"><i class="fa fa-star"></i></span>
-                            @endfor
-
-                            @for ($i = $Coursestars; $i <= 4; $i++) 
-                                <span class="star"><i class="fa fa-star"></i></span>
-                            @endfor
-                        </div>
-                        @else
-                        <div class="rating ml-4">
-                            @for ($i = 5; $i >= 1; $i--)
+                        @for ($i = $rating['starAVG']; $i <= 4; $i++) 
                             <span class="star"><i class="fa fa-star"></i></span>
-                            @endfor
-                        </div>
-                        @endif
-                    @endif
+                        @endfor
+                    </div>
+                    <p class="rating-amount text-black-50 mb-0 ml-2">{{$rating['amountOfRatings']}}</p>
                 </div>
             </div>
             <div class="row">
@@ -146,7 +134,7 @@
     <div class="row">
         @foreach($videos as $video)
         <a href="
-            @if($video->exclusive == 'y' && $subscriptionService->hasSubscription(Auth::id(), $user->id))
+            @if($video->exclusive == 'y' && $subscriptionService->hasSubscription(Auth::id(), $user->id) || $video->course->user_id == Auth::id())
                 /course/{{ $course->id }}/video/{{ $video->id }} 
             @elseif($video->exclusive == 'y' && $subscriptionService->notSubsribedWhenVideoWasCreated($video->created_at, $user->id)) 
                 /subscribe/{{ $user->id }} 
@@ -159,14 +147,13 @@
                     <div class="d-flex justify-content-center align-items-center w-100 tumbnail 
                         @if($video->exclusive == 'y' && $subscriptionService->hasSubscription(Auth::id(), $user->id))
                             
-                        @elseif($video->exclusive == 'y' && $subscriptionService->notSubsribedWhenVideoWasCreated($video->created_at, $user->id)) 
+                        @elseif($video->exclusive == 'y' && $subscriptionService->notSubsribedWhenVideoWasCreated($video->created_at, $user->id) && $video->course->user_id != Auth::id()) 
                             exclusive-tumbnail 
                         @endif
                         " style="background-image: url(/images/uploads/{{$video->tumbnail}});">
 
-                        @if($video->exclusive == 'y' && !$subscriptionService->hasSubscription(Auth::id(), $user->id) && $subscriptionService->notSubsribedWhenVideoWasCreated($video->created_at, $user->id))
+                        @if($video->exclusive == 'y' && !$subscriptionService->hasSubscription(Auth::id(), $user->id) && $subscriptionService->notSubsribedWhenVideoWasCreated($video->created_at, $user->id) && $video->course->user_id != Auth::id())
                         <span class="rounded-pill btn btn-unlock btn-secondary">unlock video</span>
-                        
                         @endif
                     </div>
                 </div>
@@ -174,7 +161,12 @@
                     <div class="row">
                         <div class="col-12">
                             @if($video->exclusive == 'y') 
-                                @if($subscriptionService->hasSubscription(Auth::id(), $user->id))
+                                @if($video->course->user_id == Auth::id())
+                                    <div class="d-flex align-items-center mb-1">
+                                        <img class="lock" src="/images/unlocked.svg" alt="unlocked icon">
+                                        <p class="ml-2 mb-0">{{ $video->title }}</p>
+                                    </div>
+                                @elseif($subscriptionService->hasSubscription(Auth::id(), $user->id))
                                     <div class="d-flex align-items-center mb-1">
                                         <img class="lock" src="/images/unlocked.svg" alt="unlocked icon">
                                         <p class="ml-2 mb-0">{{ $video->title }}</p>
@@ -201,7 +193,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 d-flex">
+                        <div class="col-12 d-flex align-items-center">
                             @if(!empty($video->ratings))
                             <?php $rating = $ratingService->getAVG($video->id); ?>
 
@@ -214,14 +206,14 @@
                                     <span class="star"><i class="fa fa-star"></i></span>
                                 @endfor
                             </div>
-                            <p class="text-black-50 mb-0 ml-2">({{$rating['amountOfRatings']}})</p>
+                            <p class="rating-amount text-black-50 mb-0 ml-2">{{$rating['amountOfRatings']}}</p>
                             @else
                             <div class="rating">
                                 @for ($i = 5; $i >= 1; $i--)
                                     <span class="star"><i class="fa fa-star"></i></span>
                                 @endfor
                             </div>
-                            <p class="text-black-50 mb-0 ml-2">(0)</p>
+                            <p class="rating-amount text-black-50 mb-0 ml-2">0</p>
                             @endif
                         </div>
                     </div>

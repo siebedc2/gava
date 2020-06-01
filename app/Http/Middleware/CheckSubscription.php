@@ -22,7 +22,7 @@ class CheckSubscription
         $subscriptionService    = new SubscriptionService();
         $video                  = $videoService->getById($request->route()->parameter('video_id'));
 
-        if($video->exclusive == 'y' && !$subscriptionService->hasSubscription(Auth::id(), $video->course->user->id) && $subscriptionService->notSubsribedWhenVideoWasCreated($video->created_at, $video->course->user->id)) {
+        if($video->exclusive == 'y' && !$subscriptionService->hasSubscription(Auth::id(), $video->course->user->id) && $subscriptionService->notSubsribedWhenVideoWasCreated($video->created_at, $video->course->user->id) && $video->course->user_id != Auth::id()) {
             return redirect('/subscribe/' . $video->course->user->id);
         }
 

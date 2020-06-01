@@ -10,8 +10,8 @@ class Video {
         return Validator::make($data, [
             'title'         => 'required',
             'description'   => 'required',
-            'tumbnail'      => 'nullable|max:2000',
-            'video'         => 'nullable|mimes:mp4|max:150000000'
+            'tumbnail'      => 'nullable|mimes:jpeg,png,jpg|max:2000',
+            'video'         => 'nullable|mimes:mp4|max:250000'
         ]);
     }
 
@@ -65,6 +65,11 @@ class Video {
         $tumbnail = $request['tumbnail'];
         $tumbnailName = $tumbnail->getClientOriginalName();
         $tumbnail->move('images/uploads', $tumbnailName);
+
+        $videoInput = $request['video'];
+        $videoName = $videoInput->getClientOriginalName();
+        $videoInput->move('images/uploads', $videoName);
+        $request['video'] = $videoName;
 
         $video = new VideoModel();
         $video->title        = $request['title'];

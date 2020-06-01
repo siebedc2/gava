@@ -519,6 +519,10 @@ span {
   font-size: 12px;
 }
 
+.rating-amount {
+  font-size: 12px;
+}
+
 .subject {
   cursor: pointer;
 }
@@ -715,7 +719,7 @@ span {
 }
 
 .arrow-icon {
-  width: 31px;
+  width: 22px;
 }
 
 .subscribe-icon,
@@ -751,6 +755,11 @@ span {
 
 .revenue-icon {
   width: 12px;
+}
+
+.setting-icon,
+.report-icon-profile {
+  width: 25px;
 }
 
 .ms-offscreen {
