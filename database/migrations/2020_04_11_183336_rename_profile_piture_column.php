@@ -13,9 +13,9 @@ class RenameProfilePitureColumn extends Migration
      */
     public function up()
     {
-        Schema::table('users', function(Blueprint $table) {
+        /*Schema::table('users', function(Blueprint $table) {
             $table->renameColumn('profile_piture', 'profile_picture');
-        });
+        });*/
     }
 
     /**

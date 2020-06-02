@@ -210,7 +210,7 @@ Route::prefix('/subscribe')->middleware('auth')->group(function() {
     Route::get('/{id}', [
         'as'   => 'subscribe',
         'uses' => 'HomeController@subscribe'
-    ]);
+    ])->middleware('checkUser');
     
     Route::post('/{id}', [
         'as'   => 'subscribe',
