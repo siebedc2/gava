@@ -37,7 +37,7 @@
                 @else
                 <span class="report-user">
                     <input type="hidden" value="{{$user->id}}" class="userId" name="userId">
-                    <img class="report-icon-profile" src="/images/report_white.png" alt="Report icon">
+                    <img class="report-icon-profile mr-md-3" src="/images/report_white.png" alt="Report icon">
                 </span>
                 @endif
             </div>
@@ -173,7 +173,7 @@
             </a>
             @endforeach
             @else
-                <p>No courses yet</p>
+                <p class="text-black-50">No courses yet</p>
             @endif
         </div>
         <div class="d-none d-md-block col-12 col-md-4 mt-4 mt-md-0">

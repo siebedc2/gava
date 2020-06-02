@@ -108,7 +108,7 @@ Route::prefix('/course')->group(function() {
     Route::get('/{course_id}/video/{video_id}/ratings/add', [
         'as'   => 'addVideoRating',
         'uses' => 'VideoController@addRating'
-    ]);
+    ])->middleware('auth');
 
     Route::post('/{course_id}/video/{video_id}/ratings/add', [
         'as'   => 'addVideoRating',

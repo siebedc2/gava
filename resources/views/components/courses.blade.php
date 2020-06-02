@@ -75,6 +75,7 @@
                     <div class="row">
                         <div class="col-12 d-flex align-items-center">
                             <div class="rating">
+
                                 @for ($i = $rating['starAVG']; $i >= 1; $i--)
                                 <span class="star star-checked"><i class="fa fa-star"></i></span>
                                 @endfor

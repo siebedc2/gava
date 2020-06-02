@@ -116,7 +116,7 @@
                 </div>
             @endforeach
         @else
-            <p>No courses yet</p>
+            <p class="text-center text-black-50">No courses yet</p>
         @endif
         </div>
     </div>

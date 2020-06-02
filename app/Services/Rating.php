@@ -23,7 +23,7 @@ class Rating {
         $contentAVG = round(RatingModel::where('video_id', $videoId)->avg('stars'),0);
         $qualityAVG = round(RatingModel::where('video_id', $videoId)->avg('quality'),0);
 
-        $data['starAVG']            = ($contentAVG + $qualityAVG) / 2;
+        $data['starAVG']            = round((($contentAVG + $qualityAVG) / 2), 0) ;
         $data['amountOfRatings']    = RatingModel::where('video_id', $videoId)->count();
         return $data;
     }
@@ -46,7 +46,7 @@ class Rating {
         }
 
         if($starsTotal != 0) {
-            $data['starAVG'] = $starsTotal / $videoWithRatingAmount;
+            $data['starAVG'] = round($starsTotal / $videoWithRatingAmount, 0);
         }
 
         else {
