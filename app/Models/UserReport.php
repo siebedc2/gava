@@ -9,6 +9,6 @@ class UserReport extends Model
     protected $table = 'user_reports';
 
     protected $fillable = [
-        'id', 'report', 'user_id'
+        'id', 'report', 'user_id', 'reporter_id'
     ];
 }

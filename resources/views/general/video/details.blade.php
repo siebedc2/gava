@@ -4,6 +4,7 @@
     $likeService = new App\Services\Like();
     $upvoteService = new App\Services\Upvote();
     $commentService = new App\Services\Comment();
+    $videoReportService = new App\Services\VideoReport();
 ?>
 
 @extends('layouts.app')
@@ -21,6 +22,7 @@
 @include('components.menu')
 @include('components.cancel-subscription-popup')
 @include('components.share-video-popup')
+@include('components.report-popup')
 <div class="container mb-5 pb-5">
     <div class="row mt-4">
         <div class="col-12">
@@ -31,10 +33,14 @@
                     </a>
                 </div>
                 <div class="col-6 d-flex justify-content-end">
+                @if(Auth::user())
+                    @if(Auth::id() != $course->user_id)
                     <span class="report-video">
                         <input type="hidden" class="videoId" name="videoId" value="{{$video->id}}">
-                        <img class="report-icon" src="/images/report.svg" alt="Report">
+                        <img class="@if($videoReportService->hasAlready($video->id, Auth::id()) > 0) reported @endif report-icon" src="/images/report.svg" alt="Report">
                     </span>
+                    @endif
+                @endif
                 </div>
             </div>
             <div class="row">
@@ -64,7 +70,7 @@
                 @if(Auth::user())
                     @if(Auth::id() != $course->user_id)
                     <div class="col-6 d-flex justify-content-end align-items-center">
-                        <span class="d-none d-md-block report-video mr-5">
+                        <span class="@if($videoReportService->hasAlready($video->id, Auth::id()) > 0) reported @endif d-none d-md-block report-video mr-5">
                             <input type="hidden" class="videoId" name="videoId" value="{{$video->id}}">
                             <img class="report-icon" src="/images/report.svg" alt="Report">
                         </span>
@@ -174,7 +180,7 @@
                                 <a class="rounded-pill w-100 btn btn-tertiary" href="/course/{{$video->course_id}}/video/{{$video->id}}/ratings">ratings</a>
                             </div>
                             <div class="col-2 col-md-4 text-center">
-                                <span class="d-md-none rounded-circle w-100 share-button  btn btn-primary"><i class="text-white fa fa-share-alt"></i></span>
+                                <span class="d-md-none rounded-pill w-100 share-button  btn btn-primary"><i class="text-white fa fa-share-alt"></i></span>
                                 <span class="d-none d-md-block rounded-pill w-100 share-button btn btn-quaternary">share this video</span>
                             </div>
                         </div>

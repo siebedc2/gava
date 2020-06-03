@@ -1,6 +1,7 @@
 <?php 
     $ratingService = new App\Services\Rating();
     $subscriptionService = new App\Services\Subscription();
+    $userReportService = new App\Services\UserReport();
 ?>
 
 @extends('layouts.app')
@@ -13,6 +14,7 @@
 @section('content')
 @include('components.menu')
 @include('components.cancel-subscription-popup')
+@include('components.report-popup')
 <div class="container mb-5 pb-5">
     <div class="row mt-4">
         <div class="col-12">
@@ -23,10 +25,14 @@
                     </a>
                 </div>
                 <div class="col-6 d-flex justify-content-end">
+                @if(Auth::user())
+                @if(Auth::id() != $course->user_id)
                     <div class="report-user">
                         <input type="hidden" value="{{$user->id}}" class="userId" name="userId">
                         <span><img class="report-icon" src="/images/report.svg" alt="Report"></span>
                     </div>
+                @endif
+                @endif
                 </div>
             </div>
             <div class="row">
@@ -66,7 +72,7 @@
                 @if(Auth::user())
                 @if(Auth::id() != $course->user_id)
                 <div class="col-6 d-flex justify-content-end align-items-center">
-                    <div class="d-none d-md-block report-user">
+                    <div class="@if($userReportService->hasAlready($course->user_id, Auth::id()) > 0) reported @endif d-none d-md-block report-user">
                         <input type="hidden" value="{{$user->id}}" class="userId" name="userId">
                         <span class="mr-5"><img class="report-icon" src="/images/report.svg" alt="Report"></span>
                     </div>

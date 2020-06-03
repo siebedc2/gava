@@ -18,7 +18,10 @@ jQuery('.report-video').click(function(){
         console.log(response);
 
         if (response.message == "success") {
-
+            jQuery('.popup-report-message').html('You have succesfully reported this video!');
+            jQuery('#report-popup').modal({ backdrop: 'static', keyboard: false }).on('click', '#delete-btn', function(e){});
+            jQuery('.report-video').css('opacity', '0.5');
+            jQuery('.report-video').css('pointer-events', 'none');
         }
     });
 });

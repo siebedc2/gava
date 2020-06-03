@@ -18,7 +18,10 @@ jQuery('.report-user').click(function(){
         console.log(response);
 
         if (response.message == "success") {
-
+            jQuery('.popup-report-message').html('You have succesfully reported this user!');
+            jQuery('#report-popup').modal({ backdrop: 'static', keyboard: false }).on('click', '#delete-btn', function(e){});
+            jQuery('.report-user').css('opacity', '0.5');
+            jQuery('.report-user').css('pointer-events', 'none');
         }
     });
 });

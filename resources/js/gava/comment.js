@@ -99,7 +99,10 @@ window.initCommentEvents = function() {
             console.log(response);
     
             if (response.message == "success") {
-    
+                jQuery('.popup-report-message').html('You have succesfully reported this comment!');
+                jQuery('#report-popup').modal({ backdrop: 'static', keyboard: false }).on('click', '#delete-btn', function(e){});
+                jQuery('.report-comment').css('opacity', '0.5');
+                jQuery('.report-comment').css('pointer-events', 'none');
             }
         });
     });

@@ -6,8 +6,18 @@ jQuery('.close-filter').click(function() {
     jQuery('.filter-container').addClass('d-none');
 })
 
+jQuery('#search').keypress(function(e) {
+    if (e.keyCode === 10 || e.keyCode === 13) {
+        e.preventDefault();
+        filter();
+    }
+});
 
 jQuery('.filter-form').change(function(e){
+    filter();
+})
+
+function filter() {
     var search  = jQuery('#search').val();
     var tags    = jQuery('#tags option:selected').val();
     var sort    = jQuery('#sort option:selected').val();
@@ -34,5 +44,4 @@ jQuery('.filter-form').change(function(e){
             jQuery(".courses-wrapper").append(response.coursesHTML);
         }
     });
-
-})
+}

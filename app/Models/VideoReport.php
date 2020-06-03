@@ -9,6 +9,6 @@ class VideoReport extends Model
     protected $table = 'video_reports';
 
     protected $fillable = [
-        'id', 'report', 'video_id'
+        'id', 'report', 'video_id', 'user_id'
     ];
 }

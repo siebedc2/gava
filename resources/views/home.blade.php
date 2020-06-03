@@ -7,7 +7,7 @@
 
 @section('content')
 @include('components.menu')
-<div class="container">
+<div class="container pb-5 mb-5">
     <div class="row d-flex flex-wrap-reverse">
         <div class="col-12">
             <div class="row my-4 filter">

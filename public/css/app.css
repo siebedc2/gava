@@ -415,6 +415,11 @@ h2 {
   border-radius: 10px;
 }
 
+.reported {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .link {
   padding: 10px 15px;
 }
@@ -429,6 +434,11 @@ h2 {
 }
 
 .link.subscribers-link {
+  color: #291875;
+}
+
+.link.login-popup-link {
+  text-decoration: underline;
   color: #291875;
 }
 
@@ -622,6 +632,19 @@ span {
   margin-top: -80px !important;
 }
 
+.login-popup-container {
+  left: 0;
+  right: 0;
+  bottom: 120px;
+  z-index: 1040;
+}
+
+.login-popup-container div.row {
+  max-width: 720px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.16);
+}
+
 @media (max-width: 768px) {
   .filter-container {
     background-color: white;
@@ -630,13 +653,17 @@ span {
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 1040;
+    z-index: 1050;
   }
 }
 
 @media (min-width: 768px) {
   .rating-overview {
     border-bottom: 0px !important;
+  }
+
+  .login-popup-container {
+    bottom: 20px;
   }
 }
 
@@ -760,6 +787,10 @@ span {
 .setting-icon,
 .report-icon-profile {
   width: 25px;
+}
+
+.close-login-popup img {
+  width: 10px;
 }
 
 .ms-offscreen {
@@ -1134,6 +1165,10 @@ span {
     right: 0;
     z-index: 1040;
   }
+}
+
+video {
+  border-radius: 10px;
 }
 
 /*!

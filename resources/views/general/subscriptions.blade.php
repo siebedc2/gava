@@ -34,6 +34,7 @@
     <div class="row">
         <div class="col-12">
             <div class="row">
+                @if($creators->count() > 0)
                 @foreach($courses as $course)
                 @if(in_array($course->user_id, $subscribersIds))
                 <a href="/course/{{ $course->id }}" class="col-12 col-md-6 rounded bg-white text-decoration-none my-2">
@@ -84,6 +85,11 @@
                 </a>
                 @endif
                 @endforeach
+                @else
+                <div class="col-12">
+                    <p class="text-center text-black-50">No subscriptions yet</p>
+                </div>
+                @endif
             </div>
         </div>
     </div>
@@ -92,6 +98,7 @@
 <div id="creatorsContainer" class="d-none container">
     @include('components.cancel-subscription-popup')
     <div class="row">
+        @if($creators->count() > 0)
         @foreach($creators as $creator)
         <div class="creator col-12 col-md-6 mb-4">
             <div class="row d-flex align-items-center">
@@ -110,9 +117,13 @@
                     </form>
                 </div>
             </div>
-            
         </div>
         @endforeach
+        @else
+        <div class="col-12">
+            <p class="text-center text-black-50">No subscriptions yet</p>
+        </div>
+        @endif
     </div>
 </div>
 @include('components.mobile-menu')

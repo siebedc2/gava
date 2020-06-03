@@ -60,6 +60,12 @@
 <body class="gava min-vh-100">
 
     @yield('content')
+
+    @guest
+        @if(Route::getCurrentRoute() != null && Route::getCurrentRoute()->getName() != 'login'  && Route::getCurrentRoute()->getName() != 'register')
+            @include('components.login-popup')
+        @endif
+    @endguest
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>

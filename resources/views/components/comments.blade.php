@@ -4,6 +4,7 @@
     $likeService = new App\Services\Like();
     $upvoteService = new App\Services\Upvote();
     $videoService = new App\Services\Video();
+    $CommentReportService = new App\Services\CommentReport();
     $comments = $commentService->getAll($videoId ? $videoId : '');
     $video = $videoService->getById($videoId ? $videoId : '');
 ?>
@@ -78,9 +79,11 @@
 
                     </form>
                 </div>
+                @if($comment->user->id != Auth::id())
                 <div class="ml-4 d-flex align-items-center">
-                    <span class="report-comment"><img class="report-icon" src="/images/report.svg"  alt="Report icon"></span>
+                    <span class="@if($CommentReportService->hasAlready($comment->id, Auth::id()) > 0) reported @endif report-comment"><img class="report-icon" src="/images/report.svg"  alt="Report icon"></span>
                 </div>
+                @endif
             </div>
 
             <div class="col-12 mt-2">
@@ -165,9 +168,11 @@
                             <input type="hidden" class="videoId" name="videoId" value="{{$video->id}}">
                         </form>
                     </div>
+                    @if($subcomment->user->id != Auth::id())
                     <div class="ml-4 d-flex align-items-center">
-                        <span class="report-comment"><img class="report-icon" src="/images/report.svg" alt="Report icon"></span>
+                        <span class="@if($CommentReportService->hasAlready($subcomment->id, Auth::id()) > 0) reported @endif report-comment"><img class="report-icon" src="/images/report.svg" alt="Report icon"></span>
                     </div>
+                    @endif
                 </div>
 
                 <div class="col-12 mt-2">
@@ -259,9 +264,11 @@
 
                     </form>
                 </div>
+                @if($comment->user->id != Auth::id())
                 <div class="ml-4 d-flex align-items-center">
-                    <span class="report-comment"><img class="report-icon" src="/images/report.svg"  alt="Report icon"></span>
+                    <span class="@if($CommentReportService->hasAlready($comment->id, Auth::id()) > 0) reported @endif report-comment"><img class="report-icon" src="/images/report.svg"  alt="Report icon"></span>
                 </div>
+                @endif
             </div>
 
             <div class="col-12 mt-2">
@@ -347,9 +354,11 @@
 
                         </form>
                     </div>
+                    @if($subcomment->user->id != Auth::id())
                     <div class="ml-4 d-flex align-items-center">
-                        <span class="report-comment"><img class="report-icon" src="/images/report.svg" alt="Report icon"></span>
+                        <span class="@if($CommentReportService->hasAlready($subcomment->id, Auth::id()) > 0) reported @endif report-comment"><img class="report-icon" src="/images/report.svg" alt="Report icon"></span>
                     </div>
+                    @endif
                 </div>
 
                 <div class="col-12 mt-2">

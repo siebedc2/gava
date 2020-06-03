@@ -31,9 +31,8 @@
 
 <div class="courses">
     <div class="row">
-        @if(!empty($courses))
+        @if($courses->count() > 0)
         @foreach($courses as $course)
-
         <?php 
             $rating         = $ratingService->getCourseRating($course); 
             $courseTagIds   = $courseTagService->getCourseTagIds($course->id);
@@ -137,7 +136,7 @@
                                 @endfor
                             </div>
                            
-                            <p class="text-black-50 mb-0 ml-2">({{$rating['amountOfRatings']}})</p>
+                            <p class="rating-amount text-black-50 mb-0 ml-2">{{$rating['amountOfRatings']}}</p>
                         </div>
                     </div>
                 </div>
@@ -147,6 +146,10 @@
         @endif
         @endif
         @endforeach
+        @else
+        <div class="col-12">
+            <p class="text-center text-black-50">No courses found</p>
+        </div>
         @endif
     </div>
 </div>

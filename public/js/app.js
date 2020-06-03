@@ -37374,6 +37374,8 @@ __webpack_require__(/*! ./gava/revenue-chart */ "./resources/js/gava/revenue-cha
 
 __webpack_require__(/*! ./gava/share-video */ "./resources/js/gava/share-video.js");
 
+__webpack_require__(/*! ./gava/login-popup */ "./resources/js/gava/login-popup.js");
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 /***/ }),
@@ -37550,7 +37552,15 @@ window.initCommentEvents = function () {
     }).done(function (response) {
       console.log(response);
 
-      if (response.message == "success") {}
+      if (response.message == "success") {
+        jQuery('.popup-report-message').html('You have succesfully reported this comment!');
+        jQuery('#report-popup').modal({
+          backdrop: 'static',
+          keyboard: false
+        }).on('click', '#delete-btn', function (e) {});
+        jQuery('.report-comment').css('opacity', '0.5');
+        jQuery('.report-comment').css('pointer-events', 'none');
+      }
     });
   }); // Post comment (text)
 
@@ -37925,7 +37935,17 @@ jQuery('.filter-menu').click(function () {
 jQuery('.close-filter').click(function () {
   jQuery('.filter-container').addClass('d-none');
 });
+jQuery('#search').keypress(function (e) {
+  if (e.keyCode === 10 || e.keyCode === 13) {
+    e.preventDefault();
+    filter();
+  }
+});
 jQuery('.filter-form').change(function (e) {
+  filter();
+});
+
+function filter() {
   var search = jQuery('#search').val();
   var tags = jQuery('#tags option:selected').val();
   var sort = jQuery('#sort option:selected').val();
@@ -37950,7 +37970,7 @@ jQuery('.filter-form').change(function (e) {
       jQuery(".courses-wrapper").append(response.coursesHTML);
     }
   });
-});
+}
 
 /***/ }),
 
@@ -38045,6 +38065,21 @@ if (typeof hamburger_menu !== "undefined" && hamburger_menu != null) {
     });
   }
 }
+
+/***/ }),
+
+/***/ "./resources/js/gava/login-popup.js":
+/*!******************************************!*\
+  !*** ./resources/js/gava/login-popup.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+jQuery('.close-login-popup').click(function () {
+  jQuery('.login-popup-container').fadeOut(300, function () {
+    jQuery('.login-popup-container').removeClass('d-flex');
+  });
+});
 
 /***/ }),
 
@@ -38210,7 +38245,15 @@ jQuery('.report-user').click(function () {
   }).done(function (response) {
     console.log(response);
 
-    if (response.message == "success") {}
+    if (response.message == "success") {
+      jQuery('.popup-report-message').html('You have succesfully reported this user!');
+      jQuery('#report-popup').modal({
+        backdrop: 'static',
+        keyboard: false
+      }).on('click', '#delete-btn', function (e) {});
+      jQuery('.report-user').css('opacity', '0.5');
+      jQuery('.report-user').css('pointer-events', 'none');
+    }
   });
 });
 
@@ -38238,7 +38281,15 @@ jQuery('.report-video').click(function () {
   }).done(function (response) {
     console.log(response);
 
-    if (response.message == "success") {}
+    if (response.message == "success") {
+      jQuery('.popup-report-message').html('You have succesfully reported this video!');
+      jQuery('#report-popup').modal({
+        backdrop: 'static',
+        keyboard: false
+      }).on('click', '#delete-btn', function (e) {});
+      jQuery('.report-video').css('opacity', '0.5');
+      jQuery('.report-video').css('pointer-events', 'none');
+    }
   });
 });
 

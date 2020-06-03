@@ -1,7 +1,8 @@
 <?php 
     $videoService   = new App\Services\Video(); 
     $ratingService  = new App\Services\Rating();
-    $subscriptionService    = new App\Services\Subscription();
+    $subscriptionService = new App\Services\Subscription();
+    $userReportService = new App\Services\UserReport();
 ?>
 
 @extends('layouts.app')
@@ -19,6 +20,7 @@
 @section('content')
 @include('components.menu')
 @include('components.cancel-subscription-popup')
+@include('components.report-popup')
 <div class="profile-bg">
     <div class="container">
         <div class="row">
@@ -35,7 +37,7 @@
                     <img class="setting-icon mr-3" src="/images/settings.png" alt="Settings icon">
                 </a>
                 @else
-                <span class="report-user">
+                <span class="@if($userReportService->hasAlready($user->id, Auth::id()) > 0) reported @endif report-user">
                     <input type="hidden" value="{{$user->id}}" class="userId" name="userId">
                     <img class="report-icon-profile mr-md-3" src="/images/report_white.png" alt="Report icon">
                 </span>

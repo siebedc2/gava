@@ -10,7 +10,7 @@ class CommentReport extends Model
 
     protected $fillable = [
 
-        'id', 'report', 'comment_id'
+        'id', 'report', 'comment_id', 'user_id'
     ];
 
     // Relation between Comment and User
