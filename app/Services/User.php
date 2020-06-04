@@ -11,7 +11,7 @@ class User {
         return Validator::make($data, [
             'name' => 'required',
             'email' => 'required',
-            'password' => 'required'
+            'profile_picture' => 'nullable|mimes:jpeg,png,jpg|max:2000'
         ]);
     }
 

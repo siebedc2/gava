@@ -47,6 +47,19 @@
             </form>
         </div>
     </div>
+
+    @if ($errors->any())
+        <div class="row">
+            <div class="col-12">
+                <div class="alert text-center">
+                    @foreach ($errors->all() as $error)
+                        <p class="text-danger">{{ $error }}</p>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    @endif
+
     <div class="row d-flex justify-content-center">
         <div class="col-12 col-md-4">
             <div class="row mt-3">

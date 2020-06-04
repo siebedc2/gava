@@ -151,11 +151,47 @@ class Subscription {
         return $months;
     }
 
+    public function hadSubscriptionThisMonth($userId, $creatorId) {
+        $subscription = SubscriptionModel::where([
+            ['creator_id', $creatorId],
+            ['user_id', $userId]
+        ])
+        ->orderBy('created_at', 'desc')
+        ->firstOrFail();
+
+        $startDate = $subscription['created_at'];
+        $endDate = $subscription['created_at']->addMonths(1);
+
+        $now = Carbon::now();
+
+        if($now->between($startDate, $endDate)) {
+            return true;
+        }
+
+        else {
+            return false;
+        }
+    }
+
     public function create($data, $creatorId) {
         $subscription = new SubscriptionModel();
         $subscription->creator_id = $creatorId;
         $subscription->user_id = Auth::id();
         $subscription->save();
+    }
+
+    public function update($userId, $creatorId) {
+        SubscriptionModel::where([
+            [ 'user_id', $userId ],
+            [ 'creator_id', $creatorId]
+        ])
+        ->orderBy('created_at', 'desc')
+        ->limit(1)
+        ->update(
+            [
+                'status' => 'online'
+            ]
+        );
     }
 
     public function cancel($creatorId) {

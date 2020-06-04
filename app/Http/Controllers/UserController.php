@@ -72,10 +72,6 @@ class UserController extends Controller
         return view('general.profile.paymentMethods');
     }
 
-    public function handlePaymentMethods() {
-
-    }
-
     public function purchaseHistory(SubscriptionService $subscription) {
         $userId = Auth::user()->id;
         $data['subscriptions'] = $subscription->getAllCreators($userId);
