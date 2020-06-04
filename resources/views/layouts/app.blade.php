@@ -62,7 +62,7 @@
     @yield('content')
 
     @guest
-        @if(Route::getCurrentRoute() != null && Route::getCurrentRoute()->getName() != 'login'  && Route::getCurrentRoute()->getName() != 'register')
+        @if(Route::getCurrentRoute() != null && Route::getCurrentRoute()->getName() != 'login'  && Route::getCurrentRoute()->getName() != 'register' && Route::getCurrentRoute()->getName() != 'landing')
             @include('components.login-popup')
         @endif
     @endguest

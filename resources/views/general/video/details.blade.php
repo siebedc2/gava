@@ -35,9 +35,9 @@
                 <div class="col-6 d-flex justify-content-end">
                 @if(Auth::user())
                     @if(Auth::id() != $course->user_id)
-                    <span class="report-video">
+                    <span class="@if($videoReportService->hasAlready($video->id, Auth::id()) > 0) reported @endif report-video">
                         <input type="hidden" class="videoId" name="videoId" value="{{$video->id}}">
-                        <img class="@if($videoReportService->hasAlready($video->id, Auth::id()) > 0) reported @endif report-icon" src="/images/report.svg" alt="Report">
+                        <img class="report-icon" src="/images/report.svg" alt="Report">
                     </span>
                     @endif
                 @endif

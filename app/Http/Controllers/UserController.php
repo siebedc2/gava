@@ -35,7 +35,6 @@ class UserController extends Controller
     }
 
     public function handleEdit(UserService $user) {
-        //dd($this->_request->input());
         $user->edit($this->_request->all(), Auth::user()->id);
         return redirect('/profile/edit')->with('status', 'Password changed!');
     }

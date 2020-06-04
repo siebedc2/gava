@@ -1,3 +1,7 @@
+<?php
+    $userReportService = new App\Services\UserReport();
+?>
+
 @extends('layouts.app')
 
 @section('content')
@@ -173,7 +177,7 @@
                 <div class="row mb-2">
                     <div class="col-12 d-flex align-items-center">
                         <p class="username mb-0">{{$rating->user->name}}</p>
-                        <span class="report-user ml-2 mb-1"><img class="report-icon" src="/images/report.svg" alt="Report icon"></span>
+                        <span class="@if($userReportService->hasAlready($rating->user->id, Auth::id()) > 0) reported @endif report-user ml-2 mb-1"><img class="report-icon" src="/images/report.svg" alt="Report icon"></span>
                     </div>
                 </div>
                 <div class="row mb-2">

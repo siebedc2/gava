@@ -25,10 +25,14 @@ class Comment {
     }
 
     public function getSubcomment($commentId) {
-        return CommentModel::where([
+        $subcomments = CommentModel::where([
             ['comment_id', $commentId],
             ['subcomment', '1']            
-            ])->get();
+            ])->orderBy('id', 'ASC')->get()->sortByDesc(function ($subcomment) {
+                return $subcomment->upvotes->count();
+            });
+
+        return $subcomments;
     }
 
     public function create($comment, $videoId, $commentId = null, $type, $subcomment) {

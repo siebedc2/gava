@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\User as UserModel;
 use Validator;
+use Storage;
 
 class User {
     public function validator(array $data) {
@@ -28,10 +29,15 @@ class User {
         $user->email    = $request['email'];
 
         if(!empty($request['profile_picture'])) {
-            $profilePicture       = $request['profile_picture'];
-            $profilePictureName   = $profilePicture->getClientOriginalName();
+            $profilePicture = $request['profile_picture'];
+            $ext = $request['profile_picture']->extension();
+            //$filename =  date('Y-m-d-H-i-s') . '_' . uniqid() . '.' . $ext;
+            
+            //Storage::disk('public')->put('uploads', $request['profile_picture']);
+
+            $profilePictureName = $profilePicture->getClientOriginalName();
             $profilePicture->move('images/uploads', $profilePictureName);
-            $user->profile_picture       = $profilePictureName;
+            $user->profile_picture = $profilePictureName;
         }
 
         $user->save();
