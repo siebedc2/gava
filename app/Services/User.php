@@ -31,13 +31,9 @@ class User {
         if(!empty($request['profile_picture'])) {
             $profilePicture = $request['profile_picture'];
             $ext = $request['profile_picture']->extension();
-            //$filename =  date('Y-m-d-H-i-s') . '_' . uniqid() . '.' . $ext;
-            
-            //Storage::disk('public')->put('uploads', $request['profile_picture']);
-
-            $profilePictureName = $profilePicture->getClientOriginalName();
-            $profilePicture->move('images/uploads', $profilePictureName);
-            $user->profile_picture = $profilePictureName;
+            $filename =  date('Y-m-d-H-i-s') . '_' . uniqid() . '.' . $ext;
+            $profilePicture->move('images/uploads', $filename);
+            $user->profile_picture = $filename;
         }
 
         $user->save();

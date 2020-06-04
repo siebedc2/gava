@@ -19,7 +19,7 @@
                     <div class="col-4 text-right">
                         <button type="submit" class="rounded-pill px-md-5 btn btn-confirm">save</button>
                     </div>
-                </div>                
+                </div>         
                 <div class="row d-flex justify-content-center">
                     <div class="col-12 col-md-4">
                         <div class="form-group d-flex justify-content-center my-4">

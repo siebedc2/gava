@@ -11,9 +11,9 @@
 |
 */
 
-/*Route::get('images/uploads/{file}', function(){
+Route::get('/storage/uploads/{file}', function(){
     return view('errors.404');
-});*/
+});
 
 // Landingspagina
 Route::domain(config('app.url'))->group(function () {
