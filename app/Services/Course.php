@@ -36,8 +36,9 @@ class Course {
 
     public function create($request) {
         $tumbnail = $request['tumbnail'];
-        $tumbnailName = $tumbnail->getClientOriginalName();
-        $tumbnail->move('images/uploads', $tumbnailName);
+        $ext = $request['tumbnail']->extension();
+        $filename =  date('Y-m-d-H-i-s') . '_' . uniqid() . '.' . $ext;
+        $tumbnail->move('images/uploads', $filename);
 
         $course = new CourseModel();
         $course->title = $request['title'];
@@ -54,10 +55,11 @@ class Course {
         $course->description    = $request['description'];
 
         if(!empty($request['tumbnail'])) {
-            $tumbnail       = $request['tumbnail'];
-            $tumbnailName   = $tumbnail->getClientOriginalName();
-            $tumbnail->move('images/uploads', $tumbnailName);
-            $course->tumbnail       = $tumbnailName;
+            $tumbnail = $request['tumbnail'];
+            $ext = $request['tumbnail']->extension();
+            $filename =  date('Y-m-d-H-i-s') . '_' . uniqid() . '.' . $ext;
+            $tumbnail->move('images/uploads', $filename);
+            $course->tumbnail = $filename;
         }
 
         $course->save();

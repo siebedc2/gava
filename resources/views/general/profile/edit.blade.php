@@ -30,6 +30,13 @@
                             </label>
                             <input name="profile_picture" type="file" class="form-control-file" id="profile_picture">
                         </div>
+                        @if ($errors->any())
+                            <div class="alert text-center">
+                                @foreach ($errors->all() as $error)
+                                    <p class="text-danger">{{ $error }}</p>
+                                @endforeach
+                            </div>
+                        @endif
                         <div class="form-group">
                             <label class="d-none" for="name">Name</label>
                             <input name="name" type="text" class="w-100 rounded-pill border-0 bg-light form-control" id="name" value="{{ Auth::user()->name }}" required>
@@ -47,18 +54,6 @@
             </form>
         </div>
     </div>
-
-    @if ($errors->any())
-        <div class="row">
-            <div class="col-12">
-                <div class="alert text-center">
-                    @foreach ($errors->all() as $error)
-                        <p class="text-danger">{{ $error }}</p>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    @endif
 
     <div class="row d-flex justify-content-center">
         <div class="col-12 col-md-4">

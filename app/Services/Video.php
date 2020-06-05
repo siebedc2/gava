@@ -54,6 +54,7 @@ class Video {
                 $newVideo->save();
             }
         }
+
         session()->forget('videos');
     }
 
@@ -63,20 +64,22 @@ class Video {
         }
 
         $tumbnail = $request['tumbnail'];
-        $tumbnailName = $tumbnail->getClientOriginalName();
-        $tumbnail->move('images/uploads', $tumbnailName);
+        $extTumbnail = $request['tumbnail']->extension();
+        $filenameTumbnail = date('Y-m-d-H-i-s') . '_' . uniqid() . '.' . $extTumbnail;
+        $tumbnail->move('images/uploads', $filenameTumbnail);
 
         $videoInput = $request['video'];
-        $videoName = $videoInput->getClientOriginalName();
-        $videoInput->move('images/uploads', $videoName);
-        $request['video'] = $videoName;
+        $extVideo = $request['video']->extension();
+        $filenameVideo = date('Y-m-d-H-i-s') . '_' . uniqid() . '.' . $extVideo;
+        $videoInput->move('images/uploads', $filenameVideo);
+        $request['video'] = $filenameVideo;
 
         $video = new VideoModel();
         $video->title        = $request['title'];
         $video->description  = $request['description'];
         $video->video        = $request['video'];
         $video->course_id    = $courseId;
-        $video->tumbnail     = $tumbnailName;
+        $video->tumbnail     = $filenameTumbnail;
         $video->exclusive    = $request['exclusive'];
         $video->save();
     }
@@ -87,14 +90,16 @@ class Video {
         }
 
         $videoInput = $request['video'];
-        $videoName = $videoInput->getClientOriginalName();
-        $videoInput->move('images/uploads', $videoName);
-        $request['video'] = $videoName;
+        $extVideo = $request['video']->extension();
+        $filenameVideo = date('Y-m-d-H-i-s') . '_' . uniqid() . '.' . $extVideo;
+        $videoInput->move('images/uploads', $filenameVideo);
+        $request['video'] = $filenameVideo;
 
-        $tumbnailInput = $request['tumbnail'];
-        $tumbnailName = $tumbnailInput->getClientOriginalName();
-        $tumbnailInput->move('images/uploads', $tumbnailName);
-        $request['tumbnail'] = $tumbnailName;
+        $tumbnail = $request['tumbnail'];
+        $extTumbnail = $request['tumbnail']->extension();
+        $filenameTumbnail = date('Y-m-d-H-i-s') . '_' . uniqid() . '.' . $extTumbnail;
+        $tumbnail->move('images/uploads', $filenameTumbnail);
+        $request['tumbnail'] = $filenameTumbnail;
 
         $videos = session('videos');
 
@@ -124,9 +129,10 @@ class Video {
 
         else {
             $videoInput = $request['video'];
-            $videoName = $videoInput->getClientOriginalName();
-            $videoInput->move('images/uploads', $videoName);
-            $request['video'] = $videoName;
+            $extVideo = $request['video']->extension();
+            $filenameVideo = date('Y-m-d-H-i-s') . '_' . uniqid() . '.' . $extVideo;
+            $videoInput->move('images/uploads', $filenameVideo);
+            $request['video'] = $filenameVideo;
         }
 
         if(empty($request['tumbnail'])) {
@@ -135,10 +141,11 @@ class Video {
         }
 
         else {
-            $tumbnailInput = $request['tumbnail'];
-            $tumbnailName = $tumbnailInput->getClientOriginalName();
-            $tumbnailInput->move('images/uploads', $tumbnailName);
-            $request['tumbnail'] = $tumbnailName;
+            $tumbnail = $request['tumbnail'];
+            $extTumbnail = $request['tumbnail']->extension();
+            $filenameTumbnail = date('Y-m-d-H-i-s') . '_' . uniqid() . '.' . $extTumbnail;
+            $tumbnail->move('images/uploads', $filenameTumbnail);
+            $request['tumbnail'] = $filenameTumbnail;
         }
 
         VideoModel::where('id', $videoId)
@@ -164,19 +171,21 @@ class Video {
         $storedVideo['exclusive']   = $request['exclusive'];
 
         if(!empty($request['tumbnail'])) {
-            $tumbnailInput = $request['tumbnail'];
-            $tumbnailName = $tumbnailInput->getClientOriginalName();
-            $tumbnailInput->move('images/uploads', $tumbnailName);
-            $request['tumbnail'] = $tumbnailName;
-            $storedVideo['tumbnail']    = $request['tumbnail'];
+            $tumbnail = $request['tumbnail'];
+            $extTumbnail = $request['tumbnail']->extension();
+            $filenameTumbnail = date('Y-m-d-H-i-s') . '_' . uniqid() . '.' . $extTumbnail;
+            $tumbnail->move('images/uploads', $filenameTumbnail);
+            $request['tumbnail'] = $filenameTumbnail;
+            $storedVideo['tumbnail'] = $request['tumbnail'];
         }
 
         if(!empty($request['video'])) {
             $videoInput = $request['video'];
-            $videoName = $videoInput->getClientOriginalName();
-            $videoInput->move('images/uploads', $videoName);
-            $request['video'] = $videoName;
-            $storedVideo['video']    = $request['video'];
+            $extVideo = $request['video']->extension();
+            $filenameVideo = date('Y-m-d-H-i-s') . '_' . uniqid() . '.' . $extVideo;
+            $videoInput->move('images/uploads', $filenameVideo);
+            $request['video'] = $filenameVideo;
+            $storedVideo['video'] = $request['video'];            
         }
 
         $videos[$videoId] = $storedVideo;

@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/storage/uploads/{file}', function(){
+/*Route::get('/storage/uploads/{file}', function(){
     return view('errors.404');
-});
+});*/
 
 // Landingspagina
 Route::domain(config('app.url'))->group(function () {
@@ -26,6 +26,10 @@ Route::domain(config('app.url'))->group(function () {
 $platformdomain = 'platform.' . parse_url(config('app.url'), PHP_URL_HOST);
 
 Route::domain($platformdomain)->group(function () {
+    Route::get('/', function() {
+        return redirect('home');
+    });
+
     Route::prefix('/course')->middleware('auth', 'checkOwner')->group(function() {
         // Course
         Route::get('/add', [
