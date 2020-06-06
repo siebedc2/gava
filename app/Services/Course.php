@@ -44,7 +44,7 @@ class Course {
         $course->title = $request['title'];
         $course->description = $request['description'];
         $course->user_id = Auth::user()->id;
-        $course->tumbnail = $tumbnailName;
+        $course->tumbnail = $filename;
         $course->save();
         return $course;
     }

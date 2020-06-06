@@ -121,6 +121,8 @@ window.initCommentEvents = function () {
             var type = "text";
             var subcomment = "1";
 
+            console.log(videoId);
+
             if (typeof comment !== "undefined" && comment != null && comment !== "") {
                 jQuery.ajax({
                         method: "POST",
@@ -159,11 +161,9 @@ window.initCommentEvents = function () {
 
     // Post subcomment (video)
     jQuery('.add-video-subcomment').click(function (e) {
-        jQuery('input#video-subcomment').val('');
         jQuery('.video-subcomment-form').addClass('d-none');
         var form = jQuery(e.target).parent().parent().parent().find('.video-subcomment-form');
-        jQuery(form).removeClass('d-none');
-        console.log('clicked');
+        form.removeClass('d-none');
 
         jQuery('#video-subcomment').change(function (e) {
             if (this.files[0].size <= 250000000 && this.files[0].type == "video/mp4") {
@@ -184,8 +184,8 @@ window.initCommentEvents = function () {
                     backdrop: 'static',
                     keyboard: false
                 }).on('click', '#confirm-btn', function (e) {
-                    e.preventDefault();
-
+                    
+                    if(formData.has('videoId') && formData.has('commentId') && formData.has('type') && formData.has('subcomment')) {
                     jQuery.ajax({
                             method: "POST",
                             url: '/videocomment/post',
@@ -198,19 +198,25 @@ window.initCommentEvents = function () {
                         })
 
                         .done(function (response) {
-
-                            console.log(response.message);
-
                             if (response.message == "success") {
                                 jQuery(form).addClass('d-none');
+                                jQuery('.video-subcomment-form')[0].reset();
                                 jQuery(e.target).parent().parent().prev().find('p').removeClass('text-danger');
-                                jQuery('#video-subcomment').val('');
                                 jQuery('#video-confirm').modal('hide');
                                 jQuery(".comments").remove();
                                 jQuery(".comments-wrapper").append(response.commentsHTML);
+
+                                formData.delete("file[]");
+                                formData.delete('video-subcomment');
+                                formData.delete('videoId');
+                                formData.delete('commentId');
+                                formData.delete('type');
+                                formData.delete('subcomment');
+
                                 window.initCommentEvents();
                             }
                         });
+                    }
                 });
             } else {
                 console.log(e.target);

@@ -189,18 +189,20 @@ class VideoController extends Controller
 
     public function handlePostVideoComment(CommentService $comment) {
         if($this->_request->hasFile('video-comment')) {
-            $file = $this->_request->file('video-comment');
-            $name = $this->_request->file('video-comment')->getClientOriginalName();
-            $file->move('images/uploads', $name);
+            $commentFile = $this->_request->file('video-comment');
+            $commentExt = $this->_request->file('video-comment')->extension();
+            $filename =  date('Y-m-d-H-i-s') . '_' . uniqid() . '.' . $commentExt;
+            $commentFile->move('images/uploads', $filename);
         }
 
         if($this->_request->hasFile('video-subcomment')) {
-            $file = $this->_request->file('video-subcomment');
-            $name = $this->_request->file('video-subcomment')->getClientOriginalName();
-            $file->move('images/uploads', $name);
+            $subcommentFile = $this->_request->file('video-subcomment');
+            $subcommentExt = $this->_request->file('video-subcomment')->extension();
+            $filename =  date('Y-m-d-H-i-s') . '_' . uniqid() . '.' . $subcommentExt;
+            $subcommentFile->move('images/uploads', $filename);
         }
         
-        if($comment->create($name, $this->_request->input('videoId'), $this->_request->input('commentId'), $this->_request->input('type'), $this->_request->input('subcomment'))) {
+        if($comment->create($filename, $this->_request->input('videoId'), $this->_request->input('commentId'), $this->_request->input('type'), $this->_request->input('subcomment'))) {
             $msg = "success";
         }
 
@@ -214,7 +216,7 @@ class VideoController extends Controller
         ]);
     }
 
-    public function handlePostSubcomment() {
+    /*public function handlePostSubcomment() {
         if($comment->create($this->_request->input('comment'), $this->_request->input('videoId'), $this->_request->input('commentId'), $this->_request->input('type'), $this->_request->input('subcomment'))) {
             $msg = "success";
         }
@@ -227,7 +229,7 @@ class VideoController extends Controller
             'message'   => $msg,
             'commentsHTML'  => view('components/comments')->render()
         ]);
-    }
+    }*/
 
     public function handleReportComment(CommentReportService $commentReport) {
         if($commentReport->create($this->_request->input('commentId'))) {

@@ -197,6 +197,7 @@
 
         <div class="col-12 col-md-5 offset-md-1">
             <p>Next video's:</p>
+            @if(($courseVideos->count() -1) > 0)
             @foreach($courseVideos as $courseVideo)
             @if($courseVideo->id != $video->id)
             <a href="
@@ -286,6 +287,9 @@
             </a>
             @endif
             @endforeach
+            @else
+            <p class="text-black-50">No more videos</p>
+            @endif
         </div>
     </div>
 </div>

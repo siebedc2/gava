@@ -118,7 +118,7 @@
                                                 <span class="star"><i class="fa fa-star"></i></span>
                                             @endfor
                                         </div>
-                                        <p class="rating-amount ml-2 text-black-50">0</p>
+                                        <p class="rating-amount mb-0 ml-2 text-black-50">0</p>
                                     </div>
                                 </div>
                             </div>

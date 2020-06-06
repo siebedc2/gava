@@ -26,7 +26,7 @@
                                 <h2 class="font-weight-normal mb-0">Filters</h2>
                             </div>
                             <div class="col-4 text-right">
-                                <button type="submit" class="rounded-pill px-md-5 btn btn-confirm">apply</button>
+                                <span class="close-filter rounded-pill px-md-5 btn btn-confirm">apply</span>
                             </div>
                         </div>  
                         <div class="form-row mt-2 mt-md-0">

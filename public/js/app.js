@@ -37574,6 +37574,7 @@ window.initCommentEvents = function () {
       var videoId = jQuery(form).find('.videoId').val();
       var type = "text";
       var subcomment = "1";
+      console.log(videoId);
 
       if (typeof comment !== "undefined" && comment != null && comment !== "") {
         jQuery.ajax({
@@ -37607,11 +37608,9 @@ window.initCommentEvents = function () {
   }); // Post subcomment (video)
 
   jQuery('.add-video-subcomment').click(function (e) {
-    jQuery('input#video-subcomment').val('');
     jQuery('.video-subcomment-form').addClass('d-none');
     var form = jQuery(e.target).parent().parent().parent().find('.video-subcomment-form');
-    jQuery(form).removeClass('d-none');
-    console.log('clicked');
+    form.removeClass('d-none');
     jQuery('#video-subcomment').change(function (e) {
       if (this.files[0].size <= 250000000 && this.files[0].type == "video/mp4") {
         e.preventDefault();
@@ -37628,29 +37627,34 @@ window.initCommentEvents = function () {
           backdrop: 'static',
           keyboard: false
         }).on('click', '#confirm-btn', function (e) {
-          e.preventDefault();
-          jQuery.ajax({
-            method: "POST",
-            url: '/videocomment/post',
-            data: formData,
-            processData: false,
-            contentType: false,
-            headers: {
-              'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
-            }
-          }).done(function (response) {
-            console.log(response.message);
-
-            if (response.message == "success") {
-              jQuery(form).addClass('d-none');
-              jQuery(e.target).parent().parent().prev().find('p').removeClass('text-danger');
-              jQuery('#video-subcomment').val('');
-              jQuery('#video-confirm').modal('hide');
-              jQuery(".comments").remove();
-              jQuery(".comments-wrapper").append(response.commentsHTML);
-              window.initCommentEvents();
-            }
-          });
+          if (formData.has('videoId') && formData.has('commentId') && formData.has('type') && formData.has('subcomment')) {
+            jQuery.ajax({
+              method: "POST",
+              url: '/videocomment/post',
+              data: formData,
+              processData: false,
+              contentType: false,
+              headers: {
+                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+              }
+            }).done(function (response) {
+              if (response.message == "success") {
+                jQuery(form).addClass('d-none');
+                jQuery('.video-subcomment-form')[0].reset();
+                jQuery(e.target).parent().parent().prev().find('p').removeClass('text-danger');
+                jQuery('#video-confirm').modal('hide');
+                jQuery(".comments").remove();
+                jQuery(".comments-wrapper").append(response.commentsHTML);
+                formData["delete"]("file[]");
+                formData["delete"]('video-subcomment');
+                formData["delete"]('videoId');
+                formData["delete"]('commentId');
+                formData["delete"]('type');
+                formData["delete"]('subcomment');
+                window.initCommentEvents();
+              }
+            });
+          }
         });
       } else {
         console.log(e.target);

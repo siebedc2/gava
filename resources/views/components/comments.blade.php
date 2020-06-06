@@ -93,7 +93,7 @@
                     </div>
 
                     <input type="hidden" class="commentId" name="commentId" value="{{$comment->id}}">
-                    <input type="hidden" class="videoId" name="videoId" value="{{Request::route('video_id')}}">
+                    <input type="hidden" class="videoId" name="videoId" value="{{$videoId ? $videoId : ''}}">
 
                     <button type="submit" class="add-subcomment border-0 bg-transparent"><i class="fa fa-paper-plane"></i></button>
                 </form>
@@ -278,7 +278,7 @@
                     </div>
 
                     <input type="hidden" class="commentId" name="commentId" value="{{$comment->id}}">
-                    <input type="hidden" class="videoId" name="videoId" value="{{Request::route('video_id')}}">
+                    <input type="hidden" class="videoId" name="videoId" value="{{$videoId ? $videoId : ''}}">
 
                     <button type="submit" class="add-subcomment border-0 bg-transparent"><i class="fa fa-paper-plane"></i></button>
                 </form>
