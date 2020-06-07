@@ -11,6 +11,11 @@
     width: 20px;
 }
 
+label .star {
+    cursor: pointer;
+    pointer-events: all !important;
+}
+
 .star {
     pointer-events: none !important;
 

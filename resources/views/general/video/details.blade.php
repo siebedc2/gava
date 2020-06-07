@@ -177,11 +177,11 @@
                                 @endguest
                             </div>
                             <div class="col-4 col-md-4 text-center">
-                                <a class="rounded-pill w-100 btn btn-tertiary" href="/course/{{$video->course_id}}/video/{{$video->id}}/ratings">ratings</a>
+                                <a class="text-white rounded-pill w-100 btn btn-tertiary" href="/course/{{$video->course_id}}/video/{{$video->id}}/ratings">ratings</a>
                             </div>
                             <div class="col-2 col-md-4 text-center">
                                 <span class="d-md-none rounded-pill w-100 share-button  btn btn-primary"><i class="text-white fa fa-share-alt"></i></span>
-                                <span class="d-none d-md-block rounded-pill w-100 share-button btn btn-quaternary">share this video</span>
+                                <span class="text-white d-none d-md-block rounded-pill w-100 share-button btn btn-quaternary">share this video</span>
                             </div>
                         </div>
                     </div>

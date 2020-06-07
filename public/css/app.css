@@ -540,6 +540,7 @@ span {
 
 .tag {
   border: 1px solid #291875;
+  pointer-events: none !important;
 }
 
 .tag:nth-child(1) {
@@ -724,6 +725,11 @@ span {
 .report-icon {
   height: 20px;
   width: 20px;
+}
+
+label .star {
+  cursor: pointer;
+  pointer-events: all !important;
 }
 
 .star {

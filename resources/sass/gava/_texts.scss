@@ -59,6 +59,7 @@
 
 .tag {
     border: 1px solid $btn-primary-color;
+    pointer-events: none !important;
 }
 
 .tag:nth-child(1) {
