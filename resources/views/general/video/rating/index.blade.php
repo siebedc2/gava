@@ -6,6 +6,7 @@
 
 @section('content')
 @include('components.menu')
+@include('components.report-popup')
 <div class="container mb-5 mb-md-0">
     <div class="row mt-4 header">
         <div class="col-3 col-md-4 d-flex align-items-center">
@@ -177,7 +178,10 @@
                 <div class="row mb-2">
                     <div class="col-12 d-flex align-items-center">
                         <p class="username mb-0">{{$rating->user->name}}</p>
-                        <span class="@if($userReportService->hasAlready($rating->user->id, Auth::id()) > 0) reported @endif report-user ml-2 mb-1"><img class="report-icon" src="/images/report.svg" alt="Report icon"></span>
+                        <span class="@if($userReportService->hasAlready($rating->user->id, Auth::id()) > 0) reported @endif report-user ml-2 mb-1">
+                            <input type="hidden" value="{{$rating->user->id}}" class="userId" name="userId">
+                            <img class="report-icon" src="/images/report.svg" alt="Report icon">
+                        </span>
                     </div>
                 </div>
                 <div class="row mb-2">

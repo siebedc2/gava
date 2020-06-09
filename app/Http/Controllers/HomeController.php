@@ -80,15 +80,15 @@ class HomeController extends Controller
         return view('general.subscribe', $data);
     }
 
-    public function handleSubscription(SubscriptionService $subscription, $creatorId) {        
+    public function handleSubscription(SubscriptionService $subscription, $creatorId) {     
         if($subscription->hadSubscriptionThisMonth(Auth::id(), $creatorId)) {
             $subscription->update(Auth::id(), $creatorId);
         }
 
         else {
-            $subscription->create($this->_request->input(), $creatorId);
+            $subscription->create(Auth::id(), $creatorId);
         }
-            
+        
         return redirect('/subscribe/confirmation');
     }
 

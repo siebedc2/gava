@@ -157,15 +157,22 @@ class Subscription {
             ['user_id', $userId]
         ])
         ->orderBy('created_at', 'desc')
-        ->firstOrFail();
+        ->first();
 
-        $startDate = $subscription['created_at'];
-        $endDate = $subscription['created_at']->addMonths(1);
+        if($subscription != null ) {
 
-        $now = Carbon::now();
+            $startDate = $subscription['created_at'];
+            $endDate = $subscription['created_at']->addMonths(1);
 
-        if($now->between($startDate, $endDate)) {
-            return true;
+            $now = Carbon::now();
+
+            if($now->between($startDate, $endDate)) {
+                return true;
+            }
+
+            else {
+                return false;
+            }
         }
 
         else {

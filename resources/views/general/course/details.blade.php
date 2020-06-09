@@ -27,7 +27,7 @@
                 <div class="col-6 d-flex justify-content-end">
                 @if(Auth::user())
                 @if(Auth::id() != $course->user_id)
-                    <div class="report-user">
+                    <div class="@if($userReportService->hasAlready($course->user_id, Auth::id()) > 0) reported @endif report-user">
                         <input type="hidden" value="{{$user->id}}" class="userId" name="userId">
                         <span><img class="report-icon" src="/images/report.svg" alt="Report"></span>
                     </div>
