@@ -180,7 +180,7 @@
         <div class="col-6 col-md-3 text-center mb-3 mb-md-0">
             <div class="bg-light statistic-container pt-3 pb-1">
                 <h2 class="font-weight-normal">Total revenue <span class="ml-2"><img class="mb-1 revenue-icon" src="/images/revenue-info.svg" alt="Info icon"></span></h2>
-                <p class="mb-0 statistics-number"><strong>&euro;{{ $subscriptionService->getTotalRevenue(Auth::id()) }}</strong></p>
+                <p class="mb-0 statistics-number"><strong>&euro;{{ $subscriptionService->getMonthRevenue(\Carbon\Carbon::now()->month-2, Auth::id()) + $subscriptionService->getMonthRevenue(\Carbon\Carbon::now()->month-1, Auth::id()) + $subscriptionService->getMonthRevenue(\Carbon\Carbon::now()->month, Auth::id()) }}</strong></p>
             </div>
         </div>
         <div class="col-6 col-md-3 text-center">

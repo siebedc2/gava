@@ -49,7 +49,12 @@ class Subscription {
     }
 
     public function getMonthRevenue($month, $creatorId) {
-        $subscriptionAmount = SubscriptionModel::where('creator_id', $creatorId)->whereMonth('created_at', Carbon::create()->month($month))->get()->count();
+        $subscriptionAmount = SubscriptionModel::where('creator_id', $creatorId)
+        ->whereMonth('created_at', '<=', Carbon::create()->month($month)->lastOfMonth())
+        ->whereMonth('updated_at', '>=', Carbon::create()->month($month)->lastOfMonth())
+        ->get()
+        ->count();      
+        
         $revenueMonth = $subscriptionAmount * 4.8;
         return $revenueMonth;
     }
